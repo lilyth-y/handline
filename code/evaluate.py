@@ -11,12 +11,16 @@ ap.add_argument("--name", default="palm_seg_v1_eval"); ap.add_argument("--csv", 
 ap.add_argument("--samples", default="samples"); ap.add_argument("--prefix", default="val_pred")
 ap.add_argument("--plots_dir", default="logs/eval_plots"); ap.add_argument("--onnx_out", default="weights/best.onnx", help="'' to skip export")
 ap.add_argument("--n_overlays", type=int, default=4)
+ap.add_argument("--threads", type=int, default=0, help="torch CPU threads (0 = library default)")
+ap.add_argument("--batch", type=int, default=8)
 a = ap.parse_args()
+if a.threads:
+    import torch; torch.set_num_threads(a.threads)
 NAMES = ["heart_line", "head_line", "life_line", "fate_line"]
 COL = [(255, 60, 60), (60, 120, 255), (40, 220, 80), (255, 190, 0)]
 model = YOLO(a.weights)
 # 1) Ultralytics val metrics per class
-r = model.val(data=a.data, imgsz=640, batch=8, device="cpu", plots=True, project=f"{ROOT}/runs", name=a.name, exist_ok=True, mask_ratio=2)
+r = model.val(data=a.data, imgsz=640, batch=a.batch, device="cpu", plots=True, project=f"{ROOT}/runs", name=a.name, exist_ok=True, mask_ratio=2)
 rows = []
 for i, c in enumerate(r.seg.ap_class_index):
     rows.append({"class": NAMES[c], "box_mAP50": float(r.box.ap50[i]), "box_mAP50-95": float(r.box.ap[i]),
@@ -64,6 +68,10 @@ for i, c in enumerate(NAMES):
     row["pixel_IoU"] = inter[i] / max(union[i], 1); row["pixel_Dice"] = 2 * inter[i] / max(gsum[i] + psum[i], 1)
     prec = tp[i] / max(psum[i], 1); rec = tg[i] / max(gsum[i], 1)
     row["tol5_precision"] = prec; row["tol5_recall"] = rec; row["tol5_F1"] = 2 * prec * rec / max(prec + rec, 1e-9)
+# class-mean of the pixel metrics on the "all" row
+allrow = next(x for x in rows if x["class"] == "all")
+for m in ["pixel_IoU", "pixel_Dice", "tol5_precision", "tol5_recall", "tol5_F1"]:
+    allrow[m] = float(np.mean([x[m] for x in rows if x["class"] != "all" and m in x]))
 os.makedirs(os.path.dirname(a.csv) or ".", exist_ok=True)
 keys = ["class", "box_mAP50", "box_mAP50-95", "mask_mAP50", "mask_mAP50-95", "pixel_IoU", "pixel_Dice", "tol5_precision", "tol5_recall", "tol5_F1"]
 with open(a.csv, "w", newline="") as fh:
@@ -75,4 +83,6 @@ print(open(a.csv).read())
 # 3) ONNX export
 if a.onnx_out:
     onnx = model.export(format="onnx", imgsz=640, simplify=True, opset=17)
-    os.makedirs(os.path.dirname(a.onnx_out), exist_ok=True); shutil.copy2(onnx, a.onnx_out); print("ONNX:", onnx, "->", a.onnx_out)
+    os.makedirs(os.path.dirname(a.onnx_out) or ".", exist_ok=True)
+    if os.path.abspath(onnx) != os.path.abspath(a.onnx_out): shutil.copy2(onnx, a.onnx_out)
+    print("ONNX:", onnx, "->", a.onnx_out)

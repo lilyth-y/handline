@@ -250,6 +250,17 @@ def path_len(xy: np.ndarray) -> float:
     return float(np.linalg.norm(np.diff(xy, axis=0), axis=1).sum()) if len(xy) > 1 else 0.0
 
 
+HEART_ZONES = [(0.70, "index"), (0.58, "index_middle"), (0.46, "middle"), (-9, "ring")]
+
+
+def heart_end_zone(end_u: float) -> str:
+    """Approximate finger under which the heart line ends (fingers are not detected; u on palm span)."""
+    for th, z in HEART_ZONES:
+        if end_u >= th:
+            return z
+    return "ring"
+
+
 def analyse_line(name: str, inst: list, palm: dict, shape) -> dict:
     W = palm["W"]
     feat = {"present": False}
@@ -349,8 +360,7 @@ def analyse_line(name: str, inst: list, palm: dict, shape) -> dict:
         e = feat["end_u"]
         # zone boundaries are approximate (finger positions are not detected); tuned on PLSU val so the
         # 4 zones are all populated. u is measured on the palm span at heart-line height.
-        feat["end_zone"] = ("index" if e >= 0.66 else "index_middle" if e >= 0.56 else
-                            "middle" if e >= 0.46 else "ring")
+        feat["end_zone"] = heart_end_zone(e)
         # rise of the tail toward the fingers (palm widths)
         feat["end_rise"] = round(float(P[:, 1].max() - P[-1, 1]), 3)
     if name == "head_line":

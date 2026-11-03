@@ -213,15 +213,15 @@ quantiles:
     - 0.215
     - 0.281
 type_bias:
-  gold: -0.535
-  fire: -0.325
-  moon: -0.33
-  star: -0.28
-  wind: -0.435
-  sun: -0.085
-  cloud: -0.42
-  flower: -0.265
-  rock: -0.345
-  wave: -0.275
-  lightning: -0.01
-  galaxy: -0.135
+  gold: -0.795
+  fire: -0.585
+  moon: -0.58
+  star: -0.54
+  wind: -0.69
+  sun: -0.205
+  cloud: -0.665
+  flower: -0.42
+  rock: -0.615
+  wave: -0.53
+  lightning: -0.24
+  galaxy: -0.385
