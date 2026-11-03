@@ -1,0 +1,10 @@
+.venv/
+data/
+runs/
+__pycache__/
+*.pyc
+*.zip
+*.cache
+logs_build.txt
+.env
+*.key

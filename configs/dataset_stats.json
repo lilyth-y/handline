@@ -1,0 +1,18 @@
+{
+ "split": {
+  "train": 884,
+  "val": 155
+ },
+ "instances": {
+  "heart_line": 1024,
+  "head_line": 1372,
+  "life_line": 1149,
+  "fate_line": 352
+ },
+ "images_with": {
+  "heart_line": 980,
+  "head_line": 978,
+  "life_line": 970,
+  "fate_line": 301
+ }
+}

@@ -1,0 +1,22 @@
+# Ultralytics YOLO-seg training config for palm lines (v1, CPU)
+model: yolo11n-seg.pt
+data: data/palm_lines_yolo/data.yaml
+epochs: 40
+imgsz: 640
+batch: 16
+workers: 6
+device: cpu
+optimizer: AdamW
+lr0: 0.002
+cos_lr: true
+patience: 0
+save_period: 5
+seed: 0
+fliplr: 0.5
+degrees: 10
+mosaic: 1.0
+close_mosaic: 5
+project: runs
+name: palm_seg_v1
+exist_ok: true
+plots: true
