@@ -8,3 +8,5 @@ __pycache__/
 logs_build.txt
 .env
 *.key
+# exploratory relabel pilots (kept locally; final hybrid pilot is samples/relabel_pilot/)
+samples/relabel_pilot_*/

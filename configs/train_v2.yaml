@@ -1,0 +1,23 @@
+# Ultralytics YOLO-seg training config for palm lines (v2: AI-relabelled data, CPU; otherwise identical to train_v1.yaml)
+model: yolo11n-seg.pt
+data: data/palm_lines_yolo_v2/data.yaml
+epochs: 35
+imgsz: 640
+batch: 16
+workers: 6
+device: cpu
+optimizer: AdamW
+lr0: 0.002
+cos_lr: true
+patience: 0
+save_period: 5
+seed: 0
+fliplr: 0.5
+degrees: 10
+mosaic: 1.0
+close_mosaic: 5
+mask_ratio: 2   # 320x320 mask protos so thin lines survive downsampling
+project: runs
+name: palm_seg_v2
+exist_ok: true
+plots: true

@@ -1,0 +1,105 @@
+{
+ "split": {
+  "train": 884,
+  "val": 155
+ },
+ "instances": {
+  "heart_line": 1059,
+  "head_line": 1101,
+  "life_line": 1132,
+  "fate_line": 149
+ },
+ "images_with": {
+  "heart_line": 1010,
+  "head_line": 1005,
+  "life_line": 993,
+  "fate_line": 134
+ },
+ "v1_instances": {
+  "heart_line": 1024,
+  "head_line": 1372,
+  "life_line": 1149,
+  "fate_line": 352
+ },
+ "v1_images_with": {
+  "heart_line": 980,
+  "head_line": 978,
+  "life_line": 970,
+  "fate_line": 301
+ },
+ "empty_label_files": 3,
+ "relabel": {
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "endpoint": "NVIDIA API Catalog integrate.api.nvidia.com/v1/chat/completions",
+  "args": "full --model nvidia/nemotron-3.5-super-vl-120b-a12b --hint --shuffle --policy hybrid --workers 4; VLM_EXTRA_BODY={\"chat_template_kwargs\":{\"enable_thinking\":false}}",
+  "images_labelled": 1039,
+  "full_run_api": {
+   "http_requests": 1089,
+   "status": {
+    "200": 1085,
+    "None": 4
+   },
+   "prompt_tokens": 1229464,
+   "completion_tokens": 220668,
+   "reasoning_tokens": 46236
+  },
+  "all_relabel_api_incl_pilots_probes": {
+   "http_requests": 1444,
+   "status": {
+    "200": 1425,
+    "None": 18,
+    "404": 1
+   },
+   "prompt_tokens": 1580603,
+   "completion_tokens": 562369,
+   "reasoning_tokens": 356795
+  },
+  "skeleton_px_confusion_rows_v1_cols_v2": {
+   "labels": [
+    "none",
+    "heart",
+    "head",
+    "life",
+    "fate"
+   ],
+   "matrix": [
+    [
+     4603,
+     10312,
+     7006,
+     6211,
+     1682
+    ],
+    [
+     0,
+     284850,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     295684,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     310338,
+     0
+    ],
+    [
+     10037,
+     967,
+     4889,
+     30898,
+     30098
+    ]
+   ]
+  },
+  "final_vs_v1_skeleton_agreement": 0.9278229707039571
+ }
+}

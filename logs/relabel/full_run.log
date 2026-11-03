@@ -1,0 +1,72 @@
+=== pass 1 Wed Nov  4 07:53:45 KST 2026
+0 1030 image1040 {"1": "heart", "2": "life", "3": "head", "4": "head", "5": "heart"}
+25 1030 image1114 {"1": "heart", "2": "head", "3": "life", "4": "other"}
+50 1030 image1262 {"1": "life", "2": "life", "3": "life", "4": "fate", "5": "other"}
+75 1030 image1373 {"1": "life", "2": "heart", "3": "head"}
+100 1030 image1506 {"1": "heart", "2": "heart", "3": "head", "4": "life", "5": "heart"}
+125 1030 image1667 {"1": "life", "2": "heart", "3": "head"}
+150 1030 image1759 {"1": "head", "2": "life", "3": "heart"}
+175 1030 image1907 {"1": "life", "2": "head", "3": "head", "4": "heart", "5": "heart", "6": "head", "7": "life", "8": "heart", "9": "heart", "10": "heart", "11": "life"}
+200 1030 image2001 {"1": "life", "2": "heart", "3": "head", "4": "fate", "5": "other", "6": "head", "7": "life", "8": "head", "9": "heart"}
+225 1030 image2101 {"1": "heart", "2": "heart", "3": "heart", "4": "life", "5": "head", "6": "life", "7": "head"}
+250 1030 image221 {"1": "heart", "2": "life", "3": "head", "4": "heart", "5": "life", "6": "other", "7": "head", "8": "head", "9": "head", "10": "other"}
+275 1030 image2293 {"1": "life", "2": "fate", "3": "head", "4": "heart", "5": "other"}
+300 1030 image242 {"1": "head", "2": "life", "3": "head", "4": "heart"}
+=== pass 1 Wed Nov  4 08:10:12 KST 2026
+0 728 image2429 {"1": "life", "2": "head", "3": "life", "4": "heart"}
+25 728 image2568 {"1": "heart", "2": "life", "3": "life", "4": "life", "5": "life", "6": "life", "7": "life", "8": "life", "9": "heart", "10": "life"}
+50 728 image2693 {"1": "heart", "2": "life", "3": "head", "4": "life", "5": "heart"}
+75 728 image28 {"1": "life", "2": "head", "3": "other", "4": "life", "5": "heart", "6": "head", "7": "life", "8": "head", "9": "other", "10": "head", "11": "other"}
+100 728 image2917 {"1": "head", "2": "head", "3": "heart", "4": "life"}
+125 728 image3050 {"1": "heart", "2": "life", "3": "head", "4": "fate"}
+150 728 image3131 {"1": "heart", "2": "heart", "3": "heart", "4": "head", "5": "life", "6": "head", "7": "heart", "8": "head", "9": "life"}
+175 728 image3283 {"1": "heart", "2": "head", "3": "heart", "4": "life", "5": "life"}
+200 728 image3401 {"1": "head", "2": "heart", "3": "life", "4": "heart", "5": "head", "6": "heart"}
+225 728 image3509 {"1": "heart", "2": "life", "3": "head", "4": "life", "5": "heart", "6": "head", "7": "head", "8": "fate"}
+250 728 image3647 {"1": "life", "2": "fate", "3": "head", "4": "fate", "5": "other", "6": "fate", "7": "heart", "8": "fate", "9": "head", "10": "head", "11": "fate", "12": "fate", "13": "other"}
+275 728 image3725 {"1": "heart", "2": "head", "3": "life", "4": "heart", "5": "heart", "6": "heart", "7": "life"}
+300 728 image3851 {"1": "life", "2": "head", "3": "head", "4": "heart"}
+325 728 image397 {"1": "head", "2": "fate", "3": "head", "4": "heart", "5": "life", "6": "head"}
+350 728 image4102 {"1": "life", "2": "fate", "3": "head", "4": "heart", "5": "other", "6": "head", "7": "head", "8": "other", "9": "life"}
+375 728 image4187 {"1": "heart", "2": "head", "3": "head", "4": "life"}
+400 728 image430 {"1": "life", "2": "head", "3": "heart", "4": "heart", "5": "head"}
+425 728 image4433 {"1": "life", "2": "other", "3": "heart", "4": "heart", "5": "head", "6": "head"}
+450 728 image4547 {"1": "life", "2": "head", "3": "fate", "4": "heart"}
+475 728 image4654 {"1": "life", "2": "heart", "3": "head", "4": "life", "5": "head"}
+500 728 image4766 {"1": "heart", "2": "life", "3": "head", "4": "fate", "5": "heart"}
+525 728 image4870 {"1": "head", "2": "heart", "3": "other", "4": "life", "5": "heart", "6": "other", "7": "other", "8": "other", "9": "life", "10": "other", "11": "other"}
+550 728 image498 {"1": "heart", "2": "head", "3": "heart", "4": "life", "5": "life", "6": "heart", "7": "head"}
+575 728 image5098 {"1": "life", "2": "head", "3": "head", "4": "heart", "5": "head", "6": "head", "7": "life", "8": "head", "9": "head"}
+600 728 image5212 {"1": "heart", "2": "head", "3": "life"}
+625 728 image5372 {"1": "life", "2": "head", "3": "head", "4": "head", "5": "heart", "6": "head"}
+650 728 image622 {"1": "life", "2": "head", "3": "heart", "4": "fate", "5": "fate", "6": "head"}
+675 728 image744 {"1": "heart", "2": "heart", "3": "head", "4": "life"}
+700 728 image861 {"1": "head", "2": "heart", "3": "heart", "4": "life", "5": "life", "6": "heart"}
+725 728 image989 {"1": "heart", "2": "heart", "3": "head", "4": "head", "5": "fate", "6": "life"}
+confusion (rows=old, cols=AI; skeleton px): ['none', 'heart', 'head', 'life', 'fate']
+none   [2199, 7887, 5666, 4701, 1082]
+heart  [9125, 160806, 28449, 1324, 1702]
+head   [15244, 31575, 130678, 27895, 1566]
+life   [10965, 3661, 10554, 186258, 6739]
+fate   [7524, 600, 3192, 22346, 21018]
+final labels (policy=hybrid) rows=old cols=final:
+none   [2199, 7887, 5666, 4701, 1082]
+heart  [0, 201406, 0, 0, 0]
+head   [0, 0, 206958, 0, 0]
+life   [0, 0, 0, 218177, 0]
+fate   [7524, 600, 3192, 22346, 21018]
+{
+ "calls_ok": 728,
+ "failed": [],
+ "prompt_tokens": 822313,
+ "completion_tokens": 117944,
+ "seg_total": 0,
+ "seg_agree": 0,
+ "policy": "hybrid",
+ "final_vs_old_agreement": 0.9245854891313628,
+ "pixel_weighted_agreement": 0.7128491254432548,
+ "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+ "images": 728
+}
+labels: 1039 / 1039
+=== DONE Wed Nov  4 08:19:57 KST 2026

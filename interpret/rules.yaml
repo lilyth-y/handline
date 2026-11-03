@@ -1,0 +1,237 @@
+# 호아 도사 손금 해석 규칙표 (entertainment only)
+# ---------------------------------------------------------------------------
+# 표현식 문법: python 식. heart/head/life/fate = 각 손금 특징, rel = 손금 사이 관계.
+#   pct('head.length') = 보정 세트(calibration.yaml) 안에서의 백분위 (0~1). 0.75 이상 = 상위 25%.
+#   없는 손금의 특징은 Missing -> 모든 비교가 False (규칙이 그냥 발동 안 함).
+# 별점 = base + 발동한 규칙 add 합 -> 반올림 -> 1~5 로 자름.
+# 이유(reason)는 add >= 0 인 규칙만 화면에 노출 (부정적 문구 없음). 음수 규칙은 별점만 살짝 조정.
+# 전통 손금 해석 근거 (요약): 감정선 검지 아래 끝 = 이상적·헌신적 사랑, 중지 아래 = 실속형·자기 중심,
+#   그 사이 = 균형 / 두뇌선 길고 곧음 = 논리·계획, 아래로 휨 = 상상력·창의 / 두뇌선-생명선 붙어 시작 = 신중,
+#   떨어져 시작 = 독립·자신감 / 생명선 크게 휘어 손바닥 안쪽까지 = 활력 (수명과 무관!) /
+#   운명선 뚜렷 = 일·목표 의식, 없음 = 스스로 길을 만드는 타입 / 가지 = 다재다능.
+version: 1
+disclaimer: "재미로 보는 손금이에요. 실제 운명·건강과는 관계가 없어요!"
+
+lucks:
+  wealth:
+    label: 재물운
+    base: 2.5
+    default_reason: wealth_default
+    rules:
+      - {id: fate_present,   when: "fate.present",                              add: 0.5, reason: wealth_fate}
+      - {id: fate_long,      when: "fate.present and pct('fate.length') >= 0.5", add: 0.5, reason: wealth_fate_long}
+      - {id: head_long,      when: "pct('head.length') >= 0.6",                 add: 0.5, reason: wealth_head_long}
+      - {id: head_straight,  when: "head.present and pct('head.bend') <= 0.4",  add: 0.5, reason: wealth_head_straight}
+      - {id: life_wide,      when: "pct('life.arc_width') >= 0.7",              add: 0.5, reason: wealth_life_energy}
+      - {id: heart_branch,   when: "heart.branches >= 1",                       add: 0.5, reason: wealth_heart_branch}
+      - {id: head_break,     when: "head.breaks >= 1",                          add: -0.5, reason: wealth_flow}
+      - {id: head_short,     when: "head.present and pct('head.length') <= 0.2", add: -0.5, reason: wealth_flow}
+  love:
+    label: 연애운
+    base: 2.5
+    default_reason: love_default
+    rules:
+      - {id: heart_index,    when: "heart.end_zone == 'index'",                 add: 1.0, reason: love_heart_index}
+      - {id: heart_balance,  when: "heart.end_zone == 'index_middle'",          add: 0.5, reason: love_heart_balance}
+      - {id: heart_middle,   when: "heart.end_zone == 'middle'",                add: 0.0, reason: love_heart_middle}
+      - {id: heart_curve_up, when: "pct('heart.end_rise') >= 0.6",              add: 0.5, reason: love_heart_curve}
+      - {id: heart_long,     when: "pct('heart.length') >= 0.7",                add: 0.5, reason: love_heart_long}
+      - {id: heart_branch,   when: "heart.branches >= 1",                       add: 0.5, reason: love_heart_branch}
+      - {id: heart_clear,    when: "pct('heart.clarity') >= 0.75",              add: 0.5, reason: love_heart_clear}
+      - {id: heart_head_gap, when: "pct('rel.heart_head_distance') >= 0.75",    add: 0.5, reason: love_open_heart}
+      - {id: heart_break,    when: "heart.breaks >= 1",                         add: -0.5, reason: love_many_sparks}
+      - {id: heart_short,    when: "heart.present and pct('heart.length') <= 0.15", add: -0.5, reason: love_slow}
+      - {id: heart_missing,  when: "not heart.present",                         add: -0.5, reason: love_slow}
+  health:
+    label: 건강운
+    base: 2.5
+    default_reason: health_default
+    rules:
+      - {id: life_wide_arc,  when: "pct('life.arc_width') >= 0.7",              add: 1.0, reason: health_life_wide}
+      - {id: life_long,      when: "pct('life.length') >= 0.6",                 add: 0.5, reason: health_life_long}
+      - {id: life_clear,     when: "pct('life.clarity') >= 0.7",                add: 0.5, reason: health_life_clear}
+      - {id: life_thick,     when: "pct('life.thickness') >= 0.7",              add: 0.5, reason: health_life_thick}
+      - {id: life_branch,    when: "life.branches >= 1",                        add: 0.5, reason: health_life_branch}
+      - {id: life_narrow,    when: "life.present and pct('life.arc_width') <= 0.25", add: -0.5, reason: health_calm}
+      - {id: life_break,     when: "life.breaks >= 1",                          add: -0.5, reason: health_rhythm}
+      - {id: life_missing,   when: "not life.present",                          add: -0.5, reason: health_calm}
+  career:
+    label: 직업·성공운
+    base: 2.5
+    default_reason: career_default
+    rules:
+      - {id: fate_present,   when: "fate.present",                              add: 1.0, reason: career_fate}
+      - {id: fate_reach,     when: "fate.present and fate.top_v <= 0.45",       add: 0.5, reason: career_fate_reach}
+      - {id: head_long,      when: "pct('head.length') >= 0.6",                 add: 0.5, reason: career_head_long}
+      - {id: separate_start, when: "rel.head_life_joined == False",             add: 0.5, reason: career_independent}
+      - {id: joined_start,   when: "rel.head_life_joined == True",              add: 0.0, reason: career_careful}
+      - {id: head_clear,     when: "pct('head.clarity') >= 0.75",               add: 0.5, reason: career_head_clear}
+      - {id: heart_index,    when: "heart.end_zone == 'index'",                 add: 0.25, reason: career_jupiter}
+      - {id: no_fate_short,  when: "not fate.present and pct('head.length') <= 0.3", add: -0.5, reason: career_own_path}
+
+# 0~1 신호. 유형 점수 = sum(weight * signal) + calibration.yaml 의 type_bias
+signals:
+  heart_long:     "pct('heart.length')"
+  heart_index:    "1.0 if heart.end_zone == 'index' else 0.0"
+  heart_curve:    "pct('heart.end_rise')"
+  heart_branch:   "1.0 if heart.branches >= 1 else 0.0"
+  head_long:      "pct('head.length')"
+  head_slope:     "pct('head.drop')"
+  head_straight:  "(1 - pct('head.bend')) if head.present else 0.0"
+  head_curvy:     "pct('head.bend')"
+  life_wide:      "pct('life.arc_width')"
+  life_long:      "pct('life.length')"
+  thick:          "(pct('heart.thickness') + pct('head.thickness') + pct('life.thickness')) / 3"
+  clarity:        "(pct('heart.clarity') + pct('head.clarity') + pct('life.clarity')) / 3"
+  any_break:      "1.0 if (heart.breaks >= 1 or head.breaks >= 1 or life.breaks >= 1) else 0.0"
+  clean:          "0.0 if (heart.breaks >= 1 or head.breaks >= 1 or life.breaks >= 1) else 1.0"
+  many_branches:  "min(1.0, ((heart.branches or 0) + (head.branches or 0) + (life.branches or 0)) / 2)"
+  joined:         "1.0 if rel.head_life_joined == True else 0.0"
+  separate:       "1.0 if rel.head_life_joined == False else 0.0"
+  fate:           "1.0 if fate.present else 0.0"
+  no_fate:        "0.0 if fate.present else 1.0"
+  fate_long:      "pct('fate.length') if fate.present else 0.0"
+  wide_gap:       "pct('rel.heart_head_distance')"
+  star_wealth:    "stars.wealth"
+  star_love:      "stars.love"
+  star_health:    "stars.health"
+  star_career:    "stars.career"
+  star_mean:      "(stars.wealth + stars.love + stars.health + stars.career) / 4"
+
+# 순서 = 동점일 때 우선순위 (위쪽이 이김)
+types:
+  - id: gold
+    name: 황금손 재물여우
+    element: 금
+    keyword: 재물·실속
+    weights: {star_wealth: 1.0, fate: 0.4, head_straight: 0.5, head_long: 0.3}
+  - id: fire
+    name: 불꽃손 열정여우
+    element: 불
+    keyword: 열정·에너지
+    weights: {life_wide: 1.0, heart_curve: 0.5, thick: 0.5}
+  - id: moon
+    name: 달빛손 감성여우
+    element: 달
+    keyword: 감성·상상력
+    weights: {head_slope: 1.0, head_curvy: 0.4, heart_curve: 0.3}
+  - id: star
+    name: 별빛손 지혜여우
+    element: 별
+    keyword: 지혜·분석
+    weights: {head_long: 1.0, head_straight: 0.5, clarity: 0.4}
+  - id: wind
+    name: 바람손 자유여우
+    element: 바람
+    keyword: 자유·모험
+    weights: {separate: 0.6, no_fate: 0.4, any_break: 0.5, heart_curve: 0.2}
+  - id: sun
+    name: 태양손 리더여우
+    element: 태양
+    keyword: 리더십·자신감
+    weights: {heart_index: 0.6, separate: 0.4, fate_long: 0.5, star_career: 0.5}
+  - id: cloud
+    name: 구름손 평화여우
+    element: 구름
+    keyword: 평화·배려
+    weights: {joined: 0.9, clean: 0.4, head_straight: 0.2, wide_gap: 0.2}
+  - id: flower
+    name: 꽃잎손 인기여우
+    element: 꽃
+    keyword: 인기·매력
+    weights: {heart_branch: 0.8, star_love: 0.7, heart_long: 0.3}
+  - id: rock
+    name: 바위손 뚝심여우
+    element: 바위
+    keyword: 끈기·뚝심
+    weights: {thick: 1.0, life_long: 0.5, clean: 0.3, head_straight: 0.2}
+  - id: wave
+    name: 물결손 공감여우
+    element: 물
+    keyword: 공감·다정
+    weights: {wide_gap: 0.9, heart_long: 0.5, heart_curve: 0.3}
+  - id: lightning
+    name: 번개손 아이디어여우
+    element: 번개
+    keyword: 아이디어·순발력
+    weights: {many_branches: 0.8, head_curvy: 0.6, any_break: 0.3}
+  - id: galaxy
+    name: 은하손 행운여우
+    element: 은하
+    keyword: 행운·조화
+    weights: {fate: 0.5, star_mean: 1.0, clarity: 0.3}
+
+compatibility:
+  base: 62
+  floor: 55
+  heart_same: 8
+  heart_near: 5
+  head_similar: 6
+  head_complement: 5
+  life_similar: 4
+  junction_same: 4
+  junction_mix: 3
+  same_element: 6
+  luck_complement: 3
+  element_pairs:   # 찰떡 원소 조합
+    불-바람: 8
+    태양-꽃: 8
+    달-물: 8
+    별-번개: 8
+    구름-바위: 8
+    금-은하: 8
+    불-태양: 6
+    달-별: 6
+    구름-물: 6
+    꽃-은하: 6
+    바위-금: 6
+    바람-번개: 6
+
+reasons:
+  wealth_default: 차곡차곡 모으는 알뜰한 재물 기운
+  wealth_fate: 운명선이 보여 꾸준히 쌓이는 재물 기운
+  wealth_fate_long: 길게 뻗은 운명선, 노력이 재물로 돌아오는 손
+  wealth_head_long: 긴 두뇌선, 계획적으로 불리는 재테크 감각
+  wealth_head_straight: 곧은 두뇌선, 실속 있는 현실 감각
+  wealth_life_energy: 넓은 생명선 활력이 재물을 부르는 손
+  wealth_heart_branch: 감정선 가지, 사람이 곧 복이 되는 손
+  wealth_flow: 재물이 활발히 들고 나는 흐름
+  love_default: 천천히 깊어지는 은은한 인연
+  love_heart_index: 검지 아래까지 뻗은 감정선, 다정하고 헌신적인 사랑
+  love_heart_balance: 검지와 중지 사이로 향한 감정선, 이상과 현실의 균형 잡힌 사랑
+  love_heart_middle: 중지 쪽 감정선, 내 마음에 솔직한 실속파 연애
+  love_heart_curve: 위로 휘어 오르는 감정선, 표현력 넘치는 사랑
+  love_heart_long: 길게 이어진 감정선, 깊고 넓은 마음
+  love_heart_branch: 감정선의 잔가지, 주변에 사랑받는 인기
+  love_heart_clear: 또렷한 감정선, 한결같은 진심
+  love_open_heart: 감정선과 두뇌선 사이가 넓어 너그러운 마음
+  love_many_sparks: 여러 번 찾아오는 설렘
+  love_slow: 천천히 마음을 여는 신중한 연애
+  health_default: 나만의 리듬을 지키는 차분한 기운
+  health_life_wide: 크게 휘어진 생명선, 넘치는 활력
+  health_life_long: 길게 이어진 생명선, 꾸준한 체력과 끈기
+  health_life_clear: 또렷한 생명선, 밝고 건강한 기운
+  health_life_thick: 굵직한 생명선, 든든한 에너지
+  health_life_branch: 생명선 가지, 새로운 활력이 솟는 손
+  health_calm: 에너지를 아껴 쓰는 차분한 타입
+  health_rhythm: 생활 리듬에 변화를 즐기는 타입
+  career_default: 자기만의 속도로 길을 여는 손
+  career_fate: 운명선이 보여 목표가 뚜렷한 손
+  career_fate_reach: 손가락 쪽까지 뻗은 운명선, 꿈을 향해 쭉 나아가는 힘
+  career_head_long: 긴 두뇌선, 폭넓은 관심과 실력
+  career_independent: 두뇌선과 생명선이 떨어져 시작, 독립심과 추진력
+  career_careful: 두뇌선과 생명선이 함께 시작, 신중하고 믿음직한 일솜씨
+  career_head_clear: 또렷한 두뇌선, 집중력 최고
+  career_jupiter: 검지 쪽 감정선, 사람을 이끄는 리더 기질
+  career_own_path: 정해진 길보다 스스로 길을 만드는 타입
+  compat_default: 함께라면 언제나 즐거운 사이
+  compat_heart_same: 감정선 끝이 닮아 마음 표현 방식이 똑같아요
+  compat_heart_near: 감정선이 비슷해 서로의 마음을 금방 알아채요
+  compat_head_similar: 두뇌선 기울기가 닮아 말이 척척 통해요
+  compat_head_complement: 두뇌선이 서로 달라 아이디어를 채워 주는 사이
+  compat_life_similar: 생명선 활력이 비슷해 노는 속도가 딱 맞아요
+  compat_junction_same: 시작 습관이 닮아 함께 움직이기 편해요
+  compat_junction_mix: 신중함과 추진력이 만나 환상의 팀워크
+  compat_same_element: 같은 기운의 여우끼리, 찰떡 단짝
+  compat_element_pair: 서로 기운을 북돋는 찰떡 원소 조합
+  compat_luck_complement: 서로 부족한 운을 채워 주는 사이

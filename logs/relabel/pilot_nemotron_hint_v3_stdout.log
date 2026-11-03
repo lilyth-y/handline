@@ -1,0 +1,19 @@
+0 50 image2254 {"1": "life", "2": "other", "3": "head", "4": "other", "5": "heart"}
+25 50 image3079 {"1": "head", "2": "heart", "3": "heart", "4": "heart", "5": "fate", "6": "head", "7": "life", "8": "life", "9": "life", "10": "fate", "11": "head"}
+confusion (rows=old, cols=AI; skeleton px): ['none', 'heart', 'head', 'life', 'fate']
+none   [77, 1507, 625, 517, 0]
+heart  [487, 9777, 1645, 0, 409]
+head   [769, 1973, 7997, 1771, 419]
+life   [954, 157, 567, 15108, 184]
+fate   [1128, 115, 785, 1913, 2318]
+{
+ "calls_ok": 50,
+ "failed": [],
+ "prompt_tokens": 57081,
+ "completion_tokens": 8418,
+ "seg_total": 0,
+ "seg_agree": 0,
+ "pixel_weighted_agreement": 0.6889769930862075,
+ "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+ "images": 50
+}

@@ -1,0 +1,48 @@
+{
+ "calls_ok": 6,
+ "failed": [],
+ "prompt_tokens": 7100,
+ "completion_tokens": 995,
+ "seg_total": 0,
+ "seg_agree": 0,
+ "conf": [
+  [
+   73,
+   233,
+   0,
+   229,
+   0
+  ],
+  [
+   0,
+   1236,
+   229,
+   0,
+   0
+  ],
+  [
+   183,
+   0,
+   1432,
+   0,
+   0
+  ],
+  [
+   0,
+   89,
+   0,
+   2046,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   391
+  ]
+ ],
+ "pixel_weighted_agreement": 0.8431851489985345,
+ "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+ "images": 6
+}
