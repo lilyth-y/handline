@@ -30,3 +30,24 @@ python code/train.py --push             # trains, logs, and pushes backups every
 python code/evaluate.py                 # per-class val metrics, sample overlays, ONNX export
 tensorboard --logdir logs/tensorboard
 ```
+
+## Results (v1, 2026-11-04)
+YOLO11n-seg, 35 epochs, imgsz 640, CPU only (8 cores, 15GB RAM, no GPU). Training took about 84 min (5,066s). Split: 884 train / 155 val.
+Train seg loss went from 2.07 to 1.23. Val seg loss went from 5.74 to 1.23.
+
+Validation results for best.pt (`logs/evaluate_stdout.log`):
+
+| class | mask mAP50 | mask mAP50-95 | pixel IoU | pixel Dice | F1 @5px tolerance |
+|---|---|---|---|---|---|
+| heart_line | 0.842 | 0.245 | 0.619 | 0.765 | 0.957 |
+| head_line | 0.523 | 0.113 | 0.512 | 0.677 | 0.878 |
+| life_line | 0.562 | 0.133 | 0.523 | 0.687 | 0.872 |
+| fate_line | 0.151 | 0.023 | 0.219 | 0.359 | 0.473 |
+| all | 0.519 | 0.128 | | | |
+
+Caveats:
+- The per-line labels are pseudo-labels, so these metrics measure agreement with those labels, not with human annotation.
+- fate_line is weak because only 59 val instances exist.
+- PLSU and 11K Hands are licensed for academic use.
+
+Exports: `weights/best.pt`, `weights/best.onnx`. Prediction overlays are in `samples/val_pred_*.png`, and eval plots are in `logs/eval_plots/`.
