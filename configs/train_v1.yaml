@@ -1,7 +1,7 @@
 # Ultralytics YOLO-seg training config for palm lines (v1, CPU)
 model: yolo11n-seg.pt
 data: data/palm_lines_yolo/data.yaml
-epochs: 40
+epochs: 35
 imgsz: 640
 batch: 16
 workers: 6
@@ -16,6 +16,7 @@ fliplr: 0.5
 degrees: 10
 mosaic: 1.0
 close_mosaic: 5
+mask_ratio: 2   # 320x320 mask protos so thin lines survive downsampling
 project: runs
 name: palm_seg_v1
 exist_ok: true
