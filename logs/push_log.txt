@@ -4,3 +4,5 @@
    5184960..033f84f  main -> main
 6764968	Training backup: epoch 15	commit_rc=0	push_rc=0	To https://github.com/lilyth-y/handline.git
    033f84f..6764968  main -> main
+efcbdbb	Training backup: epoch 20	commit_rc=0	push_rc=0	To https://github.com/lilyth-y/handline.git
+   6764968..efcbdbb  main -> main
