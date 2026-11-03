@@ -5,14 +5,14 @@ import numpy as np, cv2
 from PIL import Image
 from ultralytics import YOLO
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT)
-ap = argparse.ArgumentParser(); ap.add_argument("--weights", default="runs/palm_seg_v1/weights/best.pt")
+ap = argparse.ArgumentParser(); ap.add_argument("--weights", default="runs/segment/runs/palm_seg_v1/weights/best.pt")
 ap.add_argument("--data", default="data/palm_lines_yolo/data.yaml"); ap.add_argument("--conf", type=float, default=0.25)
 a = ap.parse_args()
 NAMES = ["heart_line", "head_line", "life_line", "fate_line"]
 COL = [(255, 60, 60), (60, 120, 255), (40, 220, 80), (255, 190, 0)]
 model = YOLO(a.weights)
 # 1) Ultralytics val metrics per class
-r = model.val(data=a.data, imgsz=640, batch=8, device="cpu", plots=True, project="runs", name="palm_seg_v1_eval", exist_ok=True, mask_ratio=2)
+r = model.val(data=a.data, imgsz=640, batch=8, device="cpu", plots=True, project=f"{ROOT}/runs", name="palm_seg_v1_eval", exist_ok=True, mask_ratio=2)
 rows = []
 for i, c in enumerate(r.seg.ap_class_index):
     rows.append({"class": NAMES[c], "box_mAP50": float(r.box.ap50[i]), "box_mAP50-95": float(r.box.ap[i]),
@@ -63,7 +63,7 @@ keys = ["class", "box_mAP50", "box_mAP50-95", "mask_mAP50", "mask_mAP50-95", "pi
 with open("logs/val_metrics_per_class.csv", "w", newline="") as fh:
     w = csv.DictWriter(fh, keys); w.writeheader()
     for x in rows: w.writerow({k: (round(v, 4) if isinstance(v, float) else v) for k, v in x.items() if k in keys})
-for f in glob.glob("runs/palm_seg_v1_eval/*.png"):
+for f in glob.glob(f"{getattr(r, 'save_dir', None) or (ROOT + '/runs/segment/runs/palm_seg_v1_eval')}/*.png"):
     os.makedirs("logs/eval_plots", exist_ok=True); shutil.copy2(f, "logs/eval_plots/")
 print(open("logs/val_metrics_per_class.csv").read())
 # 3) ONNX export
