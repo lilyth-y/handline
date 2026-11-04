@@ -1,0 +1,7 @@
+{
+ "criterion": "mean of class-avg mask_mAP50, mask_mAP50-95, pixel_IoU, tol5_F1",
+ "v1_score": 0.4445,
+ "v2_score": 0.476,
+ "v2_wins_on": "3/4",
+ "winner": "v2"
+}

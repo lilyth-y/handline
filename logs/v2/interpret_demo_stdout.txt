@@ -1,0 +1,63 @@
+[2026-11-04 09:52:54 KST] STEP demo: nice -n 5 /workspace/palm-ai/.venv/bin/python interpret/run_demo.py --model weights/v2/best.pt --n 30 --out interpret/demo_v2 --images data/palm_lines_yolo_v2/images/val
+ 0 image1016.jpg    바위손 뚝심여우     재물운3 연애운4 건강운5 직업·성공운3
+ 1 image112.jpg     별빛손 지혜여우     재물운4 연애운4 건강운3 직업·성공운3
+ 2 image1277.jpg    은하손 행운여우     재물운4 연애운3 건강운4 직업·성공운5
+ 3 image1417.jpg    별빛손 지혜여우     재물운3 연애운4 건강운3 직업·성공운4
+ 4 image1655.jpg    번개손 아이디어여우   재물운3 연애운3 건강운2 직업·성공운2
+ 5 image173.jpg     구름손 평화여우     재물운4 연애운3 건강운4 직업·성공운3
+ 6 image2040.jpg    달빛손 감성여우     재물운3 연애운4 건강운3 직업·성공운4
+ 7 image2217.jpg    은하손 행운여우     재물운3 연애운4 건강운3 직업·성공운3
+ 8 image2292.jpg    불꽃손 열정여우     재물운3 연애운3 건강운4 직업·성공운3
+ 9 image2408.jpg    태양손 리더여우     재물운3 연애운5 건강운3 직업·성공운4
+10 image2581.jpg    구름손 평화여우     재물운2 연애운3 건강운4 직업·성공운2
+11 image2693.jpg    달빛손 감성여우     재물운3 연애운3 건강운3 직업·성공운3
+12 image2773.jpg    구름손 평화여우     재물운3 연애운3 건강운4 직업·성공운4
+13 image2956.jpg    물결손 공감여우     재물운3 연애운5 건강운3 직업·성공운4
+14 image3064.jpg    바람손 자유여우     재물운4 연애운4 건강운3 직업·성공운4
+15 image3207.jpg    번개손 아이디어여우   재물운3 연애운3 건강운3 직업·성공운2
+16 image3310.jpg    태양손 리더여우     재물운3 연애운2 건강운3 직업·성공운3
+17 image3431.jpg    태양손 리더여우     재물운3 연애운5 건강운3 직업·성공운4
+18 image3463.jpg    태양손 리더여우     재물운3 연애운5 건강운3 직업·성공운4
+19 image3663.jpg    태양손 리더여우     재물운3 연애운2 건강운2 직업·성공운3
+20 image3847.jpg    번개손 아이디어여우   재물운3 연애운3 건강운3 직업·성공운3
+21 image402.jpg     은하손 행운여우     재물운3 연애운4 건강운3 직업·성공운4
+22 image4226.jpg    번개손 아이디어여우   재물운2 연애운4 건강운4 직업·성공운2
+23 image4480.jpg    바람손 자유여우     재물운3 연애운4 건강운2 직업·성공운3
+24 image4622.jpg    은하손 행운여우     재물운5 연애운4 건강운4 직업·성공운5
+25 image471.jpg     꽃잎손 인기여우     재물운4 연애운3 건강운3 직업·성공운4
+26 image4880.jpg    꽃잎손 인기여우     재물운4 연애운4 건강운5 직업·성공운3
+27 image5277.jpg    황금손 재물여우     재물운4 연애운3 건강운4 직업·성공운4
+28 image590.jpg     황금손 재물여우     재물운4 연애운4 건강운3 직업·성공운3
+29 image818.jpg     바람손 자유여우     재물운3 연애운3 건강운4 직업·성공운3
+# 데모 유형 분포 (n=30, model=best.pt)
+
+| 유형 | 수 |
+|---|---|
+| 황금손 재물여우 | 2 |
+| 불꽃손 열정여우 | 1 |
+| 달빛손 감성여우 | 2 |
+| 별빛손 지혜여우 | 2 |
+| 바람손 자유여우 | 3 |
+| 태양손 리더여우 | 5 |
+| 구름손 평화여우 | 3 |
+| 꽃잎손 인기여우 | 2 |
+| 바위손 뚝심여우 | 1 |
+| 물결손 공감여우 | 1 |
+| 번개손 아이디어여우 | 4 |
+| 은하손 행운여우 | 4 |
+
+| 운 | ★1 | ★2 | ★3 | ★4 | ★5 |
+|---|---|---|---|---|---|
+| 재물운 | 0 | 2 | 19 | 8 | 1 |
+| 연애운 | 0 | 2 | 12 | 12 | 4 |
+| 건강운 | 0 | 3 | 16 | 9 | 2 |
+| 직업·성공운 | 0 | 4 | 13 | 11 | 2 |
+compat image1016.jpg image112.jpg 86 ['compat_heart_same', 'compat_head_similar', 'compat_life_similar', 'compat_junction_mix', 'compat_luck_complement']
+compat image1277.jpg image1417.jpg 76 ['compat_heart_near', 'compat_head_similar', 'compat_junction_mix']
+compat image1655.jpg image173.jpg 82 ['compat_heart_same', 'compat_head_complement', 'compat_junction_same', 'compat_luck_complement']
+compat image2040.jpg image2217.jpg 76 ['compat_heart_near', 'compat_head_complement', 'compat_junction_same']
+compat image2292.jpg image2408.jpg 75 ['compat_junction_same', 'compat_element_pair', 'compat_luck_complement']
+overlay interpret/demo_v2/overlay_1_image1016.png
+overlay interpret/demo_v2/overlay_2_image112.png
+overlay interpret/demo_v2/overlay_3_image1277.png
+[2026-11-04 09:53:02 KST] STEP demo OK

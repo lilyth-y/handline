@@ -1,1 +1,212 @@
 [2026-11-04 08:45:55 KST] waiting for PID 921715
+[2026-11-04 09:51:37 KST] PID 921715 gone
+TRAINING_DONE 5388s
+Speed: 0.3ms preprocess, 13.3ms inference, 0.0ms loss, 0.9ms postprocess per image
+Results saved to [1m/workspace/palm-ai/runs/segment/runs/palm_seg_v2[0m
+[epoch 36] 5387s elapsed, mask mAP50=0.5862
+TRAINING_DONE 5388s
+[2026-11-04 09:51:37 KST] STEP eval_v2: nice -n 5 /workspace/palm-ai/.venv/bin/python code/evaluate.py --weights weights/v2/best.pt --data data/palm_lines_yolo_v2/data.yaml --name palm_eval_v2_on_v2val --csv logs/v2/eval_v2_on_v2val.csv --samples samples/v2 --prefix v2_pred --plots_dir logs/v2/eval_plots_v2 --onnx_out weights/v2/best.onnx --threads 0
+Ultralytics 8.4.201 🚀 Python-3.13.5 torch-2.15.0+cpu CPU (Intel Xeon Processor)
+YOLO11n-seg summary (fused): 114 layers, 2,850,196 parameters, 0 gradients, 9.7 GFLOPs
+[34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 2740.4±846.0 MB/s, size: 93.7 KB)
+[K[34m[1mval: [0mScanning /workspace/palm-ai/data/palm_lines_yolo_v2/labels/val.cache... 155 images, 1 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 155/155 36.1Mit/s 0.0s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 5% ╸─────────── 1/20 1.0s/it 0.3s<19.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 10% ━─────────── 2/20 1.7it/s 0.6s<10.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 15% ━╸────────── 3/20 2.3it/s 0.9s<7.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 20% ━━────────── 4/20 2.6it/s 1.2s<6.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 25% ━━━───────── 5/20 3.0it/s 1.4s<4.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 30% ━━━╸──────── 6/20 3.6it/s 1.6s<3.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 35% ━━━━──────── 7/20 4.2it/s 1.8s<3.1s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 40% ━━━━╸─────── 8/20 4.5it/s 2.0s<2.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 45% ━━━━━─────── 9/20 4.4it/s 2.2s<2.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 10/20 4.5it/s 2.5s<2.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 55% ━━━━━━╸───── 11/20 4.7it/s 2.6s<1.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 60% ━━━━━━━───── 12/20 5.1it/s 2.8s<1.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 65% ━━━━━━━╸──── 13/20 5.3it/s 3.0s<1.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 70% ━━━━━━━━──── 14/20 5.4it/s 3.2s<1.1s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 15/20 5.7it/s 3.3s<0.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 80% ━━━━━━━━━╸── 16/20 5.8it/s 3.5s<0.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 85% ━━━━━━━━━━── 17/20 5.8it/s 3.7s<0.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 90% ━━━━━━━━━━╸─ 18/20 6.4it/s 3.8s<0.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 95% ━━━━━━━━━━━─ 19/20 6.1it/s 4.0s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 20/20 4.9it/s 4.1s
+                   all        155        520      0.748      0.626      0.705      0.486      0.705      0.555      0.579      0.153
+            heart_line        151        157      0.949      0.955       0.97      0.721      0.923      0.904       0.91      0.253
+             head_line        153        170      0.874      0.775      0.882      0.578      0.752      0.641      0.669      0.153
+             life_line        150        179       0.81      0.704      0.815      0.535      0.733      0.603      0.634      0.174
+             fate_line         13         14      0.361     0.0714      0.153      0.108      0.412     0.0714      0.101     0.0337
+Speed: 0.7ms preprocess, 18.1ms inference, 0.0ms loss, 0.8ms postprocess per image
+Results saved to [1m/workspace/palm-ai/runs/palm_eval_v2_on_v2val[0m
+class,box_mAP50,box_mAP50-95,mask_mAP50,mask_mAP50-95,pixel_IoU,pixel_Dice,tol5_precision,tol5_recall,tol5_F1
+heart_line,0.9702,0.7215,0.9102,0.2527,0.6181,0.764,0.9574,0.9614,0.9594
+head_line,0.8824,0.5781,0.6695,0.1532,0.5392,0.7007,0.9133,0.898,0.9056
+life_line,0.8147,0.5349,0.6339,0.1739,0.5113,0.6766,0.8451,0.8608,0.8529
+fate_line,0.1525,0.1077,0.101,0.0337,0.0932,0.1706,0.3354,0.1503,0.2076
+all,0.705,0.4856,0.5787,0.1534,0.4405,0.578,0.7628,0.7176,0.7314
+
+Ultralytics 8.4.201 🚀 Python-3.13.5 torch-2.15.0+cpu CPU (Intel Xeon Processor)
+YOLO11n-seg summary (fused): 114 layers, 2,850,196 parameters, 0 gradients, 9.7 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'weights/v2/best.pt' with input shape (1, 3, 640, 640) BCHW and output shape(s) ((1, 40, 8400), (1, 32, 160, 160)) (5.7 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 17...
+[34m[1mONNX:[0m slimming with onnxslim 0.1.98...
+[34m[1mONNX:[0m export success ✅ 1.3s, saved as 'weights/v2/best.onnx' (11.1 MB)
+
+Export complete (1.4s)
+Results saved to [1m/workspace/palm-ai/weights/v2/best.onnx[0m
+Predict:         yolo predict task=segment model=weights/v2/best.onnx imgsz=640 
+Validate:        yolo val task=segment model=weights/v2/best.onnx imgsz=640 data=data/palm_lines_yolo_v2/data.yaml 
+Visualize:       https://netron.app
+ONNX: weights/v2/best.onnx -> weights/v2/best.onnx
+[2026-11-04 09:51:57 KST] STEP eval_v2 OK
+[2026-11-04 09:51:57 KST] STEP eval_v1: nice -n 5 /workspace/palm-ai/.venv/bin/python code/evaluate.py --weights weights/best.pt --data data/palm_lines_yolo_v2/data.yaml --name palm_eval_v1_on_v2val --csv logs/v2/eval_v1_on_v2val.csv --samples samples/v2 --prefix v1_pred --plots_dir logs/v2/eval_plots_v1 --onnx_out  --threads 0
+Ultralytics 8.4.201 🚀 Python-3.13.5 torch-2.15.0+cpu CPU (Intel Xeon Processor)
+YOLO11n-seg summary (fused): 114 layers, 2,850,196 parameters, 0 gradients, 9.7 GFLOPs
+[34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 3680.3±573.1 MB/s, size: 104.5 KB)
+[K[34m[1mval: [0mScanning /workspace/palm-ai/data/palm_lines_yolo_v2/labels/val.cache... 155 images, 1 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 155/155 38.2Mit/s 0.0s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 5% ╸─────────── 1/20 1.1s/it 0.3s<20.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 10% ━─────────── 2/20 1.5it/s 0.7s<11.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 15% ━╸────────── 3/20 2.0it/s 1.0s<8.4s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 20% ━━────────── 4/20 2.1it/s 1.4s<7.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 25% ━━━───────── 5/20 2.7it/s 1.6s<5.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 30% ━━━╸──────── 6/20 2.9it/s 2.0s<4.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 35% ━━━━──────── 7/20 3.1it/s 2.2s<4.1s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 40% ━━━━╸─────── 8/20 3.7it/s 2.4s<3.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 45% ━━━━━─────── 9/20 3.8it/s 2.7s<2.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 10/20 3.8it/s 2.9s<2.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 55% ━━━━━━╸───── 11/20 4.2it/s 3.1s<2.1s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 60% ━━━━━━━───── 12/20 4.5it/s 3.3s<1.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 65% ━━━━━━━╸──── 13/20 4.7it/s 3.5s<1.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 70% ━━━━━━━━──── 14/20 4.9it/s 3.7s<1.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 15/20 5.2it/s 3.9s<1.0s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 80% ━━━━━━━━━╸── 16/20 5.0it/s 4.1s<0.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 85% ━━━━━━━━━━── 17/20 4.8it/s 4.3s<0.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 90% ━━━━━━━━━━╸─ 18/20 5.1it/s 4.5s<0.4s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 95% ━━━━━━━━━━━─ 19/20 5.0it/s 4.7s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 20/20 4.2it/s 4.8s
+                   all        155        520      0.663      0.678      0.621      0.347      0.609      0.526      0.478      0.112
+            heart_line        151        157      0.947      0.904      0.919      0.635      0.933      0.873      0.866      0.237
+             head_line        153        170       0.82      0.753      0.776      0.446      0.682      0.559      0.539      0.113
+             life_line        150        179      0.684      0.626       0.63      0.257      0.649      0.458      0.443     0.0865
+             fate_line         13         14        0.2      0.429      0.159     0.0493      0.173      0.214     0.0622     0.0114
+Speed: 0.8ms preprocess, 19.7ms inference, 0.0ms loss, 2.0ms postprocess per image
+Results saved to [1m/workspace/palm-ai/runs/palm_eval_v1_on_v2val[0m
+class,box_mAP50,box_mAP50-95,mask_mAP50,mask_mAP50-95,pixel_IoU,pixel_Dice,tol5_precision,tol5_recall,tol5_F1
+heart_line,0.9191,0.6348,0.8665,0.2371,0.6026,0.752,0.9725,0.9063,0.9383
+head_line,0.7763,0.4459,0.5392,0.1133,0.5006,0.6672,0.929,0.8014,0.8605
+life_line,0.6295,0.2568,0.4433,0.0865,0.4765,0.6454,0.9232,0.7217,0.8101
+fate_line,0.159,0.0493,0.0622,0.0114,0.1674,0.2868,0.2943,0.6067,0.3964
+all,0.621,0.3467,0.4778,0.1121,0.4368,0.5879,0.7798,0.759,0.7513
+
+[2026-11-04 09:52:14 KST] STEP eval_v1 OK
+[2026-11-04 09:52:14 KST] ONNX: -rw-r--r-- 1 box box 11688768 Nov  4 09:51 weights/v2/best.onnx
+[2026-11-04 09:52:14 KST] STEP compare: /workspace/palm-ai/.venv/bin/python code/compare_v1_v2.py --v1 logs/v2/eval_v1_on_v2val.csv --v2 logs/v2/eval_v2_on_v2val.csv --out logs/v2/compare_v1_v2.csv
+class,v1_mask_mAP50,v2_mask_mAP50,delta_mask_mAP50,v1_mask_mAP50-95,v2_mask_mAP50-95,delta_mask_mAP50-95,v1_pixel_IoU,v2_pixel_IoU,delta_pixel_IoU,v1_pixel_Dice,v2_pixel_Dice,delta_pixel_Dice,v1_tol5_F1,v2_tol5_F1,delta_tol5_F1,v1_box_mAP50,v2_box_mAP50,delta_box_mAP50,v1_box_mAP50-95,v2_box_mAP50-95,delta_box_mAP50-95,v1_tol5_precision,v2_tol5_precision,delta_tol5_precision,v1_tol5_recall,v2_tol5_recall,delta_tol5_recall
+heart_line,0.8665,0.9102,0.0437,0.2371,0.2527,0.0156,0.6026,0.6181,0.0155,0.752,0.764,0.012,0.9383,0.9594,0.0211,0.9191,0.9702,0.0511,0.6348,0.7215,0.0867,0.9725,0.9574,-0.0151,0.9063,0.9614,0.0551
+head_line,0.5392,0.6695,0.1303,0.1133,0.1532,0.0399,0.5006,0.5392,0.0386,0.6672,0.7007,0.0335,0.8605,0.9056,0.0451,0.7763,0.8824,0.1061,0.4459,0.5781,0.1322,0.929,0.9133,-0.0157,0.8014,0.898,0.0966
+life_line,0.4433,0.6339,0.1906,0.0865,0.1739,0.0874,0.4765,0.5113,0.0348,0.6454,0.6766,0.0312,0.8101,0.8529,0.0428,0.6295,0.8147,0.1852,0.2568,0.5349,0.2781,0.9232,0.8451,-0.0781,0.7217,0.8608,0.1391
+fate_line,0.0622,0.101,0.0388,0.0114,0.0337,0.0223,0.1674,0.0932,-0.0742,0.2868,0.1706,-0.1162,0.3964,0.2076,-0.1888,0.159,0.1525,-0.0065,0.0493,0.1077,0.0584,0.2943,0.3354,0.0411,0.6067,0.1503,-0.4564
+all,0.4778,0.5787,0.1009,0.1121,0.1534,0.0413,0.4368,0.4405,0.0037,0.5879,0.578,-0.0099,0.7513,0.7314,-0.0199,0.621,0.705,0.084,0.3467,0.4856,0.1389,0.7798,0.7628,-0.017,0.759,0.7176,-0.0414
+
+{
+ "criterion": "mean of class-avg mask_mAP50, mask_mAP50-95, pixel_IoU, tol5_F1",
+ "v1_score": 0.4445,
+ "v2_score": 0.476,
+ "v2_wins_on": "3/4",
+ "winner": "v2"
+}
+WINNER=v2
+[2026-11-04 09:52:14 KST] STEP compare OK
+[2026-11-04 09:52:14 KST] WINNER=v2
+153 image992.jpg
+154 image993.jpg
+[2026-11-04 09:52:40 KST] STEP extract OK
+[2026-11-04 09:52:40 KST] STEP calibrate: /workspace/palm-ai/.venv/bin/python interpret/calibrate.py --features interpret/calib/val_features_v2.jsonl --out interpret/calibration.yaml
+type counts: {'rock': 12, 'galaxy': 13, 'cloud': 13, 'gold': 13, 'star': 13, 'wave': 13, 'flower': 13, 'lightning': 13, 'wind': 13, 'moon': 13, 'fire': 13, 'sun': 13}
+wealth [(2, 18), (3, 92), (4, 44), (5, 1)]
+love [(2, 19), (3, 65), (4, 48), (5, 23)]
+health [(2, 21), (3, 73), (4, 47), (5, 14)]
+career [(2, 18), (3, 71), (4, 61), (5, 5)]
+[2026-11-04 09:52:54 KST] STEP calibrate OK
+| 별빛손 지혜여우 | 2 |
+| 바람손 자유여우 | 3 |
+| 태양손 리더여우 | 5 |
+| 구름손 평화여우 | 3 |
+| 꽃잎손 인기여우 | 2 |
+| 바위손 뚝심여우 | 1 |
+| 물결손 공감여우 | 1 |
+| 번개손 아이디어여우 | 4 |
+| 은하손 행운여우 | 4 |
+
+| 운 | ★1 | ★2 | ★3 | ★4 | ★5 |
+|---|---|---|---|---|---|
+| 재물운 | 0 | 2 | 19 | 8 | 1 |
+| 연애운 | 0 | 2 | 12 | 12 | 4 |
+| 건강운 | 0 | 3 | 16 | 9 | 2 |
+| 직업·성공운 | 0 | 4 | 13 | 11 | 2 |
+compat image1016.jpg image112.jpg 86 ['compat_heart_same', 'compat_head_similar', 'compat_life_similar', 'compat_junction_mix', 'compat_luck_complement']
+compat image1277.jpg image1417.jpg 76 ['compat_heart_near', 'compat_head_similar', 'compat_junction_mix']
+compat image1655.jpg image173.jpg 82 ['compat_heart_same', 'compat_head_complement', 'compat_junction_same', 'compat_luck_complement']
+compat image2040.jpg image2217.jpg 76 ['compat_heart_near', 'compat_head_complement', 'compat_junction_same']
+compat image2292.jpg image2408.jpg 75 ['compat_junction_same', 'compat_element_pair', 'compat_luck_complement']
+overlay interpret/demo_v2/overlay_1_image1016.png
+overlay interpret/demo_v2/overlay_2_image112.png
+overlay interpret/demo_v2/overlay_3_image1277.png
+[2026-11-04 09:53:02 KST] STEP demo OK
+31:DEFAULT_MODEL = "weights/v2/best.pt"
+[2026-11-04 09:53:02 KST] interpret model: weights/v2/best.pt (demo dir interpret/demo_v2)
+{
+ "n": 30,
+ "model": "/workspace/palm-ai/weights/v2/best.pt",
+ "types": {
+  "황금손 재물여우": 2,
+  "불꽃손 열정여우": 1,
+  "달빛손 감성여우": 2,
+  "별빛손 지혜여우": 2,
+  "바람손 자유여우": 3,
+  "태양손 리더여우": 5,
+  "구름손 평화여우": 3,
+  "꽃잎손 인기여우": 2,
+  "바위손 뚝심여우": 1,
+  "물결손 공감여우": 1,
+  "번개손 아이디어여우": 4,
+  "은하손 행운여우": 4
+ },
+ "stars": {
+  "wealth": {
+   "2": 2,
+   "3": 19,
+   "4": 8,
+   "5": 1
+  },
+  "love": {
+   "2": 2,
+   "3": 12,
+   "4": 12,
+   "5": 4
+  },
+  "health": {
+   "2": 3,
+   "3": 16,
+   "4": 9,
+   "5": 2
+  },
+  "career": {
+   "2": 4,
+   "3": 13,
+   "4": 11,
+   "5": 2
+  }
+ }
+}[2026-11-04 09:53:02 KST] STEP readme: /workspace/palm-ai/.venv/bin/python code/readme_v2.py --compare logs/v2/compare_v1_v2.csv --demo interpret/demo_v2 --interp_model weights/v2/best.pt --readme README.md
+<!-- v2-start -->
+## Results (v2, AI-relabelled data, 2026-11-04)
+
+### Method: AI relabelling (`code/ai_relabel.py`)
+Same PLSU images, human line masks, crop and train/val split (884/155) as v1. Only the per-line class assignment changed.
+Each GT mask is skeletonized and split into numbered segments. The palm is rendered with coloured, numbered segments, and a vision LLM returns JSON mapping segment to heart/head/life/fate/other. GT pixels take the class of the nearest labelled segment.
+- Model: `nvidia/nemotron-3.5-super-vl-120b-a12b` via NVIDIA API Catalog integrate.api.nvidia.com/v1/chat/completions
+- Run: `full --model nvidia/nemotron-3.5-super-vl-120b-a12b --hint --shuffle --policy hybrid --workers 4; VLM_EXTRA_BODY={"chat_template_kwargs":{"enable_thinking":false}}`
+- Policy `hybrid`: keep the v1 teacher's heart/head/life segments. The VLM decides segments the teacher left unlabelled and the heuristic fate segments.
+- Images labelled: 1039 (`full_stats.json`: calls_ok 728, failed 0)
+- API totals, full run: 1089 HTTP requests (200: 1085, None: 4), 1,229,464 prompt + 220,668 completion tokens (46,236 reasoning)
+- API totals including pilots and probes: 1444 requests, 1,580,603 prompt + 562,369 completion tokens
+- Raw request/response logs: `logs/relabel/*.jsonl`. Stats: `logs/relabel/full_stats.json`, `logs/relabel/v2_dataset_stats.json`
+- Skeleton-pixel agreement of the v2 labels with v1: 0.928
+
+| class | v1 instances | v2 instances |
+|---|---|---|
+| heart_line | 1024 | 1059 |
+| head_line | 1372 | 1101 |
+| life_line | 1149 | 1132 |
+| fate_line | 352 | 149 |
+
+### Training
+YOLO11n-seg, `configs/train_v2.yaml` (identical to v1 except data), 35 epochs, CPU, 5,388s (~90 min).
+Last epoch: train seg loss 0.857, val seg loss 0.881, val mask mAP50 0.581. best.pt is from epoch 34 (fitness 0.63887). Logs are in `logs/v2/` (results.csv, TensorBoard, weights_log.csv).
+
+### v1 vs v2 on the v2 val labels (155 images, conf 0.25)
+`logs/v2/compare_v1_v2.csv` (computed by `code/evaluate.py`, then `code/compare_v1_v2.py`)
+
+| class | mask mAP50 v1 / v2 | mask mAP50-95 v1 / v2 | pixel IoU v1 / v2 | tol5 F1 v1 / v2 |
+|---|---|---|---|---|
+| heart_line | 0.867 / 0.910 | 0.237 / 0.253 | 0.603 / 0.618 | 0.938 / 0.959 |
+| head_line | 0.539 / 0.669 | 0.113 / 0.153 | 0.501 / 0.539 | 0.861 / 0.906 |
+| life_line | 0.443 / 0.634 | 0.086 / 0.174 | 0.476 / 0.511 | 0.810 / 0.853 |
+| fate_line | 0.062 / 0.101 | 0.011 / 0.034 | 0.167 / 0.093 | 0.396 / 0.208 |
+| all (class mean for pixel/F1) | 0.478 / 0.579 | 0.112 / 0.153 | 0.437 / 0.441 | 0.751 / 0.731 |
+
+Decision (mean of class-avg mask_mAP50, mask_mAP50-95, pixel_IoU, tol5_F1): v1 0.4445, v2 0.476. v2 is higher on 3/4 of these metrics. **Better: v2**.
+Caveat: these val labels are the AI relabels v2 was trained on, so v1 (trained on teacher pseudo-labels) is at a built-in disadvantage. Neither set of labels is human per-line annotation.
+
+### Stage-2 interpretation
+`interpret/` now uses **`weights/v2/best.pt`** (`interpret/features.py` default; calibration.yaml recalibrated on v2 features, v1 calibration saved as `interpret/calibration_v1.yaml`).
+Demo type distribution (`interpret/demo_v2/`, n=30): 황금손 재물여우 2, 불꽃손 열정여우 1, 달빛손 감성여우 2, 별빛손 지혜여우 2, 바람손 자유여우 3, 태양손 리더여우 5, 구름손 평화여우 3, 꽃잎손 인기여우 2, 바위손 뚝심여우 1, 물결손 공감여우 1, 번개손 아이디어여우 4, 은하손 행운여우 4
+
+Artifacts: `weights/v2/best.pt`, `weights/v2/best.onnx`, overlays `samples/v2/` (`v2_pred_*` = v2, `v1_pred_*` = v1, same images; left = v2 label, right = prediction), eval plots `logs/v2/eval_plots_v2/`, `logs/v2/eval_plots_v1/`.
+<!-- v2-end -->
+
+[2026-11-04 09:53:02 KST] STEP readme OK

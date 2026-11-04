@@ -28,7 +28,7 @@ import numpy as np
 from skimage.morphology import skeletonize
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODEL = "weights/best.pt"
+DEFAULT_MODEL = "weights/v2/best.pt"
 CLASSES = ["heart_line", "head_line", "life_line", "fate_line"]
 SHORT = {"heart_line": "heart", "head_line": "head", "life_line": "life", "fate_line": "fate"}
 FEATURE_VERSION = 1

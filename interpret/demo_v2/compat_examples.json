@@ -1,0 +1,93 @@
+[
+ {
+  "a": "image1016.jpg",
+  "b": "image112.jpg",
+  "score": 86,
+  "type_a": "바위손 뚝심여우",
+  "type_b": "별빛손 지혜여우",
+  "reasons": [
+   "compat_heart_same",
+   "compat_head_similar",
+   "compat_life_similar",
+   "compat_junction_mix",
+   "compat_luck_complement"
+  ],
+  "reason_texts": [
+   "감정선 끝이 닮아 마음 표현 방식이 똑같아요",
+   "두뇌선 기울기가 닮아 말이 척척 통해요",
+   "생명선 활력이 비슷해 노는 속도가 딱 맞아요",
+   "신중함과 추진력이 만나 환상의 팀워크",
+   "서로 부족한 운을 채워 주는 사이"
+  ]
+ },
+ {
+  "a": "image1277.jpg",
+  "b": "image1417.jpg",
+  "score": 76,
+  "type_a": "은하손 행운여우",
+  "type_b": "별빛손 지혜여우",
+  "reasons": [
+   "compat_heart_near",
+   "compat_head_similar",
+   "compat_junction_mix"
+  ],
+  "reason_texts": [
+   "감정선이 비슷해 서로의 마음을 금방 알아채요",
+   "두뇌선 기울기가 닮아 말이 척척 통해요",
+   "신중함과 추진력이 만나 환상의 팀워크"
+  ]
+ },
+ {
+  "a": "image1655.jpg",
+  "b": "image173.jpg",
+  "score": 82,
+  "type_a": "번개손 아이디어여우",
+  "type_b": "구름손 평화여우",
+  "reasons": [
+   "compat_heart_same",
+   "compat_head_complement",
+   "compat_junction_same",
+   "compat_luck_complement"
+  ],
+  "reason_texts": [
+   "감정선 끝이 닮아 마음 표현 방식이 똑같아요",
+   "두뇌선이 서로 달라 아이디어를 채워 주는 사이",
+   "시작 습관이 닮아 함께 움직이기 편해요",
+   "서로 부족한 운을 채워 주는 사이"
+  ]
+ },
+ {
+  "a": "image2040.jpg",
+  "b": "image2217.jpg",
+  "score": 76,
+  "type_a": "달빛손 감성여우",
+  "type_b": "은하손 행운여우",
+  "reasons": [
+   "compat_heart_near",
+   "compat_head_complement",
+   "compat_junction_same"
+  ],
+  "reason_texts": [
+   "감정선이 비슷해 서로의 마음을 금방 알아채요",
+   "두뇌선이 서로 달라 아이디어를 채워 주는 사이",
+   "시작 습관이 닮아 함께 움직이기 편해요"
+  ]
+ },
+ {
+  "a": "image2292.jpg",
+  "b": "image2408.jpg",
+  "score": 75,
+  "type_a": "불꽃손 열정여우",
+  "type_b": "태양손 리더여우",
+  "reasons": [
+   "compat_junction_same",
+   "compat_element_pair",
+   "compat_luck_complement"
+  ],
+  "reason_texts": [
+   "시작 습관이 닮아 함께 움직이기 편해요",
+   "서로 기운을 북돋는 찰떡 원소 조합",
+   "서로 부족한 운을 채워 주는 사이"
+  ]
+ }
+]
