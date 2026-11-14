@@ -4,7 +4,7 @@ import { chromium } from 'playwright-core';
 import fs from 'fs';
 const BASE = process.argv[2] || 'http://localhost:8787/';
 const VAL = '/workspace/palm-ai/data/palm_lines_yolo_v2/images/val/';
-const OUT = '/workspace/palm-ai/web_screens/';
+const OUT = process.env.OUT || '/workspace/palm-ai/web_screens/';
 const IMAGES = (process.env.IMAGES || 'image1016.jpg,image1018.jpg,image1047.jpg').split(',');
 const ref = Object.fromEntries(fs.readFileSync('/workspace/palm-ai/interpret/calib/val_features_v2.jsonl', 'utf8').trim().split('\n').map((l) => { const j = JSON.parse(l); return [j.image, j]; }));
 // /tmp/py_out.json = python interpret.py output on the same jsonl (optional reference)

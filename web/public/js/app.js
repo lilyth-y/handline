@@ -147,7 +147,7 @@ $('#btn-share').addEventListener('click', async () => {
   const t = RULES.types.find((x) => x.id === id);
   if (!t) return;
   const b = $('#shared-banner');
-  b.innerHTML = `친구는 <b>'${t.name}'</b>이(가) 나왔어요!<br>나는 어떤 여우일까? 🦊`;
+  b.innerHTML = `친구는 <b>'${t.name}'</b>가 나왔어요!<br>나는 어떤 여우일까? 🦊`;
   b.classList.remove('hidden');
 })();
 
