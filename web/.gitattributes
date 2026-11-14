@@ -1,0 +1,3 @@
+# Serve the web model / wasm as plain git blobs (not LFS) so static hosts that clone the repo get the real bytes.
+*.onnx -filter -diff -merge binary
+*.wasm binary

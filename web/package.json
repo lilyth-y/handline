@@ -1,0 +1,19 @@
+{
+  "name": "handline-web",
+  "version": "1.0.0",
+  "description": "호아 도사 손금 웹앱 (static, onnxruntime-web)",
+  "scripts": {
+    "gen": "node tools/gen_rules.cjs && node tools/gen_calib.cjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "js-yaml": "^5.5.0",
+    "onnxruntime-web": "^1.31.1",
+    "playwright-core": "^1.65.0"
+  },
+  "private": true
+}

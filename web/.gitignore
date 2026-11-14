@@ -1,0 +1,8 @@
+node_modules/
+.vercel/
+.netlify/
+dist/
+build/
+test-results/
+*.log
+.env*
