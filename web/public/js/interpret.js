@@ -7,9 +7,9 @@ const astCache = new Map();
 const ast = (e) => { if (!astCache.has(e)) astCache.set(e, parse(e)); return astCache.get(e); };
 const round = (v, d) => { const f = 10 ** d; return Math.round(v * f) / f; };
 
-function namespace(feat, calib, extra) {
+export function makePct(feat, calib = CALIB) {
   const L = feat.lines, quant = (calib && calib.quantiles) || {};
-  const pct = (key) => {
+  return (key) => {
     const [obj, attr] = key.split('.');
     const src = obj in L ? L[obj] : obj === 'rel' ? feat.relations || {} : null;
     const val = src == null ? null : src[attr];
@@ -25,6 +25,10 @@ function namespace(feat, calib, extra) {
     }
     return 0.5;
   };
+}
+
+function namespace(feat, calib, extra) {
+  const L = feat.lines, pct = makePct(feat, calib);
   return { heart: new NS(L.heart), head: new NS(L.head), life: new NS(L.life), fate: new NS(L.fate),
     rel: new NS(feat.relations), palm: new NS(feat.palm), pct, abs: pyAbs, min: pyMin, max: pyMax, MISSING, ...(extra || {}) };
 }
@@ -44,7 +48,8 @@ export function scoreLucks(feat, rules = RULES, calib = CALIB) {
     fired.sort((a, b) => b[0] - a[0] || (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0));
     let reasons = [...new Set(fired.filter((f) => f[0] >= 0).map((f) => f[2]))].slice(0, 2);
     if (!reasons.length) reasons = [spec.default_reason];
-    out[key] = { label: spec.label, stars, raw: round(raw, 2), reasons, rules_fired: fired.map((f) => f[1]) };
+    out[key] = { label: spec.label, base: Number(spec.base ?? 3.0), stars, raw: round(raw, 2), reasons, rules_fired: fired.map((f) => f[1]),
+      fired: fired.map((f) => ({ add: f[0], id: f[1], reason: f[2] })) };
   }
   return out;
 }

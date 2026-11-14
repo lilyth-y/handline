@@ -78,20 +78,26 @@
     <div class="card overlay-card">
       <canvas id="r-overlay"></canvas>
       <div class="legend">
-        <span><i style="background:#ff7eb6"></i>감정선</span>
-        <span><i style="background:#ffd36e"></i>두뇌선</span>
-        <span><i style="background:#6ee7c8"></i>생명선</span>
-        <span><i style="background:#b69cff"></i>운명선</span>
+        <span data-line="heart"><i style="background:#ff7eb6"></i>감정선</span>
+        <span data-line="head"><i style="background:#ffd36e"></i>두뇌선</span>
+        <span data-line="life"><i style="background:#6ee7c8"></i>생명선</span>
+        <span data-line="fate"><i style="background:#b69cff"></i>운명선</span>
       </div>
+      <p id="r-focus" class="focus-cap hidden"></p>
       <p id="r-missing" class="fine"></p>
     </div>
     <div id="r-lucks"></div>
+    <details id="r-measured-box" class="card measured">
+      <summary>📏 손금 측정값 <span class="muted">궁금한 분만 펼쳐 보세요</span></summary>
+      <div id="r-measured"></div>
+    </details>
     <div class="card compat">
       <h3>👫 친구 궁합 <span class="badge">준비 중</span></h3>
       <p>친구 손금과 내 손금을 겹쳐 보는 궁합 풀이는 곧 열려요!</p>
     </div>
     <button id="btn-share" class="btn primary">결과 공유하기 💌</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
+    <p class="fine disclaimer-lead">🦊 별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과랍니다.</p>
     <p id="r-disclaimer" class="fine"></p>
   </section>
 
