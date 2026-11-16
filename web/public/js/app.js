@@ -3,6 +3,7 @@ import * as ort from '../vendor/ort.wasm.min.mjs';
 import { letterboxTensor, extractFeatures, CLASSES } from './palm.js';
 import { interpret } from './interpret.js';
 import { RULES } from './rules.js';
+import { CALIB } from './calib.js';
 import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES } from './copy.js';
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 
@@ -147,11 +148,14 @@ function luckCard(k, v, feat) {
       <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc)}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
     </div>`;
 }
+const REF_TEXT = CALIB.ref
+  ? `${CALIB.ref.persons}명의 손 ${CALIB.ref.hands}개, 손바닥 사진 ${CALIB.ref.images.toLocaleString('ko-KR')}장`
+  : `손금 사진 ${CALIB.n_images}장`;
 function measuredHTML(feat) {
   return measuredRows(feat).map((r) => `
     <div class="m-line"><h4>${r.line === 'rel' ? '🔗 선 사이 관계' : `<b class="ln-${r.line}"></b>${NAMES_KO[r.line]}`}</h4>
       <dl>${r.cells.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></div>`).join('')
-    + '<p class="fine left">‘상위 %’는 손금 사진 155장과 비교한 순위예요. 길이는 손바닥 폭을 기준으로 쟀어요.</p>';
+    + `<p class="fine left">‘상위 %’는 ${REF_TEXT}과 비교한 순위예요. 길이는 손바닥 폭을 기준으로 쟀어요.</p>`;
 }
 function renderResult(canvas, feat, res) {
   const t = res.type, copy = TYPE_COPY[t.id];

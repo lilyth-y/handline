@@ -50,7 +50,8 @@ for (const [k, name] of IMAGES.entries()) {
       facts: [...c.querySelectorAll('.ev-fact')].map((e) => e.textContent.trim()), meanings: [...c.querySelectorAll('.ev-mean')].map((e) => e.textContent.trim()),
       def: c.querySelector('.ev-default')?.textContent.trim() || null, calc: c.querySelector('.calc').textContent.trim() }));
     const js = Object.fromEntries(Object.entries(s.res.lucks).map(([k, v]) => [k, { stars: v.stars, rules_fired: v.rules_fired, reasons: v.reasons }]));
-    return { feat, ui, js, focus: document.querySelector('#r-focus').textContent.trim(), disclaimer: document.querySelector('#r-disclaimer').textContent };
+    return { feat, ui, js, focus: document.querySelector('#r-focus').textContent.trim(), disclaimer: document.querySelector('#r-disclaimer').textContent,
+      refNote: document.querySelector('#r-measured-box .fine')?.textContent.trim() || null };
   });
   featLines.push(JSON.stringify(data.feat)); shown.push({ name, ...data });
 }
@@ -65,7 +66,7 @@ shown.forEach((s, i) => {
     checks[k] = { py_stars: b.stars, js_stars: a.stars, py_reasons: b.reasons, js_reasons: a.reasons, py_fired: b.rules_fired, js_fired: a.rules_fired,
       match: a.stars === b.stars && a.rules_fired.join() === b.rules_fired.join() && a.reasons.join() === b.reasons.join(), ui_items: uiCount, ui_default: !!uiCard.def };
   }
-  report.push({ image: s.name, py_type: p.type.name, ui: s.ui, focus_caption: s.focus, checks, all_match: Object.values(checks).every((c) => c.match), disclaimer: s.disclaimer });
+  report.push({ image: s.name, py_type: p.type.name, ui: s.ui, focus_caption: s.focus, checks, all_match: Object.values(checks).every((c) => c.match), disclaimer: s.disclaimer, ref_note: s.refNote });
 });
 console.log(JSON.stringify({ base: BASE, report, errors }, null, 1));
 await browser.close();

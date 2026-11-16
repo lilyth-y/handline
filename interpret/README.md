@@ -17,7 +17,7 @@
 | `rules.yaml` | 사람이 읽고 고칠 수 있는 규칙표 (운 별점 규칙, 유형 가중치, 궁합 점수, 이유 문구) |
 | `calibration.yaml` | 자동 생성. 특징 백분위(10% 간격)와 유형 균형용 bias (`calibrate.py`) |
 | `interpret.py` | 규칙 엔진: `interpret(feat)`, `compatibility(feat_a, feat_b)` |
-| `extract_batch.py`, `calibrate.py` | 보정 세트(val 155장) 특징 추출 → 보정값 생성 |
+| `extract_batch.py`, `calibrate.py`, `refset/` | 보정 세트 특징 추출 → 보정값 생성 (현재 기준 세트: 189명·손 375개·2,201장, `refset/README.md`) |
 | `prompt_ko.md` | 호아 도사 LLM 프롬프트 (system + user 템플릿, 6줄 출력) |
 | `run_demo.py` | val 30장 데모 → `demo/results.jsonl`, `demo/type_distribution.md`, `demo/compat_examples.json`, `demo/overlay_*.png` |
 
@@ -76,7 +76,7 @@ CPU 사용: 단일 프로세스, `torch.set_num_threads(2)`, `OMP_NUM_THREADS=2`
 
 ### 12 여우 유형
 각 유형 점수 = Σ(가중치 × 0~1 신호) + bias → 최고점 유형. 동점이면 rules.yaml 순서가 앞선 유형.
-bias 는 `calibrate.py` 가 보정 세트에서 12유형이 고르게 나오도록 반복 조정(현재 val 155장에서 유형당 12~13장).
+bias 는 `calibrate.py` 가 보정 세트에서 12유형이 고르게 나오도록 반복 조정(현재 기준 세트 2,201장에서 유형당 176~189장; 이전 val 155장 보정은 `calibration_v2_155.yaml`).
 
 | 유형 | 주요 신호 (가중치) |
 |---|---|
@@ -99,7 +99,7 @@ bias 는 `calibrate.py` 가 보정 세트에서 12유형이 고르게 나오도�
 서로 보완되는 운(별 2개 이상 차이) 3×최대2. 최저 55점(항상 긍정적으로).
 
 ## 3. 데모 결과 (v1 best.pt)
-`demo/type_distribution.md` 참고. val 30장: 유형별 0~5장 (표본이 작아 고르지 않음), 보정 세트 155장 전체: 유형별 12~13장.
+`demo/type_distribution.md` 참고. val 30장: 유형별 0~5장 (표본이 작아 고르지 않음), 보정 세트(2026-11-16 이전 val 155장) 전체: 유형별 12~13장. 현재 보정은 `refset/README.md` 참고.
 별점은 대부분 3~4개, 1개는 나오지 않음(의도: 부정적 결과 최소화).
 
 ## 4. 한계 / 주의
@@ -108,6 +108,6 @@ bias 는 `calibrate.py` 가 보정 세트에서 12유형이 고르게 나오도�
 - 감정선 `end_zone` 은 손가락 위치를 검출하지 않고 손바닥 폭 비율로 근사 (경계 0.46/0.58/0.70). 모델이 감정선을 짧게 잡는 경향이 있어 'index' 는 드묾(약 5%).
 - 끊김/가지 수는 마스크 조각·잔가지에 민감 (분할 품질에 좌우).
 - 손바닥 추정은 흰/밝은 단색 배경 가정. 복잡한 배경의 실제 앱 사진은 fallback(손금 범위 기반)으로 동작하나 정확도 낮음 → 앱에서 촬영 가이드(밝은 배경, 손가락 위, 손바닥 전체) 권장.
-- 보정(백분위·bias)은 val 155장에서 했고 데모 30장도 그 일부 → 분포 수치는 in-sample. 실제 사용자 사진 분포가 다르면 재보정 필요.
+- 보정(백분위·bias)은 2026-11-16 부터 PLSU+11K Hands 2,201장(189명, 브라우저 파이프라인 특징)으로 한다. 아래 데모 수치는 이전 val 155장 보정 기준이며 데모 30장도 그 일부 → 분포 수치는 in-sample. 실제 사용자 사진 분포가 다르면 재보정 필요.
 - `.pt` 와 `.onnx` 결과가 마스크 차이로 조금 다를 수 있음 (같은 사진에서 유형이 바뀔 수 있음).
 - 규칙 표현식은 `eval` (builtins 없음) 로 평가 — rules.yaml 은 신뢰된 내부 파일로만 사용할 것.

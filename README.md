@@ -18,6 +18,9 @@ Training and evaluation details are filled in at the end of training (see bottom
   palm-line-reader student ONNX model (MIT, https://github.com/samuelwbarber/palm-line-reader).
   GT pixels far from every predicted line become fate_line, but only if they form a long, vertical segment. See `code/build_dataset.py`.
 
+## Percentile reference set (web app '상위 %')
+- 189 people / 375 hands / 2,201 palm photos from 11K Hands (palmar only) + PLSU crops (PLSU is a subset of 11K Hands, de-duplicated per photo, max 6 photos per hand). Build steps, licenses and caveats: `interpret/refset/README.md`. Images and feature jsonl stay in git-ignored `data/refset/`.
+
 ## Rerun
 ```bash
 python3 -m venv .venv && . .venv/bin/activate

@@ -1,0 +1,35 @@
+{
+ "plsu": {
+  "total": 1039,
+  "usable": 1038,
+  "unmatched": 1
+ },
+ "11k": {
+  "total": 5396,
+  "usable": 5386,
+  "lt2_lines": 10
+ },
+ "combined": {
+  "n_images": 2201,
+  "by_source": {
+   "11k": 1260,
+   "plsu": 941
+  },
+  "persons": 189,
+  "hands": 375,
+  "images_per_hand": {
+   "2": 2,
+   "3": 2,
+   "4": 8,
+   "5": 19,
+   "6": 344
+  },
+  "cap_per_hand": 6,
+  "min_lines": 2,
+  "lines_hist": {
+   "2": 71,
+   "3": 1998,
+   "4": 132
+  }
+ }
+}

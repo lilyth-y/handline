@@ -9,7 +9,7 @@ const ZONE_KO = { index: '검지 아래', index_middle: '검지와 중지 사이
 // 근거가 하나도 없을 때(기본값) 하이라이트할 대표 손금
 export const LUCK_MAIN_LINE = { wealth: ['head', 'fate'], love: ['heart'], health: ['life'], career: ['fate', 'head'] };
 
-// 0~1 백분위 -> "상위 22%" (보정 세트 155장 기준)
+// 0~1 백분위 -> "상위 22%" (보정 세트 기준: calib.js 의 ref / n_images)
 export const topPct = (p) => `상위 ${Math.max(1, Math.round((1 - p) * 100))}%`;
 export const rank = (p) => (p >= 0.5 ? topPct(p) : `하위 ${Math.max(1, Math.round(p * 100))}%`);
 export const lowPct = (p) => `하위 ${Math.max(1, Math.round(p * 100))}%`;
