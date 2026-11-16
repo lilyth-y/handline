@@ -8,7 +8,7 @@
 <meta name="description" content="하얀 구미호 호아 도사가 그대의 손금을 봐 드리오. 12가지 여우 유형과 재물·연애·건강·직업운 별점!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="호아 도사의 손금 풀이 🦊">
-<meta property="og:description" content="손바닥 사진 한 장으로 나의 여우 유형과 4가지 운세 별점을 확인해 보세요!">
+<meta property="og:description" content="나는 무슨 여우일까? 손바닥 사진 한 장으로 12가지 여우 유형과 4가지 운세 별점을 확인해 보세요!">
 <meta property="og:image" content="https://hoa-palm.vercel.app/img/og.jpg">
 <meta property="og:url" content="https://hoa-palm.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
@@ -28,6 +28,12 @@
     <p class="bubble">호호, 어서 오시게. 그대의 손바닥을 보여 주면<br>여우 눈으로 운세를 콕콕 짚어 드리리다.</p>
     <button id="btn-start" class="btn primary">손금 보러 가기 ✨</button>
     <p class="fine">사진은 내 폰 안에서만 분석되고 서버로 보내지지 않아요.<br>재미로 보는 손금이에요! · <a href="#" class="link" data-privacy>개인정보 안내</a></p>
+    <div class="card dogam">
+      <h3>📜 12가지 여우 도감</h3>
+      <p class="dg-sub">그대의 손에는 어떤 여우가 숨어 있을까?</p>
+      <div id="dogam-grid" class="dg-grid"></div>
+      <button type="button" class="btn ghost" onclick="document.getElementById('btn-start').click()">내 여우 찾으러 가기 🦊</button>
+    </div>
   </section>
 
   <!-- 2. capture -->
@@ -83,6 +89,7 @@
       </div>
     </div>
     <p id="r-intro" class="bubble left"></p>
+    <p id="r-friend" class="card friend hidden"></p>
     <div class="card overlay-card">
       <canvas id="r-overlay"></canvas>
       <div class="legend">
@@ -103,7 +110,8 @@
       <h3>👫 친구 궁합 <span class="badge">준비 중</span></h3>
       <p>친구 손금과 내 손금을 겹쳐 보는 궁합 풀이는 곧 열려요!</p>
     </div>
-    <button id="btn-share" class="btn primary">결과 공유하기 💌</button>
+    <button id="btn-share" class="btn primary">친구에게 도전장 보내기 💌</button>
+    <button id="btn-card" class="btn ghost gold-line">결과 카드 이미지 저장 📥</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
     <p class="fine disclaimer-lead">🦊 별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과랍니다.</p>
     <p id="r-disclaimer" class="fine"></p>
@@ -148,6 +156,13 @@
       <p class="consent-sub">끄면 이 기기에서는 아무것도 보내지 않아요. 설정은 이 브라우저에 기억돼요.</p>
     </div>
   </section>
+  <div id="card-modal" class="modal hidden" role="dialog" aria-label="결과 카드 이미지">
+    <div class="modal-box">
+      <p class="modal-tip">👆 이미지를 <b>꾹 길게 눌러</b> 저장하거나 공유하세요</p>
+      <img id="card-img" alt="호아 도사 손금 결과 카드">
+      <button type="button" id="card-close" class="btn ghost">닫기</button>
+    </div>
+  </div>
   <div id="toast" class="toast"></div>
 </div>
 <script type="module" src="js/app.js"></script>

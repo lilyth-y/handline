@@ -34,3 +34,8 @@ export function readingFor(key, luck) {
   const closing = options[(reason.length + key.length) % options.length];   // deterministic per result
   return `${reason}! ${closing}`;
 }
+export const TYPE_EMOJI = {
+  gold: '🪙', fire: '🔥', moon: '🌙', star: '⭐', wind: '🍃', sun: '☀️',
+  cloud: '☁️', flower: '🌸', rock: '🪨', wave: '🌊', lightning: '⚡', galaxy: '🌌',
+};
+export const APP_HOST = 'hoa-palm.vercel.app';

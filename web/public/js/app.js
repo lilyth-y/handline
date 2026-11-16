@@ -4,7 +4,9 @@ import { letterboxTensor, extractFeatures, CLASSES } from './palm.js';
 import { interpret } from './interpret.js';
 import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
-import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES } from './copy.js';
+import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES, TYPE_EMOJI } from './copy.js';
+import { drawShareCard, cardBlob } from './sharecard.js';
+import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
 
@@ -171,6 +173,7 @@ function renderResult(canvas, feat, res) {
   $('#r-measured').innerHTML = measuredHTML(feat);
   $('#r-measured-box').open = false;
   $('#r-disclaimer').textContent = res.disclaimer || RULES.disclaimer;
+  friendLine(res);
 }
 function onPick(e) {
   if (e.target.closest('#btn-focus-clear')) { setFocus(null); return; }
@@ -181,17 +184,20 @@ function onPick(e) {
 $('#s-result').addEventListener('click', onPick);
 $('#s-result').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { const el = e.target.closest('.chip, .luck'); if (el) { e.preventDefault(); onPick(e); } } });
 
-// ------------------------------------------------------------------ share
+// ------------------------------------------------------------------ share (friend challenge)
+const UA = navigator.userAgent || '';
+const IN_APP = /KAKAOTALK|NAVER\(inapp|; wv\)|Instagram|FBAN|FBAV|Line\//i.test(UA);   // 다운로드가 막히는 인앱 브라우저
 function shareURL() {
   const r = state.result?.res, u = new URL(location.href);
   u.search = ''; u.hash = '';
   if (r) { u.searchParams.set('t', r.type.id); u.searchParams.set('s', Object.values(r.lucks).map((l) => l.stars).join('')); }
+  u.searchParams.set('ref', 'share');
   return u.href;
 }
 function shareText() {
   const r = state.result.res;
   const lines = Object.entries(r.lucks).map(([k, v]) => `${LUCK_EMOJI[k]} ${v.label} ${'★'.repeat(v.stars)}${'☆'.repeat(5 - v.stars)}`);
-  return `🦊 호아 도사가 본 내 손금: '${r.type.name}'\n${lines.join('\n')}\n너의 여우 유형도 확인해 봐!`;
+  return `🦊 나는 '${r.type.name}'! 너는 무슨 여우야?\n${lines.join('\n')}\n손바닥 사진 한 장이면 호아 도사가 봐 줘 👇`;
 }
 async function copyText(s) {
   try { await navigator.clipboard.writeText(s); return true; } catch { /* fallthrough */ }
@@ -207,18 +213,83 @@ $('#btn-share').addEventListener('click', async () => {
     catch (e) { if (e && e.name === 'AbortError') return; }
   }
   const ok = await copyText(`${text}\n${url}`);
-  toast(ok ? '결과와 링크를 복사했어요! 카톡에 붙여 넣어 보세요 💌' : url);
+  toast(ok ? '도전장과 링크를 복사했어요! 카톡에 붙여 넣어 보세요 💌' : url);
 });
 
-// ------------------------------------------------------------------ shared-link landing
-(function sharedBanner() {
-  const p = new URLSearchParams(location.search), id = p.get('t');
-  const t = RULES.types.find((x) => x.id === id);
-  if (!t) return;
-  const b = $('#shared-banner');
-  b.innerHTML = `친구는 <b>'${t.name}'</b>가 나왔어요!<br>나는 어떤 여우일까? 🦊`;
-  b.classList.remove('hidden');
+// 결과 카드 이미지: 파일 공유 시트 → (일반 브라우저) 다운로드 → (인앱/실패) 길게 눌러 저장
+async function buildCard() {
+  const res = state.result.res;
+  if (state.card && state.card.res === res) return state.card;
+  const cv = await drawShareCard(res);
+  const blob = await cardBlob(cv);
+  state.card = { res, blob, dataURL: cv.toDataURL('image/png'), name: `hoa-palm-${res.type.id}.png` };
+  return state.card;
+}
+function showCardModal(card) {
+  $('#card-img').src = card.dataURL;
+  $('#card-modal').classList.remove('hidden');
+}
+$('#card-close').addEventListener('click', () => $('#card-modal').classList.add('hidden'));
+$('#card-modal').addEventListener('click', (e) => { if (e.target.id === 'card-modal') $('#card-modal').classList.add('hidden'); });
+$('#btn-card').addEventListener('click', async () => {
+  const btn = $('#btn-card'); btn.disabled = true;
+  try {
+    const card = await buildCard();
+    window.__card = { bytes: card.blob.size, name: card.name };   // e2e
+    let file = null; try { file = new File([card.blob], card.name, { type: 'image/png' }); } catch { file = null; }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: '호아 도사의 손금 풀이', text: `${shareText()}\n${shareURL()}` }); window.__card.via = 'share'; return; }
+      catch (e) { if (e && e.name === 'AbortError') return; }
+    }
+    if (!IN_APP && !/iPhone|iPad|iPod/i.test(UA)) {
+      const a = document.createElement('a'); a.href = URL.createObjectURL(card.blob); a.download = card.name;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      window.__card.via = 'download';
+      toast('결과 카드를 저장했어요! 📥');
+      return;
+    }
+    window.__card.via = 'modal';
+    showCardModal(card);
+  } catch (e) {
+    console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요 🙏');
+  } finally { btn.disabled = false; }
+});
+
+// ------------------------------------------------------------------ shared-link landing (friend challenge)
+const FRIEND = (() => {
+  const p = new URLSearchParams(location.search);
+  const t = RULES.types.find((x) => x.id === p.get('t'));
+  if (!t) return null;
+  const s = /^[1-5]{4}$/.test(p.get('s') || '') ? p.get('s').split('').map(Number) : null;
+  return { t, s };
 })();
+(function sharedBanner() {
+  if (!FRIEND) return;
+  const { t, s } = FRIEND, b = $('#shared-banner');
+  const keys = ['wealth', 'love', 'health', 'career'], labels = { wealth: '재물', love: '연애', health: '건강', career: '직업' };
+  const starRow = s ? `<p class="sh-stars">${keys.map((k, i) => `<span>${LUCK_EMOJI[k]} ${labels[k]} <b>${'★'.repeat(s[i])}</b></span>`).join('')}</p>` : '';
+  b.innerHTML = `
+    <p class="sh-eyebrow">💌 친구가 도전장을 보냈어요!</p>
+    <p class="sh-type">“나는 <b>${TYPE_EMOJI[t.id] || ''} ${t.name}</b>!</p>
+    <p class="sh-q">너는 무슨 여우야? 🦊”</p>
+    ${starRow}
+    <button type="button" id="btn-challenge" class="btn primary">나도 손금 보기 ✨</button>`;
+  b.classList.remove('hidden');
+  $('#btn-challenge').addEventListener('click', () => $('#btn-start').click());
+})();
+function friendLine(res) {
+  const el = $('#r-friend');
+  if (!FRIEND) { el.classList.add('hidden'); return; }
+  const same = FRIEND.t.id === res.type.id;
+  el.innerHTML = same
+    ? `🦊 친구도 <b>'${FRIEND.t.name}'</b>! 같은 여우끼리 통했구려.`
+    : `🦊 친구는 <b>'${FRIEND.t.name}'</b>, 그대는 <b>'${res.type.name}'</b>!`;
+  el.classList.remove('hidden');
+}
+
+// ------------------------------------------------------------------ 12가지 여우 도감 (intro)
+$('#dogam-grid').innerHTML = RULES.types.map((t) => `
+  <div class="dg-item"><span class="dg-emo">${TYPE_EMOJI[t.id] || '🦊'}</span><b>${esc(t.name)}</b><small>#${esc(t.keyword.replace('·', ' #'))}</small></div>`).join('');
 
 // ------------------------------------------------------------------ consent / privacy
 function syncCollectUI() {

@@ -3,11 +3,12 @@
 // - 끄기: localStorage 'hoa_collect' = 'off' (설정 기억). 같은 사진은 한 세션에 한 번만 보낸다 (sessionStorage 해시).
 // - 공개(publishable) 키는 INSERT 만 가능 (RLS + 컬럼 권한, 조회·수정·삭제 불가). 서비스 키는 절대 여기에 두지 않는다.
 import { CALIB } from './calib.js';
+import { getRef } from './ref.js';
 
 export const COLLECT = {
   url: 'https://fxyffslmgnxznptbobee.supabase.co/rest/v1/palm_features',
   key: 'sb_publishable_v-uTw_Qaswin80uqKtHTzw__cKjHRZC',
-  app_version: '2026.11.16',
+  app_version: '2026.11.16b',
   model_version: 'palm-v2-onnx',
 };
 const PREF = 'hoa_collect', SEEN = 'hoa_sent_hashes';
@@ -62,6 +63,7 @@ export function buildRow(feat, res, isTest = testMode()) {
     lines_found: feat.relations.n_lines,
     client_hint: clientHint(),
     is_test: !!isTest,
+    ref: getRef(),   // 유입 경로 (blog / share …), 없으면 null
   };
 }
 
