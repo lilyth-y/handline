@@ -6,6 +6,7 @@ import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
 import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES } from './copy.js';
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
+import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
 
 const MAX_SIDE = 1024;
 const $ = (s) => document.querySelector(s);
@@ -78,6 +79,7 @@ async function analyse(file) {
   step(100, 4); await tick();
   renderResult(work.canvas, feat, res);
   go('s-result');
+  sendFeatures(file, feat, res);   // fire-and-forget: 숫자 특징만, 실패해도 화면에 영향 없음
 }
 
 // ------------------------------------------------------------------ result rendering
@@ -217,6 +219,25 @@ $('#btn-share').addEventListener('click', async () => {
   b.innerHTML = `친구는 <b>'${t.name}'</b>가 나왔어요!<br>나는 어떤 여우일까? 🦊`;
   b.classList.remove('hidden');
 })();
+
+// ------------------------------------------------------------------ consent / privacy
+function syncCollectUI() {
+  const on = collectEnabled();
+  document.querySelectorAll('.collect-toggle').forEach((t) => { t.checked = on; });
+  document.querySelectorAll('.collect-state').forEach((e) => { e.textContent = on ? '켜짐' : '꺼짐'; });
+}
+document.querySelectorAll('.collect-toggle').forEach((t) => t.addEventListener('change', () => {
+  setCollectEnabled(t.checked); syncCollectUI();
+  toast(t.checked ? '측정 숫자 익명 제공을 켰어요' : '이제 아무것도 보내지 않아요');
+}));
+let privacyFrom = 's-intro';
+document.querySelectorAll('[data-privacy]').forEach((a) => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  privacyFrom = document.querySelector('.screen.active')?.id || 's-intro';
+  go('s-privacy');
+}));
+$('#privacy-back').addEventListener('click', () => go(privacyFrom === 's-privacy' ? 's-intro' : privacyFrom));
+syncCollectUI();
 
 // ------------------------------------------------------------------ wiring
 $('#btn-start').addEventListener('click', () => { loadModel().catch(() => {}); go('s-capture'); });

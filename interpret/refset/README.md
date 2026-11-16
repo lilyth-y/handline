@@ -74,3 +74,30 @@ val 155장(Python 특징)에서는 이전 보정이 유형당 12~13장(그 세�
 - 11K 원본은 손 전체가 작게 찍혀 선 굵기(손바닥 폭 대비 %)가 PLSU 크롭보다 약 10~15% 크게 나온다.
 - 기준 세트에 모델 학습 사진(PLSU train)이 들어 있다 (백분위만 쓰므로 학습 누수는 아니지만, 선이 실제보다 깔끔하게 잡혔을 수 있음).
 - 운명선은 검출이 약해 2,201장 중 157장에서만 길이 값이 있다 (`calibration.yaml` 의 fate.length n).
+
+## 실제 사용자 측정값으로 다시 보정하기 (2026-11-16~)
+웹앱이 분석을 마치면 **숫자 특징만** Supabase 에 익명으로 보낸다 (사진 X). 사용자가 끌 수 있고(기본 켜짐, `localStorage.hoa_collect`),
+같은 사진은 한 세션에 한 번만 보낸다. 자세한 건 `web/README.md` 의 "익명 측정값 수집".
+
+- 저장 위치: Supabase 프로젝트 **handline** (ref `fxyffslmgnxznptbobee`, 서울 `ap-northeast-2`, free) → 테이블 `public.palm_features`
+  (스키마/RLS: `supabase/migrations/20261116_palm_features.sql`). 날짜(`created_on`, 서울 기준)만 있고 시각·IP·사용자 ID 컬럼은 없다.
+- 공개 키(앱)는 INSERT 만 된다. 읽으려면 서버용 키가 필요하다: Supabase 대시보드 → Project Settings → API Keys → **secret key**
+  (`sb_secret_…`) 또는 legacy `service_role`. **환경변수로만 쓰고 절대 커밋하지 않는다.**
+
+```bash
+export SUPABASE_SERVICE_KEY=...        # 커밋 금지 (.env 도 git-ignore)
+python interpret/refset/export_user_features.py                       # 몇 개 모였는지만 확인 (1,000개 미만이면 exit 2)
+python interpret/refset/export_user_features.py --mix lab --lab-frac 0.3 --calibrate
+#   -> data/userfeat/user_features.jsonl (사용자 70% + 실험실 30%), interpret/calibration_user.yaml (라이브 파일은 안 건드림)
+python interpret/refset/eval_calib.py --calib interpret/calibration_user.yaml --features data/userfeat/user_features.jsonl
+# 괜찮으면 채택:
+python interpret/refset/export_user_features.py --mix lab --calibrate --out interpret/calibration.yaml
+cd web && npm run gen    # calib.js 갱신 → 앱이 보내는 calib_version 도 user-<N> 로 바뀜
+```
+- 기본값: `--min-count 1000` (사용 가능한 사용자 행이 그보다 적으면 보정하지 않음), `--min-lines 2`, `is_test=false`,
+  `--model-version palm-v2-onnx` / `--feature-version 1` 만 사용 (모델이 바뀌면 특징 분포도 바뀌므로 섞지 않는다).
+- `--mix none` 이면 사용자 데이터만, `--lab-frac -1` 이면 실험실 2,201장 전부를 더한다. `--since YYYY-MM-DD` 로 기간 제한.
+- 키 없이 시험: `--rows-json rows.json` (SQL 편집기에서 `select json_agg(t) from palm_features t` 결과를 저장한 파일).
+- 2026-11-16 시험: 기준 세트 1,200행을 사용자 행 형식으로 바꿔 `--rows-json --mix lab --calibrate` 까지 통과 (300행은 min-count 로 거절).
+- 주의: 사용자 결과(별점·유형)는 당시 보정으로 계산된 값이라 보정에는 쓰지 않고 특징만 쓴다. 한 사람이 여러 번 찍을 수 있다(세션 내 같은
+  사진만 중복 제거, 사람 식별은 하지 않음). 하루 최대 5,000행 (DB 트리거).

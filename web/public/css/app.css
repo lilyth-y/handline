@@ -89,3 +89,19 @@ h3{margin:0 0 6px;font-size:17px}
 .m-line dt{color:var(--muted)}.m-line dd{margin:0;color:var(--text)}
 .fine.left{text-align:left}
 .disclaimer-lead{margin-bottom:0}
+/* consent / privacy */
+.link{color:var(--gold);text-decoration:underline}
+.consent{padding:12px 14px}
+.switch-row{display:flex;align-items:center;gap:12px;cursor:pointer;position:relative}
+.consent-text{flex:1;font-size:13.5px;line-height:1.55}
+.switch-row input{position:absolute;opacity:0;width:1px;height:1px}
+.switch{flex:none;width:46px;height:26px;border-radius:13px;background:#ffffff26;position:relative;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch-row input:checked + .switch{background:var(--gold)}
+.switch-row input:checked + .switch::after{transform:translateX(20px)}
+.switch-row input:focus-visible + .switch{outline:2px solid var(--gold);outline-offset:2px}
+.consent-sub{font-size:12px;color:var(--muted);margin-top:6px}
+.privacy h3{font-size:15px;margin:14px 0 6px}
+.privacy h3:first-child{margin-top:0}
+.privacy p,.privacy li{font-size:13.5px;line-height:1.6}
+.privacy ul{padding-left:18px;margin:6px 0}
