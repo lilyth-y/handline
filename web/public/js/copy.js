@@ -1,11 +1,12 @@
 // 호아 도사 말투 템플릿 (LLM 없이). 근거는 interpret 결과의 유형 / 별점 / reason_texts 만 사용.
+// LUCK_EMOJI / TYPE_EMOJI 는 카톡 공유 문구(플레인 텍스트) 전용. UI는 icons.js 선 아이콘을 쓴다.
 export const LUCK_EMOJI = { wealth: '💰', love: '💕', health: '🌿', career: '🏆' };
 export const ANALYZE_LINES = [
-  '흐음… 수정 구슬을 닦는 중이오',
-  '여우 눈으로 손금을 살펴보는 중이오 👀',
-  '감정선, 두뇌선, 생명선을 따라가 보는 중…',
-  '아홉 꼬리로 운세를 점치는 중이오 🦊',
-  '호호, 다 보였소!',
+  { icon: 'crystal', text: '흐음… 수정 구슬을 닦는 중이오' },
+  { icon: 'eye', text: '여우 눈으로 손금을 살펴보는 중이오' },
+  { icon: 'search', text: '감정선, 두뇌선, 생명선을 따라가 보는 중…' },
+  { icon: 'fox', text: '아홉 꼬리로 운세를 점치는 중이오' },
+  { icon: 'sparkles', text: '호호, 다 보였소!' },
 ];
 export const TYPE_COPY = {
   gold:      { intro: '손바닥에 금빛 기운이 반짝이는구려.', charm: '차곡차곡 쌓는 실속파라 여우 꼬리도 절로 살랑이오.' },

@@ -15,7 +15,7 @@ h3{margin:0 0 6px;font-size:17px}
 .hero.small{width:46%;margin-top:60px}
 .bubble{background:#ffffff12;border:1px solid #b9a7ff44;border-radius:18px;padding:14px 16px;line-height:1.6;font-size:15.5px;margin:10px 0 18px;width:100%}
 .bubble.left{text-align:left}
-.btn{display:block;width:100%;border:0;border-radius:16px;padding:16px;font-size:17px;font-weight:700;margin:6px 0;cursor:pointer;font-family:inherit;text-align:center}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:16px;padding:16px;font-size:17px;font-weight:700;margin:6px 0;cursor:pointer;font-family:inherit;text-align:center}
 .btn.primary{background:linear-gradient(135deg,var(--gold),#ffe6a6);color:#2a1d00;box-shadow:0 6px 20px #f3cc6b44}
 .btn.ghost{background:#ffffff10;color:var(--text);border:1px solid #b9a7ff66}
 .btn:active{transform:scale(.98)}
@@ -25,7 +25,8 @@ h3{margin:0 0 6px;font-size:17px}
 .card{background:#ffffff0d;border:1px solid #b9a7ff33;border-radius:20px;padding:16px;width:100%;margin:8px 0;text-align:left}
 .guide{display:flex;gap:14px;align-items:center;margin-bottom:18px}
 .guide ul{margin:0;padding-left:18px;line-height:1.9;font-size:15px}
-.palm-icon{font-size:44px}
+.palm-icon{display:flex;align-items:center;justify-content:center}
+.palm-icon .ico{width:56px;height:56px;color:var(--lav)}
 .back{position:absolute;left:12px;top:14px;background:none;border:0;color:var(--text);font-size:34px;line-height:1;padding:4px 10px;cursor:pointer}
 .orb-wrap{position:relative;width:240px;height:240px;border-radius:50%;overflow:hidden;margin:70px 0 20px;box-shadow:0 0 0 6px #b9a7ff44,0 0 80px #b9a7ff88}
 .orb-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.6) brightness(.9)}
@@ -36,16 +37,15 @@ h3{margin:0 0 6px;font-size:17px}
 .result-head{display:flex;align-items:center;gap:14px;width:100%;text-align:left;margin-top:6px}
 .mini{width:76px;height:76px;border-radius:50%;box-shadow:0 0 24px #b9a7ff66}
 .eyebrow{margin:0;color:var(--muted);font-size:13px}
-.type-name{margin:2px 0;color:var(--gold);font-size:25px}
+.type-name{margin:2px 0;color:var(--gold);font-size:25px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .keyword{margin:0;color:var(--lav2);font-size:14px}
 .overlay-card canvas{width:100%;border-radius:14px;display:block;background:#000}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:13px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .luck{display:flex;flex-direction:column;gap:6px}
 .luck-top{display:flex;justify-content:space-between;align-items:center}
-.luck-label{font-weight:700;font-size:16px}
-.stars{color:var(--gold);font-size:20px;letter-spacing:2px}
-.stars .off{color:#ffffff30}
+.luck-label{font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:6px}
+.stars{display:inline-flex;align-items:center;gap:2px;color:var(--gold);letter-spacing:0}
 .luck p{margin:0;line-height:1.6;font-size:14.5px;color:var(--lav2)}
 .compat p{margin:0;color:var(--muted);font-size:14px}
 .badge{background:var(--lav);color:var(--navy);font-size:11px;padding:2px 8px;border-radius:10px;vertical-align:2px}
@@ -127,7 +127,39 @@ h3{margin:0 0 6px;font-size:17px}
 .dg-sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
 .dg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
 .dg-item{background:#ffffff0b;border:1px solid #b9a7ff2a;border-radius:14px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:3px}
-.dg-emo{font-size:24px}
+.dg-emo{display:flex;align-items:center;justify-content:center;width:32px;height:32px}
+.dg-emo .ico{width:28px;height:28px;color:var(--gold)}
 .dg-item b{font-size:12.5px;line-height:1.3;word-break:keep-all}
 .dg-item small{font-size:10.5px;color:var(--muted);line-height:1.3;word-break:keep-all}
 #card-close{background:var(--navy2)}
+
+/* thin line icons */
+.ico{width:1.2em;height:1.2em;flex:none;display:inline-block;vertical-align:-0.22em;overflow:visible;color:var(--lav);stroke:currentColor;fill:none}
+.gold-stroke,.luck-label .ico,.type-ico,.disclaimer-lead .ico,.collect-foot .ico,.ev-default .ico,.friend .ico,.sh-eyebrow .ico,.sh-type .ico,.sh-q .ico,.calc-star{color:var(--gold)}
+.btn.primary .ico{color:#2a1d00}
+.btn.ghost .ico{color:var(--text)}
+.btn.gold-line .ico{color:var(--gold)}
+.with-ico{display:flex;align-items:center;gap:8px}
+.privacy h3.with-ico{gap:8px}
+.consent-text{display:flex;align-items:flex-start;gap:8px}
+.consent-text .ico{margin-top:2px;color:var(--gold)}
+.disclaimer-lead,.collect-foot,.modal-tip{display:flex;align-items:flex-start;justify-content:center;gap:6px}
+.collect-foot{flex-wrap:wrap;justify-content:center}
+.modal-tip{align-items:center}
+.measured summary.with-ico{display:flex;align-items:center;gap:8px}
+.measured summary.with-ico .muted{margin-right:0}
+.measured summary.with-ico::after{float:none;margin-left:auto}
+.star-ico{width:16px;height:16px;color:var(--gold)}
+.star-ico.on{fill:currentColor;stroke:currentColor}
+.star-ico.off{fill:none;color:#ffffff55;stroke:currentColor}
+.star-ico.mini{width:12px;height:12px}
+.calc-star{width:12px;height:12px;fill:currentColor;vertical-align:-1px}
+.type-ico{width:1.15em;height:1.15em}
+#ana-text{display:flex;align-items:center;justify-content:center;gap:8px}
+#model-status{display:flex;align-items:center;justify-content:center;gap:6px}
+.focus-cap span{display:inline-flex;align-items:center;gap:6px}
+.ev-default{display:flex;align-items:flex-start;gap:6px}
+.ev-head .hint{display:inline-flex;align-items:center;gap:4px}
+.sh-eyebrow,.sh-type,.sh-q,.friend{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.sh-stars span{display:inline-flex;align-items:center;gap:4px}
+.sh-stars b{display:inline-flex;align-items:center;gap:1px}

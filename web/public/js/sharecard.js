@@ -1,5 +1,6 @@
 // 결과 공유 카드 (세로 1080x1920 PNG). 사진·손금 그림은 넣지 않는다 (개인 사진 노출 방지): 유형·별점·한마디·URL·마스코트만.
-import { TYPE_COPY, LUCK_EMOJI, TYPE_EMOJI, APP_HOST } from './copy.js';
+import { TYPE_COPY, APP_HOST } from './copy.js';
+import { iconImage, LUCK_ICON, TYPE_ICON } from './icons.js';
 
 const W = 1080, H = 1920;
 const C = { navy: '#0d1236', navy2: '#1b2263', lav: '#b9a7ff', lav2: '#e6defc', gold: '#f3cc6b', gold2: '#ffe6a6', text: '#f4f1ff', muted: '#b7b3d6' };
@@ -29,12 +30,28 @@ function wrap(g, text, maxW, maxLines) {
   if (out.length > maxLines) { out.length = maxLines; out[maxLines - 1] = out[maxLines - 1].replace(/.{1}$/, '…'); }
   return out;
 }
-function stars(g, x, y, n, size) {
-  g.font = f(700, size); g.textAlign = 'right';
-  const on = '★'.repeat(n), off = '★'.repeat(5 - n);
-  g.fillStyle = '#ffffff30'; g.fillText(off, x, y);
-  const wOff = off ? g.measureText(off).width : 0;
-  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b88'; g.shadowBlur = 18; g.fillText(on, x - wOff, y); g.shadowBlur = 0;
+async function drawIco(g, name, x, y, size, color, fill = 'none') {
+  const img = await iconImage(name, { color, fill, size: Math.max(128, size * 2) });
+  if (img) g.drawImage(img, x, y, size, size);
+}
+async function labelWithIcon(g, icon, text, cx, y, iconSize, color, fontSpec, fill = 'none') {
+  g.font = fontSpec; g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+  const tw = g.measureText(text).width, gap = iconSize * 0.28, total = iconSize + gap + tw;
+  const x = cx - total / 2;
+  await drawIco(g, icon, x, y - iconSize * 0.78, iconSize, color, fill);
+  g.fillStyle = color; g.fillText(text, x + iconSize + gap, y);
+  g.textAlign = 'center';
+}
+async function stars(g, x, y, n, size) {
+  const gap = size * 0.1, total = 5 * size + 4 * gap;
+  let px = x - total, cy = y - size * 0.72;
+  for (let i = 0; i < 5; i++) {
+    const on = i < n;
+    if (on) { g.save(); g.shadowColor = '#f3cc6b88'; g.shadowBlur = 18; }
+    await drawIco(g, 'star', px, cy, size, on ? C.gold : '#ffffff55', on ? C.gold : 'none');
+    if (on) g.restore();
+    px += size + gap;
+  }
 }
 
 export async function drawShareCard(res) {
@@ -60,7 +77,7 @@ export async function drawShareCard(res) {
   g.strokeStyle = '#b9a7ff33'; g.lineWidth = 2; rr(g, 54, 54, W - 108, H - 108, 38); g.stroke();
 
   g.textAlign = 'center'; g.textBaseline = 'alphabetic';
-  g.fillStyle = C.lav2; g.font = f(700, 44); g.fillText('🦊 호아 도사의 손금 풀이', W / 2, 160);
+  await labelWithIcon(g, 'fox', '호아 도사의 손금 풀이', W / 2, 160, 48, C.lav2, f(700, 44));
 
   // mascot
   const cx = W / 2, cy = 450, R = 220;
@@ -72,9 +89,11 @@ export async function drawShareCard(res) {
 
   // type
   g.fillStyle = C.muted; g.font = f(500, 40); g.fillText('그대의 손은…', W / 2, 770);
-  const name = `${TYPE_EMOJI[t.id] || ''} ${t.name}`.trim();
-  fitFont(g, name, 800, 96, W - 180);
-  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b77'; g.shadowBlur = 28; g.fillText(name, W / 2, 875); g.shadowBlur = 0;
+  const name = t.name;
+  const namePx = fitFont(g, name, 800, 96, W - 280);
+  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b77'; g.shadowBlur = 28;
+  await labelWithIcon(g, TYPE_ICON[t.id] || 'fox', name, W / 2, 875, Math.round(namePx * 0.92), C.gold, f(800, namePx));
+  g.shadowBlur = 0;
   g.fillStyle = C.lav2; g.font = f(500, 42);
   g.fillText(`#${t.keyword.replace('·', ' #')}  ·  ${t.element}의 기운`, W / 2, 950);
 
@@ -82,12 +101,15 @@ export async function drawShareCard(res) {
   const px = 110, pw = W - 220, py = 1000, rowH = 96, ph = rowH * 4 + 40;
   g.fillStyle = '#ffffff0f'; rr(g, px, py, pw, ph, 36); g.fill();
   g.strokeStyle = '#b9a7ff44'; g.lineWidth = 2; rr(g, px, py, pw, ph, 36); g.stroke();
-  Object.entries(res.lucks).forEach(([k, v], i) => {
+  const luckEntries = Object.entries(res.lucks);
+  for (let i = 0; i < luckEntries.length; i++) {
+    const [k, v] = luckEntries[i];
     const y = py + 20 + rowH * i + rowH / 2 + 18;
-    g.textAlign = 'left'; g.fillStyle = C.text; g.font = f(700, 50); g.fillText(`${LUCK_EMOJI[k] || ''} ${v.label}`, px + 50, y);
-    stars(g, px + pw - 50, y + 2, v.stars, 62);
+    await drawIco(g, LUCK_ICON[k] || 'sparkle', px + 50, y - 40, 52, C.gold);
+    g.textAlign = 'left'; g.fillStyle = C.text; g.font = f(700, 50); g.fillText(v.label, px + 114, y);
+    await stars(g, px + pw - 50, y + 2, v.stars, 52);
     if (i < 3) { g.fillStyle = '#b9a7ff22'; g.fillRect(px + 40, py + 20 + rowH * (i + 1), pw - 80, 2); }
-  });
+  }
 
   // one-liner bubble
   g.textAlign = 'center'; g.font = f(600, 40);
@@ -95,13 +117,23 @@ export async function drawShareCard(res) {
   const by = 1448, bh = 60 + lines.length * 56;
   g.fillStyle = '#b9a7ff1c'; rr(g, 110, by, W - 220, bh, 40); g.fill();
   g.fillStyle = C.lav2; lines.forEach((l, i) => g.fillText(l, W / 2, by + 72 + i * 56 - 6));
-  g.fillStyle = C.gold; g.font = f(700, 34); g.fillText('— 호아 도사 🦊', W / 2, by + bh + 46);
+  await labelWithIcon(g, 'fox', '— 호아 도사', W / 2, by + bh + 46, 36, C.gold, f(700, 34));
 
   // footer CTA
   const fy = 1750;
   gr = g.createLinearGradient(160, 0, W - 160, 0); gr.addColorStop(0, C.gold); gr.addColorStop(1, C.gold2);
   g.fillStyle = gr; rr(g, 150, fy, W - 300, 100, 50); g.fill();
-  g.fillStyle = '#2a1d00'; g.font = f(800, 42); g.fillText(`너는 무슨 여우야? 👉 ${APP_HOST}`, W / 2, fy + 64, W - 340);
+  const cta = `너는 무슨 여우야?  ${APP_HOST}`;
+  g.font = f(800, 42);
+  const ctaW = Math.min(g.measureText(cta).width, W - 400);
+  const arrow = 40, gap = 10;
+  // icon + text centered in the gold bar
+  const group = arrow + gap + ctaW;
+  const gx = (W - group) / 2;
+  await drawIco(g, 'arrow', gx, fy + 30, arrow, '#2a1d00');
+  g.fillStyle = '#2a1d00'; g.textAlign = 'left'; g.font = f(800, 42);
+  g.fillText(cta, gx + arrow + gap, fy + 64, W - 400);
+  g.textAlign = 'center';
   return cv;
 }
 

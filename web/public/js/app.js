@@ -4,12 +4,14 @@ import { letterboxTensor, extractFeatures, CLASSES } from './palm.js';
 import { interpret } from './interpret.js';
 import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
-import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES, TYPE_EMOJI } from './copy.js';
+import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES } from './copy.js';
+import { injectSprite, ico, starHTML, LUCK_ICON, TYPE_ICON } from './icons.js';
 import { drawShareCard, cardBlob } from './sharecard.js';
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
 
+injectSprite();
 const MAX_SIDE = 1024;
 const $ = (s) => document.querySelector(s);
 const state = { session: null, loading: null, result: null };
@@ -29,7 +31,7 @@ ort.env.wasm.wasmPaths = new URL('../vendor/', import.meta.url).href;
 function loadModel() {
   if (!state.loading) {
     state.loading = ort.InferenceSession.create(new URL('../model/palm-v2.onnx', import.meta.url).href, { executionProviders: ['wasm'] })
-      .then((s) => { state.session = s; $('#model-status').textContent = '수정 구슬 준비 완료! 🔮'; return s; })
+      .then((s) => { state.session = s; $('#model-status').innerHTML = `${ico('crystal', 'ico gold-stroke')} 수정 구슬 준비 완료!`; return s; })
       .catch((e) => { state.loading = null; $('#model-status').textContent = '모델을 불러오지 못했어요. 네트워크를 확인해 주세요.'; throw e; });
   }
   return state.loading;
@@ -60,7 +62,7 @@ async function analyse(file) {
   $('#ana-photo').src = url;
   go('s-analyzing');
   const bar = $('#ana-bar'), text = $('#ana-text');
-  const step = (p, i) => { bar.style.width = p + '%'; text.textContent = ANALYZE_LINES[i]; };
+  const step = (p, i) => { bar.style.width = p + '%'; const line = ANALYZE_LINES[i]; text.innerHTML = `${ico(line.icon, 'ico gold-stroke')} ${line.text}`; };
   step(10, 0); await tick();
   const t0 = performance.now();
   const session = await loadModel();
@@ -117,7 +119,7 @@ function paintOverlay(focus) {
   }
   document.querySelectorAll('.legend span').forEach((s) => s.classList.toggle('dim', !!focus && !focus.includes(s.dataset.line)));
   const cap = $('#r-focus');
-  if (focus) { cap.innerHTML = `<span>🔍 <b>${focus.map((l) => NAMES_KO[l]).join("·")}</b>을 비추는 중</span> <button type="button" id="btn-focus-clear">전체 보기</button>`; cap.classList.remove('hidden'); }
+  if (focus) { cap.innerHTML = `<span>${ico('search', 'ico gold-stroke')} <b>${focus.map((l) => NAMES_KO[l]).join("·")}</b>을 비추는 중</span> <button type="button" id="btn-focus-clear">전체 보기</button>`; cap.classList.remove('hidden'); }
   else cap.classList.add('hidden');
 }
 function setFocus(lines, srcEl) {
@@ -132,11 +134,10 @@ function setFocus(lines, srcEl) {
   }
 }
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-function starHTML(n) { return '★'.repeat(n) + `<span class="off">${'★'.repeat(5 - n)}</span>`; }
 function luckCard(k, v, feat) {
   const ev = luckEvidence(k, v, feat);
   const chips = ev.isDefault
-    ? `<p class="ev-default">🦊 ${esc(ev.defaultText)}</p>`
+    ? `<p class="ev-default">${ico('fox', 'ico gold-stroke')} ${esc(ev.defaultText)}</p>`
     : `<ul class="ev-list">${ev.items.map((it) => `
         <li class="chip" data-lines="${it.lines.join(',')}" role="button" tabindex="0">
           <span class="ev-fact"><i class="dot">${it.lines.map((l) => `<b class="ln-${l}"></b>`).join('')}</i>${esc(it.fact)}${it.add > 0 ? `<em class="ev-add">+${it.add}</em>` : '<em class="ev-add zero">성향</em>'}</span>
@@ -145,11 +146,11 @@ function luckCard(k, v, feat) {
   const zeroNote = ev.noScoreItems ? ' · <span class="muted">‘성향’은 점수에 더하지 않아요</span>' : '';
   return `
     <div class="card luck" data-luck="${k}" data-lines="${ev.lines.join(',')}" role="button" tabindex="0">
-      <div class="luck-top"><span class="luck-label">${LUCK_EMOJI[k]} ${v.label}</span><span class="stars" aria-label="별 ${v.stars}개">${starHTML(v.stars)}</span></div>
+      <div class="luck-top"><span class="luck-label">${ico(LUCK_ICON[k], 'ico gold-stroke')} ${v.label}</span><span class="stars" aria-label="별 ${v.stars}개">${starHTML(v.stars)}</span></div>
       <p class="reading">${readingFor(k, v)}</p>
-      <div class="ev-head">호아 도사가 본 근거 <span class="hint">눌러서 손금 보기 👆</span></div>
+      <div class="ev-head">호아 도사가 본 근거 <span class="hint">${ico('pointer')} 눌러서 손금 보기</span></div>
       ${chips}
-      <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc)}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
+      <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc).replace(/★(\d)/g, `${ico('star', 'ico calc-star')}$1`)}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
     </div>`;
 }
 const REF_TEXT = CALIB.ref
@@ -157,13 +158,13 @@ const REF_TEXT = CALIB.ref
   : `손금 사진 ${CALIB.n_images}장`;
 function measuredHTML(feat) {
   return measuredRows(feat).map((r) => `
-    <div class="m-line"><h4>${r.line === 'rel' ? '🔗 선 사이 관계' : `<b class="ln-${r.line}"></b>${NAMES_KO[r.line]}`}</h4>
+    <div class="m-line"><h4>${r.line === 'rel' ? `${ico('link', 'ico gold-stroke')} 선 사이 관계` : `<b class="ln-${r.line}"></b>${NAMES_KO[r.line]}`}</h4>
       <dl>${r.cells.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></div>`).join('')
     + `<p class="fine left">‘상위 %’는 ${REF_TEXT}과 비교한 순위예요. 길이는 손바닥 폭을 기준으로 쟀어요.</p>`;
 }
 function renderResult(canvas, feat, res) {
   const t = res.type, copy = TYPE_COPY[t.id];
-  $('#r-type').textContent = t.name;
+  $('#r-type').innerHTML = `${ico(TYPE_ICON[t.id] || 'fox', 'ico type-ico')} ${esc(t.name)}`;
   $('#r-keyword').textContent = `#${t.keyword.replace('·', ' #')}  ·  ${t.element}의 기운`;
   $('#r-intro').innerHTML = `호호, 그대는 <b class="gold">'${t.name}'</b>로다! ${copy.intro}<br>${copy.charm}`;
   buildOverlay(canvas, feat); ov.focus = null; ov.focusEl = null; paintOverlay(null);
@@ -213,7 +214,7 @@ $('#btn-share').addEventListener('click', async () => {
     catch (e) { if (e && e.name === 'AbortError') return; }
   }
   const ok = await copyText(`${text}\n${url}`);
-  toast(ok ? '도전장과 링크를 복사했어요! 카톡에 붙여 넣어 보세요 💌' : url);
+  toast(ok ? '도전장과 링크를 복사했어요! 카톡에 붙여 넣어 보세요' : url);
 });
 
 // 결과 카드 이미지: 파일 공유 시트 → (일반 브라우저) 다운로드 → (인앱/실패) 길게 눌러 저장
@@ -245,13 +246,13 @@ $('#btn-card').addEventListener('click', async () => {
       const a = document.createElement('a'); a.href = URL.createObjectURL(card.blob); a.download = card.name;
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
       window.__card.via = 'download';
-      toast('결과 카드를 저장했어요! 📥');
+      toast('결과 카드를 저장했어요!');
       return;
     }
     window.__card.via = 'modal';
     showCardModal(card);
   } catch (e) {
-    console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요 🙏');
+    console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요');
   } finally { btn.disabled = false; }
 });
 
@@ -267,13 +268,13 @@ const FRIEND = (() => {
   if (!FRIEND) return;
   const { t, s } = FRIEND, b = $('#shared-banner');
   const keys = ['wealth', 'love', 'health', 'career'], labels = { wealth: '재물', love: '연애', health: '건강', career: '직업' };
-  const starRow = s ? `<p class="sh-stars">${keys.map((k, i) => `<span>${LUCK_EMOJI[k]} ${labels[k]} <b>${'★'.repeat(s[i])}</b></span>`).join('')}</p>` : '';
+  const starRow = s ? `<p class="sh-stars">${keys.map((k, i) => `<span>${ico(LUCK_ICON[k], 'ico gold-stroke')} ${labels[k]} <b>${starHTML(s[i], { sizeClass: 'star-ico mini' })}</b></span>`).join('')}</p>` : '';
   b.innerHTML = `
-    <p class="sh-eyebrow">💌 친구가 도전장을 보냈어요!</p>
-    <p class="sh-type">“나는 <b>${TYPE_EMOJI[t.id] || ''} ${t.name}</b>!</p>
-    <p class="sh-q">너는 무슨 여우야? 🦊”</p>
+    <p class="sh-eyebrow">${ico('mail', 'ico gold-stroke')} 친구가 도전장을 보냈어요!</p>
+    <p class="sh-type">“나는 <b>${ico(TYPE_ICON[t.id] || 'fox', 'ico gold-stroke')} ${esc(t.name)}</b>!</p>
+    <p class="sh-q">너는 무슨 여우야? ${ico('fox', 'ico gold-stroke')}”</p>
     ${starRow}
-    <button type="button" id="btn-challenge" class="btn primary">나도 손금 보기 ✨</button>`;
+    <button type="button" id="btn-challenge" class="btn primary">${ico('sparkles')}나도 손금 보기</button>`;
   b.classList.remove('hidden');
   $('#btn-challenge').addEventListener('click', () => $('#btn-start').click());
 })();
@@ -282,14 +283,14 @@ function friendLine(res) {
   if (!FRIEND) { el.classList.add('hidden'); return; }
   const same = FRIEND.t.id === res.type.id;
   el.innerHTML = same
-    ? `🦊 친구도 <b>'${FRIEND.t.name}'</b>! 같은 여우끼리 통했구려.`
-    : `🦊 친구는 <b>'${FRIEND.t.name}'</b>, 그대는 <b>'${res.type.name}'</b>!`;
+    ? `${ico('fox', 'ico gold-stroke')} 친구도 <b>'${esc(FRIEND.t.name)}'</b>! 같은 여우끼리 통했구려.`
+    : `${ico('fox', 'ico gold-stroke')} 친구는 <b>'${esc(FRIEND.t.name)}'</b>, 그대는 <b>'${esc(res.type.name)}'</b>!`;
   el.classList.remove('hidden');
 }
 
 // ------------------------------------------------------------------ 12가지 여우 도감 (intro)
 $('#dogam-grid').innerHTML = RULES.types.map((t) => `
-  <div class="dg-item"><span class="dg-emo">${TYPE_EMOJI[t.id] || '🦊'}</span><b>${esc(t.name)}</b><small>#${esc(t.keyword.replace('·', ' #'))}</small></div>`).join('');
+  <div class="dg-item"><span class="dg-emo">${ico(TYPE_ICON[t.id] || 'fox')}</span><b>${esc(t.name)}</b><small>#${esc(t.keyword.replace('·', ' #'))}</small></div>`).join('');
 
 // ------------------------------------------------------------------ consent / privacy
 function syncCollectUI() {
