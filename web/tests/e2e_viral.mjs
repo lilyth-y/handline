@@ -46,9 +46,14 @@ check('share_url_ref_share', sURL && sURL.searchParams.get('ref') === 'share' &&
 await a.click('#btn-card');
 await a.waitForSelector('#card-modal:not(.hidden)', { timeout: 15000 });
 await a.waitForFunction(() => document.getElementById('card-img').complete && document.getElementById('card-img').naturalWidth > 0);
-const card = await a.evaluate(() => ({ ...window.__card, w: document.getElementById('card-img').naturalWidth, h: document.getElementById('card-img').naturalHeight, src: document.getElementById('card-img').src }));
-fs.writeFileSync(OUT + `${TAG}_share_card.png`, Buffer.from(card.src.split(',')[1], 'base64'));
-check('kakao_card_longpress_modal', card.via === 'modal' && card.w === 1080 && card.h === 1920, { via: card.via, bytes: card.bytes, size: `${card.w}x${card.h}` });
+const card = await a.evaluate(async () => {
+  const img = document.getElementById('card-img');
+  const r = await fetch(img.src); const buf = Array.from(new Uint8Array(await r.arrayBuffer()));
+  return { ...window.__card, w: img.naturalWidth, h: img.naturalHeight, srcType: img.src.slice(0, 12), buf, externalHidden: document.getElementById('btn-card-external').classList.contains('hidden') };
+});
+fs.writeFileSync(OUT + `${TAG}_share_card.jpg`, Buffer.from(card.buf));
+delete card.buf;
+check('kakao_card_longpress_modal', card.via === 'modal' && card.w === 1080 && card.h === 1920 && card.bytes < 900000 && !card.externalHidden, { via: card.via, bytes: card.bytes, size: `${card.w}x${card.h}`, srcType: card.srcType, externalHidden: card.externalHidden });
 await a.screenshot({ path: OUT + `${TAG}_kakao_card_modal.png` });
 await a.click('#card-close');
 check('modal_closes', await a.locator('#card-modal.hidden').count() === 1);
@@ -78,7 +83,7 @@ const c = await ctxC.newPage(); watch(c);
 await c.goto(BASE, { waitUntil: 'networkidle' });
 await analyse(c, 'image1016.jpg');
 const [dl] = await Promise.all([c.waitForEvent('download', { timeout: 15000 }).catch(() => null), c.click('#btn-card')]);
-check('chrome_download', dl && /hoa-palm-.+\.png/.test(dl.suggestedFilename()), { name: dl?.suggestedFilename() });
+check('chrome_download', dl && /hoa-palm-.+\.(png|jpe?g)/.test(dl.suggestedFilename()), { name: dl?.suggestedFilename() });
 
 check('no_app_errors', errors.length === 0, { errors });
 console.log(JSON.stringify(results, null, 1));
