@@ -150,7 +150,7 @@ function luckCard(k, v, feat) {
       <p class="reading">${readingFor(k, v)}</p>
       <div class="ev-head">호아 도사가 본 근거 <span class="hint">${ico('pointer')} 눌러서 손금 보기</span></div>
       ${chips}
-      <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc).replace(/★(\d)/g, `${ico('star', 'ico calc-star')}$1`)}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
+      <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc).replace(/★(\d)/g, '<span class="star-count">별 $1개</span>')}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
     </div>`;
 }
 const REF_TEXT = CALIB.ref

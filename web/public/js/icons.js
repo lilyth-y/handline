@@ -44,7 +44,10 @@ export const ICONS = {
     <circle cx="8.4" cy="10" r="1.5"/>
     <path d="m3.4 16.6 4.8-4.2 3.6 3 3.2-2.8 5.6 5"/>`,
   chart: `
-    <path d="M4 20V11M10 20V5.5M16 20v-7.5M3 20h17"/>`,
+    <path d="M3 20h18"/>
+    <rect x="4" y="11" width="3.2" height="9" rx="0.8"/>
+    <rect x="10.4" y="5.2" width="3.2" height="14.8" rx="0.8"/>
+    <rect x="16.8" y="13.2" width="3.2" height="6.8" rx="0.8"/>`,
   ruler: `
     <path d="m4.2 15.4 11.2-11.2 4.4 4.4-11.2 11.2Z"/>
     <path d="m7 12.6 1.5 1.5M9.4 10.2l1.5 1.5M11.8 7.8l1.5 1.5"/>`,
@@ -169,11 +172,20 @@ export function ico(name, cls = 'ico') {
   return `<svg class="${cls}" ${SVG_ATTRS} aria-hidden="true"><use href="#i-${name}"/></svg>`;
 }
 
-export function starHTML(n, { sizeClass = 'star-ico' } = {}) {
-  const on = ico('star', `${sizeClass} on`);
-  const off = ico('star', `${sizeClass} off`);
-  return on.repeat(n) + off.repeat(5 - n);
+// Inline the star path (do not use <use>): the sprite symbol has fill="none",
+// which <use> copies as a presentation attribute and CSS cannot override.
+function starSvg(state, cls = 'star-ico') {
+  const fill = state === 'on' ? 'currentColor' : 'none';
+  return `<svg class="${cls} ${state}" ${BOX} fill="${fill}" stroke="currentColor" ${STROKE} aria-hidden="true">${ICONS.star.trim()}</svg>`;
 }
+
+export function starHTML(n, { sizeClass = 'star-ico' } = {}) {
+  const v = Math.max(0, Math.min(5, Number(n) || 0));
+  const full = Math.floor(v);
+  return starSvg('on', sizeClass).repeat(full) + starSvg('off', sizeClass).repeat(5 - full);
+}
+
+export { starSvg };
 
 function svgDataURL(name, { color = '#f3cc6b', size = 64, fill = 'none' } = {}) {
   const inner = ICONS[name];

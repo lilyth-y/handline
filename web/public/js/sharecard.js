@@ -48,7 +48,7 @@ async function stars(g, x, y, n, size) {
   for (let i = 0; i < 5; i++) {
     const on = i < n;
     if (on) { g.save(); g.shadowColor = '#f3cc6b88'; g.shadowBlur = 18; }
-    await drawIco(g, 'star', px, cy, size, on ? C.gold : '#ffffff55', on ? C.gold : 'none');
+    await drawIco(g, 'star', px, cy, size, on ? C.gold : '#b9a7ff99', on ? C.gold : 'none');
     if (on) g.restore();
     px += size + gap;
   }
