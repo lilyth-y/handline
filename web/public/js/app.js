@@ -6,7 +6,8 @@ import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
 import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES } from './copy.js';
 import { injectSprite, ico, starHTML, LUCK_ICON, TYPE_ICON } from './icons.js';
-import { drawShareCard, cardBlob } from './sharecard.js';
+import { drawShareCard, cardBlob, CARD_MIME, CARD_EXT } from './sharecard.js';
+import { isInApp, isIOS, isKakao, canUseAnchorDownload, shouldSkipFileShare, externalBrowserHref, triggerDownload, canShareFiles } from './savecard.js';
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
@@ -187,7 +188,7 @@ $('#s-result').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.k
 
 // ------------------------------------------------------------------ share (friend challenge)
 const UA = navigator.userAgent || '';
-const IN_APP = /KAKAOTALK|NAVER\(inapp|; wv\)|Instagram|FBAN|FBAV|Line\//i.test(UA);   // 다운로드가 막히는 인앱 브라우저
+const IN_APP = isInApp(UA);
 function shareURL() {
   const r = state.result?.res, u = new URL(location.href);
   u.search = ''; u.hash = '';
@@ -217,44 +218,96 @@ $('#btn-share').addEventListener('click', async () => {
   toast(ok ? '도전장과 링크를 복사했어요! 카톡에 붙여 넣어 보세요' : url);
 });
 
-// 결과 카드 이미지: 파일 공유 시트 → (일반 브라우저) 다운로드 → (인앱/실패) 길게 눌러 저장
+// 결과 카드 이미지: (일반 브라우저) 파일 공유 시트 → <a download> → (인앱/iOS) 길게 눌러 저장 + 외부 브라우저
+function savePageURL() {
+  const u = new URL(shareURL());
+  u.searchParams.set('save', '1');
+  return u.href;
+}
 async function buildCard() {
   const res = state.result.res;
   if (state.card && state.card.res === res) return state.card;
   const cv = await drawShareCard(res);
   const blob = await cardBlob(cv);
-  state.card = { res, blob, dataURL: cv.toDataURL('image/png'), name: `hoa-palm-${res.type.id}.png` };
+  if (state.card?.url) URL.revokeObjectURL(state.card.url);
+  state.card = { res, blob, url: URL.createObjectURL(blob), name: `hoa-palm-${res.type.id}.${CARD_EXT}`, type: CARD_MIME };
   return state.card;
 }
 function showCardModal(card) {
-  $('#card-img').src = card.dataURL;
+  const img = $('#card-img');
+  img.src = card.url;
+  const ext = IN_APP ? externalBrowserHref(savePageURL(), UA) : '';
+  window.__card = { ...(window.__card || {}), bytes: card.blob.size, name: card.name, type: card.type, via: window.__card?.via || 'modal', external: ext || undefined };
+  $('#btn-card-external').classList.toggle('hidden', !IN_APP);
   $('#card-modal').classList.remove('hidden');
 }
-$('#card-close').addEventListener('click', () => $('#card-modal').classList.add('hidden'));
-$('#card-modal').addEventListener('click', (e) => { if (e.target.id === 'card-modal') $('#card-modal').classList.add('hidden'); });
+function hideCardModal() { $('#card-modal').classList.add('hidden'); }
+$('#card-close').addEventListener('click', hideCardModal);
+$('#card-modal').addEventListener('click', (e) => { if (e.target.id === 'card-modal') hideCardModal(); });
+$('#btn-card-external').addEventListener('click', () => {
+  const href = externalBrowserHref(savePageURL(), UA);
+  window.__card = { ...(window.__card || {}), external: href, via: 'external' };
+  if (window.__preventExternal) return;   // e2e
+  location.href = href;
+});
+$('#btn-card-download').addEventListener('click', async () => {
+  if (!state.card) return;
+  const via = await offerCard(state.card, { fromModal: true });
+  if (via === 'modal') toast('위 이미지를 길게 눌러 저장해 주세요');
+});
+
+async function offerCard(card, { fromModal = false } = {}) {
+  window.__card = { bytes: card.blob.size, name: card.name, type: card.type };   // e2e
+  let file = null;
+  try { file = new File([card.blob], card.name, { type: card.type || CARD_MIME }); } catch { file = null; }
+  const skipShare = shouldSkipFileShare(UA);
+  if (!skipShare && file && await canShareFiles(file)) {
+    try {
+      await navigator.share({ files: [file], title: '호아 도사의 손금 풀이', text: `${shareText()}\n${shareURL()}` });
+      window.__card.via = 'share';
+      return 'share';
+    } catch (e) { if (e && e.name === 'AbortError') { window.__card.via = 'abort'; return 'abort'; } }
+  }
+  if (canUseAnchorDownload(UA)) {
+    triggerDownload(card.blob, card.name);
+    window.__card.via = 'download';
+    toast('결과 카드를 저장했어요!');
+    return 'download';
+  }
+  window.__card.via = 'modal';
+  if (!fromModal) showCardModal(card);
+  return 'modal';
+}
+
 $('#btn-card').addEventListener('click', async () => {
   const btn = $('#btn-card'); btn.disabled = true;
-  try {
-    const card = await buildCard();
-    window.__card = { bytes: card.blob.size, name: card.name };   // e2e
-    let file = null; try { file = new File([card.blob], card.name, { type: 'image/png' }); } catch { file = null; }
-    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share({ files: [file], title: '호아 도사의 손금 풀이', text: `${shareText()}\n${shareURL()}` }); window.__card.via = 'share'; return; }
-      catch (e) { if (e && e.name === 'AbortError') return; }
-    }
-    if (!IN_APP && !/iPhone|iPad|iPod/i.test(UA)) {
-      const a = document.createElement('a'); a.href = URL.createObjectURL(card.blob); a.download = card.name;
-      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-      window.__card.via = 'download';
-      toast('결과 카드를 저장했어요!');
-      return;
-    }
-    window.__card.via = 'modal';
-    showCardModal(card);
-  } catch (e) {
-    console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요');
-  } finally { btn.disabled = false; }
+  try { await offerCard(await buildCard()); }
+  catch (e) { console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요'); }
+  finally { btn.disabled = false; }
 });
+
+// ?save=1&t=&s= : 카카오 외부 브라우저에서 결과 카드를 다시 그림 (손 사진 불필요)
+function resFromQuery() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('save') !== '1') return null;
+  const t = RULES.types.find((x) => x.id === p.get('t'));
+  const s = /^[1-5]{4}$/.test(p.get('s') || '') ? p.get('s').split('').map(Number) : null;
+  if (!t || !s) return null;
+  const keys = ['wealth', 'love', 'health', 'career'];
+  const lucks = Object.fromEntries(keys.map((k, i) => [k, { label: RULES.lucks[k].label, stars: s[i] }]));
+  return { type: t, lucks };
+}
+const PENDING_CARD = resFromQuery();
+if (PENDING_CARD) {
+  state.result = { res: PENDING_CARD };
+  (async () => {
+    try {
+      const card = await buildCard();
+      window.__card = { bytes: card.blob.size, name: card.name, type: card.type, via: 'modal', autoload: true };
+      showCardModal(card);
+    } catch (e) { console.error(e); }
+  })();
+}
 
 // ------------------------------------------------------------------ shared-link landing (friend challenge)
 const FRIEND = (() => {
