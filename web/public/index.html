@@ -30,15 +30,13 @@
     <div id="shared-banner" class="card shared hidden"></div>
     <img class="hero" src="img/hoa.jpg" alt="호아 도사 (하얀 구미호)" width="720" height="720">
     <h1>호아 도사의<br><span class="gold">손금 풀이</span></h1>
-    <p class="bubble">호호, 어서 오시게. 그대의 손바닥을 보여 주면<br>여우 눈으로 운세를 콕콕 짚어 드리리다.</p>
+    <p class="lead">손바닥 사진 한 장으로 내 여우를 찾아 드리리다.</p>
     <button id="btn-start" class="btn primary">손금 보러 가기 ✨</button>
-    <p class="fine">사진은 내 폰 안에서만 분석되고 서버로 보내지지 않아요.<br>재미로 보는 손금이에요! · <a href="#" class="link" data-privacy>개인정보 안내</a></p>
-    <div class="card dogam">
-      <h3>📜 12가지 여우 도감</h3>
-      <p class="dg-sub">그대의 손에는 어떤 여우가 숨어 있을까?</p>
+    <p class="fine">사진은 내 폰 안에서만 분석돼요 · 재미로 보는 손금 · <a href="#" class="link" data-privacy>개인정보</a></p>
+    <details class="card dogam">
+      <summary>📜 12가지 여우 도감</summary>
       <div id="dogam-grid" class="dg-grid"></div>
-      <button type="button" class="btn ghost" onclick="document.getElementById('btn-start').click()">내 여우 찾으러 가기 🦊</button>
-    </div>
+    </details>
     <footer class="site-foot">
       <nav class="site-foot-nav">
         <a href="/guide/">손금 이야기</a>
@@ -73,13 +71,13 @@
     </label>
     <div class="card consent">
       <label class="switch-row">
-        <span class="consent-text">📊 사진은 저장하지 않고, 손금 측정 숫자만 익명으로 모아 분석 정확도를 높이는 데 써요.</span>
+        <span class="consent-text">📊 사진은 저장 안 하고, 측정 숫자만 익명으로 모아요.</span>
         <input type="checkbox" class="collect-toggle" role="switch" aria-label="손금 측정 숫자 익명 제공">
         <i class="switch" aria-hidden="true"></i>
       </label>
       <p class="consent-sub"><span class="collect-state"></span> · <a href="#" class="link" data-privacy>자세히 보기</a></p>
     </div>
-    <p id="model-status" class="fine">호아 도사가 수정 구슬을 닦는 중… (모델 준비)</p>
+    <p id="model-status" class="fine">수정 구슬 준비 중…</p>
   </section>
 
   <!-- 3. analyzing -->
@@ -97,51 +95,51 @@
   <section id="s-result" class="screen">
     <div class="stars-bg"></div>
     <div class="result-head">
-      <img class="mini" src="img/hoa.jpg" alt="">
+      <div class="mini-wrap"><img class="mini" src="img/hoa.jpg" alt=""><span id="r-emoji" class="mini-emoji" aria-hidden="true"></span></div>
       <div>
-        <p class="eyebrow">그대의 손은…</p>
         <h2 id="r-type" class="type-name"></h2>
         <p id="r-keyword" class="keyword"></p>
       </div>
     </div>
-    <p id="r-intro" class="bubble left"></p>
+    <p id="r-intro" class="lead left"></p>
     <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-lucks" class="luck-grid"></div>
+    <div id="r-evidence" class="evidence hidden">
+      <div class="card overlay-card">
+        <canvas id="r-overlay"></canvas>
+        <div class="legend">
+          <span data-line="heart"><i style="background:#ff7eb6"></i>감정선</span>
+          <span data-line="head"><i style="background:#ffd36e"></i>두뇌선</span>
+          <span data-line="life"><i style="background:#6ee7c8"></i>생명선</span>
+          <span data-line="fate"><i style="background:#b69cff"></i>운명선</span>
+        </div>
+        <p id="r-focus" class="focus-cap hidden"></p>
+      </div>
+      <div id="r-panels"></div>
+    </div>
     <div id="r-sharehero" class="card share-hero">
-      <p class="sh-eyebrow">💞 친구는 어떤 여우일까?</p>
       <p id="r-hook" class="sh-hook"></p>
       <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 도전장 보내기</button>
-      <button type="button" id="sh-native" class="btn primary" data-share-src="hero">친구에게 도전장 보내기 💌</button>
-      <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
-    </div>
-    <div class="card overlay-card">
-      <canvas id="r-overlay"></canvas>
-      <div class="legend">
-        <span data-line="heart"><i style="background:#ff7eb6"></i>감정선</span>
-        <span data-line="head"><i style="background:#ffd36e"></i>두뇌선</span>
-        <span data-line="life"><i style="background:#6ee7c8"></i>생명선</span>
-        <span data-line="fate"><i style="background:#b69cff"></i>운명선</span>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">친구에게 도전장 💌</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
       </div>
-      <p id="r-focus" class="focus-cap hidden"></p>
-      <p id="r-missing" class="fine"></p>
     </div>
-    <div id="r-lucks"></div>
     <details id="r-measured-box" class="card measured">
-      <summary>📏 손금 측정값 <span class="muted">궁금한 분만 펼쳐 보세요</span></summary>
+      <summary>자세히 보기 <span class="muted">한마디 · 측정값</span></summary>
+      <p id="r-more" class="more-text"></p>
+      <p id="r-missing" class="fine left"></p>
       <div id="r-measured"></div>
+      <p class="fine left">별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과예요.</p>
     </details>
-    <div class="card compat">
-      <h3>👫 친구 궁합</h3>
-      <p>친구가 내 도전장으로 손금을 보면, 두 여우의 궁합이 몇 %인지 바로 알려 드려요!</p>
-    </div>
-    <button id="btn-share" class="btn primary" data-share-src="bottom">친구에게 도전장 보내기 💌</button>
-    <button id="btn-card" class="btn ghost gold-line">결과 카드 이미지 저장 📥</button>
+    <button id="btn-share" class="btn ghost gold-line" data-share-src="bottom">💌 친구에게 보내기</button>
+    <button id="btn-card" class="btn ghost gold-line">결과 카드 저장 📥</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
     <aside id="r-donate" class="donate-slot" hidden></aside>
     <aside id="r-adfit" class="adfit-slot" hidden aria-label="광고"></aside>
     <aside id="r-coupang" class="coupang-slot" hidden aria-label="행운 아이템"></aside>
-    <p class="fine disclaimer-lead">🦊 별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과랍니다.</p>
     <p id="r-disclaimer" class="fine"></p>
-    <p class="fine collect-foot">📊 측정 숫자 익명 제공: <b class="collect-state"></b> · <a href="#" class="link" data-privacy>개인정보 안내·끄기</a></p>
+    <p class="fine collect-foot">📊 익명 통계 제공 <b class="collect-state"></b> · <a href="#" class="link" data-privacy>안내·끄기</a></p>
 
     <footer class="site-foot">
       <nav class="site-foot-nav">

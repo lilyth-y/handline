@@ -4,7 +4,7 @@ import { letterboxTensor, extractFeatures, CLASSES } from './palm.js';
 import { interpret } from './interpret.js';
 import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
-import { TYPE_COPY, readingFor, LUCK_EMOJI, ANALYZE_LINES, TYPE_EMOJI } from './copy.js';
+import { TYPE_COPY, readingFor, shortFor, LUCK_EMOJI, ANALYZE_LINES, TYPE_EMOJI } from './copy.js';
 import { drawShareCard, cardBlob, CARD_MIME, CARD_EXT } from './sharecard.js';
 import { isInApp, isIOS, isKakao, canUseAnchorDownload, shouldSkipFileShare, externalBrowserHref, triggerDownload, canShareFiles } from './savecard.js';
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
@@ -137,7 +137,17 @@ function setFocus(lines, srcEl) {
 }
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 function starHTML(n) { return '★'.repeat(n) + `<span class="off">${'★'.repeat(5 - n)}</span>`; }
-function luckCard(k, v, feat) {
+// 결과 카드(요약): 별점 + 한 줄 + '근거 보기'.  근거 패널(luckPanel)은 눌렀을 때만 펼쳐진다.
+function luckTile(k, v) {
+  return `
+    <button type="button" class="luck-tile" data-open="${k}" aria-expanded="false">
+      <span class="lt-label">${LUCK_EMOJI[k]} ${v.label}</span>
+      <span class="lt-stars" aria-hidden="true">${starHTML(v.stars)}</span>
+      <span class="lt-line">${esc(shortFor(v))}</span>
+      <span class="lt-more">근거 보기 <i>▾</i></span>
+    </button>`;
+}
+function luckPanel(k, v, feat) {
   const ev = luckEvidence(k, v, feat);
   const chips = ev.isDefault
     ? `<p class="ev-default">🦊 ${esc(ev.defaultText)}</p>`
@@ -148,13 +158,33 @@ function luckCard(k, v, feat) {
         </li>`).join('')}</ul>`;
   const zeroNote = ev.noScoreItems ? ' · <span class="muted">‘성향’은 점수에 더하지 않아요</span>' : '';
   return `
-    <div class="card luck" data-luck="${k}" data-lines="${ev.lines.join(',')}" role="button" tabindex="0">
+    <div class="card luck" data-luck="${k}" data-lines="${ev.lines.join(',')}" hidden>
       <div class="luck-top"><span class="luck-label">${LUCK_EMOJI[k]} ${v.label}</span><span class="stars" aria-label="별 ${v.stars}개">${starHTML(v.stars)}</span></div>
       <p class="reading">${readingFor(k, v)}</p>
       <div class="ev-head">호아 도사가 본 근거 <span class="hint">눌러서 손금 보기 👆</span></div>
       ${chips}
       <p class="calc"><span class="calc-label">점수 계산</span> ${esc(ev.calc)}${ev.rounded ? ' <span class="muted">(반올림)</span>' : ''}${zeroNote}</p>
     </div>`;
+}
+// 근거 보기: 한 번에 하나만 펼치고, 같은 카드를 다시 누르면 접는다
+function toggleLuck(k) {
+  const opening = state.openLuck !== k;
+  state.openLuck = opening ? k : null;
+  document.querySelectorAll('.luck-tile').forEach((t) => {
+    const on = opening && t.dataset.open === k;
+    t.classList.toggle('on', on); t.setAttribute('aria-expanded', String(on));
+  });
+  let lines = null;
+  document.querySelectorAll('#r-panels .luck').forEach((p) => {
+    const on = opening && p.dataset.luck === k;
+    p.hidden = !on; if (on) lines = p.dataset.lines.split(',');
+  });
+  $('#r-evidence').classList.toggle('hidden', !opening);
+  document.querySelectorAll('.luck.on, .chip.on').forEach((e) => e.classList.remove('on'));
+  ov.focus = opening ? lines : null; ov.focusEl = null;
+  paintOverlay(ov.focus);
+  if (opening) $('#r-evidence').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  track('evidence_toggle', { luck: k, open: opening });
 }
 const REF_TEXT = CALIB.ref
   ? `${CALIB.ref.persons}명의 손 ${CALIB.ref.hands}개, 손바닥 사진 ${CALIB.ref.images.toLocaleString('ko-KR')}장`
@@ -167,13 +197,17 @@ function measuredHTML(feat) {
 }
 function renderResult(canvas, feat, res) {
   const t = res.type, copy = TYPE_COPY[t.id];
+  $('#r-emoji').textContent = TYPE_EMOJI[t.id] || '🦊';
   $('#r-type').textContent = t.name;
-  $('#r-keyword').textContent = `#${t.keyword.replace('·', ' #')}  ·  ${t.element}의 기운`;
-  $('#r-intro').innerHTML = `호호, 그대는 <b class="gold">'${t.name}'</b>로다! ${copy.intro}<br>${copy.charm}`;
+  $('#r-keyword').textContent = `#${t.keyword.replace('·', ' #')}`;
+  $('#r-intro').textContent = copy.intro;
+  $('#r-more').innerHTML = `호호, 그대는 <b class="gold">'${esc(t.name)}'</b>로다! ${esc(copy.intro)}<br>${esc(copy.charm)}<br><span class="muted">${esc(t.element)}의 기운</span>`;
   buildOverlay(canvas, feat); ov.focus = null; ov.focusEl = null; paintOverlay(null);
   const missing = Object.entries(feat.lines).filter(([, v]) => !v.present).map(([k]) => NAMES_KO[k]);
-  $('#r-missing').textContent = missing.length ? `${missing.join('·')}은 사진에서 또렷하게 보이지 않았어요. 없는 선도 하나의 개성이랍니다!` : '';
-  $('#r-lucks').innerHTML = Object.entries(res.lucks).map(([k, v]) => luckCard(k, v, feat)).join('');
+  $('#r-missing').textContent = missing.length ? `${missing.join('·')}은 사진에서 또렷하지 않았어요. 없는 선도 하나의 개성이랍니다!` : '';
+  $('#r-lucks').innerHTML = Object.entries(res.lucks).map(([k, v]) => luckTile(k, v)).join('');
+  $('#r-panels').innerHTML = Object.entries(res.lucks).map(([k, v]) => luckPanel(k, v, feat)).join('');
+  state.openLuck = null; $('#r-evidence').classList.add('hidden');
   $('#r-measured').innerHTML = measuredHTML(feat);
   $('#r-measured-box').open = false;
   $('#r-disclaimer').textContent = res.disclaimer || RULES.disclaimer;
@@ -183,17 +217,18 @@ function renderResult(canvas, feat, res) {
 }
 function shareHook(res) {
   const mate = RULES.types.find((x) => x.id === MATES[res.type.id]);
-  $('#r-hook').innerHTML = (mate ? `나와 천생연분인 여우는 <b>${TYPE_EMOJI[mate.id] || ''} ${esc(mate.name)}</b>! ` : '')
-    + '친구에게 도전장을 보내 <b>우리 궁합 몇 %</b>인지 확인해 보시게.';
+  $('#r-hook').innerHTML = '💞 친구랑 궁합 몇 %?' + (mate ? ` <span class="muted">천생연분은 ${TYPE_EMOJI[mate.id] || ''} ${esc(mate.name)}</span>` : '');
 }
 function onPick(e) {
   if (e.target.closest('#btn-focus-clear')) { setFocus(null); return; }
-  const el = e.target.closest('.chip') || e.target.closest('.luck');
+  const tile = e.target.closest('.luck-tile');
+  if (tile) { toggleLuck(tile.dataset.open); return; }
+  const el = e.target.closest('.chip');
   if (!el || !el.dataset.lines) return;
   setFocus(el.dataset.lines.split(','), el);
 }
 $('#s-result').addEventListener('click', onPick);
-$('#s-result').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { const el = e.target.closest('.chip, .luck'); if (el) { e.preventDefault(); onPick(e); } } });
+$('#s-result').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { const el = e.target.closest('.chip'); if (el) { e.preventDefault(); onPick(e); } } });
 
 // ------------------------------------------------------------------ share (friend challenge)
 const UA = navigator.userAgent || '';
@@ -393,8 +428,7 @@ const FRIEND = (() => {
     <p class="sh-type">“친구는 <b>${TYPE_EMOJI[t.id] || ''} ${t.name}</b>!</p>
     <p class="sh-q">너는 무슨 여우야? 🦊”</p>
     ${starRow}
-    <p class="sh-compat">손바닥 사진 한 장이면 친구와의 <b>궁합 %</b>도 바로 알려 드려요 💞</p>
-    <button type="button" id="btn-challenge" class="btn primary">나도 손금 보고 궁합 보기 ✨</button>`;
+    <button type="button" id="btn-challenge" class="btn primary">나도 해보고 궁합 보기 ✨</button>`;
   b.classList.remove('hidden');
   track('share_landing', { t: t.id });
   $('#btn-challenge').addEventListener('click', () => { track('share_challenge_click', { t: t.id }); $('#btn-start').click(); });
@@ -407,8 +441,8 @@ function friendLine(res) {
   const c = compat(FRIEND.t.id, res.type.id, FRIEND.s, mine);
   el.innerHTML = (same
     ? `🦊 친구도 <b>'${FRIEND.t.name}'</b>! 같은 여우끼리 통했구려.`
-    : `🦊 친구는 <b>'${FRIEND.t.name}'</b>, 그대는 <b>'${res.type.name}'</b>!`)
-    + `<br>💞 두 여우의 궁합은 <b class="pct">${c.pct}%</b> — ${c.msg}<br><span class="muted">재미로 보는 궁합이에요</span>`;
+    : `🦊 친구는 <b>'${FRIEND.t.name}'</b>, 나는 <b>'${res.type.name}'</b>`)
+    + `<br>💞 궁합 <b class="pct">${c.pct}%</b> — ${c.msg}`;
   track('share_friend_result', { kind: c.kind });
   el.classList.remove('hidden');
 }

@@ -1,0 +1,37 @@
+// Mobile (390px) screenshots + visible-text length of landing/result: node tests/shots_simple_ui.mjs <tag> [baseURL]
+// Collection is switched off (no Supabase writes). The palm overlay is hidden so no photo is saved.
+import { chromium } from 'playwright-core';
+import fs from 'fs';
+const TAG = process.argv[2] || 'after', BASE = process.argv[3] || 'http://localhost:8799/';
+const VAL = process.env.VAL || '/workspace/palm-ai/data/palm_lines_yolo_v2/images/val/';
+const OUT = process.env.OUT || '/workspace/palm-promo/simple_ui/';
+fs.mkdirSync(OUT, { recursive: true });
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'ko-KR' });
+await ctx.addInitScript(() => { try { localStorage.setItem('hoa_collect', 'off'); } catch {} });
+const p = await ctx.newPage(); const errs = [];
+p.on('pageerror', (e) => errs.push(String(e)));
+const len = (sel) => p.evaluate((s) => { const el = document.querySelector(s); return { visible: el.innerText.replace(/\s+/g, ' ').trim().length, all: el.textContent.replace(/\s+/g, ' ').trim().length }; }, sel);
+const out = {};
+await p.goto(BASE, { waitUntil: 'networkidle' });
+await p.waitForTimeout(600);
+out.landing = await len('#s-intro');
+await p.screenshot({ path: `${OUT}${TAG}_landing_top.png` });
+await p.screenshot({ path: `${OUT}${TAG}_landing_full.png`, fullPage: true });
+await p.click('#btn-start'); await p.waitForSelector('#s-capture.active'); await p.waitForTimeout(500);
+out.capture = await len('#s-capture');
+await p.screenshot({ path: `${OUT}${TAG}_capture.png` });
+await p.setInputFiles('#in-album', VAL + 'image1016.jpg');
+await p.waitForSelector('#s-result.active', { timeout: 120000 });
+await p.addStyleTag({ content: '#r-overlay{visibility:hidden!important}' });
+await p.waitForTimeout(900);
+out.result = await len('#s-result');
+await p.screenshot({ path: `${OUT}${TAG}_result_top.png` });
+await p.screenshot({ path: `${OUT}${TAG}_result_full.png`, fullPage: true });
+await p.click('.luck-tile'); await p.waitForTimeout(900);
+out.evidenceOpen = await len('#s-result');
+await p.screenshot({ path: `${OUT}${TAG}_result_evidence_open.png` });
+out.h = await p.evaluate(() => ({ ev: document.querySelector('#r-evidence').offsetHeight, vh: innerHeight, hero: document.querySelector('#r-sharehero').getBoundingClientRect().top + scrollY, ev0: document.querySelector('#r-evidence').getBoundingClientRect().top + scrollY }));
+out.errors = errs;
+console.log(JSON.stringify(out));
+await b.close();

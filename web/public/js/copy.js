@@ -28,6 +28,9 @@ const CLOSING = {
   2: ['천천히 피어나는 운이니 조급해 마시게.', '작은 씨앗이 곧 싹을 틔우겠소.'],
   1: ['아직 꽃봉오리이니 기대해 보시게.', '숨은 운이 기다리고 있구려.'],
 };
+// 별점별 한 줄 (카드에 보이는 짧은 문구)
+const SHORT = { 5: '하늘이 내린 복!', 4: '기운이 든든해요', 3: '알맞게 고른 기운', 2: '천천히 피어나는 운', 1: '숨은 운이 기다려요' };
+export const shortFor = (luck) => SHORT[luck.stars] || SHORT[3];
 export function readingFor(key, luck) {
   const reason = luck.reason_texts[0];
   const options = CLOSING[luck.stars] || CLOSING[3];

@@ -14,6 +14,7 @@ fs.mkdirSync(OUT, { recursive: true });
 const UA = 'Mozilla/5.0 (Linux; Android 14; SM-S918N Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.102 Mobile Safari/537.36;KAKAOTALK 2410530';
 const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, userAgent: UA, locale: 'ko-KR' });
+await ctx.addInitScript(() => { try { localStorage.setItem('hoa_collect', 'off'); } catch {} });   // 테스트가 운영 DB 에 쓰지 않도록
 const page = await ctx.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
@@ -32,7 +33,8 @@ for (const [k, name] of IMAGES.entries()) {
   const lucks = await page.$('#r-lucks');
   await lucks.screenshot({ path: `${OUT}${TAG}_${k + 1}_${stem}_lucks.png` });
   // tap the first evidence chip of the first card that has one -> highlight
-  const chip = await page.$('.luck .chip');
+  await page.click('.luck-tile'); await page.waitForTimeout(300);   // 근거 보기 펼치기 (첫 카드)
+  const chip = await page.$('.luck:not([hidden]) .chip');
   if (chip) {
     await chip.tap();
     await page.waitForTimeout(700);

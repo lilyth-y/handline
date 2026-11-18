@@ -34,17 +34,20 @@ await A.goto(BASE + '?ref=blog', { waitUntil: 'networkidle' });
 await analyse(A, 'image1016.jpg');
 check('hero_cta_visible_without_scroll', await A.locator('#r-sharehero').evaluate((el) => { const r = el.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), {});
 check('kakao_hidden_without_key', await A.locator('#sh-kakao.hidden').count() === 1);
-check('hook_has_mate', /천생연분인 여우는/.test(await A.textContent('#r-hook')), { text: (await A.textContent('#r-hook')).trim() });
+check('hook_has_mate', /천생연분/.test(await A.textContent('#r-hook')), { text: (await A.textContent('#r-hook')).trim() });
 check('sticky_hidden_at_top', await A.locator('#share-sticky.hidden').count() === 1);
 await A.screenshot({ path: OUT + 'result_top_share_cta.png' });
 await A.click('#sh-native');
 const sh = await A.evaluate(() => window.__shared);
 const u = sh && new URL(sh.url);
 check('native_share_url', u && /^\/s\/[a-z]+\/$/.test(u.pathname) && u.searchParams.get('ref') === 'share' && /^[1-5]{4}$/.test(u.searchParams.get('s')), { url: sh?.url });
-await A.evaluate(() => window.scrollTo(0, 1400)); await A.waitForTimeout(400);
-check('sticky_visible_mid_scroll', await A.locator('#share-sticky:not(.hidden)').count() === 1);
+// 근거 보기를 펼치면 공유 버튼들이 화면 밖으로 밀려나므로 하단 고정 버튼이 뜬다
+await A.click('.luck-tile[data-open="wealth"]'); await A.waitForSelector('#r-evidence:not(.hidden)');
+check('evidence_opens_with_chips', await A.locator('#r-panels .luck:not([hidden]) .chip, #r-panels .luck:not([hidden]) .ev-default').count() > 0);
+await A.evaluate(() => window.scrollTo(0, 120)); await A.waitForTimeout(500);   // 공유 카드는 근거 패널 아래로 밀려나 화면 밖
+check('sticky_visible_with_evidence_open', await A.locator('#share-sticky:not(.hidden)').count() === 1);
 await A.screenshot({ path: OUT + 'result_mid_sticky.png' });
-await A.locator('#btn-share').scrollIntoViewIfNeeded(); await A.waitForTimeout(400);
+await A.click('.luck-tile[data-open="wealth"]'); await A.locator('#btn-share').scrollIntoViewIfNeeded(); await A.waitForTimeout(400);
 check('sticky_hidden_at_bottom_cta', await A.locator('#share-sticky.hidden').count() === 1);
 await A.screenshot({ path: OUT + 'result_bottom_share.png' });
 await A.click('#sh-copy').catch(async () => { await A.locator('#r-sharehero').scrollIntoViewIfNeeded(); await A.click('#sh-copy'); });
@@ -81,7 +84,7 @@ check('redirect_keeps_params', q.get('t') && q.get('ref') === 'share' && /^[1-5]
 check('teaser_text', /친구는 .+!/.test(await C.textContent('#shared-banner')) && /궁합/.test(await C.textContent('#shared-banner')), { text: (await C.textContent('#shared-banner')).replace(/\s+/g, ' ').trim() });
 await C.screenshot({ path: OUT + 'landing_shared_link.png' });
 await analyse(C, 'image1047.jpg');
-check('friend_compat_line', /궁합은 \d+%/.test(await C.textContent('#r-friend')), { text: (await C.textContent('#r-friend')).replace(/\s+/g, ' ').trim() });
+check('friend_compat_line', /궁합 \d+%/.test(await C.textContent('#r-friend')), { text: (await C.textContent('#r-friend')).replace(/\s+/g, ' ').trim() });
 await C.screenshot({ path: OUT + 'friend_result_compat.png' });
 const evC = await C.evaluate(() => window.__track.map((e) => e.name));
 check('landing_tracking', evC.includes('share_landing') && evC.includes('share_friend_result'), { evC });

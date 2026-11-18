@@ -158,3 +158,52 @@ body.has-sticky .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
 .sh-compat b{color:var(--gold)}
 .friend .pct{font-size:20px}
 .friend .muted{font-size:11.5px}
+
+/* ---- simple UI: 짧은 글, 접어 둔 근거, 넉넉한 여백 ---- */
+.lead{margin:6px 0 16px;font-size:15.5px;line-height:1.6;color:var(--lav2)}
+.lead.left{text-align:left;width:100%;margin:2px 0 14px}
+.screen h1{margin:10px 0 8px}
+#s-intro .btn.primary{margin-top:6px}
+#s-intro .fine{margin:12px 0 0}
+.result-head{gap:14px;margin:4px 0 10px}
+.mini-wrap{position:relative;flex:none;width:76px;height:76px}
+.mini-wrap .mini{display:block}
+.mini-emoji{position:absolute;right:-6px;bottom:-4px;width:30px;height:30px;border-radius:50%;background:var(--navy2);border:1px solid #f3cc6b88;display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1}
+.type-name{font-size:24px;margin:0 0 4px}
+.keyword{margin:0;font-size:13.5px}
+.luck-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin:2px 0 14px}
+.luck-tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;font-family:inherit;color:var(--text);background:#ffffff0d;border:1px solid #b9a7ff33;border-radius:18px;padding:13px 14px 11px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.luck-tile.on{border-color:#f3cc6baa;box-shadow:0 0 0 1px #f3cc6b55,0 0 18px #f3cc6b22}
+.lt-label{font-weight:700;font-size:14.5px}
+.lt-stars{color:var(--gold);font-size:17px;letter-spacing:1px;line-height:1.2}
+.lt-stars .off{color:#ffffff30}
+.lt-line{font-size:12.5px;color:var(--lav2);line-height:1.4}
+.lt-more{margin-top:2px;font-size:11.5px;color:var(--muted)}
+.lt-more i{font-style:normal;display:inline-block;transition:transform .2s}
+.luck-tile.on .lt-more i{transform:rotate(180deg)}
+.evidence{width:100%;margin:-2px 0 12px}
+.luck[hidden]{display:none}
+.luck{cursor:default}
+.share-hero{padding:14px 14px 10px;margin:4px 0 12px}
+.share-hero .sh-hook{margin:0 0 6px;font-size:14.5px;font-weight:700;color:var(--gold);line-height:1.5}
+.share-hero .sh-hook .muted{font-weight:400;font-size:12.5px;display:block;margin-top:2px;color:var(--lav2)}
+.share-row{display:flex;gap:8px}
+.share-row .btn{margin:6px 0 0;padding:14px 8px;font-size:15.5px}
+.share-row .btn.primary,.share-row .btn:first-child{flex:1.35}
+.share-row .btn.ghost{flex:1}
+.share-hero > .btn.kakao{margin:6px 0 0}
+.friend{margin:0 0 12px;padding:12px 14px;font-size:14px}
+.measured{margin:2px 0 12px}
+.more-text{margin:10px 0 6px;font-size:14px;line-height:1.65;color:var(--lav2)}
+.measured .muted{margin-left:4px}
+#btn-share{margin-top:6px}
+.dogam{margin-top:20px;padding:12px 14px}
+.dogam summary{cursor:pointer;font-weight:700;font-size:14.5px;text-align:center;list-style:none;color:var(--lav2)}
+.dogam summary::-webkit-details-marker{display:none}
+.dogam summary::after{content:" ▾";color:var(--muted)}
+.dogam[open] summary::after{content:" ▴"}
+.dogam .dg-grid{margin:12px 0 2px}
+.shared{padding:14px 14px 10px;margin:0 0 12px}
+.sh-stars{margin-bottom:6px!important}
+.collect-foot{margin-top:10px}
+.result-head .keyword{text-align:left}
