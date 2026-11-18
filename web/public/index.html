@@ -106,6 +106,13 @@
     </div>
     <p id="r-intro" class="bubble left"></p>
     <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-sharehero" class="card share-hero">
+      <p class="sh-eyebrow">💞 친구는 어떤 여우일까?</p>
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 도전장 보내기</button>
+      <button type="button" id="sh-native" class="btn primary" data-share-src="hero">친구에게 도전장 보내기 💌</button>
+      <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
+    </div>
     <div class="card overlay-card">
       <canvas id="r-overlay"></canvas>
       <div class="legend">
@@ -123,10 +130,10 @@
       <div id="r-measured"></div>
     </details>
     <div class="card compat">
-      <h3>👫 친구 궁합 <span class="badge">준비 중</span></h3>
-      <p>친구 손금과 내 손금을 겹쳐 보는 궁합 풀이는 곧 열려요!</p>
+      <h3>👫 친구 궁합</h3>
+      <p>친구가 내 도전장으로 손금을 보면, 두 여우의 궁합이 몇 %인지 바로 알려 드려요!</p>
     </div>
-    <button id="btn-share" class="btn primary">친구에게 도전장 보내기 💌</button>
+    <button id="btn-share" class="btn primary" data-share-src="bottom">친구에게 도전장 보내기 💌</button>
     <button id="btn-card" class="btn ghost gold-line">결과 카드 이미지 저장 📥</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
     <aside id="r-donate" class="donate-slot" hidden></aside>
@@ -204,7 +211,8 @@
       <button type="button" id="card-close" class="btn ghost">닫기</button>
     </div>
   </div>
-  <div id="toast" class="toast"></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💌 친구에게 도전장 보내기</button></div>
+<div id="toast" class="toast"></div>
 </div>
 <script type="module" src="js/app.js"></script>
 </body>

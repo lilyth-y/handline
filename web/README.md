@@ -41,3 +41,16 @@ PLSU + 11K Hands, features from this browser pipeline). `gen_calib.cjs` copies i
 - E2E: `node tests/e2e_collect.mjs [baseURL]` — INSERT 1회 · 페이로드에 사진/좌표 없음 · 같은 사진 중복 제거 · 끄기 기억 + 아무것도 안 보냄 ·
   anon SELECT/UPDATE/DELETE 거부 · 8KB 초과 거부. 끝나면 `delete from palm_features where is_test;` 로 테스트 행 삭제.
 - 보정에 쓰기: `../interpret/refset/README.md` 의 "실제 사용자 측정값으로 다시 보정하기".
+
+## 공유 부스트 (친구 도전장 / 카카오톡 공유)
+
+- 결과 화면 맨 위(`#r-sharehero`)와 맨 아래(`#btn-share`), 화면을 내릴 때 뜨는 하단 고정 버튼이 같은 공유 로직(`js/app.js` → `js/share.js`)을 쓴다.
+- 공유 링크는 `https://hoadosa.com/s/<유형id>/?s=<별점4자리>&ref=share`. 이 정적 페이지가 유형별 OG 미리보기(`img/share/<id>.jpg`)를 갖고 있고, 사람이 열면 `/?t=<id>&s=…&ref=share` 로 바로 넘어간다. `/s/*` 는 noindex.
+- 미리보기 이미지와 `/s/*` 페이지는 `node tools/gen_share_og.mjs` 로 다시 만든다 (앱 마스코트만 사용, 손 사진 없음).
+- 카카오톡 공유: `js/share.js` 의 `KAKAO_JS_KEY` 를 채우면 카카오톡 버튼이 나타난다 (비어 있으면 숨김, 공유 시트/링크 복사로 대체).
+  1. developers.kakao.com → 앱 만들기 → [플랫폼 키] → JavaScript 키 복사
+  2. 같은 화면 [JavaScript SDK 도메인] 에 `https://hoadosa.com` (필요하면 `https://hoa-palm.vercel.app`) 등록
+  3. [제품 링크 관리] → [웹 도메인] 에도 같은 도메인 등록 (카카오톡 공유 링크 허용)
+  4. 키를 `KAKAO_JS_KEY` 에 넣고 배포. SDK 는 2.8.5 + SRI 해시로 고정돼 있다.
+- 클릭 집계: `window.va('event', …)` (Vercel Web Analytics 사용자 지정 이벤트): `share_click`, `share_done`, `share_cancel`, `share_landing`, `share_challenge_click`, `share_friend_result`. 개인정보는 보내지 않는다. (사용자 지정 이벤트는 Vercel 요금제에 따라 대시보드에 안 보일 수 있다.)
+- 테스트: `node tests/e2e_share.mjs http://localhost:<port>/` (수집은 꺼진 상태로 실행, 네트워크 쓰기 없음).

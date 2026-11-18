@@ -142,3 +142,19 @@ h3{margin:0 0 6px;font-size:17px}
 .adfit-box{width:320px;max-width:100%;margin:0 auto;border:1px solid #b9a7ff33;border-radius:12px;background:#ffffff08;overflow:hidden}
 .adfit-box .kakao_ad_area{width:100%;min-height:100px;margin:0 auto}
 .adfit-preview{display:flex;align-items:center;justify-content:center;width:320px;height:100px;max-width:100%;margin:0 auto;color:var(--muted);font-size:13px;letter-spacing:.02em;background:repeating-linear-gradient(-45deg,#ffffff07 0 8px,#b9a7ff10 8px 16px);border:1px dashed #b9a7ff55;border-radius:12px;box-sizing:border-box}
+
+/* ---- share boost: 결과 화면 상단 공유 CTA, 하단 고정 버튼, 카카오 버튼 ---- */
+.share-hero{text-align:center;border-color:#f3cc6b77;background:linear-gradient(160deg,#f3cc6b14,#b9a7ff12);padding:16px 16px 12px;margin:2px 0 10px}
+.share-hero .sh-eyebrow{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--gold)}
+.share-hero .sh-hook{margin:0 0 10px;font-size:14px;line-height:1.6;color:var(--lav2)}
+.share-hero .sh-hook b{color:var(--gold)}
+.share-hero .btn{margin:6px 0 0}
+.btn.kakao{background:#fee500;color:#191919;box-shadow:0 6px 20px #fee50044}
+.share-sticky{position:fixed;left:0;right:0;bottom:0;z-index:8;max-width:480px;margin:0 auto;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#0d123600,#0d1236ee 35%)}
+.share-sticky .btn{margin:0;box-shadow:0 8px 26px #000a,0 0 0 1px #f3cc6b66}
+#s-result{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+body.has-sticky .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
+.sh-compat{font-size:13px;color:var(--lav2);margin:0 0 6px!important}
+.sh-compat b{color:var(--gold)}
+.friend .pct{font-size:20px}
+.friend .muted{font-size:11.5px}

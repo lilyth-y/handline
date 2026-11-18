@@ -42,7 +42,7 @@ await a.click('#btn-share');
 const shared = await a.evaluate(() => window.__shared);
 const sURL = shared && new URL(shared.url);
 check('share_text_challenge', shared && /나는 '.+'! 너는 무슨 여우야\?/.test(shared.text), { text: shared?.text });
-check('share_url_ref_share', sURL && sURL.searchParams.get('ref') === 'share' && sURL.searchParams.get('t') && /^[1-5]{4}$/.test(sURL.searchParams.get('s')), { url: shared?.url });
+check('share_url_ref_share', sURL && /^\/s\/[a-z]+\/$/.test(sURL.pathname) && sURL.searchParams.get('ref') === 'share' && /^[1-5]{4}$/.test(sURL.searchParams.get('s')), { url: shared?.url });
 await a.click('#btn-card');
 await a.waitForSelector('#card-modal:not(.hidden)', { timeout: 15000 });
 await a.waitForFunction(() => document.getElementById('card-img').complete && document.getElementById('card-img').naturalWidth > 0);
@@ -60,8 +60,9 @@ check('modal_closes', await a.locator('#card-modal.hidden').count() === 1);
 
 // ---- B. friend opens the shared link (KakaoTalk)
 const ctxB = await mk(KAKAO);
+await ctxB.addInitScript(() => { try { sessionStorage.setItem('hoa_collect_test', '1'); } catch {} });   // 친구 쪽 수집 행도 is_test
 const b = await ctxB.newPage(); watch(b);
-const friendURL = new URL(shared.url); const fu = new URL(BASE); fu.search = friendURL.search; fu.searchParams.set('collect_test', '1');
+const friendURL = new URL(shared.url); const fu = new URL(friendURL.pathname + friendURL.search, BASE);   // /s/<유형>/ → /?t=…&ref=share 로 넘어감
 await b.goto(fu.href, { waitUntil: 'networkidle' });
 check('friend_banner_visible', await b.isVisible('#shared-banner #btn-challenge'), { text: (await b.textContent('#shared-banner')).replace(/\s+/g, ' ').trim() });
 check('friend_ref_share', (await b.evaluate(() => sessionStorage.getItem('hoa_ref'))) === 'share');
