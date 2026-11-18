@@ -1,4 +1,4 @@
-// 결과 공유 카드 (세로 1080x1920 PNG). 사진·손금 그림은 넣지 않는다 (개인 사진 노출 방지): 유형·별점·한마디·URL·마스코트만.
+// 결과 공유 카드 (세로 1080x1920, JPEG 저장). 사진·손금 그림은 넣지 않는다 (개인 사진 노출 방지): 유형·별점·한마디·URL·마스코트만.
 import { TYPE_COPY, LUCK_EMOJI, TYPE_EMOJI, APP_HOST } from './copy.js';
 
 const W = 1080, H = 1920;
@@ -105,4 +105,10 @@ export async function drawShareCard(res) {
   return cv;
 }
 
-export const cardBlob = (cv) => new Promise((res) => cv.toBlob((b) => res(b), 'image/png'));
+// JPEG: 1080x1920 PNG was ~1.9MB and often failed to save in KakaoTalk / iOS.
+export const CARD_MIME = 'image/jpeg';
+export const CARD_QUALITY = 0.9;
+export const CARD_EXT = 'jpg';
+export const cardBlob = (cv, quality = CARD_QUALITY) => new Promise((res, rej) => {
+  cv.toBlob((b) => (b ? res(b) : rej(new Error('카드 이미지를 만들지 못했어요'))), CARD_MIME, quality);
+});
