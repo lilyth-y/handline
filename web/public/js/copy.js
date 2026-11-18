@@ -38,4 +38,4 @@ export const TYPE_EMOJI = {
   gold: '🪙', fire: '🔥', moon: '🌙', star: '⭐', wind: '🍃', sun: '☀️',
   cloud: '☁️', flower: '🌸', rock: '🪨', wave: '🌊', lightning: '⚡', galaxy: '🌌',
 };
-export const APP_HOST = 'hoa-palm.vercel.app';
+export const APP_HOST = 'hoadosa.com';

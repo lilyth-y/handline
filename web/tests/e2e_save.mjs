@@ -25,11 +25,11 @@ const mk = (ua) => browser.newContext({
 
 // href builders (no browser)
 {
-  const url = 'https://hoa-palm.vercel.app/?t=flower&s=4554&ref=share&save=1';
+  const url = 'https://hoadosa.com/?t=flower&s=4554&ref=share&save=1';
   const kakao = externalBrowserHref(url, UAS.kakao);
   const intent = externalBrowserHref(url, UAS.android);
   check('href_kakao_scheme', kakao.startsWith('kakaotalk://web/openExternal?url=') && decodeURIComponent(kakao.split('url=')[1]) === url, { kakao: kakao.slice(0, 80) });
-  check('href_android_intent', intent.startsWith('intent://hoa-palm.vercel.app/') && intent.includes('package=com.android.chrome') && intent.includes('S.browser_fallback_url='), { intent: intent.slice(0, 120) });
+  check('href_android_intent', intent.startsWith('intent://hoadosa.com/') && intent.includes('package=com.android.chrome') && intent.includes('S.browser_fallback_url='), { intent: intent.slice(0, 120) });
   check('flags_kakao', isInApp(UAS.kakao) && shouldSkipFileShare(UAS.kakao) && !canUseAnchorDownload(UAS.kakao));
   check('flags_android', !isInApp(UAS.android) && canUseAnchorDownload(UAS.android) && !isIOS(UAS.android));
   check('flags_iphone', !isInApp(UAS.iphone) && isIOS(UAS.iphone) && !canUseAnchorDownload(UAS.iphone));
