@@ -2,16 +2,18 @@
 // Fill these constants when IDs/links are issued. Empty values load nothing
 // (unless the page is opened with ?adpreview=1, which shows placeholders).
 //
-// ads.txt: do NOT create web/public/ads.txt until a Google AdSense publisher
-// id is issued. Then add a file containing exactly one line:
-//   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa7
+// ads.txt lives at web/public/ads.txt and must stay a single line:
+//   google.com, pub-1321078614012821, DIRECT, f08c47fec0942fa0
 // Use the numeric publisher id (pub-...), not the ca-pub- client prefix.
-// The last field is Google's official certified-seller ID.
+// The last field is Google's official certified-seller ID (ends in fa0).
+// The AdSense verification script is already in each page <head>. Do not
+// insert a second copy here; only push a unit when ADSENSE_SLOT is set.
 
 import { ADFIT_UNIT, ADFIT_WIDTH, ADFIT_HEIGHT, mountAdfit, wantPreview } from './adfit.js';
 
-// AdSense: set to 'ca-pub-…' and the numeric slot id. Both must be set.
-export const ADSENSE_CLIENT = '';
+// AdSense client is set for site verification. Leave ADSENSE_SLOT empty
+// until an ad unit id is issued — a unit is rendered only when both are set.
+export const ADSENSE_CLIENT = 'ca-pub-1321078614012821';
 export const ADSENSE_SLOT = '';
 
 // Coupang Partners links, keyed by fox type id (gold, fire, …) or luck
@@ -88,21 +90,35 @@ function mountAdsense(root) {
   box.appendChild(ins);
   root.appendChild(box);
 
-  if (!document.getElementById(ADSENSE_SCRIPT_ID)) {
-    const s = document.createElement('script');
-    s.id = ADSENSE_SCRIPT_ID;
-    s.async = true;
-    s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ADSENSE_CLIENT.trim())}`;
-    s.crossOrigin = 'anonymous';
-    document.head.appendChild(s);
-  }
+  const script = ensureAdsenseScript();
   const push = () => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch { /* ignore */ }
   };
   if (window.adsbygoogle) push();
-  else document.getElementById(ADSENSE_SCRIPT_ID)?.addEventListener('load', push, { once: true });
+  else script.addEventListener('load', push, { once: true });
+}
+
+const ADSENSE_SCRIPT_MARK = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+
+function findAdsenseScript() {
+  const byId = document.getElementById(ADSENSE_SCRIPT_ID);
+  if (byId) return byId;
+  return document.querySelector(`script[src*="${ADSENSE_SCRIPT_MARK}"]`);
+}
+
+// Reuse the <head> verification script when present. Never add a second copy.
+function ensureAdsenseScript() {
+  const existing = findAdsenseScript();
+  if (existing) return existing;
+  const s = document.createElement('script');
+  s.id = ADSENSE_SCRIPT_ID;
+  s.async = true;
+  s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ADSENSE_CLIENT.trim())}`;
+  s.crossOrigin = 'anonymous';
+  document.head.appendChild(s);
+  return s;
 }
 
 function showAdPreview(root) {
