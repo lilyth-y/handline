@@ -10,6 +10,7 @@ import { isInApp, isIOS, isKakao, canUseAnchorDownload, shouldSkipFileShare, ext
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
+import { mountAdfit } from './adfit.js';
 
 const MAX_SIDE = 1024;
 const $ = (s) => document.querySelector(s);
@@ -175,6 +176,7 @@ function renderResult(canvas, feat, res) {
   $('#r-measured-box').open = false;
   $('#r-disclaimer').textContent = res.disclaimer || RULES.disclaimer;
   friendLine(res);
+  mountAdfit();
 }
 function onPick(e) {
   if (e.target.closest('#btn-focus-clear')) { setFocus(null); return; }
