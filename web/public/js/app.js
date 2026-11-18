@@ -10,7 +10,7 @@ import { isInApp, isIOS, isKakao, canUseAnchorDownload, shouldSkipFileShare, ext
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
-import { mountAdfit } from './adfit.js';
+import { mountMonetize } from './monetize.js';
 
 const MAX_SIDE = 1024;
 const $ = (s) => document.querySelector(s);
@@ -176,7 +176,7 @@ function renderResult(canvas, feat, res) {
   $('#r-measured-box').open = false;
   $('#r-disclaimer').textContent = res.disclaimer || RULES.disclaimer;
   friendLine(res);
-  mountAdfit();
+  mountMonetize(res);
 }
 function onPick(e) {
   if (e.target.closest('#btn-focus-clear')) { setFocus(null); return; }
@@ -362,7 +362,19 @@ document.querySelectorAll('[data-privacy]').forEach((a) => a.addEventListener('c
   privacyFrom = document.querySelector('.screen.active')?.id || 's-intro';
   go('s-privacy');
 }));
-$('#privacy-back').addEventListener('click', () => go(privacyFrom === 's-privacy' ? 's-intro' : privacyFrom));
+$('#privacy-back').addEventListener('click', () => {
+  if (location.hash === '#privacy') history.replaceState(null, '', location.pathname + location.search);
+  go(privacyFrom === 's-privacy' ? 's-intro' : privacyFrom);
+});
+function openPrivacyFromHash() {
+  if (location.hash === '#privacy') {
+    privacyFrom = document.querySelector('.screen.active')?.id || 's-intro';
+    if (privacyFrom === 's-privacy') privacyFrom = 's-intro';
+    go('s-privacy');
+  }
+}
+window.addEventListener('hashchange', openPrivacyFromHash);
+openPrivacyFromHash();
 syncCollectUI();
 
 // ------------------------------------------------------------------ wiring

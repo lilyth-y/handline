@@ -14,7 +14,7 @@ const SCRIPT_ID = 'kakao-adfit-sdk';
 
 let scriptPromise = null;
 
-function wantPreview() {
+export function wantPreview() {
   try { return new URLSearchParams(location.search).get('adpreview') === '1'; }
   catch { return false; }
 }
@@ -51,16 +51,15 @@ function renderIns(ins, firstLoad) {
   }
 }
 
+export function isAdfitReady() {
+  return Boolean(String(ADFIT_UNIT || '').trim());
+}
+
 export function mountAdfit(root = document.getElementById('r-adfit')) {
-  if (!root) return;
+  if (!root) return false;
   const unit = String(ADFIT_UNIT || '').trim();
-  const preview = !unit && wantPreview();
+  if (!unit) return false;
   root.replaceChildren();
-  if (!unit && !preview) {
-    root.hidden = true;
-    root.classList.remove('show');
-    return;
-  }
   root.hidden = false;
   root.classList.add('show');
 
@@ -68,16 +67,6 @@ export function mountAdfit(root = document.getElementById('r-adfit')) {
   label.className = 'adfit-label';
   label.textContent = '광고';
   root.appendChild(label);
-
-  if (preview) {
-    const ph = document.createElement('div');
-    ph.className = 'adfit-preview';
-    ph.style.width = ADFIT_WIDTH + 'px';
-    ph.style.height = ADFIT_HEIGHT + 'px';
-    ph.textContent = `광고 자리 (${ADFIT_WIDTH}×${ADFIT_HEIGHT})`;
-    root.appendChild(ph);
-    return;
-  }
 
   const box = document.createElement('div');
   box.className = 'adfit-box';
@@ -96,4 +85,5 @@ export function mountAdfit(root = document.getElementById('r-adfit')) {
 
   const firstLoad = !document.getElementById(SCRIPT_ID) && !window.adfit;
   ensureScript().then(() => renderIns(ins, firstLoad)).catch(() => {});
+  return true;
 }

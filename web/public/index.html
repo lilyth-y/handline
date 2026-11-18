@@ -16,6 +16,7 @@
 <link rel="icon" href="img/icon-192.png">
 <link rel="apple-touch-icon" href="img/icon-192.png">
 <link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/site.css">
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -37,6 +38,17 @@
       <div id="dogam-grid" class="dg-grid"></div>
       <button type="button" class="btn ghost" onclick="document.getElementById('btn-start').click()">내 여우 찾으러 가기 🦊</button>
     </div>
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/guide/">손금 이야기</a>
+        <a href="/foxes/">여우 도감</a>
+        <a href="/about/">소개</a>
+        <a href="/privacy/">개인정보</a>
+        <a href="/terms/">이용약관</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · 호아 도사의 손금 풀이</p>
+    </footer>
+
   </section>
 
   <!-- 2. capture -->
@@ -116,10 +128,24 @@
     <button id="btn-share" class="btn primary">친구에게 도전장 보내기 💌</button>
     <button id="btn-card" class="btn ghost gold-line">결과 카드 이미지 저장 📥</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
+    <aside id="r-donate" class="donate-slot" hidden></aside>
     <aside id="r-adfit" class="adfit-slot" hidden aria-label="광고"></aside>
+    <aside id="r-coupang" class="coupang-slot" hidden aria-label="행운 아이템"></aside>
     <p class="fine disclaimer-lead">🦊 별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과랍니다.</p>
     <p id="r-disclaimer" class="fine"></p>
     <p class="fine collect-foot">📊 측정 숫자 익명 제공: <b class="collect-state"></b> · <a href="#" class="link" data-privacy>개인정보 안내·끄기</a></p>
+
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/guide/">손금 이야기</a>
+        <a href="/foxes/">여우 도감</a>
+        <a href="/about/">소개</a>
+        <a href="/privacy/">개인정보</a>
+        <a href="/terms/">이용약관</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · 호아 도사의 손금 풀이</p>
+    </footer>
+
   </section>
 
   <!-- error -->
@@ -150,7 +176,11 @@
       <h3>👀 방문 통계</h3>
       <p>몇 명이, 어디서 들어왔는지는 Vercel Web Analytics로 익명 집계해요. 쿠키는 쓰지 않고, 페이지 열람·유입 경로·브라우저와 기기 종류, IP로 추정한 국가 단위 지역만 모아요. IP 주소 자체는 저장하지 않아요.</p>
       <h3>📣 광고</h3>
-      <p>결과 화면 아래에 카카오 애드핏 광고가 실릴 수 있어요. 광고는 카카오가 제공하며, 카카오 정책에 따라 쿠키나 광고 식별자를 쓸 수 있어요. 자세한 내용은 <a href="https://www.kakao.com/policy/privacy" class="link" target="_blank" rel="noopener noreferrer">카카오 개인정보 처리방침</a>을 참고해 주세요.</p>
+      <p>결과 화면 아래에 카카오 애드핏 또는 구글 애드센스 광고가 실릴 수 있어요. 광고는 각 제공자가 게재하며, 해당 정책에 따라 쿠키나 광고 식별자를 쓸 수 있어요. 자세한 내용은 <a href="https://www.kakao.com/policy/privacy" class="link" target="_blank" rel="noopener noreferrer">카카오 개인정보 처리방침</a>, <a href="https://policies.google.com/privacy" class="link" target="_blank" rel="noopener noreferrer">구글 개인정보처리방침</a>, <a href="https://policies.google.com/technologies/ads" class="link" target="_blank" rel="noopener noreferrer">구글 광고</a>를 참고해 주세요.</p>
+      <h3>🛒 쿠팡 파트너스</h3>
+      <p>결과 화면에 쿠팡 파트너스 추천 링크가 보일 수 있어요. 링크를 통해 구매가 이루어지면 운영 주체 mbox solutions가 일정액의 수수료를 제공받을 수 있습니다. 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+      <h3>🍙 후원</h3>
+      <p>‘호아 도사에게 유부 사주기’ 버튼을 누르면 토스 또는 카카오페이 같은 송금·결제 페이지로 이동할 수 있어요. 후원은 선택 사항이며, 결제 정보는 해당 서비스의 정책에 따라 처리됩니다. 호아 도사는 카드 번호를 직접 받지 않아요.</p>
       <h3>🚫 모으지 않는 것</h3>
       <p>사진, 얼굴, 이름, 연락처, 계정, 기기 ID, IP 주소, 정확한 위치, 정확한 시각은 저장하지 않아요. 저장된 숫자만으로는 누구의 손인지 알 수 없어요. <span class="muted">(보내는 순간의 서버 접속 기록은 보안을 위해 Supabase에 짧게 남았다가 자동으로 지워져요.)</span></p>
       <h3>🔒 보관과 이용</h3>
