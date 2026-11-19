@@ -1,0 +1,574 @@
+{
+ "ko": {
+  "types": {
+   "gold": {
+    "name": "황금손 재물여우",
+    "keyword": "재물·실속",
+    "element": "금",
+    "intro": "손바닥에 금빛 기운이 반짝이는구려.",
+    "charm": "차곡차곡 쌓는 실속파라 여우 꼬리도 절로 살랑이오."
+   },
+   "fire": {
+    "name": "불꽃손 열정여우",
+    "keyword": "열정·에너지",
+    "element": "불",
+    "intro": "손에서 뜨거운 불꽃 기운이 일렁이는구려.",
+    "charm": "한번 마음먹으면 끝까지 달리는 열정이 그대의 매력이오."
+   },
+   "moon": {
+    "name": "달빛손 감성여우",
+    "keyword": "감성·상상력",
+    "element": "달",
+    "intro": "달빛처럼 은은한 감성이 손금에 흐르는구려.",
+    "charm": "상상력이 풍부하니 그대 곁엔 늘 이야기가 피어나겠소."
+   },
+   "star": {
+    "name": "별빛손 지혜여우",
+    "keyword": "지혜·분석",
+    "element": "별",
+    "intro": "별빛처럼 또렷한 지혜가 손에 깃들었구려.",
+    "charm": "차분히 따져 보는 분석력, 여우 도사도 감탄하오."
+   },
+   "wind": {
+    "name": "바람손 자유여우",
+    "keyword": "자유·모험",
+    "element": "바람",
+    "intro": "자유로운 바람이 손바닥을 스치는구려.",
+    "charm": "새로운 곳, 새로운 일에 겁 없이 뛰어드는 모험가로다."
+   },
+   "sun": {
+    "name": "태양손 리더여우",
+    "keyword": "리더십·자신감",
+    "element": "태양",
+    "intro": "태양처럼 환한 기운이 손에서 뿜어 나오는구려.",
+    "charm": "사람들이 절로 따르는 리더의 자신감이 있소."
+   },
+   "cloud": {
+    "name": "구름손 평화여우",
+    "keyword": "평화·배려",
+    "element": "구름",
+    "intro": "포근한 구름 같은 평화로운 기운이로다.",
+    "charm": "주변을 편안하게 감싸 주는 배려심이 그대의 보물이오."
+   },
+   "flower": {
+    "name": "꽃잎손 인기여우",
+    "keyword": "인기·매력",
+    "element": "꽃",
+    "intro": "꽃잎이 흩날리듯 매력이 넘치는 손이구려.",
+    "charm": "어딜 가도 사랑받는 인기 여우, 꼬리가 살랑살랑하오."
+   },
+   "rock": {
+    "name": "바위손 뚝심여우",
+    "keyword": "끈기·뚝심",
+    "element": "바위",
+    "intro": "바위처럼 단단한 뚝심이 손금에 새겨졌구려.",
+    "charm": "한번 시작하면 끝을 보는 끈기, 누구도 못 당하겠소."
+   },
+   "wave": {
+    "name": "물결손 공감여우",
+    "keyword": "공감·다정",
+    "element": "물",
+    "intro": "잔잔한 물결처럼 다정한 마음이 흐르는구려.",
+    "charm": "남의 마음을 먼저 알아채는 공감 능력이 빛나오."
+   },
+   "lightning": {
+    "name": "번개손 아이디어여우",
+    "keyword": "아이디어·순발력",
+    "element": "번개",
+    "intro": "번쩍! 번개 같은 아이디어가 손에 가득하구려.",
+    "charm": "순발력과 재치로 어디서든 반짝이는 그대로다."
+   },
+   "galaxy": {
+    "name": "은하손 행운여우",
+    "keyword": "행운·조화",
+    "element": "은하",
+    "intro": "은하수처럼 고루 반짝이는 행운의 손이구려.",
+    "charm": "운이 두루두루 조화로우니 하는 일마다 술술 풀리겠소."
+   }
+  },
+  "lucks": {
+   "wealth": "재물운",
+   "love": "연애운",
+   "health": "건강운",
+   "career": "직업·성공운"
+  },
+  "reasons": {
+   "wealth_default": "차곡차곡 모으는 알뜰한 재물 기운",
+   "wealth_fate": "운명선이 보여 꾸준히 쌓이는 재물 기운",
+   "wealth_fate_long": "길게 뻗은 운명선, 노력이 재물로 돌아오는 손",
+   "wealth_head_long": "긴 두뇌선, 계획적으로 불리는 재테크 감각",
+   "wealth_head_straight": "곧은 두뇌선, 실속 있는 현실 감각",
+   "wealth_life_energy": "넓은 생명선 활력이 재물을 부르는 손",
+   "wealth_heart_branch": "감정선 가지, 사람이 곧 복이 되는 손",
+   "wealth_flow": "재물이 활발히 들고 나는 흐름",
+   "love_default": "천천히 깊어지는 은은한 인연",
+   "love_heart_index": "검지 아래까지 뻗은 감정선, 다정하고 헌신적인 사랑",
+   "love_heart_balance": "검지와 중지 사이로 향한 감정선, 이상과 현실의 균형 잡힌 사랑",
+   "love_heart_middle": "중지 쪽 감정선, 내 마음에 솔직한 실속파 연애",
+   "love_heart_curve": "위로 휘어 오르는 감정선, 표현력 넘치는 사랑",
+   "love_heart_long": "길게 이어진 감정선, 깊고 넓은 마음",
+   "love_heart_branch": "감정선의 잔가지, 주변에 사랑받는 인기",
+   "love_heart_clear": "또렷한 감정선, 한결같은 진심",
+   "love_open_heart": "감정선과 두뇌선 사이가 넓어 너그러운 마음",
+   "love_many_sparks": "여러 번 찾아오는 설렘",
+   "love_slow": "천천히 마음을 여는 신중한 연애",
+   "health_default": "나만의 리듬을 지키는 차분한 기운",
+   "health_life_wide": "크게 휘어진 생명선, 넘치는 활력",
+   "health_life_long": "길게 이어진 생명선, 꾸준한 체력과 끈기",
+   "health_life_clear": "또렷한 생명선, 밝고 건강한 기운",
+   "health_life_thick": "굵직한 생명선, 든든한 에너지",
+   "health_life_branch": "생명선 가지, 새로운 활력이 솟는 손",
+   "health_calm": "에너지를 아껴 쓰는 차분한 타입",
+   "health_rhythm": "생활 리듬에 변화를 즐기는 타입",
+   "career_default": "자기만의 속도로 길을 여는 손",
+   "career_fate": "운명선이 보여 목표가 뚜렷한 손",
+   "career_fate_reach": "손가락 쪽까지 뻗은 운명선, 꿈을 향해 쭉 나아가는 힘",
+   "career_head_long": "긴 두뇌선, 폭넓은 관심과 실력",
+   "career_independent": "두뇌선과 생명선이 떨어져 시작, 독립심과 추진력",
+   "career_careful": "두뇌선과 생명선이 함께 시작, 신중하고 믿음직한 일솜씨",
+   "career_head_clear": "또렷한 두뇌선, 집중력 최고",
+   "career_jupiter": "검지 쪽 감정선, 사람을 이끄는 리더 기질",
+   "career_own_path": "정해진 길보다 스스로 길을 만드는 타입",
+   "compat_default": "함께라면 언제나 즐거운 사이",
+   "compat_heart_same": "감정선 끝이 닮아 마음 표현 방식이 똑같아요",
+   "compat_heart_near": "감정선이 비슷해 서로의 마음을 금방 알아채요",
+   "compat_head_similar": "두뇌선 기울기가 닮아 말이 척척 통해요",
+   "compat_head_complement": "두뇌선이 서로 달라 아이디어를 채워 주는 사이",
+   "compat_life_similar": "생명선 활력이 비슷해 노는 속도가 딱 맞아요",
+   "compat_junction_same": "시작 습관이 닮아 함께 움직이기 편해요",
+   "compat_junction_mix": "신중함과 추진력이 만나 환상의 팀워크",
+   "compat_same_element": "같은 기운의 여우끼리, 찰떡 단짝",
+   "compat_element_pair": "서로 기운을 북돋는 찰떡 원소 조합",
+   "compat_luck_complement": "서로 부족한 운을 채워 주는 사이"
+  }
+ },
+ "en": {
+  "types": {
+   "gold": {
+    "name": "Golden-Hand Fortune Fox",
+    "keyword": "Wealth·Savvy",
+    "element": "Gold",
+    "intro": "Golden light glimmers across your palm, my friend.",
+    "charm": "A practical saver who stacks things up bit by bit — even my fox tail starts to wag."
+   },
+   "fire": {
+    "name": "Blaze-Hand Passion Fox",
+    "keyword": "Passion·Energy",
+    "element": "Fire",
+    "intro": "Hot flames flicker in your hand!",
+    "charm": "Once you set your mind on something, you run it to the end — that fire is your charm."
+   },
+   "moon": {
+    "name": "Moonlit-Hand Dreamer Fox",
+    "keyword": "Dreamy·Imaginative",
+    "element": "Moon",
+    "intro": "Soft, moonlit feeling flows through your lines.",
+    "charm": "Your imagination is so rich that stories bloom wherever you go."
+   },
+   "star": {
+    "name": "Starlit-Hand Sage Fox",
+    "keyword": "Wisdom·Analysis",
+    "element": "Star",
+    "intro": "Clear, starlit wisdom dwells in your hand.",
+    "charm": "Calm, careful analysis — even this old fox is impressed."
+   },
+   "wind": {
+    "name": "Wind-Hand Free-Spirit Fox",
+    "keyword": "Freedom·Adventure",
+    "element": "Wind",
+    "intro": "A free wind brushes across your palm.",
+    "charm": "A fearless adventurer, leaping into new places and new work."
+   },
+   "sun": {
+    "name": "Sun-Hand Leader Fox",
+    "keyword": "Leadership·Confidence",
+    "element": "Sun",
+    "intro": "A sun-bright aura radiates from your hand.",
+    "charm": "You have a leader's confidence — people just naturally follow."
+   },
+   "cloud": {
+    "name": "Cloud-Hand Peacemaker Fox",
+    "keyword": "Peace·Kindness",
+    "element": "Cloud",
+    "intro": "A soft, peaceful, cloud-like aura surrounds you.",
+    "charm": "Your gentle thoughtfulness, wrapping everyone in comfort, is your treasure."
+   },
+   "flower": {
+    "name": "Petal-Hand Charmer Fox",
+    "keyword": "Popularity·Charm",
+    "element": "Blossom",
+    "intro": "Your hand scatters charm like drifting petals.",
+    "charm": "A popular fox who's loved wherever you go — tail swishing happily!"
+   },
+   "rock": {
+    "name": "Rock-Hand Steadfast Fox",
+    "keyword": "Grit·Steadiness",
+    "element": "Rock",
+    "intro": "Rock-solid grit is carved into your palm lines.",
+    "charm": "Once you start, you finish — nobody can match your staying power."
+   },
+   "wave": {
+    "name": "Wave-Hand Empath Fox",
+    "keyword": "Empathy·Warmth",
+    "element": "Water",
+    "intro": "A gentle heart flows like a quiet ripple.",
+    "charm": "You sense others' feelings first — that empathy truly shines."
+   },
+   "lightning": {
+    "name": "Lightning-Hand Spark Fox",
+    "keyword": "Ideas·Quick wit",
+    "element": "Lightning",
+    "intro": "Flash! Your hand is full of lightning-quick ideas.",
+    "charm": "With quick wit and sharp reflexes, you sparkle wherever you are."
+   },
+   "galaxy": {
+    "name": "Galaxy-Hand Lucky Fox",
+    "keyword": "Luck·Harmony",
+    "element": "Galaxy",
+    "intro": "A lucky hand that glitters evenly like the Milky Way.",
+    "charm": "Your luck is balanced all around, so everything you do should flow smoothly."
+   }
+  },
+  "lucks": {
+   "wealth": "Wealth",
+   "love": "Love",
+   "health": "Health",
+   "career": "Career & Success"
+  },
+  "reasons": {
+   "wealth_default": "A thrifty knack for saving, bit by bit",
+   "wealth_fate": "A visible fate line — wealth that builds up steadily",
+   "wealth_fate_long": "A long fate line — a hand where effort turns into riches",
+   "wealth_head_long": "A long head line — a planner's knack for growing money",
+   "wealth_head_straight": "A straight head line — a practical, down-to-earth sense",
+   "wealth_life_energy": "A wide life line — vitality that draws wealth",
+   "wealth_heart_branch": "Heart-line branches — people become your fortune",
+   "wealth_flow": "Money flowing busily in and out",
+   "love_default": "A gentle bond that deepens slowly",
+   "love_heart_index": "A heart line reaching under the index finger — warm, devoted love",
+   "love_heart_balance": "A heart line between index and middle fingers — love that balances ideals and reality",
+   "love_heart_middle": "A heart line toward the middle finger — honest, practical romance",
+   "love_heart_curve": "An upward-curving heart line — love rich in expression",
+   "love_heart_long": "A long heart line — a deep, wide heart",
+   "love_heart_branch": "Little branches on the heart line — popularity and affection",
+   "love_heart_clear": "A clear heart line — steady sincerity",
+   "love_open_heart": "A wide gap between heart and head lines — a generous heart",
+   "love_many_sparks": "Sparks that come around more than once",
+   "love_slow": "A careful romance that opens up slowly",
+   "health_default": "A calm energy that keeps its own rhythm",
+   "health_life_wide": "A broadly curved life line — overflowing vitality",
+   "health_life_long": "A long life line — steady stamina and grit",
+   "health_life_clear": "A clear life line — a bright, healthy glow",
+   "health_life_thick": "A bold life line — dependable energy",
+   "health_life_branch": "Life-line branches — fresh energy rising",
+   "health_calm": "A calm type who saves energy",
+   "health_rhythm": "A type who enjoys changing up their daily rhythm",
+   "career_default": "A hand that opens its own path at its own pace",
+   "career_fate": "A visible fate line — a hand with clear goals",
+   "career_fate_reach": "A fate line reaching toward the fingers — the drive to push toward your dreams",
+   "career_head_long": "A long head line — broad interests and real skill",
+   "career_independent": "Head and life lines start apart — independence and drive",
+   "career_careful": "Head and life lines start together — careful, trustworthy work",
+   "career_head_clear": "A clear head line — top-notch focus",
+   "career_jupiter": "A heart line toward the index finger — a natural leader",
+   "career_own_path": "A type who makes their own path rather than following a set one",
+   "compat_default": "Always fun together",
+   "compat_heart_same": "Your heart lines end alike, so you show feelings the same way",
+   "compat_heart_near": "Your heart lines are similar, so you pick up on each other's feelings quickly",
+   "compat_head_similar": "Your head lines slope alike, so conversation flows easily",
+   "compat_head_complement": "Your head lines differ, so you fill in each other's ideas",
+   "compat_life_similar": "Your life lines have similar energy, so your play pace matches perfectly",
+   "compat_junction_same": "Your starting habits are alike, so moving together feels easy",
+   "compat_junction_mix": "Caution meets drive — a dream team",
+   "compat_same_element": "Two foxes of the same element — the best of buddies",
+   "compat_element_pair": "An element pairing that lifts each other's energy",
+   "compat_luck_complement": "You fill in each other's weaker luck"
+  }
+ },
+ "ja": {
+  "types": {
+   "gold": {
+    "name": "黄金の手の財運ぎつね",
+    "keyword": "財運·堅実",
+    "element": "金",
+    "intro": "手のひらに金色の気がきらめいておるのう。",
+    "charm": "こつこつ貯める堅実派じゃから、きつねのしっぽも思わずふりふりじゃ。"
+   },
+   "fire": {
+    "name": "炎の手の情熱ぎつね",
+    "keyword": "情熱·エネルギー",
+    "element": "火",
+    "intro": "手から熱い炎の気がゆらめいておるぞ。",
+    "charm": "いちど決めたら最後まで走りきる情熱が、そなたの魅力じゃ。"
+   },
+   "moon": {
+    "name": "月あかりの手の感性ぎつね",
+    "keyword": "感性·想像力",
+    "element": "月",
+    "intro": "月あかりのようなやわらかな感性が、手相に流れておるのう。",
+    "charm": "想像力ゆたかじゃから、そなたのまわりにはいつも物語が咲くじゃろう。"
+   },
+   "star": {
+    "name": "星あかりの手の知恵ぎつね",
+    "keyword": "知恵·分析",
+    "element": "星",
+    "intro": "星のようにくっきりとした知恵が、手に宿っておるのう。",
+    "charm": "落ち着いて見きわめる分析力には、このホア仙人も感心するぞ。"
+   },
+   "wind": {
+    "name": "風の手の自由ぎつね",
+    "keyword": "自由·冒険",
+    "element": "風",
+    "intro": "自由な風が手のひらをかすめておるぞ。",
+    "charm": "新しい場所にも新しい仕事にも、怖れず飛び込む冒険者じゃな。"
+   },
+   "sun": {
+    "name": "太陽の手のリーダーぎつね",
+    "keyword": "リーダーシップ·自信",
+    "element": "太陽",
+    "intro": "太陽のように明るい気が、手からあふれておるぞ。",
+    "charm": "人が自然とついてくる、リーダーの自信があるのう。"
+   },
+   "cloud": {
+    "name": "雲の手の平和ぎつね",
+    "keyword": "平和·思いやり",
+    "element": "雲",
+    "intro": "ふんわり雲のような、おだやかな気じゃのう。",
+    "charm": "まわりをやさしく包む思いやりが、そなたの宝じゃ。"
+   },
+   "flower": {
+    "name": "花びらの手の人気ぎつね",
+    "keyword": "人気·魅力",
+    "element": "花",
+    "intro": "花びらが舞うように魅力あふれる手じゃのう。",
+    "charm": "どこへ行っても愛される人気者きつね、しっぽがふりふりしておるぞ。"
+   },
+   "rock": {
+    "name": "岩の手の粘りぎつね",
+    "keyword": "根気·どっしり",
+    "element": "岩",
+    "intro": "岩のようにどっしりした粘り強さが、手相に刻まれておるのう。",
+    "charm": "いちど始めたらやり遂げる根気には、だれもかなわんぞ。"
+   },
+   "wave": {
+    "name": "波の手の共感ぎつね",
+    "keyword": "共感·やさしさ",
+    "element": "水",
+    "intro": "さざ波のようにやさしい心が流れておるのう。",
+    "charm": "人の気持ちにまっ先に気づく共感力が光っておるぞ。"
+   },
+   "lightning": {
+    "name": "稲妻の手のひらめきぎつね",
+    "keyword": "ひらめき·瞬発力",
+    "element": "雷",
+    "intro": "ピカッ！稲妻のようなひらめきが手いっぱいじゃのう。",
+    "charm": "瞬発力と機転で、どこでもきらりと光るそなたじゃ。"
+   },
+   "galaxy": {
+    "name": "銀河の手の幸運ぎつね",
+    "keyword": "幸運·調和",
+    "element": "銀河",
+    "intro": "天の川のようにまんべんなく輝く、幸運の手じゃのう。",
+    "charm": "運がバランスよくそろっておるから、何をしても順調に進むじゃろう。"
+   }
+  },
+  "lucks": {
+   "wealth": "金運",
+   "love": "恋愛運",
+   "health": "健康運",
+   "career": "仕事運"
+  },
+  "reasons": {
+   "wealth_default": "こつこつ貯める、堅実なお金の気",
+   "wealth_fate": "運命線が見え、着実に積み上がる財の気",
+   "wealth_fate_long": "長く伸びる運命線、努力が財になって返る手",
+   "wealth_head_long": "長い頭脳線、計画的にお金を育てる感覚",
+   "wealth_head_straight": "まっすぐな頭脳線、堅実な現実感覚",
+   "wealth_life_energy": "広い生命線の活力が、財を呼ぶ手",
+   "wealth_heart_branch": "感情線の枝、人が福になる手",
+   "wealth_flow": "お金が活発に出入りする流れ",
+   "love_default": "ゆっくり深まる、やさしいご縁",
+   "love_heart_index": "人差し指の下まで伸びる感情線、やさしく献身的な愛",
+   "love_heart_balance": "人差し指と中指のあいだへ向かう感情線、理想と現実のバランスがとれた愛",
+   "love_heart_middle": "中指のほうへ向かう感情線、自分の気持ちに正直な堅実な恋",
+   "love_heart_curve": "上へ曲がる感情線、表現力ゆたかな愛",
+   "love_heart_long": "長く続く感情線、深くて広い心",
+   "love_heart_branch": "感情線の小枝、まわりから愛される人気",
+   "love_heart_clear": "くっきりした感情線、ぶれない真心",
+   "love_open_heart": "感情線と頭脳線の間が広く、おおらかな心",
+   "love_many_sparks": "何度も訪れるときめき",
+   "love_slow": "ゆっくり心を開く、慎重な恋",
+   "health_default": "自分のリズムを守る、落ち着いた気",
+   "health_life_wide": "大きく弧を描く生命線、あふれる活力",
+   "health_life_long": "長く続く生命線、安定した体力と粘り強さ",
+   "health_life_clear": "くっきりした生命線、明るく元気な気",
+   "health_life_thick": "太めの生命線、頼もしいエネルギー",
+   "health_life_branch": "生命線の枝、新たな活力が湧く手",
+   "health_calm": "エネルギーを大切に使う、穏やかなタイプ",
+   "health_rhythm": "生活リズムの変化を楽しむタイプ",
+   "career_default": "自分のペースで道をひらく手",
+   "career_fate": "運命線が見え、目標がはっきりした手",
+   "career_fate_reach": "指のほうまで伸びる運命線、夢へまっすぐ進む力",
+   "career_head_long": "長い頭脳線、幅広い関心と実力",
+   "career_independent": "頭脳線と生命線が離れてスタート、独立心と推進力",
+   "career_careful": "頭脳線と生命線がいっしょにスタート、慎重で頼れる仕事ぶり",
+   "career_head_clear": "くっきりした頭脳線、抜群の集中力",
+   "career_jupiter": "人差し指のほうへ向かう感情線、人を引っ張るリーダー気質",
+   "career_own_path": "決められた道より、自分で道をつくるタイプ",
+   "compat_default": "いっしょなら、いつだって楽しい仲",
+   "compat_heart_same": "感情線の終点が似ていて、気持ちの伝え方がそっくり",
+   "compat_heart_near": "感情線が近くて、おたがいの気持ちにすぐ気づく",
+   "compat_head_similar": "頭脳線の傾きが似ていて、話がぽんぽん通じる",
+   "compat_head_complement": "頭脳線が違うから、アイデアを補い合える仲",
+   "compat_life_similar": "生命線の活力が近くて、遊ぶペースがぴったり",
+   "compat_junction_same": "スタートの習慣が似ていて、いっしょに動きやすい",
+   "compat_junction_mix": "慎重さと行動力が出会う、最高のチームワーク",
+   "compat_same_element": "同じ気を持つきつね同士、ぴったりの相棒",
+   "compat_element_pair": "おたがいの気を高め合う、相性ばつぐんの組み合わせ",
+   "compat_luck_complement": "足りない運をおたがいに補い合える仲"
+  }
+ },
+ "zh-tw": {
+  "types": {
+   "gold": {
+    "name": "黃金手財運狐",
+    "keyword": "財運·務實",
+    "element": "金",
+    "intro": "你的手掌閃著金色的光呢。",
+    "charm": "是個一點一滴累積的務實派，連狐狸尾巴都忍不住搖起來啦。"
+   },
+   "fire": {
+    "name": "烈焰手熱情狐",
+    "keyword": "熱情·活力",
+    "element": "火",
+    "intro": "你的手裡竄動著熱烈的火焰氣息呢！",
+    "charm": "一旦下定決心就衝到底的熱情，就是你的魅力喔。"
+   },
+   "moon": {
+    "name": "月光手感性狐",
+    "keyword": "感性·想像力",
+    "element": "月",
+    "intro": "像月光一樣柔和的感性，在你的手相裡流動呢。",
+    "charm": "想像力這麼豐富，你身邊總會有故事冒出來吧。"
+   },
+   "star": {
+    "name": "星光手智慧狐",
+    "keyword": "智慧·分析",
+    "element": "星",
+    "intro": "像星光一樣清晰的智慧，就藏在你的手裡呢。",
+    "charm": "冷靜細膩的分析力，連本仙都佩服喔。"
+   },
+   "wind": {
+    "name": "微風手自由狐",
+    "keyword": "自由·冒險",
+    "element": "風",
+    "intro": "自由的風輕輕拂過你的手掌呢。",
+    "charm": "無論新地方還是新挑戰，都敢一頭闖進去的冒險家啊。"
+   },
+   "sun": {
+    "name": "太陽手領袖狐",
+    "keyword": "領導力·自信",
+    "element": "太陽",
+    "intro": "像太陽一樣明亮的氣場，從你手中散發出來呢！",
+    "charm": "你有讓人自然追隨的領袖自信喔。"
+   },
+   "cloud": {
+    "name": "雲朵手和平狐",
+    "keyword": "和平·體貼",
+    "element": "雲",
+    "intro": "像柔軟的雲朵一樣平和的氣息呢。",
+    "charm": "把身邊的人包裹得舒舒服服的體貼，就是你的寶藏喔。"
+   },
+   "flower": {
+    "name": "花瓣手人氣狐",
+    "keyword": "人氣·魅力",
+    "element": "花",
+    "intro": "像花瓣紛飛般魅力滿滿的手呢。",
+    "charm": "走到哪都被喜愛的人氣狐狸，尾巴搖啊搖的！"
+   },
+   "rock": {
+    "name": "岩石手毅力狐",
+    "keyword": "毅力·堅定",
+    "element": "岩",
+    "intro": "像岩石一樣紮實的毅力，刻在你的手相上呢。",
+    "charm": "一旦開始就做到底的韌性，沒人比得上喔。"
+   },
+   "wave": {
+    "name": "波浪手共感狐",
+    "keyword": "共感·溫柔",
+    "element": "水",
+    "intro": "像平靜水波一樣溫柔的心，在你手裡流動呢。",
+    "charm": "總是先察覺別人心情的共感力，閃閃發光喔。"
+   },
+   "lightning": {
+    "name": "閃電手靈感狐",
+    "keyword": "靈感·機智",
+    "element": "雷",
+    "intro": "啪！滿手都是閃電般的靈感呢。",
+    "charm": "憑著機靈與反應力，無論在哪都閃閃發亮的就是你！"
+   },
+   "galaxy": {
+    "name": "銀河手幸運狐",
+    "keyword": "幸運·和諧",
+    "element": "銀河",
+    "intro": "像銀河般均勻閃耀的幸運之手呢。",
+    "charm": "各方面運勢都很均衡，做什麼事都會順順利利喔。"
+   }
+  },
+  "lucks": {
+   "wealth": "財運",
+   "love": "愛情運",
+   "health": "健康運",
+   "career": "事業運"
+  },
+  "reasons": {
+   "wealth_default": "一點一滴存下來的精打細算財氣",
+   "wealth_fate": "看得到事業線，穩穩累積的財氣",
+   "wealth_fate_long": "長長延伸的事業線，努力化為財富的手",
+   "wealth_head_long": "長長的智慧線，有計畫地讓錢成長的理財感",
+   "wealth_head_straight": "筆直的智慧線，務實的現實感",
+   "wealth_life_energy": "寬闊的生命線，活力招來財運的手",
+   "wealth_heart_branch": "感情線分支，人就是福氣的手",
+   "wealth_flow": "錢財活絡進出的流動",
+   "love_default": "慢慢加深的淡淡緣分",
+   "love_heart_index": "延伸到食指下方的感情線，溫柔又肯付出的愛",
+   "love_heart_balance": "朝向食指與中指之間的感情線，理想與現實取得平衡的愛",
+   "love_heart_middle": "朝中指方向的感情線，忠於自己心意的務實戀愛",
+   "love_heart_curve": "上揚的感情線，表達力十足的愛",
+   "love_heart_long": "長長延伸的感情線，深厚寬廣的心",
+   "love_heart_branch": "感情線的小分支，身邊人氣滿滿",
+   "love_heart_clear": "清晰的感情線，始終如一的真心",
+   "love_open_heart": "感情線與智慧線間距寬，心胸寬大",
+   "love_many_sparks": "一再出現的心動",
+   "love_slow": "慢慢敞開心房的謹慎戀愛",
+   "health_default": "守著自己步調的沉穩氣息",
+   "health_life_wide": "大幅彎出的生命線，滿溢的活力",
+   "health_life_long": "長長延伸的生命線，穩定的體力與毅力",
+   "health_life_clear": "清晰的生命線，明亮健康的氣息",
+   "health_life_thick": "粗壯的生命線，穩當可靠的能量",
+   "health_life_branch": "生命線分支，湧現新活力的手",
+   "health_calm": "懂得節省能量的沉穩型",
+   "health_rhythm": "享受生活節奏變化的類型",
+   "career_default": "照自己的步調開出一條路的手",
+   "career_fate": "看得到事業線，目標明確的手",
+   "career_fate_reach": "延伸到手指方向的事業線，朝夢想一路前進的力量",
+   "career_head_long": "長長的智慧線，興趣廣泛、實力不俗",
+   "career_independent": "智慧線與生命線分開起步，獨立心與衝勁",
+   "career_careful": "智慧線與生命線一起起步，謹慎又讓人信賴的做事風格",
+   "career_head_clear": "清晰的智慧線，專注力一流",
+   "career_jupiter": "朝食指方向的感情線，帶領眾人的領袖特質",
+   "career_own_path": "比起既定道路，更愛自己開路的類型",
+   "compat_default": "只要在一起，就總是開心的關係",
+   "compat_heart_same": "感情線終點相似，表達心意的方式一模一樣",
+   "compat_heart_near": "感情線相近，很快就能察覺彼此的心情",
+   "compat_head_similar": "智慧線斜度相似，聊起天來一拍即合",
+   "compat_head_complement": "智慧線各有不同，是能互相補足點子的搭檔",
+   "compat_life_similar": "生命線活力相近，玩樂的節奏剛剛好",
+   "compat_junction_same": "起步習慣相似，一起行動很自在",
+   "compat_junction_mix": "謹慎遇上衝勁，夢幻團隊默契",
+   "compat_same_element": "同一種氣的狐狸，是絕配的好夥伴",
+   "compat_element_pair": "能互相加持氣場的絕佳元素組合",
+   "compat_luck_complement": "彼此補足對方不足運勢的關係"
+  }
+ }
+}

@@ -50,3 +50,26 @@ body.site-page{background:var(--navy);min-height:100vh}
 .coupang-name:hover{text-decoration:underline}
 .coupang-disc{margin:8px 0 0;color:var(--muted);font-size:11px;line-height:1.55}
 .adsbygoogle{display:inline-block}
+
+/* ---- i18n: 언어별 글꼴 / 언어 전환 / 언어 제안 바 ---- */
+html[lang="en"] body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Roboto,Arial,sans-serif}
+html[lang="ja"] body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,sans-serif;line-break:strict}
+html[lang="zh-TW"] body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",sans-serif;line-break:strict}
+html[lang="en"] .type-name,html[lang="en"] h1,html[lang="en"] h2{overflow-wrap:break-word}
+html[lang="ja"] h1,html[lang="ja"] h2,html[lang="zh-TW"] h1,html[lang="zh-TW"] h2{word-break:auto-phrase}
+
+.lang-switch{position:relative;font-size:12.5px;z-index:5}
+.lang-switch>summary{list-style:none;cursor:pointer;color:var(--muted);font-weight:600;border:1px solid #b9a7ff33;border-radius:999px;padding:3px 10px;background:#161d4f99;white-space:nowrap;user-select:none}
+.lang-switch>summary::-webkit-details-marker{display:none}
+.lang-switch[open]>summary{color:var(--lav2);border-color:var(--lav)}
+.lang-menu{list-style:none;margin:6px 0 0;padding:6px;position:absolute;right:0;min-width:130px;background:#161d4f;border:1px solid #b9a7ff44;border-radius:14px;box-shadow:0 10px 30px #0008}
+.lang-menu a{display:block;padding:8px 12px;border-radius:9px;color:var(--text);text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
+.lang-menu a:hover{background:#b9a7ff22}
+.lang-menu a[aria-current]{color:var(--gold)}
+.lang-switch.top{position:absolute;top:12px;right:14px}
+.site-nav .lang-switch{margin-left:2px}
+.site-head{flex-wrap:wrap}
+
+.langbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:10px;max-width:min(92vw,440px);background:#161d4ff2;border:1px solid var(--lav);border-radius:16px;padding:10px 12px;box-shadow:0 10px 30px #000a;font-size:13.5px;line-height:1.4;color:var(--text)}
+.langbar a{flex:none;background:linear-gradient(135deg,var(--gold),#ffe6a6);color:#2a1d00;font-weight:800;text-decoration:none;border-radius:11px;padding:7px 12px;white-space:nowrap}
+.langbar button{flex:none;background:none;border:0;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:2px 6px}

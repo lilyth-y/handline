@@ -432,7 +432,6 @@ export default {
   "fox_h_others": "다른 여우도 만나 보기",
   "fox_compat_intro": "앱의 친구 궁합 풀이는 아직 준비 중이에요. 아래는 전통 손금의 기운 이야기로, 같은 결이 어울리거나 서로 부족한 점을 채워 준다고 전해진 조합입니다. 손금을 재어 나온 점수가 아니니, 가벼운 참고로만 봐 주세요.",
   "fox_title_suffix": " · 여우 도감 · 호아 도사",
-  "fox_tag_sep": "  ·  ",
-  "fox_kw_join": " #"
+  "fox_tag_sep": "  ·  "
  }
 };

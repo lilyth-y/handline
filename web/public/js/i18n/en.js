@@ -445,6 +445,6 @@ export default {
   "og.name": "{name}!",
   "og.kw": "#{kw} · {el} energy",
   "og.q": "Which fox are you? 🦊",
-  "og.pill": "👉 Hoa the Fox Sage's Palm Reading · {host}",
+  "og.pill": "👉 Hoa the Fox Sage · {host}",
   "og.alt": "Hoa the Fox Sage (a white nine-tailed fox)",
 };

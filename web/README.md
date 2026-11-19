@@ -54,3 +54,16 @@ PLSU + 11K Hands, features from this browser pipeline). `gen_calib.cjs` copies i
   4. 키를 `KAKAO_JS_KEY` 에 넣고 배포. SDK 는 2.8.5 + SRI 해시로 고정돼 있다.
 - 클릭 집계: `window.va('event', …)` (Vercel Web Analytics 사용자 지정 이벤트): `share_click`, `share_done`, `share_cancel`, `share_landing`, `share_challenge_click`, `share_friend_result`. 개인정보는 보내지 않는다. (사용자 지정 이벤트는 Vercel 요금제에 따라 대시보드에 안 보일 수 있다.)
 - 테스트: `node tests/e2e_share.mjs http://localhost:<port>/` (수집은 꺼진 상태로 실행, 네트워크 쓰기 없음).
+
+## 다국어 (ko · en · ja · zh-tw)
+
+- 주소: 한국어는 기존 그대로 루트(`/`, `/guide/`, `/foxes/gold/` …), 나머지는 접두어 `/en/` `/ja/` `/zh-tw/`. 공유 랜딩은 `/<lang>/s/<유형id>/`.
+  모든 페이지에 hreflang(ko·en·ja·zh-TW·zh-HK, x-default = 한국어 루트)과 언어 전환 메뉴가 있고, 브라우저 언어가 다르면 `js/langbar.js` 가 작은 제안 바만 보여 준다(강제 이동 없음, 닫으면 기억).
+- 문구: `public/js/i18n/<lang>.js`(앱·공용 사전, `{변수}` 치환) / `i18n/content.<lang>.mjs`(가이드·도감·소개·약관 본문) / 용어집 `i18n/GLOSSARY.md`.
+  앱은 `<html data-lang>` 로 언어를 정해 그 사전 하나만 불러온다(`js/i18n/runtime.js`). 한국어 사전 문구는 `rules.js`(= `interpret/rules.yaml`) 원문과 같아야 한다 — 테스트가 확인한다.
+- 정적 페이지 생성: `node tools/gen_i18n.mjs` (홈 템플릿 `i18n/index.body.html` + 사전 → `public/**/index.html`, sitemap). `--check` 는 최신인지만 확인. 생성 결과를 커밋한다.
+- 공유 OG 이미지/랜딩: `node tools/gen_share_og.mjs` (기본 en,ja,zh-tw — 한국어 기존 파일은 안 건드림. `--langs=ko,en` 으로 지정). Chrome + Noto Sans CJK 필요.
+- LLM 풀이 프롬프트: `../interpret/prompt_{ko,en,ja,zh-tw}.md` + `../interpret/prompt.py`(`load_prompt`, `localize`). 문구 JSON 은 `node tools/export_i18n_texts.mjs`.
+- 한국 전용: 카카오 애드핏·쿠팡 파트너스·후원은 한국어 페이지에서만 (monetize.js/adfit.js 값은 그대로, 비한국어에서는 마운트/표시하지 않음).
+- 추적: `window.va` 이벤트마다 `lang` 속성이 붙는다. Supabase `palm_features.client_hint` 는 CHECK 제약(`kakao|mobile|desktop|other`)이라 언어를 넣지 않았다(스키마 변경 필요).
+- 테스트: `node tests/i18n.mjs` (사전 키 일치 · 한글 누출 없음 · 브라우저로 언어별 결과/공유/비교/스토리 카드), 스크린샷 `OUT=… node tests/shots_i18n.mjs`.
