@@ -11,33 +11,18 @@ export const KAKAO_SDK_SRI = 'sha384-v6JKY3z4FUkWq21oZDHZe74YvuPk/WUrVLrDHTBojHX
 export const kakaoEnabled = () => Boolean(KAKAO_JS_KEY && String(KAKAO_JS_KEY).trim());
 
 // 친구에게 보내는 링크: 유형별 OG 미리보기가 있는 정적 페이지(/s/<id>/)로 보내고,
-// 그 페이지가 곧바로 /?t=<id>&s=<별점>&ref=share 로 넘겨 준다 (카톡 미리보기는 OG 만 읽고 JS 는 실행하지 않음).
-export function shareLink(origin, typeId, starsStr) {
+// 그 페이지가 곧바로 /?t=<id>&s=…&p=…&ref=share 로 넘겨 준다 (카톡 미리보기는 OG 만 읽고 JS 는 실행하지 않음).
+//   s = 운세 별점 4자리, p = 손금 숫자 요약 14자 (compare.js encodeLines, 사진·개인정보 없음)
+//   f, c = (궁합 결과 공유 전용) 상대 유형 id 와 궁합 %, 링크를 여는 사람에게 '둘의 궁합' 티저를 보여 준다
+export function shareLink(origin, typeId, starsStr, linesStr, pair) {
   const u = new URL(`/s/${typeId}/`, origin);
   if (/^[1-5]{4}$/.test(starsStr || '')) u.searchParams.set('s', starsStr);
+  if (linesStr) u.searchParams.set('p', linesStr);
+  if (pair && pair.f && Number.isInteger(pair.c)) { u.searchParams.set('f', pair.f); u.searchParams.set('c', String(pair.c)); }
   u.searchParams.set('ref', 'share');
   return u.href;
 }
 export const ogImageFor = (origin, typeId) => new URL(`/img/share/${typeId}.jpg`, origin).href;
-
-// 천생연분 짝 (서로 보완되는 성향)
-export const MATES = {
-  gold: 'rock', rock: 'gold', fire: 'wave', wave: 'fire', moon: 'star', star: 'moon',
-  wind: 'lightning', lightning: 'wind', sun: 'flower', flower: 'sun', cloud: 'galaxy', galaxy: 'cloud',
-};
-// 재미용 궁합: 유형 짝 여부(+최대 25) + 네 가지 운세 별점이 얼마나 닮았는지(+최대 20). 60~99%.
-export function compat(aId, bId, aStars, bStars) {
-  const kind = aId === bId ? 'same' : MATES[aId] === bId ? 'mate' : 'diff';
-  const bonus = kind === 'mate' ? 25 : kind === 'same' ? 20 : 0;
-  let sim = 10;
-  if (Array.isArray(aStars) && Array.isArray(bStars) && aStars.length === 4 && bStars.length === 4) {
-    const diff = aStars.reduce((n, v, i) => n + Math.abs(v - bStars[i]), 0);
-    sim = 20 * (1 - Math.min(diff, 16) / 16);
-  }
-  const pct = Math.min(99, Math.round(60 + bonus + sim));
-  const msg = pct >= 90 ? '천생연분이로다! 💞' : pct >= 80 ? '찰떡궁합이구려! ✨' : pct >= 70 ? '서로 채워 주는 사이로다 🌙' : '다르기에 끌리는 사이로다 🍃';
-  return { pct, kind, msg };
-}
 
 // Vercel Web Analytics 사용자 지정 이벤트. 스크립트가 없거나 차단돼도 아무 일도 일어나지 않는다.
 export function track(name, data) {

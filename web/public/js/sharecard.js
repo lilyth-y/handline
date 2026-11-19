@@ -1,4 +1,4 @@
-// 결과 공유 카드 (세로 1080x1920, JPEG 저장). 사진·손금 그림은 넣지 않는다 (개인 사진 노출 방지): 유형·별점·한마디·URL·마스코트만.
+// 결과 공유 카드 (세로 1080x1920 = 인스타 스토리 9:16, JPEG 저장). 스토리 UI 에 가려지는 위·아래 250px 안전 영역은 비워 둔다. 사진·손금 그림은 넣지 않는다 (개인 사진 노출 방지): 유형·별점·한마디·URL·마스코트만.
 import { TYPE_COPY, LUCK_EMOJI, TYPE_EMOJI, APP_HOST } from './copy.js';
 
 const W = 1080, H = 1920;
@@ -60,10 +60,10 @@ export async function drawShareCard(res) {
   g.strokeStyle = '#b9a7ff33'; g.lineWidth = 2; rr(g, 54, 54, W - 108, H - 108, 38); g.stroke();
 
   g.textAlign = 'center'; g.textBaseline = 'alphabetic';
-  g.fillStyle = C.lav2; g.font = f(700, 44); g.fillText('🦊 호아 도사의 손금 풀이', W / 2, 160);
+  g.fillStyle = C.lav2; g.font = f(700, 44); g.fillText('🦊 호아 도사의 손금 풀이', W / 2, 310);
 
   // mascot
-  const cx = W / 2, cy = 450, R = 220;
+  const cx = W / 2, cy = 540, R = 170;
   g.save(); g.shadowColor = '#b9a7ffaa'; g.shadowBlur = 70; g.fillStyle = C.navy; g.beginPath(); g.arc(cx, cy, R + 10, 0, Math.PI * 2); g.fill(); g.restore();
   g.save(); g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.clip();
   if (img) g.drawImage(img, cx - R, cy - R, R * 2, R * 2); else { g.fillStyle = C.navy2; g.fillRect(cx - R, cy - R, R * 2, R * 2); }
@@ -71,15 +71,14 @@ export async function drawShareCard(res) {
   g.strokeStyle = C.gold; g.lineWidth = 8; g.beginPath(); g.arc(cx, cy, R + 4, 0, Math.PI * 2); g.stroke();
 
   // type
-  g.fillStyle = C.muted; g.font = f(500, 40); g.fillText('그대의 손은…', W / 2, 770);
   const name = `${TYPE_EMOJI[t.id] || ''} ${t.name}`.trim();
-  fitFont(g, name, 800, 96, W - 180);
-  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b77'; g.shadowBlur = 28; g.fillText(name, W / 2, 875); g.shadowBlur = 0;
+  fitFont(g, name, 800, 88, W - 180);
+  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b77'; g.shadowBlur = 28; g.fillText(name, W / 2, 830); g.shadowBlur = 0;
   g.fillStyle = C.lav2; g.font = f(500, 42);
-  g.fillText(`#${t.keyword.replace('·', ' #')}  ·  ${t.element}의 기운`, W / 2, 950);
+  g.fillText(`#${t.keyword.replace('·', ' #')}  ·  ${t.element}의 기운`, W / 2, 900);
 
   // lucks
-  const px = 110, pw = W - 220, py = 1000, rowH = 96, ph = rowH * 4 + 40;
+  const px = 110, pw = W - 220, py = 950, rowH = 90, ph = rowH * 4 + 40;
   g.fillStyle = '#ffffff0f'; rr(g, px, py, pw, ph, 36); g.fill();
   g.strokeStyle = '#b9a7ff44'; g.lineWidth = 2; rr(g, px, py, pw, ph, 36); g.stroke();
   Object.entries(res.lucks).forEach(([k, v], i) => {
@@ -91,17 +90,66 @@ export async function drawShareCard(res) {
 
   // one-liner bubble
   g.textAlign = 'center'; g.font = f(600, 40);
-  const lines = wrap(g, `“${copy.intro} ${copy.charm}”`, W - 300, 3);
-  const by = 1448, bh = 60 + lines.length * 56;
+  const lines = wrap(g, `“${copy.intro}”`, W - 300, 2);
+  const by = 1380, bh = 60 + lines.length * 56;
   g.fillStyle = '#b9a7ff1c'; rr(g, 110, by, W - 220, bh, 40); g.fill();
   g.fillStyle = C.lav2; lines.forEach((l, i) => g.fillText(l, W / 2, by + 72 + i * 56 - 6));
-  g.fillStyle = C.gold; g.font = f(700, 34); g.fillText('— 호아 도사 🦊', W / 2, by + bh + 46);
 
   // footer CTA
-  const fy = 1750;
+  const fy = 1560;
   gr = g.createLinearGradient(160, 0, W - 160, 0); gr.addColorStop(0, C.gold); gr.addColorStop(1, C.gold2);
   g.fillStyle = gr; rr(g, 150, fy, W - 300, 100, 50); g.fill();
-  g.fillStyle = '#2a1d00'; g.font = f(800, 42); g.fillText(`너는 무슨 여우야? 👉 ${APP_HOST}`, W / 2, fy + 64, W - 340);
+  g.fillStyle = '#2a1d00'; g.font = f(800, 42); g.fillText(`내 손금이랑 비교해 봐 👉 ${APP_HOST}`, W / 2, fy + 64, W - 340);
+  return cv;
+}
+
+// 궁합 카드 (9:16, 인스타 스토리용): 두 여우 + 궁합 % + 근거 3줄 + URL. 사진·손금 그림은 넣지 않는다.
+export async function drawCompareCard({ me, fr, cmp, meEmoji = '', frEmoji = '' }) {
+  const img = await loadMascot();
+  try { await document.fonts?.ready; } catch { /* ignore */ }
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d');
+  let gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, C.navy2); gr.addColorStop(0.55, C.navy); gr.addColorStop(1, '#090c28');
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  gr = g.createRadialGradient(W / 2, 760, 60, W / 2, 760, 640); gr.addColorStop(0, '#6d5fd655'); gr.addColorStop(1, '#6d5fd600');
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  for (let i = 0; i < 140; i++) { const x = rnd() * W, y = rnd() * H, r = rnd() * 2.6 + 0.6, c = rnd(); g.fillStyle = c < 0.18 ? '#f3cc6bcc' : c < 0.4 ? '#b9a7ffcc' : '#ffffffaa'; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); }
+  g.strokeStyle = '#f3cc6b66'; g.lineWidth = 4; rr(g, 36, 36, W - 72, H - 72, 48); g.stroke();
+  g.strokeStyle = '#b9a7ff33'; g.lineWidth = 2; rr(g, 54, 54, W - 108, H - 108, 38); g.stroke();
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.fillStyle = C.lav2; g.font = f(700, 46); g.fillText('🤝 친구와 손금 비교', W / 2, 320);
+  // two foxes
+  const side = (cx, label, t, emo) => {
+    g.save(); g.shadowColor = '#b9a7ffaa'; g.shadowBlur = 50; g.fillStyle = C.navy; g.beginPath(); g.arc(cx, 520, 130, 0, Math.PI * 2); g.fill(); g.restore();
+    g.save(); g.beginPath(); g.arc(cx, 520, 124, 0, Math.PI * 2); g.clip();
+    if (img) g.drawImage(img, cx - 124, 396, 248, 248); else { g.fillStyle = C.navy2; g.fillRect(cx - 124, 396, 248, 248); }
+    g.restore();
+    g.strokeStyle = C.gold; g.lineWidth = 6; g.beginPath(); g.arc(cx, 520, 130, 0, Math.PI * 2); g.stroke();
+    g.font = f(400, 70); g.fillText(emo, cx + 96, 640);
+    g.fillStyle = C.muted; g.font = f(600, 36); g.fillText(label, cx, 700);
+    g.fillStyle = C.text; const nm = t.name; fitFont(g, nm, 800, 40, 400); g.fillText(nm, cx, 750);
+  };
+  side(W / 2 - 250, '나', me, meEmoji); side(W / 2 + 250, '친구', fr, frEmoji);
+  g.fillStyle = C.gold; g.font = f(800, 70); g.fillText('×', W / 2, 545);
+  // score
+  g.fillStyle = C.gold; g.shadowColor = '#f3cc6b88'; g.shadowBlur = 40; g.font = f(900, 250); g.fillText(`${cmp.score}%`, W / 2, 1060); g.shadowBlur = 0;
+  g.fillStyle = C.lav2; g.font = f(700, 52); g.fillText(`궁합 ${cmp.msg}`, W / 2, 1140, W - 200);
+  g.fillStyle = C.muted; g.font = f(500, 34); g.fillText('재미로 보는 궁합', W / 2, 1195);
+  // evidence (top 3)
+  const items = cmp.items.slice(0, 3), px = 110, pw = W - 220, py = 1240, rowH = 90, ph = items.length * rowH + 30;
+  g.fillStyle = '#ffffff0f'; rr(g, px, py, pw, ph, 36); g.fill();
+  g.strokeStyle = '#b9a7ff44'; g.lineWidth = 2; rr(g, px, py, pw, ph, 36); g.stroke();
+  items.forEach((it, i) => {
+    const y = py + 15 + rowH * i + 58;
+    g.textAlign = 'left'; g.fillStyle = C.gold; g.font = f(800, 40); if (it.pts) g.fillText(`+${it.pts}`, px + 36, y);
+    g.fillStyle = C.text; g.font = f(600, 36); g.fillText(it.label, px + (it.pts ? 128 : 36), y, pw - 180);
+  });
+  g.textAlign = 'center';
+  const fy = 1560;
+  gr = g.createLinearGradient(160, 0, W - 160, 0); gr.addColorStop(0, C.gold); gr.addColorStop(1, C.gold2);
+  g.fillStyle = gr; rr(g, 150, fy, W - 300, 100, 50); g.fill();
+  g.fillStyle = '#2a1d00'; g.font = f(800, 42); g.fillText(`너도 비교해 봐 👉 ${APP_HOST}`, W / 2, fy + 64, W - 340);
   return cv;
 }
 

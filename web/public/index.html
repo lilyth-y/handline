@@ -119,9 +119,9 @@
     </div>
     <div id="r-sharehero" class="card share-hero">
       <p id="r-hook" class="sh-hook"></p>
-      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 도전장 보내기</button>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 비교 신청</button>
       <div class="share-row">
-        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">친구에게 도전장 💌</button>
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 친구와 손금 비교해보기</button>
         <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
       </div>
     </div>
@@ -132,8 +132,8 @@
       <div id="r-measured"></div>
       <p class="fine left">별점은 사진 속 손금 모양을 전통 손금 풀이 규칙에 대어 본 결과예요.</p>
     </details>
-    <button id="btn-share" class="btn ghost gold-line" data-share-src="bottom">💌 친구에게 보내기</button>
-    <button id="btn-card" class="btn ghost gold-line">결과 카드 저장 📥</button>
+    <button id="btn-share" class="btn ghost gold-line" data-share-src="bottom">🤝 친구와 비교하기</button>
+    <button id="btn-card" class="btn ghost gold-line">스토리용 카드 저장 📸</button>
     <button id="btn-retry" class="btn ghost">다른 손 다시 보기</button>
     <aside id="r-donate" class="donate-slot" hidden></aside>
     <aside id="r-adfit" class="adfit-slot" hidden aria-label="광고"></aside>
@@ -152,6 +152,31 @@
       <p class="site-foot-copy">© mbox solutions · 호아 도사의 손금 풀이</p>
     </footer>
 
+  </section>
+
+  <!-- 4b. compare with a friend -->
+  <section id="s-compare" class="screen">
+    <div class="stars-bg"></div>
+    <p class="cmp-eyebrow">🤝 친구와 손금 비교</p>
+    <div class="cmp-duo">
+      <div class="cmp-side"><span id="c-me-emo" class="cmp-emo"></span><b>나</b><small id="c-me-name"></small></div>
+      <span class="cmp-x">×</span>
+      <div class="cmp-side"><span id="c-fr-emo" class="cmp-emo"></span><b>친구</b><small id="c-fr-name"></small></div>
+    </div>
+    <div class="card cmp-score">
+      <p class="cmp-pct"><b id="c-pct"></b><span>%</span></p>
+      <p id="c-msg" class="cmp-msg"></p>
+      <p class="cmp-fun">재미로 보는 궁합 · 근거는 아래!</p>
+      <ul id="c-why" class="cmp-why"></ul>
+      <details id="c-more" class="cmp-more"><summary>점수 계산 보기</summary><p id="c-calc" class="calc"></p></details>
+    </div>
+    <div id="c-lines" class="cmp-lines"></div>
+    <div id="c-lucks" class="card cmp-lucks"></div>
+    <button type="button" id="c-share" class="btn primary" data-share-src="compare_result" data-share-kind="compare">💞 우리 궁합 결과 공유</button>
+    <button type="button" id="c-loop" class="btn ghost" data-share-src="compare_loop" data-share-kind="self">🤝 내 결과로 다른 친구와 비교하기</button>
+    <button type="button" id="c-card" class="btn ghost gold-line">궁합 카드 저장 📸</button>
+    <button type="button" id="c-to-result" class="btn ghost">내 결과 보기</button>
+    <p class="fine">재미로 보는 궁합이에요. 사진은 공유되지 않아요.</p>
   </section>
 
   <!-- error -->
@@ -209,7 +234,7 @@
       <button type="button" id="card-close" class="btn ghost">닫기</button>
     </div>
   </div>
-  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💌 친구에게 도전장 보내기</button></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 친구와 손금 비교해보기</button></div>
 <div id="toast" class="toast"></div>
 </div>
 <script type="module" src="js/app.js"></script>

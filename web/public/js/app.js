@@ -5,13 +5,14 @@ import { interpret } from './interpret.js';
 import { RULES } from './rules.js';
 import { CALIB } from './calib.js';
 import { TYPE_COPY, readingFor, shortFor, LUCK_EMOJI, ANALYZE_LINES, TYPE_EMOJI } from './copy.js';
-import { drawShareCard, cardBlob, CARD_MIME, CARD_EXT } from './sharecard.js';
+import { drawShareCard, drawCompareCard, cardBlob, CARD_MIME, CARD_EXT } from './sharecard.js';
 import { isInApp, isIOS, isKakao, canUseAnchorDownload, shouldSkipFileShare, externalBrowserHref, triggerDownload, canShareFiles } from './savecard.js';
 import './ref.js';   // ?ref= 를 세션에 기억 (익명 수집 행에 같이 기록)
 import { luckEvidence, measuredRows, LINE_KO } from './evidence.js';
 import { collectEnabled, setCollectEnabled, sendFeatures } from './collect.js';
 import { mountMonetize } from './monetize.js';
-import { shareLink, ogImageFor, compat, MATES, track, kakaoEnabled, kakaoSend, warmKakao } from './share.js';
+import { shareLink, ogImageFor, track, kakaoEnabled, kakaoSend, warmKakao } from './share.js';
+import { LINES, LINE_NAME, LINE_COLOR, buildProfile, encodeLines, decodeLines, describeLine, compareProfiles, mateOf } from './compare.js';
 
 const MAX_SIDE = 1024;
 const $ = (s) => document.querySelector(s);
@@ -79,12 +80,12 @@ async function analyse(file) {
   const feat = extractFeatures(work.data, det.data, proto.data, lb);
   step(85, 3); await tick();
   const res = interpret(feat);
-  state.result = { feat, res, ms: Math.round(performance.now() - t0), size: [work.data.width, work.data.height] };
+  state.result = { feat, res, ms: Math.round(performance.now() - t0), size: [work.data.width, work.data.height], profile: buildProfile(feat, res) };
   const nLines = feat.relations.n_lines;
   if (nLines < 2) { $('#err-text').innerHTML = '어허, 손금이 잘 보이지 않는구려.<br>손바닥을 활짝 펴고 밝은 곳에서 다시 찍어 주시게.'; go('s-error'); return; }
   step(100, 4); await tick();
   renderResult(work.canvas, feat, res);
-  go('s-result');
+  if (FRIEND) { renderCompare(); go('s-compare'); } else go('s-result');
   sendFeatures(file, feat, res);   // fire-and-forget: 숫자 특징만, 실패해도 화면에 영향 없음
 }
 
@@ -212,11 +213,11 @@ function renderResult(canvas, feat, res) {
   $('#r-measured-box').open = false;
   $('#r-disclaimer').textContent = res.disclaimer || RULES.disclaimer;
   shareHook(res);
-  friendLine(res);
+  friendLine();
   mountMonetize(res);
 }
 function shareHook(res) {
-  const mate = RULES.types.find((x) => x.id === MATES[res.type.id]);
+  const mate = mateOf(res.type.id);
   $('#r-hook').innerHTML = '💞 친구랑 궁합 몇 %?' + (mate ? ` <span class="muted">천생연분은 ${TYPE_EMOJI[mate.id] || ''} ${esc(mate.name)}</span>` : '');
 }
 function onPick(e) {
@@ -230,26 +231,40 @@ function onPick(e) {
 $('#s-result').addEventListener('click', onPick);
 $('#s-result').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { const el = e.target.closest('.chip'); if (el) { e.preventDefault(); onPick(e); } } });
 
-// ------------------------------------------------------------------ share (friend challenge)
+// ------------------------------------------------------------------ share (친구와 손금 비교해보기)
 const UA = navigator.userAgent || '';
 const IN_APP = isInApp(UA);
-// 친구에게 보내는 링크는 유형별 미리보기가 있는 /s/<유형>/ (거기서 /?t=&s=&ref=share 로 이어짐)
-function shareURL() {
-  const r = state.result?.res;
-  if (!r) return new URL('/?ref=share', location.origin).href;
-  return shareLink(location.origin, r.type.id, Object.values(r.lucks).map((l) => l.stars).join(''));
+const starsOf = (r) => Object.values(r.lucks).map((l) => l.stars);
+// 공유 링크/문구/제목. kind: 'self' = 내 결과로 비교 신청, 'compare' = 우리 궁합 결과 공유(둘의 유형·궁합 % 포함)
+function sharePayload(kind = 'self') {
+  const r = state.result?.res, pr = state.result?.profile;
+  if (!r) return { url: new URL('/?ref=share', location.origin).href, text: '', title: '호아 도사의 손금 풀이' };
+  const stars = starsOf(r).join(''), lines = pr ? encodeLines(pr) : '';
+  if (kind === 'compare' && state.compare) {
+    const { cmp, fr } = state.compare;
+    return {
+      url: shareLink(location.origin, r.type.id, stars, lines, { f: fr.t.id, c: cmp.score }),
+      title: `🤝 우리 궁합 ${cmp.score}%!`,
+      desc: `${TYPE_EMOJI[r.type.id] || ''} ${r.type.name} × ${TYPE_EMOJI[fr.t.id] || ''} ${fr.t.name} · ${cmp.msg} 너도 친구랑 손금 비교해 볼래?`,
+      text: `🤝 친구랑 손금 비교해 봤더니 궁합 ${cmp.score}%!\n${TYPE_EMOJI[r.type.id] || ''} ${r.type.name} × ${TYPE_EMOJI[fr.t.id] || ''} ${fr.t.name} — ${cmp.msg}\n너도 친구랑 비교해 볼래? 👇`,
+    };
+  }
+  const rows = Object.entries(r.lucks).map(([k, v]) => `${LUCK_EMOJI[k]} ${v.label} ${'★'.repeat(v.stars)}${'☆'.repeat(5 - v.stars)}`);
+  return {
+    url: shareLink(location.origin, r.type.id, stars, lines),
+    title: `🦊 나는 '${r.type.name}'! 내 손금이랑 비교해 볼래?`,
+    desc: `${TYPE_EMOJI[r.type.id] || ''} ${TYPE_COPY[r.type.id].intro} 손바닥 사진 한 장으로 우리 궁합 몇 %인지 확인해 봐!`,
+    text: `🦊 나는 '${r.type.name}'! 내 손금이랑 비교해 볼래?\n${rows.join('\n')}\n우리 궁합 몇 %일까? 손바닥 사진 한 장이면 돼 👇`,
+  };
 }
+const shareURL = () => sharePayload('self').url;
+const shareText = () => sharePayload('self').text;
 // 결과 카드 다시 그리기(?save=1)는 앱 본문(/)에서 열려야 하므로 따로 만든다
 function appURL() {
   const r = state.result?.res, u = new URL('/', location.origin);
-  if (r) { u.searchParams.set('t', r.type.id); u.searchParams.set('s', Object.values(r.lucks).map((l) => l.stars).join('')); }
+  if (r) { u.searchParams.set('t', r.type.id); u.searchParams.set('s', starsOf(r).join('')); }
   u.searchParams.set('ref', 'share');
   return u.href;
-}
-function shareText() {
-  const r = state.result.res;
-  const lines = Object.entries(r.lucks).map(([k, v]) => `${LUCK_EMOJI[k]} ${v.label} ${'★'.repeat(v.stars)}${'☆'.repeat(5 - v.stars)}`);
-  return `🦊 나는 '${r.type.name}'! 너는 무슨 여우야?\n${lines.join('\n')}\n나랑 궁합 몇 %인지 손바닥 사진 한 장으로 확인해 봐 👇`;
 }
 async function copyText(s) {
   try { await navigator.clipboard.writeText(s); return true; } catch { /* fallthrough */ }
@@ -259,39 +274,36 @@ async function copyText(s) {
   ta.remove(); return ok;
 }
 // 공유 방식: 카카오톡(키 있을 때) → 기기 공유 시트(navigator.share) → 링크 복사. 카톡 인앱 브라우저에서도 복사는 항상 동작.
-async function shareNative(src) {
+async function shareNative(src, kind = 'self') {
   if (!state.result?.res) return;
-  const url = shareURL(), text = shareText();
+  const { url, text, title } = sharePayload(kind);
   if (navigator.share) {
     try { await navigator.share({ title: '호아 도사의 손금 풀이', text, url }); track('share_done', { src, method: 'native' }); return; }
     catch (e) { if (e && e.name === 'AbortError') { track('share_cancel', { src }); return; } }
   }
   const ok = await copyText(`${text}\n${url}`);
   track('share_done', { src, method: 'copy' });
-  toast(ok ? '도전장과 링크를 복사했어요! 카톡에 붙여 넣어 보세요 💌' : url);
+  toast(ok ? '문구와 링크를 복사했어요! 카톡에 붙여 넣어 보세요 🤝' : url);
 }
-async function shareCopyLink(src) {
+async function shareCopyLink(src, kind = 'self') {
   if (!state.result?.res) return;
-  const url = shareURL();
+  const { url } = sharePayload(kind);
   const ok = await copyText(url);
   track('share_done', { src, method: 'copylink' });
   toast(ok ? '링크를 복사했어요! 카톡 대화창에 붙여 넣어 보세요 🔗' : url);
 }
-async function shareKakao(src) {
+async function shareKakao(src, kind = 'self') {
   const r = state.result?.res; if (!r) return;
-  const ok = await kakaoSend({
-    title: `🦊 나는 '${r.type.name}'! 너는 무슨 여우야?`,
-    description: `${TYPE_EMOJI[r.type.id] || ''} ${TYPE_COPY[r.type.id].intro} 손바닥 사진 한 장으로 나랑 궁합 몇 %인지 확인해 봐!`,
-    imageUrl: ogImageFor(location.origin, r.type.id),
-    url: shareURL(), buttonTitle: '나도 손금 보기 ✨',
-  });
+  const { url, title, desc } = sharePayload(kind);
+  const ok = await kakaoSend({ title, description: desc, imageUrl: ogImageFor(location.origin, r.type.id), url, buttonTitle: '나도 손금 비교해 보기 ✨' });
   if (ok) { track('share_done', { src, method: 'kakao' }); return; }
-  await shareNative(src);   // SDK 로드/공유 실패 시 대체
+  await shareNative(src, kind);   // SDK 로드/공유 실패 시 대체
 }
 document.querySelectorAll('[data-share-src]').forEach((b) => b.addEventListener('click', () => {
-  const src = b.dataset.shareSrc, kind = b.id === 'sh-kakao' ? 'kakao' : b.id === 'sh-copy' ? 'copylink' : 'native';
-  track('share_click', { src, method: kind });
-  if (kind === 'kakao') shareKakao(src); else if (kind === 'copylink') shareCopyLink(src); else shareNative(src);
+  const src = b.dataset.shareSrc, kind = b.dataset.shareKind || 'self';
+  const method = b.id === 'sh-kakao' ? 'kakao' : b.id === 'sh-copy' ? 'copylink' : 'native';
+  track('share_click', { src, method });
+  if (method === 'kakao') shareKakao(src, kind); else if (method === 'copylink') shareCopyLink(src, kind); else shareNative(src, kind);
 }));
 // 카카오 키가 있으면 카톡 버튼을 메인으로, 없으면 숨김. 공유 시트가 없는 브라우저에서는 '공유하기' 대신 복사로 처리됨.
 (function setupShareButtons() {
@@ -364,7 +376,8 @@ async function offerCard(card, { fromModal = false } = {}) {
   const skipShare = shouldSkipFileShare(UA);
   if (!skipShare && file && await canShareFiles(file)) {
     try {
-      await navigator.share({ files: [file], title: '호아 도사의 손금 풀이', text: `${shareText()}\n${shareURL()}` });
+      const pl = sharePayload(card.kind || 'self');
+      await navigator.share({ files: [file], title: '호아 도사의 손금 풀이', text: `${pl.text}\n${pl.url}` });
       window.__card.via = 'share';
       return 'share';
     } catch (e) { if (e && e.name === 'AbortError') { window.__card.via = 'abort'; return 'abort'; } }
@@ -410,42 +423,92 @@ if (PENDING_CARD) {
   })();
 }
 
-// ------------------------------------------------------------------ shared-link landing (friend challenge)
+// ------------------------------------------------------------------ 공유 링크로 들어온 친구 (손금 비교 신청)
+// 링크: ?t=유형&s=별점4자리&p=손금요약14자 [&f=상대유형&c=궁합%]  (모두 선택, 형식이 틀리면 무시)
 const FRIEND = (() => {
   const p = new URLSearchParams(location.search);
   const t = RULES.types.find((x) => x.id === p.get('t'));
   if (!t) return null;
   const s = /^[1-5]{4}$/.test(p.get('s') || '') ? p.get('s').split('').map(Number) : null;
-  return { t, s };
+  const dec = decodeLines(p.get('p'));
+  const ft = RULES.types.find((x) => x.id === p.get('f'));
+  const c = /^[0-9]{2,3}$/.test(p.get('c') || '') ? Number(p.get('c')) : NaN;
+  return { t, s, L: dec ? dec.L : null, j: dec ? dec.j : null, pair: ft && c >= 40 && c <= 100 ? { ft, c } : null };
 })();
 (function sharedBanner() {
   if (!FRIEND) return;
-  const { t, s } = FRIEND, b = $('#shared-banner');
+  const { t, s, pair } = FRIEND, b = $('#shared-banner');
   const keys = ['wealth', 'love', 'health', 'career'], labels = { wealth: '재물', love: '연애', health: '건강', career: '직업' };
   const starRow = s ? `<p class="sh-stars">${keys.map((k, i) => `<span>${LUCK_EMOJI[k]} ${labels[k]} <b>${'★'.repeat(s[i])}</b></span>`).join('')}</p>` : '';
-  b.innerHTML = `
-    <p class="sh-eyebrow">💌 친구가 도전장을 보냈어요!</p>
-    <p class="sh-type">“친구는 <b>${TYPE_EMOJI[t.id] || ''} ${t.name}</b>!</p>
-    <p class="sh-q">너는 무슨 여우야? 🦊”</p>
+  b.innerHTML = pair ? `
+    <p class="sh-eyebrow">🤝 친구가 손금 비교 결과를 보냈어요!</p>
+    <p class="sh-type">${TYPE_EMOJI[t.id] || ''} <b>${esc(t.name)}</b> × ${TYPE_EMOJI[pair.ft.id] || ''} <b>${esc(pair.ft.name)}</b></p>
+    <p class="sh-q">궁합 <span class="gold">${pair.c}%</span> · 너는 몇 %일까? 🦊</p>
+    <button type="button" id="btn-challenge" class="btn primary">나도 손금 비교해 보기 ✨</button>` : `
+    <p class="sh-eyebrow">🤝 친구가 손금 비교를 신청했어요!</p>
+    <p class="sh-type">친구는 <b>${TYPE_EMOJI[t.id] || ''} ${esc(t.name)}</b>.</p>
+    <p class="sh-q">너는 무슨 여우야? 🦊</p>
     ${starRow}
-    <button type="button" id="btn-challenge" class="btn primary">나도 해보고 궁합 보기 ✨</button>`;
+    <button type="button" id="btn-challenge" class="btn primary">내 손금 보고 비교하기 ✨</button>`;
   b.classList.remove('hidden');
-  track('share_landing', { t: t.id });
+  track('share_landing', { t: t.id, pair: !!pair, p: !!FRIEND.L });
   $('#btn-challenge').addEventListener('click', () => { track('share_challenge_click', { t: t.id }); $('#btn-start').click(); });
 })();
-function friendLine(res) {
+
+// ------------------------------------------------------------------ 비교 화면 (나 vs 친구 + 궁합)
+const KEYS4 = ['wealth', 'love', 'health', 'career'];
+const starsTxt = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+function renderCompare() {
+  const me = state.result.profile;
+  const fr = { t: FRIEND.t.id, s: FRIEND.s, L: FRIEND.L, j: FRIEND.j };
+  const cmp = compareProfiles(me, fr);
+  state.compare = { cmp, fr: { t: FRIEND.t }, hasLines: !!(FRIEND.L && me.L) };
+  const mt = state.result.res.type, ft = FRIEND.t;
+  $('#c-me-emo').textContent = TYPE_EMOJI[mt.id] || '🦊'; $('#c-me-name').textContent = mt.name;
+  $('#c-fr-emo').textContent = TYPE_EMOJI[ft.id] || '🦊'; $('#c-fr-name').textContent = ft.name;
+  $('#c-pct').textContent = cmp.score; $('#c-msg').textContent = cmp.msg;
+  $('#c-why').innerHTML = cmp.items.slice(0, 3).map((i) => `<li>${i.pts ? `<em>+${i.pts}</em>` : ''}<span>${esc(i.text)}</span></li>`).join('');
+  $('#c-calc').textContent = cmp.calc;
+  const chipFor = (k) => cmp.items.filter((i) => i.pts && i.lines[0] === k).map((i) => `<em class="cmp-chip">+${i.pts} ${esc(i.label)}</em>`).join('');
+  $('#c-lines').innerHTML = state.compare.hasLines ? LINES.map((k) => {
+    const a = describeLine(k, me.L[k]), b = describeLine(k, FRIEND.L[k]);
+    const row = (who, d) => `<div class="cmp-bar"><em>${who}</em><span class="bar"><i style="width:${d.len * 10}%;background:${LINE_COLOR[k]}"></i></span><small>${esc(d.text)}</small></div>`;
+    return `<div class="card cmp-row"><div class="cmp-rh"><b class="ln-${k}"></b><strong>${LINE_NAME[k]}</strong>${chipFor(k)}</div>${row('나', a)}${row('친구', b)}</div>`;
+  }).join('') : '<p class="fine">친구 손금 요약이 없는 예전 링크라, 유형과 운세로만 비교했어요.</p>';
+  $('#c-lucks').innerHTML = FRIEND.s ? `<div class="cmp-luck head"><span></span><b>나</b><b>친구</b></div>` + KEYS4.map((k, i) => {
+    const mine = me.s[i], theirs = FRIEND.s[i];
+    return `<div class="cmp-luck"><span>${LUCK_EMOJI[k]} ${esc(RULES.lucks[k].label)}</span><b class="s">${starsTxt(mine)}</b><b class="s">${starsTxt(theirs)}</b></div>`;
+  }).join('') : '';
+  $('#c-lucks').classList.toggle('hidden', !FRIEND.s);
+  friendLine();
+  $('#c-more').open = false;
+  track('compare_view', { lines: state.compare.hasLines, score: Math.floor(cmp.score / 10) * 10 });
+}
+function friendLine() {
   const el = $('#r-friend');
-  if (!FRIEND) { el.classList.add('hidden'); return; }
-  const same = FRIEND.t.id === res.type.id;
-  const mine = Object.values(res.lucks).map((l) => l.stars);
-  const c = compat(FRIEND.t.id, res.type.id, FRIEND.s, mine);
-  el.innerHTML = (same
-    ? `🦊 친구도 <b>'${FRIEND.t.name}'</b>! 같은 여우끼리 통했구려.`
-    : `🦊 친구는 <b>'${FRIEND.t.name}'</b>, 나는 <b>'${res.type.name}'</b>`)
-    + `<br>💞 궁합 <b class="pct">${c.pct}%</b> — ${c.msg}`;
-  track('share_friend_result', { kind: c.kind });
+  if (!FRIEND || !state.compare) { el.classList.add('hidden'); return; }
+  el.innerHTML = `🤝 친구와 비교 · 궁합 <b class="pct">${state.compare.cmp.score}%</b> <span class="muted">다시 보기 ›</span>`;
   el.classList.remove('hidden');
 }
+$('#r-friend').addEventListener('click', () => { go('s-compare'); track('compare_reopen'); });
+$('#c-to-result').addEventListener('click', () => go('s-result'));
+
+// 궁합 카드(9:16, 인스타 스토리용) 저장/공유
+$('#c-card').addEventListener('click', async () => {
+  const btn = $('#c-card'); btn.disabled = true;
+  try {
+    const { cmp, fr } = state.compare, mt = state.result.res.type;
+    if (!state.cmpCard || state.cmpCard.cmp !== cmp) {
+      const cv = await drawCompareCard({ me: mt, fr: fr.t, cmp, meEmoji: TYPE_EMOJI[mt.id], frEmoji: TYPE_EMOJI[fr.t.id] });
+      const blob = await cardBlob(cv);
+      if (state.cmpCard?.url) URL.revokeObjectURL(state.cmpCard.url);
+      state.cmpCard = { cmp, blob, url: URL.createObjectURL(blob), name: `hoa-compare-${mt.id}-${fr.t.id}.${CARD_EXT}`, type: CARD_MIME, kind: 'compare' };
+    }
+    track('compare_card_click');
+    await offerCard(state.cmpCard);
+  } catch (e) { console.error(e); toast('이미지를 만들지 못했어요. 화면을 캡처해 주세요 🙏'); }
+  finally { btn.disabled = false; }
+});
 
 // ------------------------------------------------------------------ 12가지 여우 도감 (intro)
 $('#dogam-grid').innerHTML = RULES.types.map((t) => `

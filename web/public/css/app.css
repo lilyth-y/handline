@@ -207,3 +207,43 @@ body.has-sticky .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
 .sh-stars{margin-bottom:6px!important}
 .collect-foot{margin-top:10px}
 .result-head .keyword{text-align:left}
+
+/* ---- 친구와 손금 비교 화면 ---- */
+#s-compare{padding-bottom:calc(36px + env(safe-area-inset-bottom))}
+.cmp-eyebrow{margin:6px 0 10px;font-size:14px;font-weight:700;color:var(--gold)}
+.cmp-duo{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-bottom:10px}
+.cmp-side{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:#ffffff0d;border:1px solid #b9a7ff33;border-radius:18px;padding:10px 6px}
+.cmp-emo{font-size:34px;line-height:1.1}
+.cmp-side b{font-size:13px;color:var(--muted)}
+.cmp-side small{font-size:12.5px;color:var(--text);font-weight:700;word-break:keep-all;text-align:center;line-height:1.3}
+.cmp-x{font-size:22px;color:var(--gold);font-weight:800}
+.cmp-score{text-align:center;border-color:#f3cc6b77;background:linear-gradient(160deg,#f3cc6b14,#b9a7ff12);padding:16px 14px 12px}
+.cmp-pct{margin:0;line-height:1}
+.cmp-pct b{font-size:64px;color:var(--gold);letter-spacing:-2px;text-shadow:0 0 24px #f3cc6b66}
+.cmp-pct span{font-size:26px;color:var(--gold);font-weight:800;margin-left:2px}
+.cmp-msg{margin:6px 0 2px;font-size:16px;font-weight:700}
+.cmp-fun{margin:0 0 10px;font-size:12px;color:var(--muted)}
+.cmp-why{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-direction:column;gap:6px;text-align:left}
+.cmp-why li{display:flex;gap:8px;align-items:flex-start;background:#ffffff0c;border:1px solid #b9a7ff2e;border-radius:12px;padding:8px 10px;font-size:13.5px;line-height:1.45}
+.cmp-why em,.cmp-chip{font-style:normal;flex:none;font-size:11.5px;font-weight:800;color:var(--navy);background:var(--gold);border-radius:9px;padding:1px 7px}
+.cmp-more summary{cursor:pointer;font-size:12.5px;color:var(--muted);list-style:none;padding:4px}
+.cmp-more summary::-webkit-details-marker{display:none}
+.cmp-more .calc{margin:4px 0 0;font-size:12px;color:var(--lav2);line-height:1.6;text-align:left}
+.cmp-lines{width:100%;display:flex;flex-direction:column;gap:0}
+.cmp-row{padding:12px 14px;margin:6px 0}
+.cmp-rh{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:14.5px;flex-wrap:wrap}
+.cmp-rh b{display:inline-block;width:10px;height:10px;border-radius:50%}
+.cmp-rh .cmp-chip{margin-left:auto}
+.cmp-bar{display:grid;grid-template-columns:2.2em 74px 1fr;align-items:center;gap:8px;margin-top:4px}
+.cmp-bar em{font-style:normal;font-size:12px;color:var(--muted)}
+.cmp-bar .bar{height:8px;border-radius:6px;background:#ffffff18;overflow:hidden}
+.cmp-bar .bar i{display:block;height:100%;border-radius:6px}
+.cmp-bar small{font-size:12.5px;color:var(--lav2);line-height:1.35}
+.cmp-lucks{padding:10px 14px}
+.cmp-luck{display:grid;grid-template-columns:1fr 6.4em 6.4em;align-items:center;gap:4px;padding:5px 0;font-size:13.5px}
+.cmp-luck.head{font-size:12px;color:var(--muted);padding-bottom:0}
+.cmp-luck .s{font-weight:400;color:var(--gold);font-size:13px;letter-spacing:0}
+.cmp-luck.head b{font-weight:600;color:var(--muted)}
+#s-compare .btn{margin:6px 0 0}
+#s-compare > .btn:first-of-type{margin-top:12px}
+#r-friend{cursor:pointer}

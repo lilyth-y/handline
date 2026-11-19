@@ -30,7 +30,7 @@ background:radial-gradient(ellipse at 25% 40%,#3a3f9a 0%,#161d4f 45%,#0d1236 80%
 ${Array.from({ length: 36 }, (_, i) => { const r = (n) => ((i * 9301 + n * 49297) % 233280) / 233280; const s = 2 + r(3) * 4; return `<i class="st" style="left:${r(1) * 1200}px;top:${r(2) * 630}px;width:${s}px;height:${s}px;opacity:${0.3 + r(4) * 0.6}"></i>`; }).join('')}
 <div class="frame"></div>
 <img class="hoa" src="${hoa}">
-<div class="tx"><div class="eb">💌 친구가 도전장을 보냈어요!</div>
+<div class="tx"><div class="eb">🤝 친구가 손금 비교를 신청했어요!</div>
 <div class="me">나는 ${TYPE_EMOJI[t.id] || ''}</div>
 <div class="nm">${esc(t.name)}!</div>
 <div class="kw">#${esc(t.keyword.replace('·', ' #'))} · ${esc(t.element)}의 기운</div>
@@ -39,8 +39,8 @@ ${Array.from({ length: 36 }, (_, i) => { const r = (n) => ((i * 9301 + n * 49297
 
 const page = (t) => {
   const c = TYPE_COPY[t.id], emo = TYPE_EMOJI[t.id] || '🦊';
-  const title = `나는 ${emo} ${t.name}! 너는 무슨 여우야? · 호아 도사`;
-  const desc = `${c.intro} 손바닥 사진 한 장으로 나와 궁합 몇 %인지 확인해 보세요!`;
+  const title = `나는 ${emo} ${t.name}! 내 손금이랑 비교해 볼래? · 호아 도사`;
+  const desc = `친구가 손금 비교를 신청했어요. ${c.intro} 손바닥 사진 한 장으로 우리 궁합 몇 %인지 확인해 보세요!`;
   const url = `${ORIGIN}/s/${t.id}/`, img = `${ORIGIN}/img/share/${t.id}.jpg`;
   return `<!doctype html>
 <html lang="ko">
@@ -71,6 +71,8 @@ const page = (t) => {
   var q = new URLSearchParams();
   q.set('t', '${t.id}');
   if (/^[1-5]{4}$/.test(p.get('s') || '')) q.set('s', p.get('s'));
+  if (/^[0-9a-z-]{14}$/.test(p.get('p') || '')) q.set('p', p.get('p'));
+  if (/^[a-z]{3,12}$/.test(p.get('f') || '') && /^[0-9]{2,3}$/.test(p.get('c') || '')) { q.set('f', p.get('f')); q.set('c', p.get('c')); }
   q.set('ref', /^[a-z0-9_-]{1,20}$/i.test(p.get('ref') || '') ? p.get('ref') : 'share');
   location.replace('/?' + q.toString());
 })();
