@@ -174,11 +174,20 @@ function foxIndex(lang) {
     </div>
     <p><a class="btn primary" href="/">${escText(c.labels.cta_fox)}</a></p>` };
 }
+/** 한국어 조사 자리표시자({은는} {이가} {을를})를 앞 글자의 받침에 맞게 고른다. 다른 언어 문구에는 없다. */
+function josa(s) {
+  const PAIRS = { '은는': ['은', '는'], '이가': ['이', '가'], '을를': ['을', '를'] };
+  return s.replace(/(.)\{(은는|이가|을를)\}/gu, (m, ch, k) => {
+    const c = ch.charCodeAt(0);
+    const has = c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0;
+    return ch + PAIRS[k][has ? 0 : 1];
+  });
+}
 function foxPage(lang, id) {
   const c = CONTENT[lang], L = c.labels, t = T[lang], f = c.foxes[id];
   const name = t(`type.${id}.name`), emo = TYPE_EMOJI[id];
   const title = `${emo} ${name}${L.fox_title_suffix}`;
-  const desc = f.desc || L.fox_desc.replace('{name}', name).replace('{el}', t(`type.${id}.element`)).replace('{kw}', t(`type.${id}.keyword`).split('·').map((s) => s.trim()).join(L.fox_kw_sep || ', '));
+  const desc = f.desc || josa(L.fox_desc.replace('{name}', name).replace('{el}', t(`type.${id}.element`)).replace('{kw}', t(`type.${id}.keyword`).split('·').map((s) => s.trim()).join(L.fox_kw_sep || ', ')));
   const others = TYPE_IDS.filter((x) => x !== id).map((x) => `<a class="chip" href="/foxes/${x}/">${TYPE_EMOJI[x]} ${escText(t(`type.${x}.name`))}</a>`).join('');
   const compat = f.compat.map(([o, txt]) => `<li><a href="/foxes/${o}/">${TYPE_EMOJI[o]} ${escText(t(`type.${o}.name`))}</a> — ${txt}</li>`).join('');
   return { title, desc, article: `${crumb(lang, `<a href="/foxes/">${escText(L.foxes)}</a>`, escText(name))}
