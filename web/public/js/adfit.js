@@ -5,6 +5,8 @@
 // Leave ADFIT_UNIT empty until a unit ID is issued. Then set only that constant — no other code changes.
 // To use the optional 300×250 size, set ADFIT_WIDTH/ADFIT_HEIGHT to 300 and 250.
 
+import { t, isKo } from './i18n/runtime.js';
+
 export const ADFIT_UNIT = '';
 export const ADFIT_WIDTH = 320;
 export const ADFIT_HEIGHT = 100;
@@ -59,13 +61,14 @@ export function mountAdfit(root = document.getElementById('r-adfit')) {
   if (!root) return false;
   const unit = String(ADFIT_UNIT || '').trim();
   if (!unit) return false;
+  if (!isKo) { root.hidden = true; return false; }   // AdFit 은 한국 전용: 외국어 페이지에서는 보이지 않음
   root.replaceChildren();
   root.hidden = false;
   root.classList.add('show');
 
   const label = document.createElement('span');
   label.className = 'adfit-label';
-  label.textContent = '광고';
+  label.textContent = t('ads.label');
   root.appendChild(label);
 
   const box = document.createElement('div');
