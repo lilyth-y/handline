@@ -317,18 +317,18 @@ document.querySelectorAll('[data-share-src]').forEach((b) => b.addEventListener(
   }
 })();
 // 화면을 내려도 공유 버튼이 보이도록: 위/아래 공유 버튼이 둘 다 화면 밖일 때만 하단 고정 버튼을 띄움
-const seenCTA = { hero: true, bottom: false };
+const seenCTA = { hero: true };
 function syncSticky() {
-  const on = document.querySelector('.screen.active')?.id === 's-result' && !seenCTA.hero && !seenCTA.bottom;
+  const on = document.querySelector('.screen.active')?.id === 's-result' && !seenCTA.hero;
   $('#share-sticky').classList.toggle('hidden', !on);
   document.body.classList.toggle('has-sticky', on);
 }
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver((es) => {
-    for (const e of es) seenCTA[e.target.id === 'r-sharehero' ? 'hero' : 'bottom'] = e.isIntersecting;
+    for (const e of es) seenCTA.hero = e.isIntersecting;
     syncSticky();
   });
-  io.observe($('#r-sharehero')); io.observe($('#btn-share'));
+  io.observe($('#r-sharehero'));
 }
 
 // 결과 카드 이미지: (일반 브라우저) 파일 공유 시트 → <a download> → (인앱/iOS) 길게 눌러 저장 + 외부 브라우저

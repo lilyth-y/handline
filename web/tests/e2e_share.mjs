@@ -55,9 +55,9 @@ check('evidence_opens_with_chips', await A.locator('#r-panels .luck:not([hidden]
 await A.evaluate(() => window.scrollTo(0, 120)); await A.waitForTimeout(500);
 check('sticky_visible_with_evidence_open', await A.locator('#share-sticky:not(.hidden)').count() === 1);
 await A.screenshot({ path: OUT + 'result_mid_sticky.png' });
-await A.click('.luck-tile[data-open="wealth"]'); await A.locator('#btn-share').scrollIntoViewIfNeeded(); await A.waitForTimeout(400);
-check('sticky_hidden_at_bottom_cta', await A.locator('#share-sticky.hidden').count() === 1);
-await A.screenshot({ path: OUT + 'result_bottom_share.png' });
+await A.click('.luck-tile[data-open="wealth"]'); await A.evaluate(() => window.scrollTo(0, 0)); await A.waitForTimeout(500);
+check('sticky_hidden_when_hero_visible', await A.locator('#share-sticky.hidden').count() === 1);
+await A.screenshot({ path: OUT + 'result_top_again.png' });
 await A.locator('#r-sharehero').scrollIntoViewIfNeeded(); await A.click('#sh-copy');
 await A.waitForSelector('#toast.show');
 const clip = await A.evaluate(() => navigator.clipboard.readText()).catch(() => null);

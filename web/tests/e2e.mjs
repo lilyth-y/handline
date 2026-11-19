@@ -39,7 +39,7 @@ for (const [k, name] of IMAGES.entries()) {
   if (k === 0) await page.screenshot({ path: OUT + 'mobile_result_top.png' });
 }
 // share fallback (no navigator.share in desktop chrome) -> toast
-await page.click('#btn-share');
+await page.click('#sh-native');
 await page.waitForTimeout(400);
 const toast = await page.textContent('#toast');
 await page.screenshot({ path: OUT + 'mobile_share_toast.png' });
