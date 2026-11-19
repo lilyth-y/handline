@@ -10,6 +10,9 @@
 // insert a second copy here; only push a unit when ADSENSE_SLOT is set.
 
 import { ADFIT_UNIT, ADFIT_WIDTH, ADFIT_HEIGHT, mountAdfit, wantPreview } from './adfit.js';
+import { t, isKo } from './i18n/runtime.js';
+
+// 카카오 애드핏·쿠팡 파트너스·토스/카카오페이 후원은 한국 전용이라 한국어 페이지에서만 쓴다 (값은 그대로, 외국어 페이지에서는 숨김).
 
 // AdSense client is set for site verification. Leave ADSENSE_SLOT empty
 // until an ad unit id is issued — a unit is rendered only when both are set.
@@ -42,7 +45,7 @@ export const COUPANG_LINKS = {
 // Toss or KakaoPay send-money link. Hidden when empty.
 export const DONATE_URL = '';
 
-export const COUPANG_DISCLOSURE = '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.';
+export const COUPANG_DISCLOSURE = '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.';   // 한국어 페이지 전용 (법정 고지 문구라 번역하지 않음)
 
 const ADSENSE_SCRIPT_ID = 'adsense-sdk';
 const LUCK_ORDER = ['wealth', 'love', 'health', 'career'];
@@ -72,7 +75,7 @@ function mountAdsense(root) {
 
   const label = document.createElement('span');
   label.className = 'adfit-label';
-  label.textContent = '광고';
+  label.textContent = t('ads.label');
   root.appendChild(label);
 
   const box = document.createElement('div');
@@ -126,21 +129,21 @@ function showAdPreview(root) {
   showSlot(root, true);
   const label = document.createElement('span');
   label.className = 'adfit-label';
-  label.textContent = '광고';
+  label.textContent = t('ads.label');
   root.appendChild(label);
   const ph = document.createElement('div');
   ph.className = 'adfit-preview';
   ph.style.width = ADFIT_WIDTH + 'px';
   ph.style.height = ADFIT_HEIGHT + 'px';
-  ph.textContent = `광고 자리 (${ADFIT_WIDTH}×${ADFIT_HEIGHT})`;
+  ph.textContent = t('ads.preview', { w: ADFIT_WIDTH, h: ADFIT_HEIGHT });
   root.appendChild(ph);
 }
 
 function mountAdSlot() {
   const root = document.getElementById('r-adfit');
   if (!root) return;
-  // AdFit takes priority over AdSense in the same result-bottom slot.
-  if (isAdfitReady()) {
+  // AdFit takes priority over AdSense in the same result-bottom slot (AdFit is Korea-only: hidden on non-Korean pages).
+  if (isKo && isAdfitReady()) {
     mountAdfit(root);
     return;
   }
@@ -175,6 +178,7 @@ function pickCoupang(result) {
 function mountCoupang(result) {
   const root = document.getElementById('r-coupang');
   if (!root) return;
+  if (!isKo) { showSlot(root, false); return; }
   const item = pickCoupang(result);
   const preview = !item && wantPreview();
   if (!item && !preview) {
@@ -188,13 +192,13 @@ function mountCoupang(result) {
   card.className = 'coupang-card';
   const kicker = document.createElement('p');
   kicker.className = 'coupang-kicker';
-  kicker.textContent = '호아 도사의 행운 아이템';
+  kicker.textContent = t('ads.coupang_kicker');
   card.appendChild(kicker);
 
   if (preview) {
     const name = document.createElement('span');
     name.className = 'coupang-name';
-    name.textContent = '행운 아이템 자리 (링크를 넣으면 여기에 보여요)';
+    name.textContent = t('ads.coupang_preview');
     card.appendChild(name);
   } else {
     const a = document.createElement('a');
@@ -216,6 +220,7 @@ function mountCoupang(result) {
 function mountDonate() {
   const root = document.getElementById('r-donate');
   if (!root) return;
+  if (!isKo) { showSlot(root, false); return; }
   const url = String(DONATE_URL || '').trim();
   const preview = !url && wantPreview();
   if (!url && !preview) {
@@ -226,7 +231,7 @@ function mountDonate() {
   showSlot(root, true);
   const a = document.createElement(preview ? 'span' : 'a');
   a.className = 'btn ghost donate-btn' + (preview ? ' preview' : '');
-  a.textContent = '호아 도사에게 유부 사주기 🍙';
+  a.textContent = t('donate.btn');
   if (!preview) {
     a.href = url;
     a.target = '_blank';

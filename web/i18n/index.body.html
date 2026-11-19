@@ -1,0 +1,174 @@
+<body>
+<div id="app">
+
+  <!-- 1. intro -->
+  <section id="s-intro" class="screen active">
+    <div class="stars-bg"></div>
+    {{lang_switch_top}}
+    <div id="shared-banner" class="card shared hidden"></div>
+    <img class="hero" src="/img/hoa.jpg" alt="{{hero.alt}}" width="720" height="720">
+    <h1>{{intro.h1_html}}</h1>
+    <p class="lead">{{intro.lead}}</p>
+    <button id="btn-start" class="btn primary">{{intro.start}}</button>
+    <p class="fine">{{intro.fine_html}}</p>
+    <details class="card dogam">
+      <summary>{{dogam.summary}}</summary>
+      <div id="dogam-grid" class="dg-grid"></div>
+    </details>
+    {{footer}}
+
+  </section>
+
+  <!-- 2. capture -->
+  <section id="s-capture" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" data-go="s-intro" aria-label="{{ui.back}}">‹</button>
+    <h2>{{capture.title}}</h2>
+    <div class="guide card">
+      <div class="palm-icon">🖐️</div>
+      <ul>
+        <li>{{capture.tip1_html}}</li>
+        <li>{{capture.tip2_html}}</li>
+        <li>{{capture.tip3_html}}</li>
+      </ul>
+    </div>
+    <label class="btn primary file-btn">{{capture.camera}}
+      <input id="in-camera" type="file" accept="image/*" capture="environment">
+    </label>
+    <label class="btn ghost file-btn">{{capture.album}}
+      <input id="in-album" type="file" accept="image/*">
+    </label>
+    <div class="card consent">
+      <label class="switch-row">
+        <span class="consent-text">{{consent.text}}</span>
+        <input type="checkbox" class="collect-toggle" role="switch" aria-label="{{consent.aria}}">
+        <i class="switch" aria-hidden="true"></i>
+      </label>
+      <p class="consent-sub"><span class="collect-state"></span> · <a href="#" class="link" data-privacy>{{consent.more}}</a></p>
+    </div>
+    <p id="model-status" class="fine">{{model.loading}}</p>
+  </section>
+
+  <!-- 3. analyzing -->
+  <section id="s-analyzing" class="screen">
+    <div class="stars-bg"></div>
+    <div class="orb-wrap">
+      <img id="ana-photo" alt="">
+      <div class="scan"></div>
+    </div>
+    <p class="bubble" id="ana-text">{{ana.initial}}</p>
+    <div class="progress"><div id="ana-bar"></div></div>
+  </section>
+
+  <!-- 4. result -->
+  <section id="s-result" class="screen">
+    <div class="stars-bg"></div>
+    <div class="result-head">
+      <div class="mini-wrap"><img class="mini" src="/img/hoa.jpg" alt=""><span id="r-emoji" class="mini-emoji" aria-hidden="true"></span></div>
+      <div>
+        <h2 id="r-type" class="type-name"></h2>
+        <p id="r-keyword" class="keyword"></p>
+      </div>
+    </div>
+    <p id="r-intro" class="lead left"></p>
+    <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-lucks" class="luck-grid"></div>
+    <div id="r-evidence" class="evidence hidden">
+      <div class="card overlay-card">
+        <canvas id="r-overlay"></canvas>
+        <div class="legend">
+          <span data-line="heart"><i style="background:#ff7eb6"></i>{{line.heart}}</span>
+          <span data-line="head"><i style="background:#ffd36e"></i>{{line.head}}</span>
+          <span data-line="life"><i style="background:#6ee7c8"></i>{{line.life}}</span>
+          <span data-line="fate"><i style="background:#b69cff"></i>{{line.fate}}</span>
+        </div>
+        <p id="r-focus" class="focus-cap hidden"></p>
+      </div>
+      <div id="r-panels"></div>
+    </div>
+    <div id="r-sharehero" class="card share-hero">
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">{{share.kakao}}</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">{{share.native}}</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">{{share.copy}}</button>
+      </div>
+    </div>
+    <details id="r-measured-box" class="card measured">
+      <summary>{{m.summary_html}}</summary>
+      <p id="r-more" class="more-text"></p>
+      <p id="r-missing" class="fine left"></p>
+      <div id="r-measured"></div>
+      <p class="fine left">{{m.note}}</p>
+    </details>
+    <button id="btn-card" class="btn ghost gold-line">{{result.card_btn}}</button>
+    <button id="btn-retry" class="btn ghost">{{result.retry}}</button>
+    <aside id="r-donate" class="donate-slot" hidden></aside>
+    <aside id="r-adfit" class="adfit-slot" hidden aria-label="{{ads.aria}}"></aside>
+    <aside id="r-coupang" class="coupang-slot" hidden aria-label="{{ads.coupang_aria}}"></aside>
+    <p id="r-disclaimer" class="fine"></p>
+    <p class="fine collect-foot">{{consent.foot_html}}</p>
+
+    {{footer}}
+
+  </section>
+
+  <!-- 4b. compare with a friend -->
+  <section id="s-compare" class="screen">
+    <div class="stars-bg"></div>
+    <p class="cmp-eyebrow">{{cmp.eyebrow}}</p>
+    <div class="cmp-duo">
+      <div class="cmp-side"><span id="c-me-emo" class="cmp-emo"></span><b>{{cmp.me}}</b><small id="c-me-name"></small></div>
+      <span class="cmp-x">×</span>
+      <div class="cmp-side"><span id="c-fr-emo" class="cmp-emo"></span><b>{{cmp.friend}}</b><small id="c-fr-name"></small></div>
+    </div>
+    <div class="card cmp-score">
+      <p class="cmp-pct"><b id="c-pct"></b><span>%</span></p>
+      <p id="c-msg" class="cmp-msg"></p>
+      <p class="cmp-fun">{{cmp.fun}}</p>
+      <ul id="c-why" class="cmp-why"></ul>
+      <details id="c-more" class="cmp-more"><summary>{{cmp.calc_summary}}</summary><p id="c-calc" class="calc"></p></details>
+    </div>
+    <div id="c-lines" class="cmp-lines"></div>
+    <div id="c-lucks" class="card cmp-lucks"></div>
+    <button type="button" id="c-share" class="btn primary" data-share-src="compare_result" data-share-kind="compare">{{cmp.share}}</button>
+    <button type="button" id="c-loop" class="btn ghost" data-share-src="compare_loop" data-share-kind="self">{{cmp.loop}}</button>
+    <button type="button" id="c-card" class="btn ghost gold-line">{{cmp.card}}</button>
+    <button type="button" id="c-to-result" class="btn ghost">{{cmp.to_result}}</button>
+    <p class="fine">{{cmp.fine}}</p>
+  </section>
+
+  <!-- error -->
+  <section id="s-error" class="screen">
+    <div class="stars-bg"></div>
+    <img class="hero small" src="/img/hoa.jpg" alt="">
+    <p class="bubble" id="err-text">{{err.default}}</p>
+    <button class="btn primary" data-go="s-capture">{{err.retry}}</button>
+  </section>
+
+
+  <!-- privacy -->
+  <section id="s-privacy" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" id="privacy-back" aria-label="{{ui.back}}">‹</button>
+    <h2>{{priv.title}}</h2>
+    <div class="card privacy">
+{{priv_app}}
+    </div>
+  </section>
+  <div id="card-modal" class="modal hidden" role="dialog" aria-label="{{card.aria}}">
+    <div class="modal-box">
+      <p class="modal-tip">{{card.tip_html}}</p>
+      <img id="card-img" alt="{{card.img_alt}}">
+      <button type="button" id="btn-card-download" class="btn primary">{{card.save}}</button>
+      <button type="button" id="btn-card-external" class="btn ghost hidden">{{card.external}}</button>
+      <button type="button" id="card-close" class="btn ghost">{{card.close}}</button>
+    </div>
+  </div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">{{share.native}}</button></div>
+<div id="toast" class="toast"></div>
+</div>
+<script defer src="/js/langbar.js"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

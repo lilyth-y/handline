@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1236">
+<title>Hoa the Fox Sage's Palm Reading 🦊</title>
+<meta name="description" content="Hoa, the white nine-tailed fox sage, reads your palm! Find your fox among 12 types, plus star ratings for wealth, love, health and career.">
+<link rel="canonical" href="https://hoadosa.com/en/">
+<link rel="alternate" hreflang="ko" href="https://hoadosa.com/">
+<link rel="alternate" hreflang="en" href="https://hoadosa.com/en/">
+<link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/">
+<link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/">
+<link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/">
+<link rel="alternate" hreflang="x-default" href="https://hoadosa.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hoa the Fox Sage's Palm Reading">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Hoa the Fox Sage's Palm Reading 🦊">
+<meta property="og:description" content="Which fox are you? One palm photo reveals your fox type (1 of 12) and 4 fortune star ratings — just for fun!">
+<meta property="og:url" content="https://hoadosa.com/en/">
+<meta property="og:image" content="https://hoadosa.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-192.png">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1321078614012821" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- 1. intro -->
+  <section id="s-intro" class="screen active">
+    <div class="stars-bg"></div>
+    <details class="lang-switch top"><summary aria-label="Language">🌐 <span>English</span></summary><ul class="lang-menu"><li><a href="/en/" lang="ko" hreflang="ko" data-lang="ko">한국어</a></li><li><a href="/en/" lang="en" hreflang="en" data-lang="en" aria-current="true">English</a></li><li><a href="/ja/" lang="ja" hreflang="ja" data-lang="ja">日本語</a></li><li><a href="/zh-tw/" lang="zh-TW" hreflang="zh-TW" data-lang="zh-tw">繁體中文</a></li></ul></details>
+    <div id="shared-banner" class="card shared hidden"></div>
+    <img class="hero" src="/img/hoa.jpg" alt="Hoa the Fox Sage (a white nine-tailed fox)" width="720" height="720">
+    <h1>Hoa the Fox Sage's<br><span class="gold">Palm Reading</span></h1>
+    <p class="lead">One palm photo, and old Hoa will find your fox.</p>
+    <button id="btn-start" class="btn primary">Read my palm ✨</button>
+    <p class="fine">Your photo never leaves your phone · Just for fun · <a href="#" class="link" data-privacy>Privacy</a></p>
+    <details class="card dogam">
+      <summary>📜 The 12 Foxes</summary>
+      <div id="dogam-grid" class="dg-grid"></div>
+    </details>
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/en/guide/">Palm Guide</a>
+        <a href="/en/foxes/">Fox Dex</a>
+        <a href="/en/about/">About</a>
+        <a href="/en/privacy/">Privacy</a>
+        <a href="/en/terms/">Terms</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · Hoa the Fox Sage's Palm Reading</p>
+    </footer>
+
+  </section>
+
+  <!-- 2. capture -->
+  <section id="s-capture" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" data-go="s-intro" aria-label="Back">‹</button>
+    <h2>Let's see that palm, friend</h2>
+    <div class="guide card">
+      <div class="palm-icon">🖐️</div>
+      <ul>
+        <li>Spread your palm <b>wide open</b> and fill the frame</li>
+        <li>Use <b>bright light</b>, no shadows</li>
+        <li>Try a <b>plain background</b>, like a desk or wall</li>
+      </ul>
+    </div>
+    <label class="btn primary file-btn">📷 Take a photo
+      <input id="in-camera" type="file" accept="image/*" capture="environment">
+    </label>
+    <label class="btn ghost file-btn">🖼️ Choose from gallery
+      <input id="in-album" type="file" accept="image/*">
+    </label>
+    <div class="card consent">
+      <label class="switch-row">
+        <span class="consent-text">📊 Photos are never stored — only anonymous measurement numbers are collected.</span>
+        <input type="checkbox" class="collect-toggle" role="switch" aria-label="Share anonymous palm measurements">
+        <i class="switch" aria-hidden="true"></i>
+      </label>
+      <p class="consent-sub"><span class="collect-state"></span> · <a href="#" class="link" data-privacy>Learn more</a></p>
+    </div>
+    <p id="model-status" class="fine">Warming up the crystal ball…</p>
+  </section>
+
+  <!-- 3. analyzing -->
+  <section id="s-analyzing" class="screen">
+    <div class="stars-bg"></div>
+    <div class="orb-wrap">
+      <img id="ana-photo" alt="">
+      <div class="scan"></div>
+    </div>
+    <p class="bubble" id="ana-text">Hmm… studying your palm</p>
+    <div class="progress"><div id="ana-bar"></div></div>
+  </section>
+
+  <!-- 4. result -->
+  <section id="s-result" class="screen">
+    <div class="stars-bg"></div>
+    <div class="result-head">
+      <div class="mini-wrap"><img class="mini" src="/img/hoa.jpg" alt=""><span id="r-emoji" class="mini-emoji" aria-hidden="true"></span></div>
+      <div>
+        <h2 id="r-type" class="type-name"></h2>
+        <p id="r-keyword" class="keyword"></p>
+      </div>
+    </div>
+    <p id="r-intro" class="lead left"></p>
+    <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-lucks" class="luck-grid"></div>
+    <div id="r-evidence" class="evidence hidden">
+      <div class="card overlay-card">
+        <canvas id="r-overlay"></canvas>
+        <div class="legend">
+          <span data-line="heart"><i style="background:#ff7eb6"></i>Heart line</span>
+          <span data-line="head"><i style="background:#ffd36e"></i>Head line</span>
+          <span data-line="life"><i style="background:#6ee7c8"></i>Life line</span>
+          <span data-line="fate"><i style="background:#b69cff"></i>Fate line</span>
+        </div>
+        <p id="r-focus" class="focus-cap hidden"></p>
+      </div>
+      <div id="r-panels"></div>
+    </div>
+    <div id="r-sharehero" class="card share-hero">
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 Send on KakaoTalk</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 Compare palms with a friend</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 Copy link</button>
+      </div>
+    </div>
+    <details id="r-measured-box" class="card measured">
+      <summary>Details <span class="muted">fox's note · measurements</span></summary>
+      <p id="r-more" class="more-text"></p>
+      <p id="r-missing" class="fine left"></p>
+      <div id="r-measured"></div>
+      <p class="fine left">Star ratings come from matching the shapes in your photo against traditional palmistry rules.</p>
+    </details>
+    <button id="btn-card" class="btn ghost gold-line">Save story card 📸</button>
+    <button id="btn-retry" class="btn ghost">Read another hand</button>
+    <aside id="r-adfit" class="adfit-slot" hidden aria-label="Advertisement"></aside>
+    <p id="r-disclaimer" class="fine"></p>
+    <p class="fine collect-foot">📊 Anonymous stats: <b class="collect-state"></b> · <a href="#" class="link" data-privacy>Info &amp; opt-out</a></p>
+
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/en/guide/">Palm Guide</a>
+        <a href="/en/foxes/">Fox Dex</a>
+        <a href="/en/about/">About</a>
+        <a href="/en/privacy/">Privacy</a>
+        <a href="/en/terms/">Terms</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · Hoa the Fox Sage's Palm Reading</p>
+    </footer>
+
+  </section>
+
+  <!-- 4b. compare with a friend -->
+  <section id="s-compare" class="screen">
+    <div class="stars-bg"></div>
+    <p class="cmp-eyebrow">🤝 Palm comparison</p>
+    <div class="cmp-duo">
+      <div class="cmp-side"><span id="c-me-emo" class="cmp-emo"></span><b>Me</b><small id="c-me-name"></small></div>
+      <span class="cmp-x">×</span>
+      <div class="cmp-side"><span id="c-fr-emo" class="cmp-emo"></span><b>Friend</b><small id="c-fr-name"></small></div>
+    </div>
+    <div class="card cmp-score">
+      <p class="cmp-pct"><b id="c-pct"></b><span>%</span></p>
+      <p id="c-msg" class="cmp-msg"></p>
+      <p class="cmp-fun">Just for fun · see the reasons below!</p>
+      <ul id="c-why" class="cmp-why"></ul>
+      <details id="c-more" class="cmp-more"><summary>See how it's scored</summary><p id="c-calc" class="calc"></p></details>
+    </div>
+    <div id="c-lines" class="cmp-lines"></div>
+    <div id="c-lucks" class="card cmp-lucks"></div>
+    <button type="button" id="c-share" class="btn primary" data-share-src="compare_result" data-share-kind="compare">💞 Share our match</button>
+    <button type="button" id="c-loop" class="btn ghost" data-share-src="compare_loop" data-share-kind="self">🤝 Compare with another friend</button>
+    <button type="button" id="c-card" class="btn ghost gold-line">Save match card 📸</button>
+    <button type="button" id="c-to-result" class="btn ghost">See my result</button>
+    <p class="fine">Compatibility is just for fun. Your photo is never shared.</p>
+  </section>
+
+  <!-- error -->
+  <section id="s-error" class="screen">
+    <div class="stars-bg"></div>
+    <img class="hero small" src="/img/hoa.jpg" alt="">
+    <p class="bubble" id="err-text">Oh dear, I can't quite see your palm lines.</p>
+    <button class="btn primary" data-go="s-capture">Try again</button>
+  </section>
+
+
+  <!-- privacy -->
+  <section id="s-privacy" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" id="privacy-back" aria-label="Back">‹</button>
+    <h2>Privacy notice</h2>
+    <div class="card privacy">
+      <h3>📷 Your palm photo</h3>
+      <p>Your photo is analyzed only inside your phone (browser). It is never uploaded or stored.</p>
+      <h3>📊 What we collect anonymously</h3>
+      <p>When the analysis finishes, we send <b>numbers only</b>. They are used solely to recalibrate Hoa's “top %” reference against real phone photos.</p>
+      <ul>
+        <li>Palm-line measurements (length, curve, clarity, start/end position — as ratios of palm width)</li>
+        <li>Your result type, the 4 star ratings and the number of lines found</li>
+        <li>Photo width and height, app and model versions, device category (in-app browser / mobile / desktop)</li>
+        <li>The date sent (the time of day is not recorded)</li>
+      </ul>
+      <h3>👀 Visit statistics</h3>
+      <p>We count visits anonymously with Vercel Web Analytics. No cookies are used; we only gather page views, referrers, browser and device type, and a country-level region estimated from the IP address. The IP address itself is not stored.</p>
+      <h3>📣 Ads</h3>
+      <p>Google AdSense ads may appear below the result screen. Ads are served by the provider, which may use cookies or advertising identifiers under its own policies. See the <a href="https://policies.google.com/privacy" class="link" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads" class="link" target="_blank" rel="noopener noreferrer">Google Ads</a> pages for details.</p>
+      <h3>🚫 What we don't collect</h3>
+      <p>We don't store photos, faces, names, contact details, accounts, device IDs, IP addresses, exact location or exact time. The stored numbers alone can't tell anyone whose hand it was. <span class="muted">(A short-lived server access log made when the numbers are sent is kept briefly in Supabase for security and then deleted automatically.)</span></p>
+      <h3>🔒 Storage and use</h3>
+      <p>The numbers are stored in a Supabase database (Seoul region). The app can only send them, not read them. They are not used for anything other than calibration and are not sold to third parties.</p>
+      <h3>⚙️ Turn off</h3>
+      <label class="switch-row">
+        <span class="consent-text">Share anonymous palm measurements</span>
+        <input type="checkbox" class="collect-toggle" role="switch" aria-label="Share anonymous palm measurements">
+        <i class="switch" aria-hidden="true"></i>
+      </label>
+      <p class="consent-sub">When off, this device won't send palm measurements. The setting is remembered in this browser. Visit statistics are counted anonymously, separately from this.</p>
+    </div>
+  </section>
+  <div id="card-modal" class="modal hidden" role="dialog" aria-label="Result card image">
+    <div class="modal-box">
+      <p class="modal-tip"><b>Press and hold</b> the image to save it</p>
+      <img id="card-img" alt="Hoa the Fox Sage palm result card">
+      <button type="button" id="btn-card-download" class="btn primary">Save image</button>
+      <button type="button" id="btn-card-external" class="btn ghost hidden">Open in browser</button>
+      <button type="button" id="card-close" class="btn ghost">Close</button>
+    </div>
+  </div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 Compare palms with a friend</button></div>
+<div id="toast" class="toast"></div>
+</div>
+<script defer src="/js/langbar.js"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

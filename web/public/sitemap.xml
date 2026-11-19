@@ -1,113 +1,971 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hoadosa.com/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/guide/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/guide/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/guide/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/guide/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/guide/life/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/life/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/guide/life/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/life/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/guide/life/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/life/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/guide/life/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/life/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/life/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/guide/head/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/head/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/guide/head/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/head/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/guide/head/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/head/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/guide/head/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/head/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/head/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/guide/heart/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/heart/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/guide/heart/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/heart/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/guide/heart/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/heart/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/guide/heart/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/heart/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/guide/fate/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/fate/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/guide/fate/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/fate/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/guide/fate/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/fate/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/guide/fate/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/guide/fate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/guide/fate/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/gold/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/gold/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/gold/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/gold/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/gold/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/gold/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/gold/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/gold/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/gold/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/fire/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/fire/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/fire/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/fire/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/fire/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/fire/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/fire/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/fire/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/fire/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/moon/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/moon/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/moon/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/moon/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/moon/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/moon/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/moon/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/moon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/moon/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/star/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/star/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/star/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/star/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/star/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/star/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/star/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/star/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/star/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/wind/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wind/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/wind/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wind/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/wind/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wind/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/wind/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wind/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wind/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/sun/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/sun/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/sun/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/sun/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/sun/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/sun/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/sun/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/sun/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/sun/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/cloud/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/cloud/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/cloud/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/cloud/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/cloud/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/cloud/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/cloud/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/cloud/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/cloud/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/flower/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/flower/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/flower/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/flower/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/flower/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/flower/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/flower/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/flower/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/flower/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/rock/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/rock/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/rock/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/rock/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/rock/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/rock/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/rock/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/rock/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/rock/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/wave/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wave/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/wave/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wave/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/wave/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wave/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/wave/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/wave/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/wave/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/lightning/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/lightning/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/lightning/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/lightning/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/lightning/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/lightning/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/lightning/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/lightning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/lightning/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/foxes/galaxy/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/galaxy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/foxes/galaxy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/galaxy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/foxes/galaxy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/galaxy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/foxes/galaxy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/foxes/galaxy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/foxes/galaxy/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/about/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/about/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/about/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/about/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/about/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/about/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/about/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/about/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/privacy/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/privacy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/privacy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/privacy/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/privacy/"/>
   </url>
   <url>
     <loc>https://hoadosa.com/terms/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/terms/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/en/terms/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/terms/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/ja/terms/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/terms/"/>
+  </url>
+  <url>
+    <loc>https://hoadosa.com/zh-tw/terms/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hoadosa.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hoadosa.com/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hoadosa.com/terms/"/>
   </url>
 </urlset>

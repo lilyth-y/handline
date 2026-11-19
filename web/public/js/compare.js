@@ -2,12 +2,14 @@
 // 궁합 규칙/점수는 rules.yaml 의 compatibility(= interpret.py 와 같은 값)를 그대로 쓰고, 근거를 항목별로 돌려준다.
 import { RULES } from './rules.js';
 import { makePct } from './interpret.js';
+import { t } from './i18n/runtime.js';
+import { reasonText } from './copy.js';
 
 export const LINES = ['heart', 'head', 'life', 'fate'];
-export const LINE_NAME = { heart: '감정선', head: '두뇌선', life: '생명선', fate: '운명선' };
+export const lineName = (k) => t(`line.${k}`);
 export const LINE_COLOR = { heart: '#ff7eb6', head: '#ffd36e', life: '#6ee7c8', fate: '#b69cff' };
 const ZONES = ['ring', 'middle', 'index_middle', 'index'];            // 감정선 끝 위치 (약지 → 검지)
-const ZONE_KO = ['약지 쪽', '중지 쪽', '검지·중지 사이', '검지 쪽'];
+const zoneName = (z) => (z >= 0 && z <= 3 ? t(`cmp.zone.${z}`) : '-');
 const B36 = '0123456789abcdefghijklmnopqrstuvwxyz';
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const dig = (p) => clamp(Math.round(p * 9), 0, 9);                    // 0~1 백분위 -> 0~9
@@ -68,14 +70,14 @@ export function decodeLines(str) {
 }
 
 // ---------------------------------------------------------------- 손금 한 줄 설명 (짧게)
-const lenWord = (d) => (d >= 7 ? '긴 편' : d <= 3 ? '짧은 편' : '보통');
+const lenWord = (d) => t(`cmp.len.${d >= 7 ? 'long' : d <= 3 ? 'short' : 'mid'}`);
 export function describeLine(k, d) {
-  if (!d) return { len: 0, text: '잘 안 보여요' };
+  if (!d) return { len: 0, text: t('cmp.line_missing') };
   let extra = '';
-  if (k === 'heart') extra = `끝은 ${ZONE_KO[d.zone] ?? '-'}`;
-  else if (k === 'head') extra = d.cur >= 7 ? '휜 편' : d.cur <= 3 ? '곧은 편' : '살짝 휨';
-  else if (k === 'life') extra = d.cur >= 7 ? '넓게 휨' : d.cur <= 3 ? '좁게 휨' : '적당히 휨';
-  else extra = d.reach ? '손가락 쪽까지' : '중간까지';
+  if (k === 'heart') extra = t('cmp.heart_end', { zone: zoneName(d.zone) });
+  else if (k === 'head') extra = t(`cmp.head.${d.cur >= 7 ? 'curvy' : d.cur <= 3 ? 'straight' : 'slight'}`);
+  else if (k === 'life') extra = t(`cmp.life.${d.cur >= 7 ? 'wide' : d.cur <= 3 ? 'narrow' : 'mid'}`);
+  else extra = t(`cmp.fate.${d.reach ? 'reach' : 'mid'}`);
   return { len: d.len + 1, text: `${lenWord(d.len)} · ${extra}` };
 }
 
@@ -83,38 +85,38 @@ export function describeLine(k, d) {
 // me, friend: { t, s:[4], L?, j? }.  선 정보(L)가 없으면(예전 링크) 유형·별점 규칙만 쓴다.
 export function compareProfiles(me, fr) {
   const C = RULES.compatibility, items = [];
-  const add = (id, pts, lines, label) => items.push({ id, pts, lines, label, text: RULES.reasons[id] || id });
+  const add = (id, pts, lines, labelKey) => items.push({ id, pts, lines, label: t(`cmp.chip.${labelKey}`), text: reasonText(id) });
   const has = (p) => p && p.L;
   if (has(me) && has(fr)) {
     const hz = [me.L.heart?.zone, fr.L.heart?.zone];
     if (hz[0] != null && hz[1] != null) {
       const d = Math.abs(hz[0] - hz[1]);
-      if (d === 0) add('compat_heart_same', C.heart_same, ['heart'], '감정선 끝 같음');
-      else if (d === 1) add('compat_heart_near', C.heart_near, ['heart'], '감정선 끝 비슷');
+      if (d === 0) add('compat_heart_same', C.heart_same, ['heart'], 'heart_same');
+      else if (d === 1) add('compat_heart_near', C.heart_near, ['heart'], 'heart_near');
     }
     if (me.L.head && fr.L.head) {
       const d = Math.abs(me.L.head.ang - fr.L.head.ang);
-      if (d < 8) add('compat_head_similar', C.head_similar, ['head'], '두뇌선 기울기 닮음');
-      else if (d > 20) add('compat_head_complement', C.head_complement, ['head'], '두뇌선 서로 보완');
+      if (d < 8) add('compat_head_similar', C.head_similar, ['head'], 'head_similar');
+      else if (d > 20) add('compat_head_complement', C.head_complement, ['head'], 'head_complement');
     }
-    if (me.L.life && fr.L.life && Math.abs(me.L.life.aw - fr.L.life.aw) / 20 < 0.1) add('compat_life_similar', C.life_similar, ['life'], '생명선 활력 비슷');
+    if (me.L.life && fr.L.life && Math.abs(me.L.life.aw - fr.L.life.aw) / 20 < 0.1) add('compat_life_similar', C.life_similar, ['life'], 'life_similar');
     if (me.j != null && fr.j != null) {
-      if (me.j === fr.j) add('compat_junction_same', C.junction_same, ['head', 'life'], '시작 습관 닮음');
-      else add('compat_junction_mix', C.junction_mix, ['head', 'life'], '신중함+추진력');
+      if (me.j === fr.j) add('compat_junction_same', C.junction_same, ['head', 'life'], 'junction_same');
+      else add('compat_junction_mix', C.junction_mix, ['head', 'life'], 'junction_mix');
     }
   }
   const ea = elementOf(me.t), eb = elementOf(fr.t), pair = pairBonus(ea, eb);
-  if (ea === eb) add('compat_same_element', C.same_element, [], '같은 기운');
-  else if (pair) add('compat_element_pair', pair, [], pair >= 8 ? '천생연분 조합' : '기운을 북돋는 조합');
+  if (ea === eb) add('compat_same_element', C.same_element, [], 'same_element');
+  else if (pair) add('compat_element_pair', pair, [], pair >= 8 ? 'pair_top' : 'pair');
   if (me.s && fr.s) {
     const n = me.s.filter((v, i) => Math.abs(v - fr.s[i]) >= 2).length;
-    if (n) add('compat_luck_complement', C.luck_complement * Math.min(n, 2), [], '서로 부족한 운 채움');
+    if (n) add('compat_luck_complement', C.luck_complement * Math.min(n, 2), [], 'luck_complement');
   }
   const raw = C.base + items.reduce((a, i) => a + i.pts, 0);
   const score = Math.round(Math.max(C.floor, Math.min(100, raw)));
-  if (!items.length) items.push({ id: 'compat_default', pts: 0, lines: [], label: '기본 점수', text: RULES.reasons.compat_default });
-  const msg = score >= 90 ? '천생연분이로다! 💞' : score >= 80 ? '찰떡궁합이구려! ✨' : score >= 70 ? '서로 채워 주는 사이 🌙' : '다르기에 끌리는 사이 🍃';
+  if (!items.length) items.push({ id: 'compat_default', pts: 0, lines: [], label: t('cmp.chip.default'), text: reasonText('compat_default') });
+  const msg = t(`cmp.msg.${score >= 90 ? 90 : score >= 80 ? 80 : score >= 70 ? 70 : 60}`);
   items.sort((a, b) => b.pts - a.pts);
-  const calc = `기본 ${C.base} ${items.filter((i) => i.pts).map((i) => `+ ${i.label} ${i.pts}`).join(' ')} = ${raw}${raw !== score ? ` → ${score}` : ''}`;
+  const calc = `${t('calc.base', { v: C.base })} ${items.filter((i) => i.pts).map((i) => t('calc.plus', { name: i.label, v: i.pts })).join(' ')} = ${raw}${raw !== score ? ` → ${score}` : ''}`;
   return { score, msg, items, calc, base: C.base, mate: pairBonus(ea, eb) >= Math.max(...Object.values(C.element_pairs)) && ea !== eb };
 }
