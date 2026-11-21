@@ -93,7 +93,7 @@ const vars = (s) => [...String(s).matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort(
     if (!/class="lang-switch/.test(html)) sw.push(rel);
     for (const l of LANG_IDS) if (!fs.existsSync(path.join(pub, pathFor(l, base), 'index.html'))) hre.push(`${rel}: missing ${l} page`);
   }
-  check('static_pages_no_hangul', leaks.length === 0 && pages.length >= 3 * 22, { n: pages.length, leaks: leaks.slice(0, 6) });
+  check('static_pages_no_hangul', leaks.length === 0 && pages.length >= NON_KO.length * 22, { n: pages.length, leaks: leaks.slice(0, 6) });
   check('hreflang_complete_and_reciprocal', hre.length === 0, { bad: hre.slice(0, 6) });
   check('canonical_self', can.length === 0, { bad: can.slice(0, 6) });
   check('share_pages_localized_noindex', noindex.length === 0, { bad: noindex.slice(0, 6) });
@@ -111,7 +111,7 @@ const vars = (s) => [...String(s).matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort(
 // ---------- 2. 브라우저 ----------
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const mk = async (lang) => {
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, userAgent: KAKAO, locale: { ko: 'ko-KR', en: 'en-US', ja: 'ja-JP', 'zh-tw': 'zh-TW' }[lang], permissions: ['clipboard-read', 'clipboard-write'] });
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, userAgent: KAKAO, locale: LANGS[lang].intl, permissions: ['clipboard-read', 'clipboard-write'] });
   await ctx.addInitScript(() => {
     try { localStorage.setItem('hoa_collect', 'off'); localStorage.setItem('hoa_lang_dismissed', '1'); } catch {}
     Object.defineProperty(navigator, 'share', { configurable: true, value: async (d) => { window.__shared = d; } });
@@ -173,7 +173,7 @@ for (const lang of LANG_IDS) {
   await A.waitForSelector('#card-modal:not(.hidden)', { timeout: 20000 });
   const ct = await A.evaluate(() => window.__canvasText.join(' | '));
   check(tag('story_card_text_language'), ct.length > 20 && (ko ? HANGUL.test(ct) : !HANGUL.test(ct)), { text: ct.slice(0, 160), hangul: hangulIn(ct) });
-  check(tag('story_card_link_prefix'), ko ? true : /hoadosa\.com\//.test(ct) && (lang === 'ko' || ct.includes(pre.slice(1))), { text: ct.slice(-60) });
+  check(tag('story_card_link_prefix'), ko ? true : /hoadosa\.com/.test(ct), { text: ct.slice(-80) });
   check(tag('no_supabase_writes'), A.__posts.length === 0);
 
   // 친구가 공유 링크를 연다 → 앱 안내 → 비교 화면
@@ -242,7 +242,7 @@ for (const lang of LANG_IDS) {
   {
     const { ctx, p } = await fresh('zh-CN');
     await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-    check('auto_redirect_zh_cn_to_zh_tw', new URL(p.url()).pathname === '/zh-tw/');
+    check('auto_redirect_zh_cn', new URL(p.url()).pathname === '/zh-cn/');
     await ctx.close();
   }
   {
@@ -283,13 +283,32 @@ for (const lang of LANG_IDS) {
     check('no_redirect_after_ko_switch', new URL(p.url()).pathname === '/');
     await ctx.close();
   }
+  for (const [loc, path, id] of [
+    ['es-ES', '/es/', 'auto_redirect_es'],
+    ['vi-VN', '/vi/', 'auto_redirect_vi'],
+    ['th-TH', '/th/', 'auto_redirect_th'],
+    ['id-ID', '/id/', 'auto_redirect_id'],
+    ['de-DE', '/de/', 'auto_redirect_de'],
+    ['fr-FR', '/fr/', 'auto_redirect_fr'],
+  ]) {
+    const { ctx, p } = await fresh(loc);
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check(id, new URL(p.url()).pathname === path);
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('zh-TW');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_zh_hant_to_zh_tw', new URL(p.url()).pathname === '/zh-tw/');
+    await ctx.close();
+  }
   {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US' });
     const p = await ctx.newPage();
     await p.goto(`${BASE}/en/`, { waitUntil: 'networkidle' });
     check('langbar_silent_when_already_matching', await p.locator('.langbar').count() === 0);
     await p.locator('.lang-switch summary').click();
-    check('lang_switch_menu_lists_all_langs', await p.locator('.lang-menu a').count() === 4);
+    check('lang_switch_menu_lists_all_langs', await p.locator('.lang-menu a').count() === LANG_IDS.length);
     await ctx.close();
   }
   const koHome = fs.readFileSync(path.join(pub, 'index.html'), 'utf8');

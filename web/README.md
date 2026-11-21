@@ -58,7 +58,7 @@ PLSU + 11K Hands, features from this browser pipeline). `gen_calib.cjs` copies i
 ## 다국어 (ko · en · ja · zh-tw)
 
 - 주소: 한국어는 기존 그대로 루트(`/`, `/guide/`, `/foxes/gold/` …), 나머지는 접두어 `/en/` `/ja/` `/zh-tw/`. 공유 랜딩은 `/<lang>/s/<유형id>/`.
-  모든 페이지에 hreflang(ko·en·ja·zh-TW·zh-HK, x-default = 한국어 루트)과 언어 전환 메뉴가 있다. 첫 방문(저장된 `hoa_lang` 없음)이고 한국어 페이지면 `js/langredirect.js` 가 브라우저 언어로 자동 이동한다(봇 제외). 그 외에는 `js/langbar.js` 제안 바.
+  모든 페이지에 hreflang(11개 언어 + x-default = 한국어 루트)과 언어 전환 메뉴가 있다. 첫 방문(저장된 `hoa_lang` 없음)이고 한국어 페이지면 `js/langredirect.js` 가 브라우저 언어로 자동 이동한다(봇 제외; zh-CN/zh-Hans→/zh-cn/, zh-TW/HK→/zh-tw/, 기타 비한국어→/en/). 그 외에는 `js/langbar.js` 제안 바.
 - 문구: `public/js/i18n/<lang>.js`(앱·공용 사전, `{변수}` 치환) / `i18n/content.<lang>.mjs`(가이드·도감·소개·약관 본문) / 용어집 `i18n/GLOSSARY.md`.
   앱은 `<html data-lang>` 로 언어를 정해 그 사전 하나만 불러온다(`js/i18n/runtime.js`). 한국어 사전 문구는 `rules.js`(= `interpret/rules.yaml`) 원문과 같아야 한다 — 테스트가 확인한다.
 - 정적 페이지 생성: `node tools/gen_i18n.mjs` (홈 템플릿 `i18n/index.body.html` + 사전 → `public/**/index.html`, sitemap). `--check` 는 최신인지만 확인. 생성 결과를 커밋한다.

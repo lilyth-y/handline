@@ -1,6 +1,6 @@
 # 번역 용어집 (Glossary) — 호아 도사 / Hoa the Fox Sage
 
-이 파일은 4개 언어(ko·en·ja·zh-tw)의 문구를 일관되게 유지하기 위한 기준표입니다. 사전은 `public/js/i18n/<lang>.js`, 본문은 `i18n/content.<lang>.mjs`.
+이 파일은 11개 언어(ko·en·ja·zh-tw·zh-cn·es·vi·th·id·de·fr)의 문구를 일관되게 유지하기 위한 기준표입니다. 사전은 `public/js/i18n/<lang>.js`, 본문은 `i18n/content.<lang>.mjs`.
 문구를 바꾸면 `node tools/gen_i18n.mjs` (정적 페이지) · `node tools/gen_share_og.mjs` (공유 OG/랜딩) · `node tools/export_i18n_texts.mjs` (LLM 프롬프트용 JSON)를 다시 돌리세요.
 
 ## 브랜드 · 캐릭터
@@ -8,6 +8,13 @@
 | 한국어 | English | 日本語 | 繁體中文 |
 |---|---|---|---|
 | 호아 도사의 손금 풀이 | Hoa the Fox Sage's Palm Reading | ホア仙人の手相占い | 狐仙 Hoa 的手相占卜 |
+| (简) | — | — | 狐仙 Hoa 手相占卜 |
+| (es) | Hoa el Zorro Sabio | — | — |
+| (vi) | Hoa Cáo Tiên | — | — |
+| (th) | โฮอา จิ้งจอกเซียน | — | — |
+| (id) | Hoa Sang Rubah Bijak | — | — |
+| (de) | Hoa der Fuchsweise | — | — |
+| (fr) | Hoa le Renard Sage | — | — |
 | 🦊 호아 도사 | 🦊 Hoa the Fox Sage | 🦊 ホア仙人 | 🦊 狐仙 Hoa |
 
 - 캐릭터: 하얀 구미호 도사 / white nine-tailed fox sage / 白い九尾のきつねの仙人 / 白色九尾狐仙.

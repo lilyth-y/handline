@@ -8,7 +8,14 @@ const FONT_BY_LANG = {
   ko: '"Apple SD Gothic Neo", "Noto Sans KR", "Gothic A1", "Malgun Gothic"',
   ja: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", "Meiryo"',
   'zh-tw': '"PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Microsoft JhengHei"',
+  'zh-cn': '"PingFang SC", "Noto Sans SC", "Noto Sans CJK SC", "Microsoft YaHei"',
   en: '"Helvetica Neue", "Segoe UI", Roboto, "Noto Sans"',
+  es: '"Helvetica Neue", "Segoe UI", Roboto, "Noto Sans"',
+  de: '"Helvetica Neue", "Segoe UI", Roboto, "Noto Sans"',
+  fr: '"Helvetica Neue", "Segoe UI", Roboto, "Noto Sans"',
+  id: '"Helvetica Neue", "Segoe UI", Roboto, "Noto Sans"',
+  vi: '"Be Vietnam Pro", "Noto Sans", "Segoe UI", sans-serif',
+  th: '"Noto Sans Thai", "Leelawadee UI", "Noto Sans", sans-serif',
 };
 const FONT = `-apple-system, BlinkMacSystemFont, ${FONT_BY_LANG[LANG] || FONT_BY_LANG.ko}, "Noto Sans KR", "Noto Sans CJK JP", "Noto Sans CJK TC", sans-serif`;
 const HOST = APP_HOST + L('/').replace(/\/$/, '');   // hoadosa.com, hoadosa.com/en ...

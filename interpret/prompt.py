@@ -14,7 +14,7 @@ import json
 import os
 import re
 
-LANGS = ("ko", "en", "ja", "zh-tw")
+LANGS = ("ko", "en", "ja", "zh-tw", "zh-cn", "es", "vi", "th", "id", "de", "fr")
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _TEXTS = None
 

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1236">
+<title>狐仙 Hoa 手相占卜 🦊</title>
+<meta name="description" content="白色九尾狐仙 Hoa 来帮你看手相！12 种狐狸类型，加上财运、爱情、健康、事业运的星星评分！">
+<link rel="canonical" href="https://hoadosa.com/zh-cn/">
+<link rel="alternate" hreflang="ko" href="https://hoadosa.com/">
+<link rel="alternate" hreflang="en" href="https://hoadosa.com/en/">
+<link rel="alternate" hreflang="ja" href="https://hoadosa.com/ja/">
+<link rel="alternate" hreflang="zh-TW" href="https://hoadosa.com/zh-tw/">
+<link rel="alternate" hreflang="zh-HK" href="https://hoadosa.com/zh-tw/">
+<link rel="alternate" hreflang="zh-CN" href="https://hoadosa.com/zh-cn/">
+<link rel="alternate" hreflang="zh-Hans" href="https://hoadosa.com/zh-cn/">
+<link rel="alternate" hreflang="zh-SG" href="https://hoadosa.com/zh-cn/">
+<link rel="alternate" hreflang="es" href="https://hoadosa.com/es/">
+<link rel="alternate" hreflang="vi" href="https://hoadosa.com/vi/">
+<link rel="alternate" hreflang="th" href="https://hoadosa.com/th/">
+<link rel="alternate" hreflang="id" href="https://hoadosa.com/id/">
+<link rel="alternate" hreflang="de" href="https://hoadosa.com/de/">
+<link rel="alternate" hreflang="fr" href="https://hoadosa.com/fr/">
+<link rel="alternate" hreflang="x-default" href="https://hoadosa.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="狐仙 Hoa 手相占卜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="狐仙 Hoa 手相占卜 🦊">
+<meta property="og:description" content="你是哪一种狐狸？只要一张手掌照片，就能知道你的狐狸类型（12 选 1）和 4 项运势星等！">
+<meta property="og:url" content="https://hoadosa.com/zh-cn/">
+<meta property="og:image" content="https://hoadosa.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-192.png">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1321078614012821" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- 1. intro -->
+  <section id="s-intro" class="screen active">
+    <div class="stars-bg"></div>
+    <details class="lang-switch top"><summary aria-label="Language">🌐 <span>简体中文</span></summary><ul class="lang-menu"><li><a href="/zh-cn/" lang="ko" hreflang="ko" data-lang="ko">한국어</a></li><li><a href="/en/" lang="en" hreflang="en" data-lang="en">English</a></li><li><a href="/ja/" lang="ja" hreflang="ja" data-lang="ja">日本語</a></li><li><a href="/zh-tw/" lang="zh-TW" hreflang="zh-TW" data-lang="zh-tw">繁體中文</a></li><li><a href="/zh-cn/" lang="zh-CN" hreflang="zh-CN" data-lang="zh-cn" aria-current="true">简体中文</a></li><li><a href="/es/" lang="es" hreflang="es" data-lang="es">Español</a></li><li><a href="/vi/" lang="vi" hreflang="vi" data-lang="vi">Tiếng Việt</a></li><li><a href="/th/" lang="th" hreflang="th" data-lang="th">ไทย</a></li><li><a href="/id/" lang="id" hreflang="id" data-lang="id">Bahasa Indonesia</a></li><li><a href="/de/" lang="de" hreflang="de" data-lang="de">Deutsch</a></li><li><a href="/fr/" lang="fr" hreflang="fr" data-lang="fr">Français</a></li></ul></details>
+    <div id="shared-banner" class="card shared hidden"></div>
+    <img class="hero" src="/img/hoa.jpg" alt="狐仙 Hoa（白色九尾狐）" width="720" height="720">
+    <h1>狐仙 Hoa 的<br><span class="gold">手相占卜</span></h1>
+    <p class="lead">一张手掌照片，本仙就帮你找出属于你的那只狐狸。</p>
+    <button id="btn-start" class="btn primary">来看手相 ✨</button>
+    <p class="fine">照片只会在你的手机里分析 · 纯属娱乐的手相占卜 · <a href="#" class="link" data-privacy>隐私权</a></p>
+    <details class="card dogam">
+      <summary>📜 12 只狐狸图鉴</summary>
+      <div id="dogam-grid" class="dg-grid"></div>
+    </details>
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/zh-cn/guide/">手相小故事</a>
+        <a href="/zh-cn/foxes/">狐狸图鉴</a>
+        <a href="/zh-cn/about/">关于</a>
+        <a href="/zh-cn/privacy/">隐私权</a>
+        <a href="/zh-cn/terms/">使用条款</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · 狐仙 Hoa 手相占卜</p>
+    </footer>
+
+  </section>
+
+  <!-- 2. capture -->
+  <section id="s-capture" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" data-go="s-intro" aria-label="返回">‹</button>
+    <h2>把手掌亮给本仙瞧瞧吧</h2>
+    <div class="guide card">
+      <div class="palm-icon">🖐️</div>
+      <ul>
+        <li>手掌<b>完全张开</b>，让画面拍满</li>
+        <li>在<b>明亮的地方</b>拍，不要有阴影</li>
+        <li>背景选<b>单色</b>的，像桌面或墙壁</li>
+      </ul>
+    </div>
+    <label class="btn primary file-btn">📷 用相机拍
+      <input id="in-camera" type="file" accept="image/*" capture="environment">
+    </label>
+    <label class="btn ghost file-btn">🖼️ 从相簿选择
+      <input id="in-album" type="file" accept="image/*">
+    </label>
+    <div class="card consent">
+      <label class="switch-row">
+        <span class="consent-text">📊 不储存照片，只会匿名搜集测量数字。</span>
+        <input type="checkbox" class="collect-toggle" role="switch" aria-label="匿名提供手相测量数字">
+        <i class="switch" aria-hidden="true"></i>
+      </label>
+      <p class="consent-sub"><span class="collect-state"></span> · <a href="#" class="link" data-privacy>了解更多</a></p>
+    </div>
+    <p id="model-status" class="fine">水晶球准备中…</p>
+  </section>
+
+  <!-- 3. analyzing -->
+  <section id="s-analyzing" class="screen">
+    <div class="stars-bg"></div>
+    <div class="orb-wrap">
+      <img id="ana-photo" alt="">
+      <div class="scan"></div>
+    </div>
+    <p class="bubble" id="ana-text">嗯… 本仙正在细看你的手相</p>
+    <div class="progress"><div id="ana-bar"></div></div>
+  </section>
+
+  <!-- 4. result -->
+  <section id="s-result" class="screen">
+    <div class="stars-bg"></div>
+    <div class="result-head">
+      <div class="mini-wrap"><img class="mini" src="/img/hoa.jpg" alt=""><span id="r-emoji" class="mini-emoji" aria-hidden="true"></span></div>
+      <div>
+        <h2 id="r-type" class="type-name"></h2>
+        <p id="r-keyword" class="keyword"></p>
+      </div>
+    </div>
+    <p id="r-intro" class="lead left"></p>
+    <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-lucks" class="luck-grid"></div>
+    <div id="r-evidence" class="evidence hidden">
+      <div class="card overlay-card">
+        <canvas id="r-overlay"></canvas>
+        <div class="legend">
+          <span data-line="heart"><i style="background:#ff7eb6"></i>感情线</span>
+          <span data-line="head"><i style="background:#ffd36e"></i>智慧线</span>
+          <span data-line="life"><i style="background:#6ee7c8"></i>生命线</span>
+          <span data-line="fate"><i style="background:#b69cff"></i>事业线</span>
+        </div>
+        <p id="r-focus" class="focus-cap hidden"></p>
+      </div>
+      <div id="r-panels"></div>
+    </div>
+    <div id="r-sharehero" class="card share-hero">
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 用 KakaoTalk 传送</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 和朋友比比手相</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 复制连结</button>
+      </div>
+    </div>
+    <details id="r-measured-box" class="card measured">
+      <summary>详细内容 <span class="muted">一句话 · 测量值</span></summary>
+      <p id="r-more" class="more-text"></p>
+      <p id="r-missing" class="fine left"></p>
+      <div id="r-measured"></div>
+      <p class="fine left">星等是把照片中的手相形状，对照传统手相规则得出的结果。</p>
+    </details>
+    <button id="btn-card" class="btn ghost gold-line">储存限时动态卡片 📸</button>
+    <button id="btn-retry" class="btn ghost">再看另一只手</button>
+    <aside id="r-adfit" class="adfit-slot" hidden aria-label="广告"></aside>
+    <p id="r-disclaimer" class="fine"></p>
+    <p class="fine collect-foot">📊 匿名统计 <b class="collect-state"></b> · <a href="#" class="link" data-privacy>说明・关闭</a></p>
+
+    <footer class="site-foot">
+      <nav class="site-foot-nav">
+        <a href="/zh-cn/guide/">手相小故事</a>
+        <a href="/zh-cn/foxes/">狐狸图鉴</a>
+        <a href="/zh-cn/about/">关于</a>
+        <a href="/zh-cn/privacy/">隐私权</a>
+        <a href="/zh-cn/terms/">使用条款</a>
+      </nav>
+      <p class="site-foot-copy">© mbox solutions · 狐仙 Hoa 手相占卜</p>
+    </footer>
+
+  </section>
+
+  <!-- 4b. compare with a friend -->
+  <section id="s-compare" class="screen">
+    <div class="stars-bg"></div>
+    <p class="cmp-eyebrow">🤝 和朋友比手相</p>
+    <div class="cmp-duo">
+      <div class="cmp-side"><span id="c-me-emo" class="cmp-emo"></span><b>我</b><small id="c-me-name"></small></div>
+      <span class="cmp-x">×</span>
+      <div class="cmp-side"><span id="c-fr-emo" class="cmp-emo"></span><b>朋友</b><small id="c-fr-name"></small></div>
+    </div>
+    <div class="card cmp-score">
+      <p class="cmp-pct"><b id="c-pct"></b><span>%</span></p>
+      <p id="c-msg" class="cmp-msg"></p>
+      <p class="cmp-fun">纯属娱乐的速配度 · 理由看下面！</p>
+      <ul id="c-why" class="cmp-why"></ul>
+      <details id="c-more" class="cmp-more"><summary>看分数怎么算</summary><p id="c-calc" class="calc"></p></details>
+    </div>
+    <div id="c-lines" class="cmp-lines"></div>
+    <div id="c-lucks" class="card cmp-lucks"></div>
+    <button type="button" id="c-share" class="btn primary" data-share-src="compare_result" data-share-kind="compare">💞 分享我们的速配结果</button>
+    <button type="button" id="c-loop" class="btn ghost" data-share-src="compare_loop" data-share-kind="self">🤝 用我的结果和其他朋友比</button>
+    <button type="button" id="c-card" class="btn ghost gold-line">储存速配卡片 📸</button>
+    <button type="button" id="c-to-result" class="btn ghost">看我的结果</button>
+    <p class="fine">速配度纯属娱乐。照片不会被分享出去。</p>
+  </section>
+
+  <!-- error -->
+  <section id="s-error" class="screen">
+    <div class="stars-bg"></div>
+    <img class="hero small" src="/img/hoa.jpg" alt="">
+    <p class="bubble" id="err-text">哎呀，手相看得不太清楚呢。</p>
+    <button class="btn primary" data-go="s-capture">重新拍一次</button>
+  </section>
+
+
+  <!-- privacy -->
+  <section id="s-privacy" class="screen">
+    <div class="stars-bg"></div>
+    <button class="back" id="privacy-back" aria-label="返回">‹</button>
+    <h2>隐私权说明</h2>
+    <div class="card privacy">
+      <h3>📷 手掌照片</h3>
+      <p>照片只会在你的手机（浏览器）里分析，不会上传到伺服器，也不会储存。</p>
+      <h3>📊 匿名搜集的资料</h3>
+      <p>分析结束后，只会传送下列<b>数字</b>。这些数字只用来把狐仙「前 %」的基准，重新调整成符合实际手机照片。</p>
+      <ul>
+        <li>手相线的测量值（长度、弯曲度、清晰度、起点／终点位置等，以手掌宽度为基准的比例）</li>
+        <li>结果类型、4 项星等与找到的线条数量</li>
+        <li>照片的宽与高、App 与模型版本、装置种类（App 内浏览器／手机／电脑）</li>
+        <li>传送日期（不记录时间）</li>
+      </ul>
+      <h3>👀 访客统计</h3>
+      <p>有多少人从哪里来，是用 Vercel Web Analytics 匿名统计的。不使用 Cookie，只搜集页面浏览、来源、浏览器与装置种类，以及由 IP 推估的国家层级地区。不会储存 IP 位址本身。</p>
+      <h3>📣 广告</h3>
+      <p>结果画面下方可能会出现 Google AdSense 广告。广告由各提供者刊登，并可能依其政策使用 Cookie 或广告识别码。详情请参考 <a href="https://policies.google.com/privacy" class="link" target="_blank" rel="noopener noreferrer">Google 隐私权政策</a>与 <a href="https://policies.google.com/technologies/ads" class="link" target="_blank" rel="noopener noreferrer">Google 广告</a>。</p>
+      <h3>🚫 不搜集的资料</h3>
+      <p>不会储存照片、脸孔、姓名、联络方式、帐号、装置 ID、IP 位址、精确位置与精确时间。光凭储存的数字，无法得知是谁的手。<span class="muted">（传送当下的伺服器连线纪录，会为了安全短暂留在 Supabase，之后自动删除。）</span></p>
+      <h3>🔒 保存与使用</h3>
+      <p>数字储存在 Supabase 资料库（首尔区域），App 只能传送、无法读取。除了校准基准之外不会用于其他用途，也不会卖给第三方。</p>
+      <h3>⚙️ 关闭</h3>
+      <label class="switch-row">
+        <span class="consent-text">匿名提供手相测量数字</span>
+        <input type="checkbox" class="collect-toggle" role="switch" aria-label="匿名提供手相测量数字">
+        <i class="switch" aria-hidden="true"></i>
+      </label>
+      <p class="consent-sub">关闭后，这台装置就不会再传送手相测量数字。设定会记在这个浏览器里。访客统计则另外匿名统计。</p>
+    </div>
+  </section>
+  <div id="card-modal" class="modal hidden" role="dialog" aria-label="结果卡片图片">
+    <div class="modal-box">
+      <p class="modal-tip"><b>长按</b>图片即可储存</p>
+      <img id="card-img" alt="狐仙 Hoa 手相结果卡">
+      <button type="button" id="btn-card-download" class="btn primary">储存图片</button>
+      <button type="button" id="btn-card-external" class="btn ghost hidden">用浏览器开启</button>
+      <button type="button" id="card-close" class="btn ghost">关闭</button>
+    </div>
+  </div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 和朋友比比手相</button></div>
+<div id="toast" class="toast"></div>
+</div>
+<script defer src="/js/langbar.js"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
