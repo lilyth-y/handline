@@ -70,7 +70,7 @@ ${hreflangs(page)}
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/site.css">
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script defer src="/_vercel/insights/script.js"></script>
+${lang === 'ko' ? '<script src="/js/langredirect.js"></script>\n' : ''}<script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1321078614012821" crossorigin="anonymous"></script>
 </head>
 `;
