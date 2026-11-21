@@ -570,5 +570,291 @@
    "compat_element_pair": "能互相加持氣場的絕佳元素組合",
    "compat_luck_complement": "彼此補足對方不足運勢的關係"
   }
+ },
+ "de": {
+  "types": {
+   "gold": {
+    "name": "Goldhand-Glücksfuchs",
+    "keyword": "Vermögensbewusst",
+    "element": "Gold",
+    "intro": "Goldenes Licht schimmert über deiner Handfläche, mein Freund.",
+    "charm": "Ein praktischer Sparer, der Stück für Stück Geld beiseitelegt – da fängt sogar mein Fuchsschwanz an zu wedeln."
+   },
+   "fire": {
+    "name": "Flammenhand-Leidenschaftsfuchs",
+    "keyword": "Leidenschaft·Energie",
+    "element": "Brand",
+    "intro": "Heiße Flammen flackern in deiner Hand!",
+    "charm": "Wenn Sie sich einmal etwas in den Kopf gesetzt haben, ziehen Sie es bis zum Ende durch – dieses Feuer ist Ihr Charme."
+   },
+   "moon": {
+    "name": "Mondbeschienener-Hand-Träumerfuchs",
+    "keyword": "Verträumt · Phantasievoll",
+    "element": "Mond",
+    "intro": "Ein sanftes, mondbeschienenes Gefühl durchströmt Ihre Linien.",
+    "charm": "Deine Fantasie ist so reich, dass überall, wo du hingehst, Geschichten entstehen."
+   },
+   "star": {
+    "name": "Sternenlicht-Hand-Weiserfuchs",
+    "keyword": "Weisheit·Analyse",
+    "element": "Stern",
+    "intro": "Klare, sternenhelle Weisheit wohnt in deiner Hand.",
+    "charm": "Ruhige, sorgfältige Analyse – selbst dieser alte Fuchs ist beeindruckt."
+   },
+   "wind": {
+    "name": "Wind-Hand-Freigeist-Fuchs",
+    "keyword": "Freiheit·Abenteuer",
+    "element": "Wind",
+    "intro": "Ein freier Wind streicht über deine Handfläche.",
+    "charm": "Ein furchtloser Abenteurer, der sich auf neue Orte und neue Aufgaben einlässt."
+   },
+   "sun": {
+    "name": "Sonnenhand-Anführerin Fuchs",
+    "keyword": "Führungsqualitäten·Selbstvertrauen",
+    "element": "So",
+    "intro": "Eine sonnengrelle Aura strahlt aus deiner Hand.",
+    "charm": "Sie haben das Selbstvertrauen einer Führungskraft – die Menschen folgen Ihnen ganz natürlich."
+   },
+   "cloud": {
+    "name": "Wolkenhand-Friedensstifter-Fuchs",
+    "keyword": "Frieden · Freundlichkeit",
+    "element": "Cloud",
+    "intro": "Eine weiche, friedliche, wolkenartige Aura umgibt dich.",
+    "charm": "Deine sanfte Fürsorglichkeit, die alle mit Geborgenheit umhüllt, ist dein Schatz."
+   },
+   "flower": {
+    "name": "Blütenhand-Fuchsbändigerin",
+    "keyword": "Beliebtheit·Charme",
+    "element": "Blossom",
+    "intro": "Deine Hand streut Charme wie treibende Blütenblätter.",
+    "charm": "Ein beliebter Fuchs, der überall, wo du hingehst, geliebt wird – und fröhlich mit dem Schwanz wedelt!"
+   },
+   "rock": {
+    "name": "Felsfester Fuchs",
+    "keyword": "Entschlossenheit · Beständigkeit",
+    "element": "Fels",
+    "intro": "In Ihren Handlinien ist ein unerschütterlicher Kampfgeist eingraviert.",
+    "charm": "Wenn du einmal angefangen hast, bringst du es auch zu Ende – niemand kann mit deiner Ausdauer mithalten."
+   },
+   "wave": {
+    "name": "Winkender empathischer Fuchs",
+    "keyword": "Empathie·Herzlichkeit",
+    "element": "Wasser",
+    "intro": "Ein sanftes Herz fließt wie eine stille Welle.",
+    "charm": "Du nimmst zuerst die Gefühle anderer wahr – deine Empathie kommt hier wirklich zum Vorschein."
+   },
+   "lightning": {
+    "name": "Blitzhand-Funkenfuchs",
+    "keyword": "Ideen – Schlagfertigkeit",
+    "element": "Blitzschlag",
+    "intro": "Blitz! Dein Kopf ist voller blitzschneller Ideen.",
+    "charm": "Mit deinem scharfen Verstand und deinen schnellen Reflexen strahlst du, wo immer du bist."
+   },
+   "galaxy": {
+    "name": "Glücks-Fuchs mit Galaxie-Hand",
+    "keyword": "Glück – Harmonie",
+    "element": "Galaxy",
+    "intro": "Eine glückliche Hand, die gleichmäßig wie die Milchstraße glitzert.",
+    "charm": "Ihr Glück ist rundum ausgeglichen, sodass alles, was Sie tun, reibungslos verlaufen sollte."
+   }
+  },
+  "lucks": {
+   "wealth": "Wealth",
+   "love": "Liebe",
+   "health": "Gesundheit",
+   "career": "Beruflicher Erfolg"
+  },
+  "reasons": {
+   "wealth_default": "Ein sparsames Händchen fürs Sparen, Stück für Stück",
+   "wealth_fate": "Eine sichtbare Schicksalslinie – Vermögen, das sich stetig aufbaut",
+   "wealth_fate_long": "Eine lange Schicksalslinie – eine Hand, bei der sich Mühe in Reichtum verwandelt",
+   "wealth_head_long": "Eine lange Kopflinie – das Talent eines Planers, Geld zu vermehren",
+   "wealth_head_straight": "Eine gerade Stirnlinie – ein praktischer, bodenständiger Sinn",
+   "wealth_life_energy": "Eine breite Lebenslinie – Vitalität, die Reichtum anzieht",
+   "wealth_heart_branch": "Abzweigungen der Herzlinie – Menschen werden Ihr Glück",
+   "wealth_flow": "Geld fließt geschäftig herein und hinaus",
+   "love_default": "Eine sanfte Bindung, die langsam tiefer wird",
+   "love_heart_index": "Eine Herzlinie, die unter den Zeigefinger reicht – warme, hingebungsvolle Liebe",
+   "love_heart_balance": "Eine Herzlinie zwischen Zeige- und Mittelfinger – Liebe, die Ideale und Realität in Einklang bringt",
+   "love_heart_middle": "Eine Herzlinie in Richtung Mittelfinger – ehrliche, praktische Romantik",
+   "love_heart_curve": "Eine nach oben gekrümmte Herzlinie – Liebe, die reich an Ausdruck ist",
+   "love_heart_long": "Eine lange Herzlinie – ein tiefes, weites Herz",
+   "love_heart_branch": "Kleine Zweige auf der Herzlinie – Beliebtheit und Zuneigung",
+   "love_heart_clear": "Eine klare Herzlinie – beständige Aufrichtigkeit",
+   "love_open_heart": "Ein großer Abstand zwischen Herz- und Kopflinie – ein großzügiges Herz",
+   "love_many_sparks": "Funken, die mehr als einmal auftauchen",
+   "love_slow": "Eine behutsame Romanze, die sich langsam entfaltet",
+   "health_default": "Eine ruhige Energie, die ihren eigenen Rhythmus beibehält",
+   "health_life_wide": "Eine weit geschwungene Lebenslinie – überschäumende Vitalität",
+   "health_life_long": "Eine lange Lebenslinie – beständige Ausdauer und Entschlossenheit",
+   "health_life_clear": "Eine klare Lebenslinie – ein strahlendes, gesundes Aussehen",
+   "health_life_thick": "Eine starke Lebenslinie – zuverlässige Energie",
+   "health_life_branch": "Zweige der Lebenslinie – frische Energie steigt auf",
+   "health_calm": "Ein ruhiger Typ, der Energie spart",
+   "health_rhythm": "Ein Typ, der es genießt, seinen Tagesrhythmus zu ändern",
+   "career_default": "Eine Hand, die ihren eigenen Weg in ihrem eigenen Tempo geht",
+   "career_fate": "Eine sichtbare Schicksalslinie – eine Hand mit klaren Zielen",
+   "career_fate_reach": "Eine Schicksalslinie, die zu den Fingern reicht – der Drang, Ihre Träume zu verwirklichen",
+   "career_head_long": "Eine lange Kopflinie – breite Interessen und echtes Talent",
+   "career_independent": "Kopflinie und Lebenslinie beginnen getrennt – Unabhängigkeit und Tatkraft",
+   "career_careful": "Kopflinie und Lebenslinie beginnen zusammen – sorgfältige, vertrauenswürdige Arbeit",
+   "career_head_clear": "Eine klare Kopflinie – höchste Konzentration",
+   "career_jupiter": "Eine Herzlinie in Richtung Zeigefinger – ein natürlicher Anführer",
+   "career_own_path": "Ein Typ, der seinen eigenen Weg geht, anstatt einem vorgegebenen zu folgen",
+   "compat_default": "Immer Spaß zusammen",
+   "compat_heart_same": "Eure Herzlinien enden gleich, also zeigt ihr Gefühle auf die gleiche Weise.",
+   "compat_heart_near": "Eure Herzlinien sind ähnlich, sodass ihr die Gefühle des anderen schnell wahrnehmt.",
+   "compat_head_similar": "Eure Kopflinien verlaufen ähnlich, sodass Gespräche leicht fließen.",
+   "compat_head_complement": "Ihre Kopflinien unterscheiden sich, sodass Sie die Ideen des anderen ergänzen.",
+   "compat_life_similar": "Eure Lebenslinien haben eine ähnliche Energie, sodass euer Spieltempo perfekt zusammenpasst.",
+   "compat_junction_same": "Eure Ausgangsgewohnheiten sind ähnlich, sodass es sich leicht anfühlt, gemeinsam voranzukommen.",
+   "compat_junction_mix": "Vorsicht trifft auf Tatendrang – ein Dreamteam",
+   "compat_same_element": "Zwei Füchse desselben Elements – die besten Freunde",
+   "compat_element_pair": "Eine Elementpaarung, die die Energie des jeweils anderen Elements verstärkt",
+   "compat_luck_complement": "Ihr gleicht das schwächere Glück des anderen aus"
+  }
+ },
+ "id": {
+  "types": {
+   "gold": {
+    "name": "Rubah Keberuntungan Tangan Emas",
+    "keyword": "Pintar·Mengelola Kekayaan",
+    "element": "Emas",
+    "intro": "Cahaya keemasan berkilauan di telapak tanganmu, sahabatku.",
+    "charm": "Seorang penabung praktis yang menumpuk uang sedikit demi sedikit — bahkan ekor rubahku mulai bergoyang."
+   },
+   "fire": {
+    "name": "Rubah Gairah Tangan Berapi",
+    "keyword": "Semangat·Energi",
+    "element": "Kebakaran",
+    "intro": "Api panas berkobar di tanganmu!",
+    "charm": "Begitu Anda memutuskan sesuatu, Anda akan menjalankannya sampai selesai — semangat itu adalah pesona Anda."
+   },
+   "moon": {
+    "name": "Rubah Pemimpi Tangan Bercahaya Bulan",
+    "keyword": "Pemimpi·Imaginatif",
+    "element": "Bulan",
+    "intro": "Nuansa lembut bercahaya bulan mengalir melalui garis-garis Anda.",
+    "charm": "Imajinasimu begitu kaya sehingga cerita bermunculan ke mana pun kamu pergi."
+   },
+   "star": {
+    "name": "Rubah Bijak Tangan Bercahaya Bintang",
+    "keyword": "Kebijaksanaan·Analisis",
+    "element": "Star",
+    "intro": "Kebijaksanaan yang jernih dan bercahaya bagaikan bintang ada di tanganmu.",
+    "charm": "Analisis yang tenang dan cermat — bahkan si rubah tua ini pun terkesan."
+   },
+   "wind": {
+    "name": "Rubah Berjiwa Bebas Pengendali Angin",
+    "keyword": "Kebebasan·Petualangan",
+    "element": "Angin",
+    "intro": "Angin bebas menyapu telapak tanganmu.",
+    "charm": "Seorang petualang pemberani, yang berani melangkah ke tempat-tempat baru dan pekerjaan baru."
+   },
+   "sun": {
+    "name": "Pemimpin Tangan Matahari Rubah",
+    "keyword": "Kepemimpinan·Kepercayaan Diri",
+    "element": "Min",
+    "intro": "Aura cerah bagaikan matahari memancar dari tanganmu.",
+    "charm": "Anda memiliki kepercayaan diri seorang pemimpin — orang-orang secara alami akan mengikuti Anda."
+   },
+   "cloud": {
+    "name": "Rubah Pembawa Damai Tangan Awan",
+    "keyword": "Kedamaian·Kebaikan",
+    "element": "Cloud",
+    "intro": "Aura lembut, damai, dan seperti awan mengelilingi Anda.",
+    "charm": "Perhatianmu yang lembut, yang membuat semua orang merasa nyaman, adalah harta karunmu."
+   },
+   "flower": {
+    "name": "Rubah Pemikat Tangan Kelopak",
+    "keyword": "Popularitas·Pesona",
+    "element": "Blossom",
+    "intro": "Tanganmu menebarkan pesona seperti kelopak bunga yang berhamburan.",
+    "charm": "Rubah populer yang disukai di mana pun Anda pergi — ekornya bergoyang-goyang gembira!"
+   },
+   "rock": {
+    "name": "Rubah Teguh Berhati Batu",
+    "keyword": "Ketabahan·Keteguhan",
+    "element": "Rock",
+    "intro": "Semangat yang kokoh terukir di garis telapak tangan Anda.",
+    "charm": "Setelah Anda memulai, Anda harus menyelesaikan — tidak ada yang bisa menandingi ketahanan Anda."
+   },
+   "wave": {
+    "name": "Rubah Empatik Melambaikan Tangan",
+    "keyword": "Empati·Kehangatan",
+    "element": "Air tawar",
+    "intro": "Hati yang lembut mengalir seperti riak yang tenang.",
+    "charm": "Anda merasakan perasaan orang lain terlebih dahulu — empati Anda benar-benar menonjol."
+   },
+   "lightning": {
+    "name": "Rubah Percikan Tangan Petir",
+    "keyword": "Ide·Cepat tanggap",
+    "element": "kilat",
+    "intro": "Kilat! Tanganmu penuh dengan ide-ide yang muncul secepat kilat.",
+    "charm": "Dengan kecerdasan dan refleks yang tajam, Anda bersinar di mana pun Anda berada."
+   },
+   "galaxy": {
+    "name": "Rubah Keberuntungan Tangan Galaksi",
+    "keyword": "Keberuntungan·Harmoni",
+    "element": "Galaksi",
+    "intro": "Tangan beruntung yang berkilau merata seperti Bima Sakti.",
+    "charm": "Keberuntungan Anda seimbang di segala bidang, jadi semua yang Anda lakukan akan berjalan lancar."
+   }
+  },
+  "lucks": {
+   "wealth": "Kesejahteraan",
+   "love": "Cinta hidupku dari santani",
+   "health": "Kesehatan",
+   "career": "Career success"
+  },
+  "reasons": {
+   "wealth_default": "Kemampuan hemat untuk menabung, sedikit demi sedikit",
+   "wealth_fate": "Garis nasib yang terlihat — kekayaan yang terus bertambah",
+   "wealth_fate_long": "Garis nasib yang panjang — telapak tangan yang menunjukkan usaha berbuah kekayaan",
+   "wealth_head_long": "Garis kepala yang panjang — bakat seorang perencana untuk menumbuhkan uang",
+   "wealth_head_straight": "Garis kepala lurus — sifat praktis dan berpikiran realistis",
+   "wealth_life_energy": "Garis kehidupan yang lebar — vitalitas yang menarik kekayaan",
+   "wealth_heart_branch": "Cabang garis hati — orang-orang menjadi keberuntungan Anda",
+   "wealth_flow": "Uang mengalir masuk dan keluar dengan sibuk",
+   "love_default": "Ikatan lembut yang perlahan-lahan semakin erat",
+   "love_heart_index": "Garis hati yang mencapai di bawah jari telunjuk — cinta yang hangat dan setia",
+   "love_heart_balance": "Garis hati antara jari telunjuk dan jari tengah — cinta yang menyeimbangkan cita-cita dan kenyataan",
+   "love_heart_middle": "Garis hati menuju jari tengah — percintaan yang jujur dan praktis",
+   "love_heart_curve": "Garis hati melengkung ke atas — cinta yang kaya akan ekspresi",
+   "love_heart_long": "Garis hati yang panjang — hati yang dalam dan lapang",
+   "love_heart_branch": "Cabang-cabang kecil pada garis hati — popularitas dan kasih sayang",
+   "love_heart_clear": "Garis hati yang jelas — ketulusan yang teguh",
+   "love_open_heart": "Jarak yang lebar antara garis hati dan garis kepala — hati yang murah hati",
+   "love_many_sparks": "Percikan yang muncul lebih dari sekali",
+   "love_slow": "Romansa yang hati-hati dan berkembang perlahan",
+   "health_default": "Energi tenang yang mempertahankan ritmenya sendiri",
+   "health_life_wide": "Garis kehidupan yang melengkung lebar — vitalitas yang melimpah",
+   "health_life_long": "Garis kehidupan yang panjang — stamina dan keteguhan hati yang stabil",
+   "health_life_clear": "Garis kehidupan yang jelas — cahaya yang cerah dan sehat",
+   "health_life_thick": "Jalur kehidupan yang berani — energi yang andal",
+   "health_life_branch": "Cabang-cabang garis kehidupan — energi baru bangkit",
+   "health_calm": "Tipe kalem yang menghemat energi",
+   "health_rhythm": "Tipe yang senang mengubah ritme sehari-harinya",
+   "career_default": "Tangan yang membuka jalannya sendiri dengan kecepatannya sendiri",
+   "career_fate": "Garis nasib yang terlihat jelas — tangan dengan tujuan yang jelas",
+   "career_fate_reach": "Garis nasib yang menjangkau jari-jari — dorongan untuk mengejar impian Anda",
+   "career_head_long": "Garis kepala yang panjang — minat yang luas dan keterampilan yang nyata",
+   "career_independent": "Garis kepala dan garis kehidupan berawal terpisah — kemandirian dan semangat",
+   "career_careful": "Garis kepala dan garis kehidupan dimulai bersamaan — pekerjaan yang hati-hati dan dapat dipercaya",
+   "career_head_clear": "Garis kepala yang jelas — fokus yang luar biasa",
+   "career_jupiter": "Garis hati menuju jari telunjuk — pemimpin alami",
+   "career_own_path": "Tipe yang membuat jalannya sendiri alih-alih mengikuti jalan yang sudah ada",
+   "compat_default": "Selalu menyenangkan saat bersama",
+   "compat_heart_same": "Garis hati Anda berakhir sama, jadi Anda menunjukkan perasaan dengan cara yang sama",
+   "compat_heart_near": "Garis hati Anda berdua serupa, jadi Anda cepat menangkap perasaan satu sama lain",
+   "compat_head_similar": "Garis kepala kalian sama-sama miring, jadi percakapan mengalir dengan mudah",
+   "compat_head_complement": "Garis kepala Anda berbeda, jadi Anda saling melengkapi ide satu sama lain",
+   "compat_life_similar": "Garis kehidupan Anda memiliki energi yang serupa, jadi kecepatan bermain Anda sangat cocok",
+   "compat_junction_same": "Kebiasaan awal Anda sama, jadi bepergian bersama terasa mudah",
+   "compat_junction_mix": "Kewaspadaan berpadu dengan semangat — tim impian",
+   "compat_same_element": "Dua rubah dari elemen yang sama — sahabat terbaik",
+   "compat_element_pair": "Paduan elemen yang saling mengangkat energi satu sama lain",
+   "compat_luck_complement": "Kalian saling melengkapi kekurangan keberuntungan masing-masing"
+  }
  }
 }
