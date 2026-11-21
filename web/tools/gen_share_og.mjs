@@ -12,14 +12,21 @@ import { LANGS, ORIGIN, pathFor } from '../public/js/i18n/langs.js';
 import { makeT } from '../public/js/i18n/core.js';
 
 const pub = path.join(path.dirname(fileURLToPath(import.meta.url)), '../public');
-const argLangs = (process.argv.find((a) => a.startsWith('--langs=')) || '--langs=en,ja,zh-tw').slice(8).split(',').filter(Boolean);
+const argLangs = (process.argv.find((a) => a.startsWith('--langs=')) || '--langs=en,ja,zh-tw,zh-cn,es,vi,th,id,de,fr').slice(8).split(',').filter(Boolean);
 const hoa = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(pub, 'img/hoa.jpg')).toString('base64');
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const FONTS = {
   ko: '"Noto Sans KR","Gothic A1","NanumGothic",sans-serif',
-  en: '"Noto Sans","Helvetica Neue",Arial,"Noto Sans CJK JP",sans-serif',
+  en: '"Noto Sans","Helvetica Neue",Arial,sans-serif',
   ja: '"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans","Yu Gothic",sans-serif',
   'zh-tw': '"Noto Sans TC","Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif',
+  'zh-cn': '"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif',
+  es: '"Noto Sans","Helvetica Neue",Arial,sans-serif',
+  vi: '"Noto Sans","Be Vietnam Pro","Arial",sans-serif',
+  th: '"Noto Sans Thai","Noto Sans","Leelawadee UI",sans-serif',
+  id: '"Noto Sans","Helvetica Neue",Arial,sans-serif',
+  de: '"Noto Sans","Helvetica Neue",Arial,sans-serif',
+  fr: '"Noto Sans","Helvetica Neue",Arial,sans-serif',
 };
 
 const slide = (t, lang, tt) => `<!doctype html><meta charset="utf-8"><style>
@@ -32,7 +39,7 @@ background:radial-gradient(ellipse at 25% 40%,#3a3f9a 0%,#161d4f 45%,#0d1236 80%
 .tx{position:absolute;left:560px;right:60px;top:64px}
 .eb{font-size:30px;color:#e6defc;font-weight:500;margin-bottom:10px}
 .me{font-size:40px;font-weight:700;margin-bottom:2px}
-.nm{font-size:${{ en: 58, ja: 58 }[lang] || 68}px;line-height:1.12;font-weight:900;color:#f3cc6b;letter-spacing:${lang === 'en' ? -1 : -2}px;word-break:${{ en: 'normal', 'zh-tw': 'break-all' }[lang] || 'keep-all'}}
+.nm{font-size:${{ en: 58, ja: 58, th: 54, vi: 56, es: 56, de: 56, fr: 56 }[lang] || 68}px;line-height:1.12;font-weight:900;color:#f3cc6b;letter-spacing:${lang === 'en' ? -1 : -2}px;word-break:${{ en: 'normal', 'zh-tw': 'break-all', 'zh-cn': 'break-all', th: 'break-word', vi: 'break-word' }[lang] || 'keep-all'}}
 .kw{font-size:28px;color:#e6defc;margin-top:12px}
 .q{margin-top:16px;font-size:44px;font-weight:800}
 .pill{position:absolute;left:560px;bottom:52px;white-space:nowrap;background:linear-gradient(90deg,#f3cc6b,#ffe6a6);color:#2a1d00;font-size:30px;font-weight:800;border-radius:50px;padding:12px 32px}

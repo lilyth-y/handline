@@ -62,7 +62,7 @@ html[lang="ja"] h1,html[lang="ja"] h2,html[lang="zh-TW"] h1,html[lang="zh-TW"] h
 .lang-switch>summary{list-style:none;cursor:pointer;color:var(--muted);font-weight:600;border:1px solid #b9a7ff33;border-radius:999px;padding:3px 10px;background:#161d4f99;white-space:nowrap;user-select:none}
 .lang-switch>summary::-webkit-details-marker{display:none}
 .lang-switch[open]>summary{color:var(--lav2);border-color:var(--lav)}
-.lang-menu{list-style:none;margin:6px 0 0;padding:6px;position:absolute;right:0;min-width:130px;background:#161d4f;border:1px solid #b9a7ff44;border-radius:14px;box-shadow:0 10px 30px #0008}
+.lang-menu{list-style:none;margin:6px 0 0;padding:6px;position:absolute;right:0;min-width:160px;max-height:min(60vh,320px);overflow-y:auto;background:#161d4f;border:1px solid #b9a7ff44;border-radius:14px;box-shadow:0 10px 30px #0008}
 .lang-menu a{display:block;padding:8px 12px;border-radius:9px;color:var(--text);text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
 .lang-menu a:hover{background:#b9a7ff22}
 .lang-menu a[aria-current]{color:var(--gold)}

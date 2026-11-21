@@ -1,11 +1,15 @@
 // 첫 방문: 한국어 페이지(현지화 쌍 있음)에서 브라우저 언어로 자동 이동. 봇·저장된 선호는 제외.
 (function () {
   var KEY = 'hoa_lang';
-  var DEST = { en: '/en', ja: '/ja', 'zh-tw': '/zh-tw' };
+  var DEST = {
+    en: '/en', ja: '/ja', 'zh-tw': '/zh-tw', 'zh-cn': '/zh-cn',
+    es: '/es', vi: '/vi', th: '/th', id: '/id', de: '/de', fr: '/fr',
+  };
+  var NON_KO = /^\/(zh-tw|zh-cn|en|ja|es|vi|th|id|de|fr)(\/|$)/;
 
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-  function isKoPath() { return !/^\/(en|ja|zh-tw)(\/|$)/.test(location.pathname); }
+  function isKoPath() { return !NON_KO.test(location.pathname); }
 
   if (!isKoPath()) return;
   var path = location.pathname.replace(/\/$/, '') || '/';
@@ -23,7 +27,15 @@
       if (l.indexOf('ko') === 0) return 'ko';
       if (l.indexOf('ja') === 0) return 'ja';
       if (l.indexOf('en') === 0) return 'en';
-      if (l.indexOf('zh') === 0) return 'zh-tw';
+      if (/^zh-(tw|hk|mo|hant)/.test(l)) return 'zh-tw';
+      if (/^zh-(cn|sg|hans)/.test(l) || l === 'zh') return 'zh-cn';
+      if (l.indexOf('zh') === 0) return 'zh-cn';
+      if (l.indexOf('es') === 0) return 'es';
+      if (l.indexOf('vi') === 0) return 'vi';
+      if (l.indexOf('th') === 0) return 'th';
+      if (l.indexOf('id') === 0) return 'id';
+      if (l.indexOf('de') === 0) return 'de';
+      if (l.indexOf('fr') === 0) return 'fr';
     }
     return 'en';
   }
