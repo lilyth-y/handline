@@ -203,28 +203,98 @@ for (const lang of LANG_IDS) {
   await A.context().close(); await C.context().close();
 }
 
-// 언어 제안 바: 강제 이동 없이 제안만
+// 첫 방문 언어 자동 이동 (langredirect.js) + 제안 바 보조
 {
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'ja-JP' });
-  const p = await ctx.newPage();
-  await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  const bar = p.locator('.langbar');
-  check('langbar_offers_browser_language_without_redirect', new URL(p.url()).pathname === '/' && await bar.count() === 1 && /日本語/.test(await bar.textContent()) && (await bar.locator('a').getAttribute('href')) === '/ja/');
-  await p.goto(`${BASE}/?t=gold&ref=share`, { waitUntil: 'networkidle' });
-  check('langbar_keeps_share_query', (await p.locator('.langbar a').getAttribute('href')) === '/ja/?t=gold&ref=share');
-  await p.locator('.langbar button').click(); await p.reload({ waitUntil: 'networkidle' });
-  check('langbar_dismiss_remembered', await p.locator('.langbar').count() === 0);
-  await ctx.close();
-  const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'zh-CN' });
-  const p2 = await ctx2.newPage(); await p2.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  check('langbar_not_offered_for_simplified_chinese', await p2.locator('.langbar').count() === 0);
-  await ctx2.close();
-  const ctx3 = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US' });
-  const p3 = await ctx3.newPage(); await p3.goto(`${BASE}/en/`, { waitUntil: 'networkidle' });
-  check('langbar_silent_when_already_matching', await p3.locator('.langbar').count() === 0);
-  await p3.locator('.lang-switch summary').click();
-  check('lang_switch_menu_lists_all_langs', await p3.locator('.lang-menu a').count() === 4);
-  await ctx3.close();
+  const fresh = async (locale, opts = {}) => {
+    const ua = opts.ua || KAKAO;
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale, userAgent: ua });
+    await ctx.addInitScript(() => {
+      try {
+        if (!sessionStorage.getItem('hoa_test_fresh')) {
+          localStorage.removeItem('hoa_lang');
+          localStorage.removeItem('hoa_lang_dismissed');
+          sessionStorage.setItem('hoa_test_fresh', '1');
+        }
+      } catch {}
+    });
+    const p = await ctx.newPage();
+    return { ctx, p };
+  };
+  {
+    const { ctx, p } = await fresh('en-US');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_en', new URL(p.url()).pathname === '/en/');
+    check('auto_redirect_stores_pref_en', await p.evaluate(() => localStorage.getItem('hoa_lang')) === 'en');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('ja-JP');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_ja', new URL(p.url()).pathname === '/ja/');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('zh-TW');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_zh_tw', new URL(p.url()).pathname === '/zh-tw/');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('zh-CN');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_zh_cn_to_zh_tw', new URL(p.url()).pathname === '/zh-tw/');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('ko-KR');
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_ko_stays', new URL(p.url()).pathname === '/');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('en-US', { ua: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' });
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('auto_redirect_bot_stays', new URL(p.url()).pathname === '/');
+    await ctx.close();
+  }
+  {
+    const { ctx, p } = await fresh('ja-JP');
+    await p.goto(`${BASE}/?t=gold&ref=share`, { waitUntil: 'networkidle' });
+    const u = new URL(p.url());
+    check('auto_redirect_preserves_share_query', u.pathname === '/ja/' && u.searchParams.get('t') === 'gold' && u.searchParams.get('ref') === 'share');
+    await ctx.close();
+  }
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US' });
+    const p = await ctx.newPage();
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    await p.locator('.lang-switch summary').click();
+    await p.locator('.lang-switch a[data-lang="ko"]').click();
+    await p.waitForURL((url) => url.pathname === '/' || url.pathname === '', { waitUntil: 'networkidle' });
+    await p.reload({ waitUntil: 'networkidle' });
+    check('auto_redirect_respects_ko_switch', new URL(p.url()).pathname === '/');
+    await ctx.close();
+  }
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US', userAgent: KAKAO });
+    await ctx.addInitScript(() => { try { localStorage.setItem('hoa_lang', 'ko'); } catch {} });
+    const p = await ctx.newPage();
+    await p.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+    check('no_redirect_after_ko_switch', new URL(p.url()).pathname === '/');
+    await ctx.close();
+  }
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US' });
+    const p = await ctx.newPage();
+    await p.goto(`${BASE}/en/`, { waitUntil: 'networkidle' });
+    check('langbar_silent_when_already_matching', await p.locator('.langbar').count() === 0);
+    await p.locator('.lang-switch summary').click();
+    check('lang_switch_menu_lists_all_langs', await p.locator('.lang-menu a').count() === 4);
+    await ctx.close();
+  }
+  const koHome = fs.readFileSync(path.join(pub, 'index.html'), 'utf8');
+  const enHome = fs.readFileSync(path.join(pub, 'en/index.html'), 'utf8');
+  check('langredirect_on_ko_not_on_en', koHome.includes('/js/langredirect.js') && !enHome.includes('/js/langredirect.js'));
 }
 check('no_app_errors', errors.length === 0, { errors: errors.slice(0, 8) });
 await browser.close();

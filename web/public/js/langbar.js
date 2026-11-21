@@ -1,5 +1,4 @@
-// 언어 안내 (강제 이동 없음): 브라우저 언어가 지금 페이지 언어와 다르면 작은 제안 바를 한 번 보여 준다.
-// 사용자가 고른 언어는 localStorage('hoa_lang')에 기억하고, 다시 제안하지 않는다.
+// 언어: 첫 방문 자동 이동은 head 의 langredirect.js, 여기서는 전환 메뉴와 (필요할 때만) 제안 바.
 (function () {
   var LANGS = {
     ko: { prefix: '', msg: '한국어로 볼 수 있어요', go: '한국어' },
@@ -15,7 +14,6 @@
   function withQuery(href) { return href + location.search + location.hash; }
   var here = cur();
 
-  // 전환 메뉴: 클릭한 언어를 기억하고, 홈에서는 공유 링크의 쿼리(?t=…)를 그대로 가져간다.
   document.querySelectorAll('.lang-switch a[data-lang]').forEach(function (a) {
     var isHome = strip(location.pathname) === '/';
     if (isHome) a.setAttribute('href', withQuery(a.getAttribute('href')));
@@ -25,7 +23,6 @@
     document.querySelectorAll('.lang-switch[open]').forEach(function (d) { if (!d.contains(e.target)) d.removeAttribute('open'); });
   });
 
-  // 제안: 저장된 선택이 있으면 그 언어를, 없으면 브라우저 언어를 본다.
   function browserLang() {
     var list = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']);
     for (var i = 0; i < list.length; i++) {
@@ -33,12 +30,14 @@
       if (l.indexOf('ko') === 0) return 'ko';
       if (l.indexOf('ja') === 0) return 'ja';
       if (l.indexOf('en') === 0) return 'en';
-      if (/^zh-(tw|hk|mo|hant)/.test(l)) return 'zh-tw';   // 간체(zh-CN)에는 번체를 권하지 않는다
+      if (l.indexOf('zh') === 0) return 'zh-tw';
     }
-    return null;
+    return 'en';
   }
+
+  // 자동 이동을 건너뛴 경우(봇·이미 고른 언어 등)만 제안 바 — 저장된 선호가 ko 이고 브라우저가 다를 때 특히 유용
   var saved = load(KEY);
-  if (saved && LANGS[saved]) { if (saved === here) return; }
+  if (saved && LANGS[saved] && saved === here) return;
   if (load(DISMISS) === '1') return;
   var want = (saved && LANGS[saved]) ? saved : browserLang();
   if (!want || want === here || !LANGS[want]) return;
