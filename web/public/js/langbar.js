@@ -35,6 +35,7 @@
     return 'en';
   }
 
+  if (/^\/s(?:\/|$)/.test(location.pathname)) return;
   // 자동 이동을 건너뛴 경우(봇·이미 고른 언어 등)만 제안 바 — 저장된 선호가 ko 이고 브라우저가 다를 때 특히 유용
   var saved = load(KEY);
   if (saved && LANGS[saved] && saved === here) return;

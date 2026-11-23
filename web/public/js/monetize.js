@@ -6,8 +6,9 @@
 //   google.com, pub-1321078614012821, DIRECT, f08c47fec0942fa0
 // Use the numeric publisher id (pub-...), not the ca-pub- client prefix.
 // The last field is Google's official certified-seller ID (ends in fa0).
-// The AdSense verification script is already in each page <head>. Do not
-// insert a second copy here; only push a unit when ADSENSE_SLOT is set.
+// Site verification uses <meta name="google-adsense-account"> in each page <head>.
+// Load adsbygoogle.js only here when ADSENSE_SLOT is set — not globally (auto ads
+// with no unit showed a broken “page is not available” strip at the bottom).
 
 import { ADFIT_UNIT, ADFIT_WIDTH, ADFIT_HEIGHT, mountAdfit, wantPreview } from './adfit.js';
 import { t, isKo } from './i18n/runtime.js';
