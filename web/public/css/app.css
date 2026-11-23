@@ -146,6 +146,8 @@ h3{margin:0 0 6px;font-size:17px}
 /* ---- share boost: 결과 화면 상단 공유 CTA, 하단 고정 버튼, 카카오 버튼 ---- */
 .share-hero{text-align:center;border-color:#f3cc6b77;background:linear-gradient(160deg,#f3cc6b14,#b9a7ff12);padding:16px 16px 12px;margin:2px 0 10px}
 .share-hero .sh-eyebrow{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--gold)}
+.share-hero .sh-title{margin:0 0 6px;font-size:17px;font-weight:800;line-height:1.45;color:#fff}
+.share-hero .sh-hint{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--lav2)}
 .share-hero .sh-hook{margin:0 0 10px;font-size:14px;line-height:1.6;color:var(--lav2)}
 .share-hero .sh-hook b{color:var(--gold)}
 .share-hero .btn{margin:6px 0 0}

@@ -219,6 +219,8 @@ function renderResult(canvas, feat, res) {
 }
 function shareHook(res) {
   const mate = mateOf(res.type.id);
+  const title = $('#sh-title');
+  if (title) title.textContent = tr('share.hero.title');
   $('#r-hook').innerHTML = tr('hook.q') + (mate ? ` <span class="muted">${tr('hook.mate', { fox: `${TYPE_EMOJI[mate.id] || ''} ${esc(typeName(mate.id))}` })}</span>` : '');
 }
 function onPick(e) {
@@ -284,6 +286,7 @@ async function shareNative(src, kind = 'self') {
     catch (e) { if (e && e.name === 'AbortError') { track('share_cancel', { src }); return; } }
   }
   const ok = await copyText(`${text}\n${url}`);
+  track('share_copy', { src, full: true });
   track('share_done', { src, method: 'copy' });
   toast(ok ? tr('toast.copied_text') : url);
 }
@@ -291,8 +294,17 @@ async function shareCopyLink(src, kind = 'self') {
   if (!state.result?.res) return;
   const { url } = sharePayload(kind);
   const ok = await copyText(url);
+  track('share_copy', { src, full: false });
   track('share_done', { src, method: 'copylink' });
   toast(ok ? tr('toast.copied_link') : url);
+}
+async function shareCopyMessage(src, kind = 'self') {
+  if (!state.result?.res) return;
+  const { url, text } = sharePayload(kind);
+  const ok = await copyText(`${text}\n${url}`);
+  track('share_copy', { src, full: true });
+  track('share_done', { src, method: 'copy' });
+  toast(ok ? tr('toast.copied_text') : url);
 }
 async function shareKakao(src, kind = 'self') {
   const r = state.result?.res; if (!r) return;
@@ -303,19 +315,29 @@ async function shareKakao(src, kind = 'self') {
 }
 document.querySelectorAll('[data-share-src]').forEach((b) => b.addEventListener('click', () => {
   const src = b.dataset.shareSrc, kind = b.dataset.shareKind || 'self';
-  const method = b.id === 'sh-kakao' ? 'kakao' : b.id === 'sh-copy' ? 'copylink' : 'native';
+  const kakaoPaste = b.id === 'sh-native' && isKakao(UA) && !kakaoEnabled() && !navigator.share;
+  const method = b.id === 'sh-kakao' ? 'kakao' : b.id === 'sh-copy' ? 'copylink' : kakaoPaste ? 'kakao_paste' : 'native';
   track('share_click', { src, method });
-  if (method === 'kakao') shareKakao(src, kind); else if (method === 'copylink') shareCopyLink(src, kind); else shareNative(src, kind);
+  if (method === 'kakao') shareKakao(src, kind);
+  else if (method === 'copylink') shareCopyLink(src, kind);
+  else if (kakaoPaste) shareCopyMessage(src, kind);
+  else shareNative(src, kind);
 }));
-// 카카오 키가 있으면 카톡 버튼을 메인으로, 없으면 숨김. 공유 시트가 없는 브라우저에서는 '공유하기' 대신 복사로 처리됨.
+// 카카오 키가 있으면 카톡 버튼을 메인으로, 없으면 숨김. 카톡 인앱(키 없음)에서는 메시지 붙여넣기가 1순위.
 (function setupShareButtons() {
   const k = kakaoEnabled();
+  const kakaoApp = isKakao(UA);
   $('#sh-kakao').classList.toggle('hidden', !k);
+  const native = $('#sh-native');
+  const stickyLabel = tr(kakaoApp && !k && !navigator.share ? 'share.kakao_paste' : 'share.native');
+  document.querySelectorAll('[data-share-src="sticky"]').forEach((b) => { b.textContent = stickyLabel; });
   if (k) {
-    $('#sh-native').classList.replace('primary', 'ghost');
-    $('#sh-native').textContent = tr('share.other_apps');
-    if (!navigator.share) $('#sh-native').classList.add('hidden');   // 공유 시트가 없으면 '링크 복사'만 남김
+    native.classList.replace('primary', 'ghost');
+    native.textContent = tr('share.other_apps');
+    if (!navigator.share) native.classList.add('hidden');
     warmKakao();
+  } else if (kakaoApp && !navigator.share) {
+    native.textContent = tr('share.kakao_paste');
   }
 })();
 // 화면을 내려도 공유 버튼이 보이도록: 위/아래 공유 버튼이 둘 다 화면 밖일 때만 하단 고정 버튼을 띄움
@@ -453,8 +475,13 @@ const FRIEND = (() => {
     ${starRow}
     <button type="button" id="btn-challenge" class="btn primary">${tr('banner.self.cta')}</button>`;
   b.classList.remove('hidden');
+  track('share_landing_view', { t: t.id, pair: !!pair, p: !!FRIEND.L });
   track('share_landing', { t: t.id, pair: !!pair, p: !!FRIEND.L });
-  $('#btn-challenge').addEventListener('click', () => { track('share_challenge_click', { t: t.id }); $('#btn-start').click(); });
+  $('#btn-challenge').addEventListener('click', () => {
+    track('share_landing_start', { t: t.id });
+    track('share_challenge_click', { t: t.id });
+    $('#btn-start').click();
+  });
 })();
 
 // ------------------------------------------------------------------ 비교 화면 (나 vs 친구 + 궁합)

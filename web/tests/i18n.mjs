@@ -85,7 +85,7 @@ const vars = (s) => [...String(s).matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort(
     if (HANGUL.test(body.replace(/<link rel="alternate"[^>]*>/g, ''))) leaks.push({ f: rel, hits: hangulIn(body) });
     if (!new RegExp(`<html lang="${LANGS[lang].html}"`).test(html)) leaks.push({ f: rel, html_lang: true });
     const isShare = /\/s\/[a-z]+\/$/.test(rel);
-    if (isShare) { if (!/name="robots" content="noindex,follow"/.test(html)) noindex.push(rel); if (!html.includes(`/img/share/${lang}/`)) noindex.push(rel + ' og:image'); if (!html.includes(`location.replace('${LANGS[lang].prefix}/?'`)) noindex.push(rel + ' redirect'); continue; }
+    if (isShare) { if (!/name="robots" content="noindex,follow"/.test(html)) noindex.push(rel); if (!html.includes(`/img/share/${lang === 'ko' ? '' : lang + '/'}`)) noindex.push(rel + ' og:image'); if (!html.includes('id="sl-start"') || !html.includes('share_landing_view')) noindex.push(rel + ' landing'); continue; }
     if (!html.includes(`<link rel="canonical" href="https://hoadosa.com${rel}">`)) can.push(rel);
     const base = rel.replace(LANGS[lang].prefix, '') || '/';
     for (const l of LANG_IDS) for (const h of LANGS[l].hreflang) if (!html.includes(`hreflang="${h}" href="https://hoadosa.com${pathFor(l, base)}"`)) hre.push(`${rel}:${h}`);
@@ -181,6 +181,8 @@ for (const lang of LANG_IDS) {
   const html = await (await C.request.get(BASE + su.pathname + su.search)).text();
   check(tag('landing_og'), html.includes(`<html lang="${LANGS[lang].html}"`) && html.includes(`og:image" content="https://hoadosa.com/img/share/${ko ? '' : lang + '/'}`) && (ko || !HANGUL.test(html)));
   await C.goto(BASE + su.pathname + su.search, { waitUntil: 'networkidle' });
+  await C.waitForSelector('#sl-start');
+  await C.click('#sl-start');
   await C.waitForSelector('#shared-banner:not(.hidden)');
   const cu = new URL(C.url());
   check(tag('landing_redirects_to_lang_home'), cu.pathname === `${pre}/` || (ko && cu.pathname === '/'), { path: cu.pathname });

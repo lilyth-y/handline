@@ -113,6 +113,17 @@
     </div>
     <p id="r-intro" class="lead left"></p>
     <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-sharehero" class="card share-hero">
+      <p class="sh-eyebrow">친구 초대</p>
+      <p id="sh-title" class="sh-title"></p>
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 비교 신청</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">💞 친구 손금이랑 궁합 보기</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
+      </div>
+      <p class="sh-hint fine">카톡·문자에 붙여넣기만 하면 친구가 바로 비교할 수 있어요</p>
+    </div>
     <div id="r-lucks" class="luck-grid"></div>
     <div id="r-evidence" class="evidence hidden">
       <div class="card overlay-card">
@@ -126,14 +137,6 @@
         <p id="r-focus" class="focus-cap hidden"></p>
       </div>
       <div id="r-panels"></div>
-    </div>
-    <div id="r-sharehero" class="card share-hero">
-      <p id="r-hook" class="sh-hook"></p>
-      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 카카오톡으로 비교 신청</button>
-      <div class="share-row">
-        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 친구와 손금 비교해보기</button>
-        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 링크 복사</button>
-      </div>
     </div>
     <details id="r-measured-box" class="card measured">
       <summary>자세히 보기 <span class="muted">한마디 · 측정값</span></summary>
@@ -243,7 +246,7 @@
       <button type="button" id="card-close" class="btn ghost">닫기</button>
     </div>
   </div>
-  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 친구와 손금 비교해보기</button></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💞 친구 손금이랑 궁합 보기</button></div>
 <div id="toast" class="toast"></div>
 </div>
 <script defer src="/js/langbar.js"></script>
