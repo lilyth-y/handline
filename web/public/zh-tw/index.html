@@ -112,6 +112,17 @@
     </div>
     <p id="r-intro" class="lead left"></p>
     <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-sharehero" class="card share-hero">
+      <p class="sh-eyebrow">邀請朋友</p>
+      <p id="sh-title" class="sh-title"></p>
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 用 KakaoTalk 傳送</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">💞 跟朋友比手相容配度</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 複製連結</button>
+      </div>
+      <p class="sh-hint fine">貼到聊天裡，朋友就能立刻比對</p>
+    </div>
     <div id="r-lucks" class="luck-grid"></div>
     <div id="r-evidence" class="evidence hidden">
       <div class="card overlay-card">
@@ -125,14 +136,6 @@
         <p id="r-focus" class="focus-cap hidden"></p>
       </div>
       <div id="r-panels"></div>
-    </div>
-    <div id="r-sharehero" class="card share-hero">
-      <p id="r-hook" class="sh-hook"></p>
-      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 用 KakaoTalk 傳送</button>
-      <div class="share-row">
-        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 和朋友比比手相</button>
-        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 複製連結</button>
-      </div>
     </div>
     <details id="r-measured-box" class="card measured">
       <summary>詳細內容 <span class="muted">一句話 · 測量值</span></summary>
@@ -236,7 +239,7 @@
       <button type="button" id="card-close" class="btn ghost">關閉</button>
     </div>
   </div>
-  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 和朋友比比手相</button></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💞 跟朋友比手相容配度</button></div>
 <div id="toast" class="toast"></div>
 </div>
 <script defer src="/js/langbar.js"></script>

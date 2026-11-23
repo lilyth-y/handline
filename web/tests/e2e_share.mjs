@@ -42,7 +42,7 @@ await analyse(A, 'image1016.jpg');
 check('hero_cta_visible_without_scroll', await A.locator('#r-sharehero').evaluate((el) => { const r = el.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), {});
 check('kakao_hidden_without_key', await A.locator('#sh-kakao.hidden').count() === 1);
 check('hook_has_mate', /천생연분/.test(await A.textContent('#r-hook')), { text: (await A.textContent('#r-hook')).trim() });
-check('wording_compare_not_challenge', /친구와 손금 비교해보기/.test(await A.textContent('#sh-native')) && !/도전장/.test(await A.evaluate(() => document.body.innerText + document.getElementById('share-sticky').textContent)), {});
+check('wording_compare_not_challenge', /친구 손금이랑 궁합 보기|카톡에 메시지 붙여넣기/.test(await A.textContent('#sh-native')) && !/도전장/.test(await A.evaluate(() => document.body.innerText + document.getElementById('share-sticky').textContent)), {});
 check('sticky_hidden_at_top', await A.locator('#share-sticky.hidden').count() === 1);
 await A.screenshot({ path: OUT + 'result_top_share_cta.png' });
 await A.click('#sh-native');
@@ -52,7 +52,7 @@ check('native_share_url', u && /^\/s\/[a-z]+\/$/.test(u.pathname) && u.searchPar
 check('share_text_compare_wording', /손금이랑 비교해 볼래\?/.test(sh?.text || ''), { text: sh?.text });
 await A.click('.luck-tile[data-open="wealth"]'); await A.waitForSelector('#r-evidence:not(.hidden)');
 check('evidence_opens_with_chips', await A.locator('#r-panels .luck:not([hidden]) .chip, #r-panels .luck:not([hidden]) .ev-default').count() > 0);
-await A.evaluate(() => window.scrollTo(0, 120)); await A.waitForTimeout(500);
+await A.evaluate(() => window.scrollTo(0, 420)); await A.waitForTimeout(500);
 check('sticky_visible_with_evidence_open', await A.locator('#share-sticky:not(.hidden)').count() === 1);
 await A.screenshot({ path: OUT + 'result_mid_sticky.png' });
 await A.click('.luck-tile[data-open="wealth"]'); await A.evaluate(() => window.scrollTo(0, 0)); await A.waitForTimeout(500);
@@ -80,6 +80,7 @@ await B.goto(BASE, { waitUntil: 'networkidle' });
 await analyse(B, 'image1018.jpg');
 await B.click('#sh-native'); await B.waitForSelector('#toast.show');
 const clipB = await B.evaluate(() => navigator.clipboard.readText()).catch(() => '');
+check('kakao_inapp_paste_label', /카톡에 메시지 붙여넣기/.test(await B.textContent('#sh-native')));
 check('fallback_copy_text_and_link', /손금이랑 비교해 볼래\?/.test(clipB) && /\/s\/[a-z]+\/\?s=[1-5]{4}&p=[0-9a-z-]{14}&ref=share/.test(clipB), { clip: clipB });
 await B.screenshot({ path: OUT + 'result_copy_toast.png' });
 
@@ -89,6 +90,10 @@ const C = await mk(KAKAO);
 const html = await (await C.request.get(BASE + link.pathname.slice(1) + link.search)).text();
 check('og_tags_per_type', /og:title" content="나는 .+ 내 손금이랑 비교해 볼래\?/.test(html) && /og:description" content="친구가 손금 비교를 신청했어요/.test(html) && /og:image" content="https:\/\/hoadosa\.com\/img\/share\/[a-z]+\.jpg"/.test(html), {});
 await C.goto(BASE + link.pathname.slice(1) + link.search, { waitUntil: 'networkidle' });
+await C.waitForSelector('#sl-start');
+check('share_landing_page_visible', await C.isVisible('#sl-start') && /친구가 손금 비교를 신청했어요/.test(await C.textContent('body')));
+await C.screenshot({ path: OUT + 'share_landing_ko.png' });
+await C.click('#sl-start');
 await C.waitForSelector('#shared-banner:not(.hidden)');
 const q = new URL(C.url()).searchParams;
 check('redirect_keeps_params', q.get('t') && q.get('ref') === 'share' && /^[1-5]{4}$/.test(q.get('s')) && q.get('p') === link.searchParams.get('p') && new URL(C.url()).pathname === '/', { url: C.url() });
@@ -134,12 +139,13 @@ check('result_friend_button_visible', await C.isVisible('#r-friend') && /궁합/
 await C.screenshot({ path: OUT + 'result_after_compare.png' });
 await C.click('#r-friend'); check('friend_button_reopens_compare', await C.locator('#s-compare.active').count() === 1);
 const evC = await C.evaluate(() => window.__track.map((e) => e.name));
-check('compare_tracking', ['share_landing', 'compare_view', 'share_click', 'share_done', 'compare_card_click', 'compare_reopen'].every((n) => evC.includes(n)), { evC });
+check('compare_tracking', ['share_landing_view', 'share_landing', 'compare_view', 'share_click', 'share_done', 'compare_card_click', 'compare_reopen'].every((n) => evC.includes(n)), { evC });
 check('no_supabase_writes', C.__posts.length === 0 && A.__posts.length === 0);
 
 // E. third person opens the pair link: both foxes + score in the teaser, then compares with the sender
 const E = await mk(KAKAO);
 await E.goto(BASE + pairUrl.pathname.slice(1) + pairUrl.search, { waitUntil: 'networkidle' });
+await E.click('#sl-start');
 await E.waitForSelector('#shared-banner:not(.hidden)');
 const bE = (await E.textContent('#shared-banner')).replace(/\s+/g, ' ').trim();
 check('pair_teaser', /친구가 손금 비교 결과를 보냈어요/.test(bE) && new RegExp(`궁합 ${pct}%`).test(bE) && / × /.test(bE), { text: bE });

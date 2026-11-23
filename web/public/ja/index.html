@@ -112,6 +112,17 @@
     </div>
     <p id="r-intro" class="lead left"></p>
     <p id="r-friend" class="card friend hidden"></p>
+    <div id="r-sharehero" class="card share-hero">
+      <p class="sh-eyebrow">友だちを招待</p>
+      <p id="sh-title" class="sh-title"></p>
+      <p id="r-hook" class="sh-hook"></p>
+      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 カカオトークで送る</button>
+      <div class="share-row">
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">💞 友だちと手相マッチを見る</button>
+        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 リンクをコピー</button>
+      </div>
+      <p class="sh-hint fine">チャットに貼るだけで友だちがすぐ比べられるよ</p>
+    </div>
     <div id="r-lucks" class="luck-grid"></div>
     <div id="r-evidence" class="evidence hidden">
       <div class="card overlay-card">
@@ -125,14 +136,6 @@
         <p id="r-focus" class="focus-cap hidden"></p>
       </div>
       <div id="r-panels"></div>
-    </div>
-    <div id="r-sharehero" class="card share-hero">
-      <p id="r-hook" class="sh-hook"></p>
-      <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 カカオトークで送る</button>
-      <div class="share-row">
-        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">🤝 友だちと比べる</button>
-        <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 リンクをコピー</button>
-      </div>
     </div>
     <details id="r-measured-box" class="card measured">
       <summary>くわしく見る <span class="muted">ひとこと · 測定値</span></summary>
@@ -236,7 +239,7 @@
       <button type="button" id="card-close" class="btn ghost">閉じる</button>
     </div>
   </div>
-  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">🤝 友だちと比べる</button></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💞 友だちと手相マッチを見る</button></div>
 <div id="toast" class="toast"></div>
 </div>
 <script defer src="/js/langbar.js"></script>

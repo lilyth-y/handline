@@ -20,23 +20,68 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hoadosa.com/img/share/en/wind.jpg">
 <link rel="icon" href="/img/icon-192.png">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <noscript><meta http-equiv="refresh" content="0;url=/en/?t=wind&amp;ref=share"></noscript>
-<script>
-// Chat-app previews read only the OG tags above. A human visitor is sent straight on to the app (/en/?t=…&s=…&ref=share).
-(function () {
-  var p = new URLSearchParams(location.search);
-  var q = new URLSearchParams();
-  q.set('t', 'wind');
-  if (/^[1-5]{4}$/.test(p.get('s') || '')) q.set('s', p.get('s'));
-  if (/^[0-9a-z-]{14}$/.test(p.get('p') || '')) q.set('p', p.get('p'));
-  if (/^[a-z]{3,12}$/.test(p.get('f') || '') && /^[0-9]{2,3}$/.test(p.get('c') || '')) { q.set('f', p.get('f')); q.set('c', p.get('c')); }
-  q.set('ref', /^[a-z0-9_-]{1,20}$/i.test(p.get('ref') || '') ? p.get('ref') : 'share');
-  location.replace('/en/?' + q.toString());
-})();
-</script>
-<style>html,body{margin:0;background:#0d1236;color:#f4f1ff;font-family:-apple-system,"Noto Sans KR","Noto Sans JP","Noto Sans TC",sans-serif;text-align:center}a{color:#f3cc6b}</style>
+<style>
+html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% 0%,#2a2f7a 0%,#0d1236 55%);color:#f4f1ff;font-family:-apple-system,"Noto Sans KR","Noto Sans JP","Noto Sans TC",sans-serif;text-align:center}
+.wrap{max-width:420px;margin:0 auto;padding:28px 18px 40px}
+.card{border:1px solid #f3cc6b55;border-radius:18px;padding:20px 16px;background:linear-gradient(160deg,#f3cc6b12,#b9a7ff10)}
+.eb{font-size:14px;font-weight:700;color:#f3cc6b;margin:0 0 8px}
+.fox{font-size:28px;font-weight:900;margin:0 0 4px;line-height:1.3}
+.lead{margin:0 0 12px;font-size:14px;line-height:1.65;color:#e6defc}
+.q{margin:0 0 14px;font-size:16px;font-weight:700}
+.pair{margin:0 0 12px;font-size:15px;color:#f3cc6b;font-weight:700}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px 16px;font-size:17px;font-weight:800;color:#2a1d00;background:linear-gradient(90deg,#f3cc6b,#ffe6a6);cursor:pointer;text-decoration:none}
+.og{width:100%;border-radius:12px;margin:16px 0 0;box-shadow:0 8px 32px #0005}
+</style>
 </head>
 <body>
-<p style="padding:48px 20px;line-height:1.8">🦊 Hoa is leading you to the palm reading…<br><a href="/en/?t=wind&amp;ref=share">Go now ›</a></p>
+<div class="wrap">
+  <div class="card">
+    <p class="eb">🤝 A friend wants to compare palms!</p>
+    <p class="fox">🍃 Wind-Hand Free-Spirit Fox</p>
+    <p class="lead">A free wind brushes across your palm.</p>
+    <p class="q">Which fox are you? 🦊</p>
+    <p id="pair" class="pair" hidden></p>
+    <button type="button" class="btn" id="sl-start">Read my palm &amp; compare ✨</button>
+  </div>
+  <img class="og" src="https://hoadosa.com/img/share/en/wind.jpg" width="600" height="315" alt="">
+</div>
+<script>
+// Chat crawlers read OG only. Humans see this landing, then tap through to the app with ref=share.
+(function () {
+  var HOME = "/en/";
+  var TID = "wind";
+  var LANG = "en";
+  var pairTpl = "Match {score}% · I want to compare too!";
+  function appQS() {
+    var p = new URLSearchParams(location.search);
+    var q = new URLSearchParams();
+    q.set('t', TID);
+    if (/^[1-5]{4}$/.test(p.get('s') || '')) q.set('s', p.get('s'));
+    if (/^[0-9a-z-]{14}$/.test(p.get('p') || '')) q.set('p', p.get('p'));
+    if (/^[a-z]{3,12}$/.test(p.get('f') || '') && /^[0-9]{2,3}$/.test(p.get('c') || '')) { q.set('f', p.get('f')); q.set('c', p.get('c')); }
+    q.set('ref', /^[a-z0-9_-]{1,20}$/i.test(p.get('ref') || '') ? p.get('ref') : 'share');
+    return q;
+  }
+  function track(name, data) {
+    try { if (typeof window.va === 'function') window.va('event', { name: name, data: Object.assign({ lang: LANG }, data || {}) }); } catch (e) {}
+    try { (window.__track = window.__track || []).push({ name: name, data: data || {} }); } catch (e2) {}
+  }
+  var p = new URLSearchParams(location.search);
+  var f = p.get('f'), c = p.get('c');
+  if (/^[a-z]{3,12}$/.test(f || '') && /^[0-9]{2,3}$/.test(c || '')) {
+    var el = document.getElementById('pair');
+    el.textContent = pairTpl.replace('{score}', c);
+    el.hidden = false;
+  }
+  track('share_landing_view', { t: TID, pair: !!f });
+  document.getElementById('sl-start').addEventListener('click', function () {
+    track('share_landing_start', { t: TID });
+    location.href = HOME + '?' + appQS().toString();
+  });
+})();
+</script>
 </body>
 </html>

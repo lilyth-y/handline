@@ -37,6 +37,7 @@ for (const lang of ONLY) {
   const sh = await A.evaluate(() => window.__shared); const su = new URL(sh.url);
   const C = await mk(lang);
   await C.goto(BASE + su.pathname + su.search, { waitUntil: 'networkidle' });
+  await C.waitForSelector('#sl-start'); await C.click('#sl-start');
   await C.waitForSelector('#shared-banner:not(.hidden)'); await C.waitForTimeout(400);
   await C.screenshot({ path: `${OUT}${lang}_2_landing.png` });
   await analyse(C, 'image1047.jpg');
