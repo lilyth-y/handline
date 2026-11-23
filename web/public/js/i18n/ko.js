@@ -53,7 +53,7 @@ export default {
   "share.native": "💞 친구 손금이랑 궁합 보기",
   "share.kakao_paste": "💬 카톡에 메시지 붙여넣기",
   "share.hero.eyebrow": "친구 초대",
-  "share.hero.title": "손바닥 한 장으로 우리 궁합 %를 확인해 봐요",
+  "share.hero.title": "손 사진 한 장으로 우리 궁합 % 보기",
   "share.hero.hint": "카톡·문자에 붙여넣기만 하면 친구가 바로 비교할 수 있어요",
   "meta.title": "호아 도사의 손금 풀이 🦊",
   "meta.desc": "하얀 구미호 호아 도사가 그대의 손금을 봐 드리오. 12가지 여우 유형과 재물·연애·건강·직업운 별점!",
