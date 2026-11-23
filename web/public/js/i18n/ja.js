@@ -49,7 +49,7 @@ export default {
   "card.save": "画像を保存",
   "card.external": "ブラウザで開く",
   "card.close": "閉じる",
-  "share.native": "💞 友だちと手相マッチを見る",
+  "share.native": "💞 友だちと手相マッチ",
   "share.kakao_paste": "💬 チャットにコピー",
   "share.hero.eyebrow": "友だちを招待",
   "share.hero.title": "手のひら1枚でふたりの相性%をチェック",

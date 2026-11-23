@@ -42,7 +42,7 @@ await analyse(A, 'image1016.jpg');
 check('hero_cta_visible_without_scroll', await A.locator('#r-sharehero').evaluate((el) => { const r = el.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), {});
 check('kakao_hidden_without_key', await A.locator('#sh-kakao.hidden').count() === 1);
 check('hook_has_mate', /천생연분/.test(await A.textContent('#r-hook')), { text: (await A.textContent('#r-hook')).trim() });
-check('wording_compare_not_challenge', /친구 손금이랑 궁합 보기|카톡에 메시지 붙여넣기/.test(await A.textContent('#sh-native')) && !/도전장/.test(await A.evaluate(() => document.body.innerText + document.getElementById('share-sticky').textContent)), {});
+check('wording_compare_not_challenge', /친구랑 궁합 보기|카톡에 붙여넣기/.test(await A.textContent('#sh-native')) && !/도전장/.test(await A.evaluate(() => document.body.innerText + document.getElementById('share-sticky').textContent)), {});
 check('sticky_hidden_at_top', await A.locator('#share-sticky.hidden').count() === 1);
 await A.screenshot({ path: OUT + 'result_top_share_cta.png' });
 await A.click('#sh-native');
@@ -80,7 +80,7 @@ await B.goto(BASE, { waitUntil: 'networkidle' });
 await analyse(B, 'image1018.jpg');
 await B.click('#sh-native'); await B.waitForSelector('#toast.show');
 const clipB = await B.evaluate(() => navigator.clipboard.readText()).catch(() => '');
-check('kakao_inapp_paste_label', /카톡에 메시지 붙여넣기/.test(await B.textContent('#sh-native')));
+check('kakao_inapp_paste_label', /카톡에 붙여넣기/.test(await B.textContent('#sh-native')));
 check('fallback_copy_text_and_link', /손금이랑 비교해 볼래\?/.test(clipB) && /\/s\/[a-z]+\/\?s=[1-5]{4}&p=[0-9a-z-]{14}&ref=share/.test(clipB), { clip: clipB });
 await B.screenshot({ path: OUT + 'result_copy_toast.png' });
 

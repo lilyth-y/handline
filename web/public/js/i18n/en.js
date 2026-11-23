@@ -49,7 +49,7 @@ export default {
   "card.save": "Save image",
   "card.external": "Open in browser",
   "card.close": "Close",
-  "share.native": "💞 Check palm match with a friend",
+  "share.native": "💞 Compare with a friend",
   "share.kakao_paste": "💬 Copy message for chat",
   "share.hero.eyebrow": "Invite a friend",
   "share.hero.title": "Find your match % from one palm photo",

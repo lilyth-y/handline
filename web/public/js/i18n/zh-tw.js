@@ -49,7 +49,7 @@ export default {
   "card.save": "儲存圖片",
   "card.external": "用瀏覽器開啟",
   "card.close": "關閉",
-  "share.native": "💞 跟朋友比手相容配度",
+  "share.native": "💞 跟朋友比手相",
   "share.kakao_paste": "💬 複製訊息到聊天",
   "share.hero.eyebrow": "邀請朋友",
   "share.hero.title": "一張手掌照片就知道我們的速配 %",
