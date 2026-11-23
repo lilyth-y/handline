@@ -446,6 +446,7 @@ export default {
   "sp.go": "今すぐ行く ›",
   "sp.landing_cta": "わたしも手相を見て比べる ✨",
   "sp.landing_pair": "相性{score}% · わたしも比べたい！",
+  "sp.landing_lead": "友だちがシェアした手相の結果です。友だちは {name} タイプでした。",
   "og.eyebrow": "🤝 友だちが手相くらべを申し込んだよ！",
   "og.me": "わたしは{emoji}",
   "og.name": "{name}！",

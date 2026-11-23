@@ -27,9 +27,49 @@ for (const l of GEN) {
   T[l] = makeT(DICTS[l], (k) => { throw new Error(`missing i18n key ${k} (${l})`); });
 }
 
-/** 본문 HTML 안의 사이트 내부 링크(/ /guide/ …)에 언어 접두어를 붙인다. */
-const PAGE_HREF = /href="(\/(?:#[^"]*|(?:guide|foxes|about|privacy|terms)\/?[^"]*)?)"/g;
+/** 본문 HTML 안의 사이트 내부 링크(/guide/ …, /#privacy)에 언어 접두어를 붙인다. 루트(/)·lang-menu 링크는 건드리지 않는다. */
+const PAGE_HREF = /href="(\/(?:(?:guide|foxes|about|privacy|terms)(?:\/[^"]*)?|#[^"]+))"/g;
 const localize = (html, lang) => (lang === 'ko' ? html : html.replace(PAGE_HREF, (m, p) => `href="${pathFor(lang, p)}"`));
+
+const jsonLdTag = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+function webAppLd(lang) {
+  const t = T[lang];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: t('brand.title'),
+    description: t('meta.desc'),
+    url: `${ORIGIN}${pathFor(lang, '/')}`,
+    applicationCategory: 'EntertainmentApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  };
+}
+function articleLd(lang, page, { title, desc }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: desc,
+    author: { '@type': 'Organization', name: 'mbox solutions' },
+    publisher: { '@type': 'Organization', name: T[lang]('brand.title') },
+    mainEntityOfPage: `${ORIGIN}${pathFor(lang, page)}`,
+  };
+}
+function privacyFaqLd(lang) {
+  const t = T[lang];
+  const keys = ['photo', 'anon', 'visits', 'ads', ...(lang === 'ko' ? ['coupang', 'donate'] : []), 'none', 'store', 'off'];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: keys.map((k) => ({
+      '@type': 'Question',
+      name: t(`priv.${k}.h`).replace(/^[^\s]+\s*/, ''),
+      acceptedAnswer: { '@type': 'Answer', text: k === 'anon' || k === 'ads' || k === 'none' ? stripHtml(t(`priv.${k}.p_html`)) : t(`priv.${k}.p`) },
+    })),
+  };
+}
+const stripHtml = (s) => String(s).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
 // ---------- 공통 조각 ----------
 function langSwitch(lang, page, cls = '') {
@@ -45,7 +85,7 @@ function hreflangs(page) {
   out.push(`<link rel="alternate" hreflang="x-default" href="${ORIGIN}${pathFor('ko', page)}">`);
   return out.join('\n');
 }
-function head(lang, page, { title, desc, ogType, ogDesc, bodyClass }) {
+function head(lang, page, { title, desc, ogType, ogDesc, bodyClass, jsonLd }) {
   const t = T[lang];
   return `<!doctype html>
 <html lang="${LANGS[lang].html}" data-lang="${lang}">
@@ -72,6 +112,7 @@ ${hreflangs(page)}
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 ${lang === 'ko' ? '<script src="/js/langredirect.js"></script>\n' : ''}<script defer src="/_vercel/insights/script.js"></script>
 <meta name="google-adsense-account" content="ca-pub-1321078614012821">
+${(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []).map(jsonLdTag).join('\n')}
 </head>
 `;
 }
@@ -89,6 +130,7 @@ function footer(lang) {
 </footer>`, lang);
 }
 function sitePage(lang, page, meta, article, { ogType = 'website', articleClass = '' } = {}) {
+  const jsonLd = meta.jsonLd;
   const t = T[lang];
   const header = localize(`  <header class="site-head">
     <a class="site-brand" href="/">${escText(t('brand.short'))}</a>
@@ -99,7 +141,7 @@ function sitePage(lang, page, meta, article, { ogType = 'website', articleClass 
       ${langSwitch(lang, page)}
     </nav>
   </header>`, lang);
-  return `${head(lang, page, { ...meta, ogType })}<body class="site-page">
+  return `${head(lang, page, { ...meta, ogType, jsonLd })}<body class="site-page">
 <div id="app" class="site-app">
   <div class="stars-bg"></div>
 
@@ -123,7 +165,8 @@ ${footer(lang)}
 // ---------- 페이지 본문 ----------
 const crumb = (lang, ...rest) => {
   const c = CONTENT[lang].labels;
-  return `<p class="crumb"><a href="/">${escText(c.home)}</a> · ${rest.join(' · ')}</p>`;
+  const sep = c.crumb_sep || ' · ';
+  return `<p class="crumb"><a href="/">${escText(c.home)}</a>${sep}${rest.join(sep)}</p>`;
 };
 const navBlock = (a, b) => `<p class="article-nav">
       ${a}
@@ -160,7 +203,7 @@ function foxCard(lang, id) {
 }
 function foxTag(lang, id, sep) {
   const t = T[lang];
-  const kw = '#' + t(`type.${id}.keyword`).split('·').map((s) => s.trim()).join(' #');
+  const kw = '#' + t(`type.${id}.keyword`).split(/[·&]/).map((s) => s.trim()).join(' #');
   return `${kw}${sep}${t('result.element', { el: t(`type.${id}.element`) })}`;
 }
 function foxIndex(lang) {
@@ -187,7 +230,7 @@ function foxPage(lang, id) {
   const c = CONTENT[lang], L = c.labels, t = T[lang], f = c.foxes[id];
   const name = t(`type.${id}.name`), emo = TYPE_EMOJI[id];
   const title = `${emo} ${name}${L.fox_title_suffix}`;
-  const desc = f.desc || josa(L.fox_desc.replace('{name}', name).replace('{el}', t(`type.${id}.element`)).replace('{kw}', t(`type.${id}.keyword`).split('·').map((s) => s.trim()).join(L.fox_kw_sep || ', ')));
+  const desc = f.desc || josa(L.fox_desc.replace('{name}', name).replace('{el}', t(`type.${id}.element`)).replace('{kw}', t(`type.${id}.keyword`).split(/[·&]/).map((s) => s.trim()).join(L.fox_kw_sep || ', ')));
   const others = TYPE_IDS.filter((x) => x !== id).map((x) => `<a class="chip" href="/foxes/${x}/">${TYPE_EMOJI[x]} ${escText(t(`type.${x}.name`))}</a>`).join('');
   const compat = f.compat.map(([o, txt]) => `<li><a href="/foxes/${o}/">${TYPE_EMOJI[o]} ${escText(t(`type.${o}.name`))}</a> — ${txt}</li>`).join('');
   return { title, desc, article: `${crumb(lang, `<a href="/foxes/">${escText(L.foxes)}</a>`, escText(name))}
@@ -225,9 +268,14 @@ function privacyPage(lang) {
     <p><a class="btn ghost" href="/#privacy">${escText(t('priv.off.btn'))}</a></p>
     <p class="fine">${t('priv.contact_html')}</p>`),
   ];
-  return { title: `${t('priv.title')} · ${t('brand.title')}`, desc: c.privacy.desc, article: `${crumb(lang, escText(t('priv.title')))}
+  return {
+    title: `${t('priv.title')} · ${t('brand.title')}`,
+    desc: c.privacy.desc,
+    jsonLd: privacyFaqLd(lang),
+    article: `${crumb(lang, escText(t('priv.title')))}
     <h1>${escText(t('priv.title'))}</h1>
-    ${parts.join('\n    ')}` };
+    ${parts.join('\n    ')}`,
+  };
 }
 const rawPage = (lang, k) => ({ title: CONTENT[lang][k].title, desc: CONTENT[lang][k].desc, article: CONTENT[lang][k].article });
 
@@ -267,7 +315,7 @@ function homePage(lang) {
     if (!t.has(k)) throw new Error(`template key ${k} missing (${lang})`);
     return k.endsWith('_html') ? t(k) : escText(t(k)).replace(/"/g, '&quot;');
   });
-  return head(lang, '/', { title: t('meta.title'), desc: t('meta.desc'), ogDesc: t('meta.og_desc'), ogType: 'website' }) + localize(body, lang);
+  return head(lang, '/', { title: t('meta.title'), desc: t('meta.desc'), ogDesc: t('meta.og_desc'), ogType: 'website', jsonLd: [webAppLd(lang)] }) + localize(body, lang);
 }
 
 // ---------- 출력 ----------
@@ -283,7 +331,9 @@ for (const lang of GEN) {
   for (const [page, fn] of PAGES) {
     if (page === '/') { put(lang, page, homePage(lang)); continue; }
     const m = fn(lang);
-    put(lang, page, sitePage(lang, page, { title: m.title, desc: m.desc }, m.article, { ogType: /^\/(foxes|guide)\/.+/.test(page) ? 'article' : 'website', articleClass: page === '/privacy/' ? ' privacy' : '' }));
+    const isArticle = /^\/(foxes|guide)\/.+/.test(page);
+    const jsonLd = m.jsonLd || (isArticle ? [articleLd(lang, page, m)] : []);
+    put(lang, page, sitePage(lang, page, { title: m.title, desc: m.desc, jsonLd }, m.article, { ogType: isArticle ? 'article' : 'website', articleClass: page === '/privacy/' ? ' privacy' : '' }));
   }
 }
 // sitemap (hreflang 대체 주소 포함). 공유 랜딩(/s/…)은 noindex 라 넣지 않는다.

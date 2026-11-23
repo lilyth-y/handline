@@ -454,6 +454,7 @@ export default {
   "sp.go": "바로 가기 ›",
   "sp.landing_cta": "내 손금 보고 비교하기 ✨",
   "sp.landing_pair": "궁합 {score}% · 나도 비교해 볼래?",
+  "sp.landing_lead": "친구가 공유한 손금 결과예요. 친구는 {name} 쪽이에요.",
   "og.eyebrow": "🤝 친구가 손금 비교를 신청했어요!",
   "og.me": "나는 {emoji}",
   "og.name": "{name}!",
