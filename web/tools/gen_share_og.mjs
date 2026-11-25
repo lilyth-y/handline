@@ -43,7 +43,7 @@ ${Array.from({ length: 36 }, (_, i) => { const r = (n) => ((i * 9301 + n * 49297
 <div class="tx"><div class="eb">${esc(tt('og.eyebrow'))}</div>
 <div class="me">${esc(tt('og.me', { emoji: TYPE_EMOJI[t.id] || '' }))}</div>
 <div class="nm">${esc(tt('og.name', { name: tt(`type.${t.id}.name`) })).replace(lang === 'ja' ? 'ぎつね' : '\u0000', '<wbr>ぎつね')}</div>
-<div class="kw">${esc(tt('og.kw', { kw: tt(`type.${t.id}.keyword`).replace('·', ' #'), el: tt(`type.${t.id}.element`) }))}</div>
+<div class="kw">${esc(tt('og.kw', { kw: tt(`type.${t.id}.keyword`).replace(/[·&]/g, ' #'), el: tt(`type.${t.id}.element`) }))}</div>
 <div class="q">${esc(tt('og.q'))}</div></div>
 <div class="pill">${esc(tt('og.pill', { host: 'hoadosa.com' }))}</div></body>`;
 
@@ -51,14 +51,14 @@ const page = (t, lang, tt) => {
   const emo = TYPE_EMOJI[t.id] || '🦊', pre = LANGS[lang].prefix;
   const name = tt(`type.${t.id}.name`);
   const title = tt('sp.title', { emoji: emo, name });
-  const desc = tt('sp.desc', { intro: tt(`type.${t.id}.intro`) });
+  const desc = tt('sp.desc', { name, intro: tt(`type.${t.id}.intro`) });
   const url = `${ORIGIN}${pre}/s/${t.id}/`;
   const img = `${ORIGIN}/img/share/${lang === 'ko' ? '' : lang + '/'}${t.id}.jpg`;
   const home = `${pre}/`;
   const pairTpl = esc(tt('sp.landing_pair', { score: '{score}' }));
   const cta = esc(tt('sp.landing_cta'));
   const eyebrow = esc(tt('banner.self.eyebrow'));
-  const intro = esc(tt(`type.${t.id}.intro`));
+  const intro = esc(tt('sp.landing_lead', { name }));
   return `<!doctype html>
 <html lang="${LANGS[lang].html}">
 <head>

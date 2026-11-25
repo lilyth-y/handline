@@ -31,18 +31,18 @@
 
 | id | ko | en | ja | zh-TW |
 |---|---|---|---|---|
-| gold | 황금손 재물여우 | Golden-Hand Fortune Fox | 黄金の手の財運ぎつね | 黃金手財運狐 |
-| fire | 불꽃손 열정여우 | Blaze-Hand Passion Fox | 炎の手の情熱ぎつね | 烈焰手熱情狐 |
-| moon | 달빛손 감성여우 | Moonlit-Hand Dreamer Fox | 月あかりの手の感性ぎつね | 月光手感性狐 |
-| star | 별빛손 지혜여우 | Starlit-Hand Sage Fox | 星あかりの手の知恵ぎつね | 星光手智慧狐 |
-| wind | 바람손 자유여우 | Wind-Hand Free-Spirit Fox | 風の手の自由ぎつね | 微風手自由狐 |
-| sun | 태양손 리더여우 | Sun-Hand Leader Fox | 太陽の手のリーダーぎつね | 太陽手領袖狐 |
-| cloud | 구름손 평화여우 | Cloud-Hand Peacemaker Fox | 雲の手の平和ぎつね | 雲朵手和平狐 |
-| flower | 꽃잎손 인기여우 | Petal-Hand Charmer Fox | 花びらの手の人気ぎつね | 花瓣手人氣狐 |
-| rock | 바위손 뚝심여우 | Rock-Hand Steadfast Fox | 岩の手の粘りぎつね | 岩石手毅力狐 |
-| wave | 물결손 공감여우 | Wave-Hand Empath Fox | 波の手の共感ぎつね | 波浪手共感狐 |
-| lightning | 번개손 아이디어여우 | Lightning-Hand Spark Fox | 稲妻の手のひらめきぎつね | 閃電手靈感狐 |
-| galaxy | 은하손 행운여우 | Galaxy-Hand Lucky Fox | 銀河の手の幸運ぎつね | 銀河手幸運狐 |
+| gold | 황금손 재물여우 | The Gold Fox | 黄金の手の財運ぎつね | 黃金手財運狐 |
+| fire | 불꽃손 열정여우 | The Blaze Fox | 炎の手の情熱ぎつね | 烈焰手熱情狐 |
+| moon | 달빛손 감성여우 | The Moon Fox | 月あかりの手の感性ぎつね | 月光手感性狐 |
+| star | 별빛손 지혜여우 | The Star Fox | 星あかりの手の知恵ぎつね | 星光手智慧狐 |
+| wind | 바람손 자유여우 | The Wind Fox | 風の手の自由ぎつね | 微風手自由狐 |
+| sun | 태양손 리더여우 | The Sun Fox | 太陽の手のリーダーぎつね | 太陽手領袖狐 |
+| cloud | 구름손 평화여우 | The Cloud Fox | 雲の手の平和ぎつね | 雲朵手和平狐 |
+| flower | 꽃잎손 인기여우 | The Blossom Fox | 花びらの手の人気ぎつね | 花瓣手人氣狐 |
+| rock | 바위손 뚝심여우 | The Rock Fox | 岩の手の粘りぎつね | 岩石手毅力狐 |
+| wave | 물결손 공감여우 | The Wave Fox | 波の手の共感ぎつね | 波浪手共感狐 |
+| lightning | 번개손 아이디어여우 | The Lightning Fox | 稲妻の手のひらめきぎつね | 閃電手靈感狐 |
+| galaxy | 은하손 행운여우 | The Galaxy Fox | 銀河の手の幸運ぎつね | 銀河手幸運狐 |
 
 원소/키워드:
 

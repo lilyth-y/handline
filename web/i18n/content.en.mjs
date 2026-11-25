@@ -1,22 +1,22 @@
 // English content (guide, fox dex, about, terms). Same structure as content.ko.mjs. Glossary: GLOSSARY.md
 const FINE = `Hoa the Fox Sage only looks at length, curvature, breaks and branches in a flat photo. Results are palm reading just for fun and never make claims about your health or your future.`;
-const SMALL = `Where it is · Traditional reading · How the app measures it`;
+const SMALL = `Where it is | Traditional reading | How the app measures it`;
 export default {
  guide: {
   index: {
-   title: `Palm Guide · Hoa the Fox Sage's Palm Reading`,
+   title: `Palm Guide | Hoa the Fox Sage's Palm Reading`,
    desc: `What the life, head, heart and fate lines are, how traditional palmistry reads them, and how the Hoa the Fox Sage app looks at length, curve, breaks and branches in a flat photo.`,
    h1: `Palm Guide`,
-   bubble: `Ho ho, a palm is crisscrossed with many paths. Let me walk you slowly through the four lines I follow first. It is all just for fun, so read it as lightly as you would a fortune cookie.`,
+   bubble: `Aha, a palm is crisscrossed with many paths. Let me walk you slowly through the four lines I follow first. It is all just for fun, so read it as lightly as you would a fortune cookie.`,
    intro: `Hoa the Fox Sage's Palm Reading finds the life, head, heart and fate lines in a single photo of your palm and sets them beside traditional palmistry lore. Your photo is analyzed only inside your phone and is never sent to a server. The articles below explain where each line sits, how old palmistry read it, and what the app measures in a flat photo.`,
    small: SMALL,
    fine: `Every reading is palm reading just for fun. It is not a diagnosis and does not replace medical, legal, financial or career advice.`,
   },
   life: {
-   title: `Life Line · Palm Guide · Hoa the Fox Sage`,
+   title: `Life Line | Palm Guide | Hoa the Fox Sage`,
    desc: `Where the life line sits on your palm, how traditional palmistry reads it, and how the Hoa the Fox Sage app looks at its length, curve, breaks and branches in a flat photo.`,
    h1: `🌿 Life Line`,
-   bubble: `Ho ho, look at that big arc wrapping around your thumb. That, my friend, is the life line.`,
+   bubble: `Aha, look at that big arc wrapping around your thumb. That, my friend, is the life line.`,
    sections: [
     [`What kind of line is it?`, [
      `The life line starts at the edge of the palm near the base of the thumb, then sweeps in a big arc around the thumb's fleshy mound toward the wrist. It is one of the easiest curves to spot when you open your hand, and it is the first line Hoa the Fox Sage's eyes go to.`,
@@ -33,7 +33,7 @@ export default {
    fine: FINE,
   },
   head: {
-   title: `Head Line · Palm Guide · Hoa the Fox Sage`,
+   title: `Head Line | Palm Guide | Hoa the Fox Sage`,
    desc: `Where the head line sits, how traditional palmistry reads it, and how the Hoa the Fox Sage app measures its length, curve, breaks and branches in a flat photo.`,
    h1: `⭐ Head Line`,
    bubble: `Look at that line crossing your palm. That is the path your thoughts travel: the head line.`,
@@ -53,7 +53,7 @@ export default {
    fine: FINE,
   },
   heart: {
-   title: `Heart Line · Palm Guide · Hoa the Fox Sage`,
+   title: `Heart Line | Palm Guide | Hoa the Fox Sage`,
    desc: `Where the heart line sits, how traditional palmistry reads it, and how the Hoa the Fox Sage app looks at its length, curve, breaks and branches in a flat photo.`,
    h1: `💕 Heart Line`,
    bubble: `See that line running across under your fingers? That is where feelings come and go: the heart line.`,
@@ -73,7 +73,7 @@ export default {
    fine: FINE,
   },
   fate: {
-   title: `Fate Line · Palm Guide · Hoa the Fox Sage`,
+   title: `Fate Line | Palm Guide | Hoa the Fox Sage`,
    desc: `Hands with and without a fate line, traditional readings, and how the Hoa the Fox Sage app looks at its presence, length, breaks and branches in a flat photo.`,
    h1: `🏆 Fate Line`,
    bubble: `If you see a vertical line rising from your wrist toward the middle finger, that is called the fate line. If you do not have one, nothing is strange at all, so do not be alarmed.`,
@@ -94,67 +94,68 @@ export default {
   },
  },
  foxidx: {
-  title: `The 12 Foxes · Hoa the Fox Sage's Palm Reading`,
-  desc: `From the Golden-Hand Fortune Fox to the Galaxy-Hand Lucky Fox: temperament and pairing stories for the 12 fox types as told by Hoa the Fox Sage.`,
+  title: `The 12 Foxes | Hoa the Fox Sage's Palm Reading`,
+  desc: `From The Gold Fox to The Galaxy Fox: temperament and pairing stories for the 12 fox types as told by Hoa the Fox Sage.`,
   h1: `📜 The 12 Foxes`,
-  bubble: `Ho ho, which fox is hiding in your hand? Peek at all twelve, one by one. With just one palm photo, Hoa the Fox Sage will point right to yours.`,
-  intro: `Hoa the Fox Sage sets the grain of your palm against traditional palmistry rules and picks the closest of twelve fox types. The dex below gathers each fox's aura, temperament, and the pairings traditional lore calls a good match. The in-app friend compatibility reading is a separate, just-for-fun calculation; the pairings in this dex are old palmistry stories about aura.`,
+  bubble: `Aha, which fox is hiding in your hand? Peek at all twelve, one by one. With just one palm photo, Hoa the Fox Sage will point right to yours.`,
+  intro: `Hoa the Fox Sage sets the grain of your palm against traditional palmistry rules and picks the closest of twelve fox types. The guide below gathers each fox's aura, temperament, and the pairings traditional lore calls a good match. The in-app friend compatibility reading is a separate, just-for-fun calculation; the pairings here are old palmistry stories about aura.`,
  },
  foxdescTpl: true,
  labels: {
-  home: `Hoa the Fox Sage`, guide: `Palm Guide`, foxes: `Fox Dex`, about: `About`, privacy: `Privacy notice`, terms: `Terms of Use`,
-  cta_read: `Read my palm ✨`, cta_fox: `Find my fox 🦊`, cta_about: `Read my palm ✨`, back_guide: `← Palm Guide`, back_foxes: `← Fox Dex`,
+  crumb_sep: ` & `,
+  home: `Hoa the Fox Sage`, guide: `Palm Guide`, foxes: `All 12 Foxes`, about: `About`, privacy: `Privacy notice`, terms: `Terms of Use`,
+  cta_read: `Read my palm ✨`, cta_fox: `Find my fox 🦊`, cta_about: `Read my palm ✨`, back_guide: `← Palm Guide`, back_foxes: `← All 12 Foxes`,
   fox_h_what: `What kind of fox is this?`, fox_h_traits: `Shades of this aura`, fox_h_compat: `Foxes that pair well`, fox_h_others: `Meet the other foxes`,
   fox_compat_intro: `The stories below are old palmistry lore about aura: pairings said to suit each other because their grains match or because they fill in each other's gaps. They are not scores measured from palms, so please take them only as a light reference.`,
-  fox_title_suffix: ` · Fox Dex · Hoa the Fox Sage`, fox_tag_sep: `  ·  `, fox_kw_sep: ` & `,
+  fox_title_suffix: ` | All 12 Foxes | Hoa the Fox Sage`, fox_tag_sep: ` — `, fox_kw_sep: ` & `,
   fox_desc: `{name} is a type that stands out for its {el} energy and its traits of {kw}. Hoa the Fox Sage explains its temperament and the foxes that pair well with it.`,
  },
  foxes: {
-  gold: { intro: `The Golden-Hand Fortune Fox has a hand that looks after what is practical before what is flashy. In Hoa the Fox Sage's eyes, this type misses no small difference and calmly sorts what to spend today from what to keep for tomorrow. In palm lore, this aura stands out when a clear head line and fate line show up together. It is a fox that trusts luck that builds up again and again more than luck that strikes like lightning.`,
+  gold: { intro: `The Gold Fox has a hand that looks after what is practical before what is flashy. In Hoa the Fox Sage's eyes, this type misses no small difference and calmly sorts what to spend today from what to keep for tomorrow. In palm lore, this aura stands out when a clear head line and fate line show up together. It is a fox that trusts luck that builds up again and again more than luck that strikes like lightning.`,
    traits: [`A practical saver who collects with a plan and never spends carelessly`, `A strong sense of reality that weighs numbers and conditions`, `A taste for things that last rather than what is trendy`, `Shrugs off the bluster around them and sees what is essential`, `Once a goal appears, steps toward it steadily and never gives up`],
-   compat: [[`galaxy`, `When the Gold aura that stacks up practicality bit by bit meets the Galaxy aura that harmonizes everything, wealth and ease were said to flow together.`], [`rock`, `Meticulous Golden-Hand and Rock-Hand, who sees things through once started: the story goes that plans and action lock together firmly.`]] },
-  fire: { intro: `The Flame-Hand Passion Fox has a hand that, once its heart is set, pushes on even through the night. In traditional palmistry, this kind of vitality was read from a wide life-line arc and a bold, thick line. In Hoa the Fox Sage's eyes, this fox is not afraid of the spark of a beginning. But fire handled well becomes warmth, and left alone can burn itself, so keep a rhythm for rest and it will burn longer.`,
+   compat: [[`galaxy`, `When the Gold aura that stacks up practicality bit by bit meets the Galaxy aura that harmonizes everything, wealth and ease were said to flow together.`], [`rock`, `Meticulous The Gold Fox and The Rock Fox, who sees things through once started: the story goes that plans and action lock together firmly.`]] },
+  fire: { intro: `The Blaze Fox has a hand that, once its heart is set, pushes on even through the night. In traditional palmistry, this kind of vitality was read from a wide life-line arc and a bold, thick line. In Hoa the Fox Sage's eyes, this fox is not afraid of the spark of a beginning. But fire handled well becomes warmth, and left alone can burn itself, so keep a rhythm for rest and it will burn longer.`,
    traits: [`Drive to run to the end once its mind is made up`, `Pours energy into gatherings and work without holding back`, `Frank in showing feelings, with a high temperature`, `Short hesitation before new challenges`, `When passion runs too hot, needs the wisdom to count rest as a skill too`],
    compat: [[`wind`, `When the Flame's passion gains the Wind's adventure, the aura was said to spread farther. A combination that burns without getting blocked.`], [`sun`, `When blazing drive overlaps with bright leadership, they easily become a pair who run side by side at the front.`]] },
-  flower: { intro: `The Petal-Hand Popular Fox has a hand that brightens a room with a single word or glance. In traditional lore, a heart line with many twigs and a clear love-luck star was read as a lovable charm. In Hoa the Fox Sage's eyes, this fox draws people without trying to dress up. Popularity is also a wind, so with an eye to choose the connections you truly want to stay with, the flower blooms longer.`,
+  flower: { intro: `The Blossom Fox has a hand that brightens a room with a single word or glance. In traditional lore, a heart line with many twigs and a clear love-luck star was read as a lovable charm. In Hoa the Fox Sage's eyes, this fox draws people without trying to dress up. Popularity is also a wind, so with an eye to choose the connections you truly want to stay with, the flower blooms longer.`,
    traits: [`Sociable charm that makes friends quickly anywhere`, `Reads mood and timing by feel`, `Giving and receiving compliments and attention comes naturally`, `Quick to start relationships, leaving a lasting impression`, `Shines when choosing depth among many connections`],
-   compat: [[`sun`, `Leading Sun-Hand and beloved Petal-Hand are said to make each other shine in the middle of a gathering.`], [`galaxy`, `When Petal-Hand's flowing charm gains Galaxy-Hand's harmonious luck, connections and chances were said to open evenly.`]] },
-  galaxy: { intro: `The Galaxy-Hand Lucky Fox has a hand where wealth, people, body and work all sparkle evenly, rather than one luck standing out. When a fate line shows and several stars are well balanced, traditional palmistry spoke of harmonious fortune. In Hoa the Fox Sage's eyes, this fox is more about "flow" than a "one big hit." With luck open on all sides, a habit of gratitude and sharing keeps that harmony longer.`,
+   compat: [[`sun`, `The Sun Fox and The Blossom Fox are said to make each other shine in the middle of a gathering.`], [`galaxy`, `When The Blossom Fox's flowing charm gains The Galaxy Fox's harmonious luck, connections and chances were said to open evenly.`]] },
+  galaxy: { intro: `The Galaxy Fox has a hand where wealth, people, body and work all sparkle evenly, rather than one luck standing out. When a fate line shows and several stars are well balanced, traditional palmistry spoke of harmonious fortune. In Hoa the Fox Sage's eyes, this fox is more about "flow" than a "one big hit." With luck open on all sides, a habit of gratitude and sharing keeps that harmony longer.`,
    traits: [`Well-balanced luck, so work tends to go smoothly`, `A flexible view that does not fixate on one thing`, `Rides the timing between people and chances well`, `A knack for nurturing even small luck without missing it`, `To keep harmony, rhythm matters more than greed`],
-   compat: [[`gold`, `When the Gold aura that stacks up practicality bit by bit meets the Galaxy aura that harmonizes everything, wealth and ease were said to flow together.`], [`flower`, `When Petal-Hand's flowing charm gains Galaxy-Hand's harmonious luck, connections and chances were said to open evenly.`]] },
-  lightning: { intro: `The Lightning-Hand Idea Fox has a hand that flashes onto a different path even in an ordinary scene. When a line has many branches and the head line curves softly, old tales read wit and quick reflexes. In Hoa the Fox Sage's eyes, this type changes the air with a single idea, whether in a meeting room or an alley. Lightning is short and bright, so if you catch what pops up and act on even a little of it, your talent stays behind as light.`,
+   compat: [[`gold`, `When the Gold aura that stacks up practicality bit by bit meets the Galaxy aura that harmonizes everything, wealth and ease were said to flow together.`], [`flower`, `When The Blossom Fox's flowing charm gains The Galaxy Fox's harmonious luck, connections and chances were said to open evenly.`]] },
+  lightning: { intro: `The Lightning Fox has a hand that flashes onto a different path even in an ordinary scene. When a line has many branches and the head line curves softly, old tales read wit and quick reflexes. In Hoa the Fox Sage's eyes, this type changes the air with a single idea, whether in a meeting room or an alley. Lightning is short and bright, so if you catch what pops up and act on even a little of it, your talent stays behind as light.`,
    traits: [`Outstanding at instant wit and connecting dots`, `Many thoughts pass at once, so gets bored easily`, `Breaks through stuck spots with humor and a change of angle`, `Fast to start; finishing may need a habit`, `Writing ideas down and sharing them spreads the luck further`],
-   compat: [[`star`, `Clear analysis and flashing ideas were said to wake each other up. Thinking deepens and action gets lighter.`], [`wind`, `Wind-Hand who finds new paths and Lightning-Hand who seizes the moment make a pair who can smile at change faster than anyone.`]] },
-  moon: { intro: `The Moonlight-Hand Sensitive Fox has a hand that tends first to what stays in the heart rather than what the eye sees. When the head line tilts slightly or curves softly, old palm books spoke of imagination and intuition. In Hoa the Fox Sage's eyes, this type plants a story even into an ordinary day. With such rich sensitivity there may be ups and downs, so it is good to respect your own rhythm.`,
+   compat: [[`star`, `Clear analysis and flashing ideas were said to wake each other up. Thinking deepens and action gets lighter.`], [`wind`, `The Wind Fox who finds new paths and The Lightning Fox who seizes the moment make a pair who can smile at change faster than anyone.`]] },
+  moon: { intro: `The Moon Fox has a hand that tends first to what stays in the heart rather than what the eye sees. When the head line tilts slightly or curves softly, old palm books spoke of imagination and intuition. In Hoa the Fox Sage's eyes, this type plants a story even into an ordinary day. With such rich sensitivity there may be ups and downs, so it is good to respect your own rhythm.`,
    traits: [`Uncommon imagination and sense of atmosphere`, `Conveys feelings through scenes and lingering mood rather than words`, `An eye for choosing art, stories and spaces`, `Intuition comes first and logic follows`, `Time alone is the soil for recharging and creating`],
-   compat: [[`wave`, `When quiet sensitivity meets gentle empathy, hearts were said to connect even without words. Moon and water are an old pair.`], [`star`, `When imaginative Moon-Hand meets calmly organizing Star-Hand, a story gets a backbone and analysis gains warmth.`]] },
-  rock: { intro: `The Rock-Hand Grit Fox has a hand that does not easily waver once it picks its spot. When the lines are bold and the life line runs long, old palm books spoke of endurance and trustworthiness. In Hoa the Fox Sage's eyes, this type does not give itself over to trends. It may seem slow, but it ends up waiting at the finish. Still, even a rock gets a path carved by water that flows long enough. Telling stubbornness from conviction makes you sturdier.`,
+   compat: [[`wave`, `When quiet sensitivity meets gentle empathy, hearts were said to connect even without words. Moon and water are an old pair.`], [`star`, `When imaginative The Moon Fox meets calmly organizing The Star Fox, a story gets a backbone and analysis gains warmth.`]] },
+  rock: { intro: `The Rock Fox has a hand that does not easily waver once it picks its spot. When the lines are bold and the life line runs long, old palm books spoke of endurance and trustworthiness. In Hoa the Fox Sage's eyes, this type does not give itself over to trends. It may seem slow, but it ends up waiting at the finish. Still, even a rock gets a path carved by water that flows long enough. Telling stubbornness from conviction makes you sturdier.`,
    traits: [`Persistence to take responsibility for what it starts, to the end`, `Builds trust through results rather than words`, `Does not sink in difficult stretches`, `Trusts accumulation over change`, `Refine stubbornness into conviction and others can lean on you`],
-   compat: [[`cloud`, `When gentle consideration meets sturdy grit, one wraps around the heart and the other becomes the pillar, so it was said.`], [`gold`, `Meticulous Golden-Hand and Rock-Hand, who sees things through once started: the story goes that plans and action lock together firmly.`]] },
-  star: { intro: `The Starlight-Hand Wisdom Fox has a hand that gazes quietly at the blurry and picks out only the core, clearly. In traditional palmistry, a long, straight head line was read as a sign of analysis and focus. In Hoa the Fox Sage's eyes, this fox finds its way by the stars even on waves of emotion. But over-analysis can slow decisions, so practicing trust in "enough information right now" suits you.`,
+   compat: [[`cloud`, `When gentle consideration meets sturdy grit, one wraps around the heart and the other becomes the pillar, so it was said.`], [`gold`, `Meticulous The Gold Fox and The Rock Fox, who sees things through once started: the story goes that plans and action lock together firmly.`]] },
+  star: { intro: `The Star Fox has a hand that gazes quietly at the blurry and picks out only the core, clearly. In traditional palmistry, a long, straight head line was read as a sign of analysis and focus. In Hoa the Fox Sage's eyes, this fox finds its way by the stars even on waves of emotion. But over-analysis can slow decisions, so practicing trust in "enough information right now" suits you.`,
    traits: [`Analysis and focus that calmly splits things apart`, `Trusts verified facts over groundless talk`, `A knack for putting complicated things in order`, `Hungry for learning and digs in for a long time`, `When the head runs ahead, remember to keep the heart's temperature too`],
-   compat: [[`lightning`, `Clear analysis and flashing ideas were said to wake each other up. Thinking deepens and action gets lighter.`], [`moon`, `When imaginative Moon-Hand meets calmly organizing Star-Hand, a story gets a backbone and analysis gains warmth.`]] },
-  sun: { intro: `The Sun-Hand Leader Fox has a hand that brightens the air the moment it walks into a room. In traditional palmistry, a heart line pointing toward the index finger or a long fate line spoke of a front-runner aura. In Hoa the Fox Sage's eyes, this fox does not run from responsibility and makes a place people can lean on. The brighter the light, the longer the shadow, so the room not to carry everything alone makes a better leader.`,
+   compat: [[`lightning`, `Clear analysis and flashing ideas were said to wake each other up. Thinking deepens and action gets lighter.`], [`moon`, `When imaginative The Moon Fox meets calmly organizing The Star Fox, a story gets a backbone and analysis gains warmth.`]] },
+  sun: { intro: `The Sun Fox has a hand that brightens the air the moment it walks into a room. In traditional palmistry, a heart line pointing toward the index finger or a long fate line spoke of a front-runner aura. In Hoa the Fox Sage's eyes, this fox does not run from responsibility and makes a place people can lean on. The brighter the light, the longer the shadow, so the room not to carry everything alone makes a better leader.`,
    traits: [`Confidence to stand in front and light the direction`, `Draws people's eyes naturally`, `The strength to share goals in words and lead them into action`, `Does not dodge responsibility when it is given`, `Knows that to light everyone, you need nights of your own too`],
-   compat: [[`flower`, `Leading Sun-Hand and beloved Petal-Hand are said to make each other shine in the middle of a gathering.`], [`fire`, `When blazing drive overlaps with bright leadership, they easily become a pair who run side by side at the front.`]] },
-  wave: { intro: `The Ripple-Hand Empathy Fox has a hand that hears the grain before the words. When the heart line is long and the gap between heart and head lines is wide, traditional palmistry read a generous heart and empathy. In Hoa the Fox Sage's eyes, this fox makes someone's day a little less lonely. Ladling out water can make your own well shallow, so remember the balance between caring and being cared for.`,
+   compat: [[`flower`, `The Sun Fox and The Blossom Fox are said to make each other shine in the middle of a gathering.`], [`fire`, `When blazing drive overlaps with bright leadership, they easily become a pair who run side by side at the front.`]] },
+  wave: { intro: `The Wave Fox has a hand that hears the grain before the words. When the heart line is long and the gap between heart and head lines is wide, traditional palmistry read a generous heart and empathy. In Hoa the Fox Sage's eyes, this fox makes someone's day a little less lonely. Ladling out water can make your own well shallow, so remember the balance between caring and being cared for.`,
    traits: [`Notices someone's mood from a look and the air alone`, `Treasures warm, long-lasting relationships`, `In conflict, joins hearts rather than choosing sides`, `Delicate, so may hold on to hurt for a long time`, `Before caring for others, settle your own waves first`],
-   compat: [[`moon`, `When quiet sensitivity meets gentle empathy, hearts were said to connect even without words. Moon and water are an old pair.`], [`cloud`, `Peaceful Cloud-Hand and gentle Ripple-Hand were seen as a warm pair who look after each other without hurrying.`]] },
-  wind: { intro: `The Wind-Hand Free Fox has a hand that looks first for the window that opens rather than the road that is set. When the head and life lines start apart, or a line breaks in one spot and rejoins, old tales read independence and change. In Hoa the Fox Sage's eyes, this type comes alive in moving rather than staying. That does not mean never put down roots; it is closer to putting roots down in ground you chose yourself.`,
+   compat: [[`moon`, `When quiet sensitivity meets gentle empathy, hearts were said to connect even without words. Moon and water are an old pair.`], [`cloud`, `The Cloud Fox and The Wave Fox were seen as a warm pair who look after each other without hurrying.`]] },
+  wind: { intro: `The Wind Fox has a hand that looks first for the window that opens rather than the road that is set. When the head and life lines start apart, or a line breaks in one spot and rejoins, old tales read independence and change. In Hoa the Fox Sage's eyes, this type comes alive in moving rather than staying. That does not mean never put down roots; it is closer to putting roots down in ground you chose yourself.`,
    traits: [`Adventurous spirit that dives fearlessly into new work and places`, `Gets breathless fast when tied to a mold`, `Sets the pace of work independently`, `Flexible, quick to go with change`, `Shines more when, along with freedom, you make clear the people and work you want to keep`],
-   compat: [[`fire`, `When the Flame's passion gains the Wind's adventure, the aura was said to spread farther. A combination that burns without getting blocked.`], [`lightning`, `Wind-Hand who finds new paths and Lightning-Hand who seizes the moment make a pair who can smile at change faster than anyone.`]] },
-  cloud: { intro: `The Cloud-Hand Peace Fox has a hand that lowers the temperature even in a noisy room. When the head and life lines start together or the lines are clear and tidy, old palm books read caution and harmony. In Hoa the Fox Sage's eyes, this type is less about winning fights than about wrapping things so a bond does not break. Since consideration is a habit, voicing your own discomfort with the same weight makes relationships last longer.`,
+   compat: [[`fire`, `When the Flame's passion gains the Wind's adventure, the aura was said to spread farther. A combination that burns without getting blocked.`], [`lightning`, `The Wind Fox who finds new paths and The Lightning Fox who seizes the moment make a pair who can smile at change faster than anyone.`]] },
+  cloud: { intro: `The Cloud Fox has a hand that lowers the temperature even in a noisy room. When the head and life lines start together or the lines are clear and tidy, old palm books read caution and harmony. In Hoa the Fox Sage's eyes, this type is less about winning fights than about wrapping things so a bond does not break. Since consideration is a habit, voicing your own discomfort with the same weight makes relationships last longer.`,
    traits: [`Consideration and patience that put those around at ease`, `Looks for a way rather than raising a voice in conflict`, `Steadiness that keeps its rhythm without hurrying`, `Notices small discomforts and tends to them first`, `Do not only watch others' hearts; let your own cloud rest too`],
-   compat: [[`rock`, `When gentle consideration meets sturdy grit, one wraps around the heart and the other becomes the pillar, so it was said.`], [`wave`, `Peaceful Cloud-Hand and gentle Ripple-Hand were seen as a warm pair who look after each other without hurrying.`]] },
+   compat: [[`rock`, `When gentle consideration meets sturdy grit, one wraps around the heart and the other becomes the pillar, so it was said.`], [`wave`, `The Cloud Fox and The Wave Fox were seen as a warm pair who look after each other without hurrying.`]] },
  },
- about: { title: `About · Hoa the Fox Sage's Palm Reading`, desc: `About Hoa the Fox Sage's Palm Reading, a white nine-tailed fox's palm reading. Operated by mbox solutions; contact dbwnstjr@mbox.solutions.`,
-  article: `<p class="crumb"><a href="/">Hoa the Fox Sage</a> · About</p>
+ about: { title: `About | Hoa the Fox Sage's Palm Reading`, desc: `About Hoa the Fox Sage's Palm Reading, a white nine-tailed fox's palm reading. Operated by mbox solutions; contact dbwnstjr@mbox.solutions.`,
+  article: `<p class="crumb"><a href="/">Hoa the Fox Sage</a> | About</p>
     <h1>Meet Hoa the Fox Sage</h1>
-    <p class="bubble">Ho ho, I am Hoa the Fox Sage, the white nine-tailed fox. I look over your palm with my fox eyes and point out which of the twelve foxes you are closest to.</p>
+    <p class="bubble">Aha, I am Hoa the Fox Sage, the white nine-tailed fox. I look over your palm with my fox eyes and point out which of the twelve foxes you are closest to.</p>
     <h2>About the service</h2>
     <p>Hoa the Fox Sage's Palm Reading is a web service that finds the life, head, heart and fate lines in a single photo of your palm and sets them beside traditional palmistry lore. Results come as one of 12 fox types plus star ratings for wealth, love, health and career luck. Your photo is analyzed only inside your phone (browser) and is never sent to a server or stored.</p>
     <p>The readings are palm reading just for fun. They are not a diagnosis or prophecy, and do not replace medical, legal, financial or career advice. The same hand can look a little different depending on the light and angle of the photo.</p>
-    <p>If you are curious about the basic lines, read the <a class="link" href="/guide/">Palm Guide</a>; if you are curious about the twelve foxes, read the <a class="link" href="/foxes/">Fox Dex</a> first. To see your result right away, all it takes is one palm photo.</p>
+    <p>If you are curious about the basic lines, read the <a class="link" href="/guide/">Palm Guide</a>; if you are curious about the twelve foxes, read the <a class="link" href="/foxes/">All 12 Foxes</a> first. To see your result right away, all it takes is one palm photo.</p>
     <h2>Operator</h2>
     <p>This service is operated by <b>mbox solutions</b>.</p>
     <ul class="trait-list">
@@ -164,10 +165,10 @@ export default {
     </ul>
     <p>How personal information is handled is gathered in the <a class="link" href="/privacy/">Privacy notice</a>, and the conditions of use in the <a class="link" href="/terms/">Terms of Use</a>.</p>
     <p><a class="btn primary" href="/">Read my palm ✨</a></p>` },
- terms: { title: `Terms of Use · Hoa the Fox Sage's Palm Reading`, desc: `Terms of Use for Hoa the Fox Sage's Palm Reading: the nature of the just-for-fun palmistry service, photo handling, ads, and contact.`,
-  article: `<p class="crumb"><a href="/">Hoa the Fox Sage</a> · Terms of Use</p>
+ terms: { title: `Terms of Use | Hoa the Fox Sage's Palm Reading`, desc: `Terms of Use for Hoa the Fox Sage's Palm Reading: the nature of the just-for-fun palmistry service, photo handling, ads, and contact.`,
+  article: `<p class="crumb"><a href="/">Hoa the Fox Sage</a> | Terms of Use</p>
     <h1>Terms of Use</h1>
-    <p class="fine">Effective date: November 18, 2026 · Operated by mbox solutions</p>
+    <p class="fine">Effective date: November 18, 2026 | Operated by mbox solutions</p>
     <h2>Nature of the service</h2>
     <p>Hoa the Fox Sage's Palm Reading (hoadosa.com) is an entertainment service that playfully tells traditional palmistry stories based on a photo of your palm. It does not guarantee any fortune-telling result and does not replace medical, legal, financial, career or psychological advice. Decisions made based on the results, and responsibility for them, are yours.</p>
     <h2>Use</h2>

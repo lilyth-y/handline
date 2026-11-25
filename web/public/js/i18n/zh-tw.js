@@ -446,6 +446,7 @@ export default {
   "sp.go": "馬上前往 ›",
   "sp.landing_cta": "看我的手掌並比對 ✨",
   "sp.landing_pair": "速配 {score}% · 我也要比比看！",
+  "sp.landing_lead": "這是朋友分享的手相結果，Ta 是 {name}。",
   "og.eyebrow": "🤝 朋友邀你一起比手相！",
   "og.me": "我是 {emoji}",
   "og.name": "{name}！",
