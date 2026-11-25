@@ -111,19 +111,20 @@
         <p id="r-keyword" class="keyword"></p>
       </div>
     </div>
-    <p id="r-intro" class="lead left"></p>
-    <p id="r-friend" class="card friend hidden"></p>
     <div id="r-sharehero" class="card share-hero">
       <p class="sh-eyebrow">邀請朋友</p>
       <p id="sh-title" class="sh-title"></p>
       <p id="r-hook" class="sh-hook"></p>
       <button type="button" id="sh-kakao" class="btn kakao hidden" data-share-src="hero">💬 用 KakaoTalk 傳送</button>
       <div class="share-row">
-        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">💞 跟朋友比手相</button>
+        <button type="button" id="sh-native" class="btn primary" data-share-src="hero">📤 分享給朋友</button>
+        <button type="button" id="sh-card" class="btn ghost gold-line" data-share-src="hero_card">📸 用限時動態卡片分享</button>
         <button type="button" id="sh-copy" class="btn ghost" data-share-src="hero">🔗 複製連結</button>
       </div>
       <p class="sh-hint fine">貼到聊天裡，朋友就能立刻比對</p>
     </div>
+    <p id="r-intro" class="lead left"></p>
+    <p id="r-friend" class="card friend hidden"></p>
     <div id="r-lucks" class="luck-grid"></div>
     <div id="r-evidence" class="evidence hidden">
       <div class="card overlay-card">
@@ -145,6 +146,7 @@
       <div id="r-measured"></div>
       <p class="fine left">星等是把照片中的手相形狀，對照傳統手相規則得出的結果。</p>
     </details>
+    <button type="button" id="btn-share" class="btn primary" data-share-src="footer">📤 把結果傳給朋友</button>
     <button id="btn-card" class="btn ghost gold-line">儲存限時動態卡片 📸</button>
     <button id="btn-retry" class="btn ghost">再看另一隻手</button>
     <aside id="r-adfit" class="adfit-slot" hidden aria-label="廣告"></aside>
@@ -240,7 +242,7 @@
       <button type="button" id="card-close" class="btn ghost">關閉</button>
     </div>
   </div>
-  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">💞 跟朋友比手相</button></div>
+  <div id="share-sticky" class="share-sticky hidden"><button type="button" class="btn primary" data-share-src="sticky">📤 分享給朋友</button></div>
 <div id="toast" class="toast"></div>
 </div>
 <script defer src="/js/langbar.js"></script>
