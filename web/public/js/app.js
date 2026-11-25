@@ -219,9 +219,14 @@ function renderResult(canvas, feat, res) {
 }
 function shareHook(res) {
   const mate = mateOf(res.type.id);
+  const fox = `${TYPE_EMOJI[res.type.id] || ''} ${typeName(res.type.id)}`.trim();
   const title = $('#sh-title');
-  if (title) title.textContent = tr('share.hero.title');
+  if (title) title.textContent = tr('share.hero.title_named', { fox });
   $('#r-hook').innerHTML = tr('hook.q') + (mate ? ` <span class="muted">${tr('hook.mate', { fox: `${TYPE_EMOJI[mate.id] || ''} ${esc(typeName(mate.id))}` })}</span>` : '');
+  const hero = $('#r-sharehero');
+  hero.classList.remove('reveal');
+  requestAnimationFrame(() => hero.classList.add('reveal'));
+  track('share_result_view', { t: res.type.id });
 }
 function onPick(e) {
   if (e.target.closest('#btn-focus-clear')) { setFocus(null); return; }
@@ -256,9 +261,9 @@ function sharePayload(kind = 'self') {
   const rows = Object.entries(r.lucks).map(([k, v]) => `${LUCK_EMOJI[k]} ${luckLabel(k)} ${'★'.repeat(v.stars)}${'☆'.repeat(5 - v.stars)}`);
   return {
     url: shareLink(location.origin, r.type.id, stars, lines, null, LANG),
-    title: tr('share.self.title', { name: typeName(r.type.id) }),
+    title: tr('share.self.title', { name: typeName(r.type.id), emoji: TYPE_EMOJI[r.type.id] || '🦊' }),
     desc: `${TYPE_EMOJI[r.type.id] || ''} ${typeCopy(r.type.id).intro} ${tr('share.self.desc')}`,
-    text: tr('share.self.text', { name: typeName(r.type.id), rows: rows.join('\n') }),
+    text: tr('share.self.text', { name: typeName(r.type.id), emoji: TYPE_EMOJI[r.type.id] || '🦊', rows: rows.join('\n') }),
   };
 }
 const shareURL = () => sharePayload('self').url;
@@ -329,7 +334,7 @@ document.querySelectorAll('[data-share-src]').forEach((b) => b.addEventListener(
   const kakaoApp = isKakao(UA);
   $('#sh-kakao').classList.toggle('hidden', !k);
   const native = $('#sh-native');
-  const stickyLabel = tr(kakaoApp && !k && !navigator.share ? 'share.kakao_paste' : 'share.native');
+  const stickyLabel = tr(kakaoApp && !k && !navigator.share ? 'share.kakao_paste' : 'share.sticky');
   document.querySelectorAll('[data-share-src="sticky"]').forEach((b) => { b.textContent = stickyLabel; });
   if (k) {
     native.classList.replace('primary', 'ghost');
@@ -417,12 +422,16 @@ async function offerCard(card, { fromModal = false } = {}) {
   return 'modal';
 }
 
-$('#btn-card').addEventListener('click', async () => {
+async function openResultCard(src = 'result') {
   const btn = $('#btn-card'); btn.disabled = true;
-  try { await offerCard(await buildCard()); }
-  catch (e) { console.error(e); toast(tr('toast.card_fail')); }
+  try {
+    track('share_card_click', { src });
+    await offerCard(await buildCard());
+  } catch (e) { console.error(e); toast(tr('toast.card_fail')); }
   finally { btn.disabled = false; }
-});
+}
+$('#btn-card').addEventListener('click', () => openResultCard('result'));
+$('#sh-card').addEventListener('click', () => openResultCard('hero_card'));
 
 // ?save=1&t=&s= : 카카오 외부 브라우저에서 결과 카드를 다시 그림 (손 사진 불필요)
 function resFromQuery() {

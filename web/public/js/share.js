@@ -10,7 +10,15 @@ export const KAKAO_SDK_SRI = 'sha384-v6JKY3z4FUkWq21oZDHZe74YvuPk/WUrVLrDHTBojHX
 
 import { LANG, t } from './i18n/runtime.js';
 
-export const kakaoEnabled = () => Boolean(KAKAO_JS_KEY && String(KAKAO_JS_KEY).trim());
+let kakaoJsKey = '';
+/** Kakao JavaScript 키가 생기면 호출 (또는 배포 전 KAKAO_JS_KEY 상수에 직접 넣기). */
+export function registerKakaoKey(key) {
+  kakaoJsKey = String(key || '').trim();
+  if (kakaoJsKey) warmKakao();
+}
+if (typeof window !== 'undefined') window.__hoaRegisterKakaoKey = registerKakaoKey;
+
+export const kakaoEnabled = () => Boolean(String(kakaoJsKey || KAKAO_JS_KEY).trim());
 
 // 친구에게 보내는 링크: 유형별 OG 미리보기가 있는 정적 페이지(/s/<id>/)로 보내고,
 // 그 페이지가 곧바로 /?t=<id>&s=…&p=…&ref=share 로 넘겨 준다 (카톡 미리보기는 OG 만 읽고 JS 는 실행하지 않음).
